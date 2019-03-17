@@ -1,0 +1,967 @@
+---
+title: "04 Hierarchical linear modeling"
+author: "Shravan Vasishth and Bruno Nicenboim"
+date: "25-29 March 2019"
+output:
+  beamer_presentation:
+    theme: "CambridgeUS"
+    colortheme: "dolphin"
+    fonttheme: "structurebold"
+header-includes:
+   - \usepackage{esint}
+   - \usepackage{mathtools}
+   - \makeatletter
+   - \newcommand{\explain}[2]{\underset{\mathclap{\overset{\uparrow}{#2}}}{#1}}
+   - \newcommand{\explainup}[2]{\overset{\mathclap{\underset{\downarrow}{#2}}}{#1}}
+   - \makeatother
+citation_package: biblatex
+biblatexoptions: 
+  - "backend=biber, style=apa"
+bibliography:  bayes.bib
+link-citations: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(rstan)
+library(brms)
+library(lme4)
+```
+
+# Example 1: Reading time differences in subject vs object relatives in English
+
+We begin with a relatively simple question from the psycholinguistics literature: are subject relatives easier to process than object relatives? The data come from Experiment 1 in a paper by @grodner.
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## Scientific question: Is there a subject relative advantage in reading?
+
+
+(1a) The *reporter* who the photographer *sent* to the editor was hoping for a good story. (object gap)
+
+(1b) The *reporter* who *sent* the photographer to the editor was hoping for a good story. (subject gap)
+
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## Load data and reformat
+
+```{r open_swetsetal,echo=TRUE}
+gg05e1 <- read.table("data/GrodnerGibson2005E1.csv",
+                     sep=",", header=T)
+gge1 <- gg05e1 %>% filter(item != 0)
+
+gge1 <- gge1 %>% 
+  mutate(word_positionnew = ifelse(item != 15 & 
+                                   word_position > 10, 
+                                   word_position-1, 
+                                   word_position)) 
+```
+
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## Load data and reformat
+
+
+```{r}
+#there is a mistake in the coding of word position,
+#all items but 15 have regions 10 and higher coded
+#as words 11 and higher
+
+## get data from relative clause verb:
+gge1crit <- subset(gge1, ( condition == "objgap" & 
+                             word_position == 6 ) |
+            ( condition == "subjgap" & word_position == 4 ))
+```
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## Experiment design: Latin square and crossed subject and items
+
+Two important properties of these data are worth noticing. 
+
+  - Latin square design
+  - Crossed subjects and items
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## Latin-square design
+
+First, the design is the classic repeated measure Latin square set-up. To see what this means, 
+first look at the number of subjects and items, and the number of rows in the data frame:
+
+```{r}
+length(unique(gge1crit$subject))
+length(unique(gge1crit$item))
+dim(gge1crit)[1]
+```
+
+There are 42 subjects and 16 items. There are $42\times 16 = 672$ rows in the data frame. 
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## Latin-square design
+
+Notice also that each subject sees exactly eight object gap and eight subject gap sentences:
+
+```{r}
+head(xtabs(~subject+condition,gge1crit),n=4)
+```
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## Latin-square design
+
+\begin{table}[!htbp]
+\caption{The Latin-square design in repeated measures experiments.}
+\begin{center}
+\begin{tabular}{ccc}
+item id & group 1 & group 2\\
+1       & objgap       & subjgap \\
+2       & subjgap       & objgap \\
+3       & objgap       & subjgap \\
+4       & subjgap       & objgap \\
+\vdots  & \vdots  & \vdots \\
+16      & subjgap       & objgap \\
+\end{tabular}
+\end{center}
+\label{tab:latinsq}
+\end{table}
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## Latin-square design: Ensuring balance
+
+```{r}
+sample(rep(c("order1","order2"),11))
+```
+
+Latin square designs are used in planned experiments because they are optimal in several ways.
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## Latin-square design: Generating fake data
+
+```{r}
+library(MASS)
+nitem <- 16
+nsubj <- 42
+## prepare data frame for two condition in a latin square design:
+g1<-data.frame(item=1:nitem,
+                 cond=rep(c("objgap","subjgap"),nitem/2))
+g2<-data.frame(item=1:nitem,
+                 cond=rep(c("objgap","subjgap"),nitem/2))
+```
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## Latin-square design: Generating fake data
+
+
+```{r}
+## assemble data frame in long format:
+gp1<-g1[rep(seq_len(nrow(g1)),
+              nsubj/2),]
+gp2<-g2[rep(seq_len(nrow(g2)),
+              nsubj/2),]
+
+fakedat<-rbind(gp1,gp2)
+dim(fakedat) ## sanity check
+fakedat$subj<-rep(1:nsubj,each=nitem) ## add subjects
+fakedat<-fakedat[,c(3,1,2)]  
+fakedat$so<-ifelse(fakedat$cond=="objgap",1,-1)
+```
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## Latin-square design: Generating fake data
+
+
+For example, subject 1 sees the following conditions and items:
+
+```{r}
+head(fakedat,n=16)
+```
+
+We will need this code later for fake data simulation.
+
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## Fully crossed subjects and items
+
+In the data, because of the Latin square design, each subject sees exactly one item in one of the two conditions:
+
+```{r}
+xtabs(~subject+item,gge1crit)
+```
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## The implied generative model
+
+The above design implies a particular statistical model that takes us beyond the linear model.
+
+To remind you, a simple linear model of the above data would be:
+
+\begin{equation}
+y = \alpha + \beta * x + \varepsilon \hbox{ where } \varepsilon \sim Normal(0,\sigma)
+\end{equation}
+
+Here, object gaps are coded +1, subject gaps -1. See @SchadEtAlcontrasts for an explanation of contrast coding.
+
+```{r}
+gge1crit$so<-ifelse(gge1crit$condition=="objgap",1,-1)
+```
+
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## The implied generative model
+
+As figure \ref{fig:ggrtdistrn} shows, a Normal likelihood doesn't seem well motivated, so we will use the log-normal.
+
+```{r echo=FALSE,fig.height=3,fig.cap="\\label{fig:ggrtdistrn}Distribution of reading times in the Grodner and Gibson Experiment 1 data, at the critical region."}
+plot(density(gge1crit$rawRT),main="Grodner and Gibson Expt 1",xlab="RTs (ms)")
+```
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## Between subject variability in mean reading time
+
+
+```{r echo=FALSE,fig.height=3,fig.cap="\\label{fig:subjint}Between subject variability in mean reading times."}
+hist(with(gge1crit,tapply(rawRT,subject,mean)),
+     main="Between subject variability",
+     xlab="mean RTs",freq=FALSE)
+```
+
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## Between subject variability in mean reading time
+
+In the linear model, we can express the assumption that the grand mean intercept $\alpha$ needs an adjustment by subject, where subjects are indexed from $j=1,\dots,J$:
+
+\begin{equation}
+y_j = \alpha + u_{0j} + \beta * x_j + \varepsilon_j 
+\end{equation}
+
+where we now have two sources of variance:
+
+- within subject variance, $\varepsilon_j \sim Normal(0,\sigma)$ 
+- between subject variance in mean reading times, $u_{0j} \sim Normal(0,\sigma_{u0})$ 
+
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## Between item variability in mean reading time
+
+```{r echo=FALSE,fig.height=3,fig.cap="\\label{fig:itemint}Between item variability in mean reading times."}
+hist(with(gge1crit,tapply(rawRT,item,mean)),
+     main="Between item variability",
+     xlab="mean RTs",freq=FALSE)
+```
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## Between item variability in mean reading time
+
+
+For items ranging from $k=1,\dots,K$, we can add this assumption to the model:
+
+\begin{equation}
+y_{kj} = \alpha + u_{0j} + w_{0k} + \beta * x_{kj} + \varepsilon_{kj}
+\end{equation}
+
+where there are now three variance components:
+
+- $\varepsilon_{kj} \sim Normal(0,\sigma)$
+- $u_{0j} \sim Normal(0,\sigma_{u0})$
+- between item variability in mean reading time, $w_{0k} \sim Normal(0,\sigma_{w0})$
+
+This model is called a *varying intercepts model* with crossed varying intercepts for subjects and for items.
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## Between subject and between item variability in objgap cost
+
+
+```{r echo=FALSE,fig.cap="\\label{fig:subjitemslope}Between subject and item variability in object gap vs subject gap reading times."}
+op<-par(mfrow=c(1,2),pty="s")
+meanssubj<-with(gge1crit,
+                tapply(rawRT,IND=list(subject,condition),mean))
+diff<-meanssubj[,2]-meanssubj[,1]
+
+hist(diff,
+     main="Between subject variability",xlab="mean objgap cost",freq=FALSE)
+
+meansitem<-with(gge1crit,tapply(rawRT,IND=list(item,condition),mean))
+diff<-meansitem[,2]-meansitem[,1]
+
+hist(diff,
+     main="Between item variability",xlab="mean objgap cost",freq=FALSE)
+```
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## Between subject and between item variability in objgap cost
+
+We can incorporate this assumption into the model by adding adjustments to the $\beta$ parameter:
+
+\begin{equation}
+y_{kj} = \alpha + u_{0j} + w_{0k} + (\beta + u_{1j} + w_{1k}) * x_{kj} + \varepsilon_{kj}
+\end{equation}
+
+where 
+
+  - $\varepsilon_{kj} \sim Normal(0,\sigma)$ 
+  - $u_{0j} \sim Normal(0,\sigma_{u0})$
+  - $u_{1j} \sim Normal(0,\sigma_{u1})$
+  - $w_{0k} \sim Normal(0,\sigma_{w0})$
+  - $w_{1k} \sim Normal(0,\sigma_{w1})$
+
+This is called the *varying intercepts and slopes* model with *no correlation* between the intercepts and slopes.
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## The maximal model \label{maximal}
+
+  - There is one detail still missing in the model: the adjustments to the intercept and slope are correlated for subjects, and also for items. 
+  - In other words, we have a bivariate distribution for the subject and item random effects:
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## The maximal model 
+
+
+\begin{equation}
+y_{kj} = \alpha + u_{0j} + w_{0k} + (\beta + u_{1j} + w_{1k}) * x_{kj} + \varepsilon_{kj}
+\end{equation}
+
+where $\varepsilon_{kj} \sim Normal(0,\sigma)$ and 
+
+\begin{equation}\label{eq:covmat}
+\Sigma _u
+=
+\begin{pmatrix}
+\sigma _{u0}^2  & \rho _{u}\sigma _{u0}\sigma _{u1}\\
+\rho _{u}\sigma _{u0}\sigma _{u1}    & \sigma _{u1}^2\\
+\end{pmatrix}
+\quad 
+\Sigma _w
+=
+\begin{pmatrix}
+\sigma _{w0}^2  & \rho _{w}\sigma _{w0}\sigma _{w1}\\
+\rho _{w}\sigma _{w0}\sigma _{w1}    & \sigma _{w1}^2\\
+\end{pmatrix}
+\end{equation}
+
+\begin{equation}\label{eq:jointpriordist1}
+\begin{pmatrix}
+  u_0 \\ 
+  u_1 \\
+\end{pmatrix}
+\sim 
+\mathcal{N} \left(
+\begin{pmatrix}
+  0 \\
+  0 \\
+\end{pmatrix},
+\Sigma_{u}
+\right),
+\quad
+\begin{pmatrix}
+  w_0 \\ 
+  w_1 \\
+\end{pmatrix}
+\sim 
+\mathcal{N}\left(
+\begin{pmatrix}
+  0 \\
+  0 \\
+\end{pmatrix},
+\Sigma_{w}
+\right)
+\end{equation}
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## The maximal model 
+
+This is a varying intercepts and slopes model with fully specified  variance-covariance matrices for the subject and item random effects. It is sometimes called the **maximal model** [@barr2013].
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## Implementing the model
+
+The above model is simple to implement in the Bayesian framework.
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## Specify and visualize priors
+
+We define some priors first:
+
+\begin{enumerate}
+\item $\alpha \sim Normal(0,10)$
+\item $\beta \sim Normal(0,1)$
+\item Residual standard deviation: $\sigma \sim Normal(0,1)$
+\item All other standard deviations: $\sigma \sim Normal(0,1)$
+\item Correlation matrix: $\rho \sim LKJ(2)$. 
+\end{enumerate}
+
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## The LKJ prior on the correlation matrix
+
+  - In this model, we assume that the vector 
+$\mathbf{u}=\langle u_0, u_1 \rangle$
+comes from a bivariate normal distribution with a variance-covariance matrix $\boldsymbol{\Sigma_u}$.
+  - This matrix has the variances of the adjustment to the intercept and to the slope respectively along the diagonal, and the covariance on the off-diagonals. 
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## The LKJ prior on the correlation matrix
+
+  - Recall that the covariance $Cov(X,Y)$ between two variables $X$ and $Y$ is defined as the product of their correlation $\rho$ and their standard
+deviations $\sigma_X$ and $\sigma_Y$, such that, $Cov(X,Y) = \rho \sigma_X \sigma_Y$.
+
+\begin{equation}
+\boldsymbol{\Sigma_u} = 
+{\begin{pmatrix} 
+\sigma_{u_0}^2 & \rho_u \sigma_{u_0} \sigma_{u_1} \\ 
+\rho_u \sigma_{u_0} \sigma_{u_1} & \sigma_{u_1}^2
+\end{pmatrix}}
+\end{equation}
+
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## The LKJ prior on the correlation matrix
+
+The covariance matrix can be decomposed into a vector of standard deviations and a correlation matrix. The correlation matrix looks like this:
+
+\begin{equation}
+{\begin{pmatrix} 
+1 & \rho_u  \\ 
+\rho_u  & 1
+\end{pmatrix}}
+\end{equation}
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## The LKJ prior on the correlation matrix
+
+In Stan, we write a matrix that has 0's on the off-diagonals as:
+
+\begin{equation}
+diag\_matrix(\sigma_{u_0},\sigma_{u_1}) = 
+\begin{pmatrix} 
+\sigma_{u_0} & 0 \\ 
+0  & \sigma_{u_1}
+\end{pmatrix}
+\end{equation}
+
+This means that we can decompose the covariance matrix into three parts:
+
+\begin{equation}
+\begin{aligned}
+\boldsymbol{\Sigma_u} &= diag\_matrix(\sigma_{u_0},\sigma_{u_1}) \cdot \boldsymbol{\rho_u} \cdot diag\_matrix(\sigma_{u_0},\sigma_{u_1})\\
+&=
+{\begin{pmatrix} 
+\sigma_{u_0} & 0 \\ 
+0  & \sigma_{u_1}
+\end{pmatrix}}
+{\begin{pmatrix} 
+1 & \rho_u  \\ 
+\rho_u  & 1
+\end{pmatrix}}
+{\begin{pmatrix} 
+\sigma_{u_0} & 0 \\ 
+0  & \sigma_{u_1}
+\end{pmatrix}}
+\end{aligned}
+\end{equation}
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## The LKJ prior on the correlation matrix
+
+So we need priors for the $\sigma_u$'s and for $\rho_u$:
+
+  - The basic idea of the  LKJ prior is that its parameter (usually called *eta*, $\eta$, here it has value $2$) increases, the prior increasingly concentrates around the unit correlation matrix (i.e., favors smaller correlation: ones in the
+diagonals and values close to zero in the lower and upper triangles). 
+  - At $\eta = 1$, the LKJ correlation distribution is uninformative (similar to $Beta(1,1)$), at $\eta < 1$, it favors extreme correlations  (similar to $Beta(a<1,b<1)$).
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## Visualize the priors
+
+As always, it is a good idea to visualize these priors. See Figure \ref{fig:priorsgg}.
+
+```{r results="hide",echo=FALSE}
+priors_alpha <- c(0,10)
+priors_beta <- c(0,1)
+priors_sigma_e <- c(0,1)
+priors_sigma_u <- c(0,1)
+priors_sigma_w <- c(0,1)
+
+## code for visualizing lkj priors:
+fake_data <- list(x = rnorm(30,0,1),
+                  N = 30, R = 2) 
+stancode <- "
+data {
+  int<lower=0> N; 
+  real x[N]; 
+  int R;
+  }
+parameters {
+  real mu;
+  real<lower=0> sigma;
+}
+model {
+  x ~ normal(mu,sigma);  
+}
+generated quantities {
+  corr_matrix[R] LKJ05;
+  corr_matrix[R] LKJ1;
+  corr_matrix[R] LKJ2;
+  corr_matrix[R] LKJ4;
+  LKJ05 = lkj_corr_rng(R,.5);
+  LKJ1 = lkj_corr_rng(R,1);
+  LKJ2 = lkj_corr_rng(R,2);
+  LKJ4 = lkj_corr_rng(R,4);
+}
+"
+
+fitfake <- stan(model_code = stancode, pars = c("LKJ05","LKJ1","LKJ2","LKJ4"),
+                data = fake_data, chains = 4, 
+                iter = 2000)
+
+corrs<-extract(fitfake,pars=c("LKJ05[1,2]","LKJ1[1,2]","LKJ2[1,2]","LKJ4[1,2]"))
+```
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## Visualize the priors
+
+```{r visualizepriors,echo=FALSE,fig.height=3,fig.cap="\\label{fig:priorsgg}Priors for the Godner and Gibson data.",echo=FALSE}
+op<-par(mfrow=c(2,3),pty="s")
+par(oma = rep(0, 4), mar = c(2.7, 2.7, 0.1, 0.1), mgp = c(1.7, 0.4, 0))
+b<-seq(-priors_alpha[2]*2,priors_alpha[2]*2,by=0.01)
+plot(b,dnorm(b,mean=priors_beta[1],sd=priors_beta[2]),type="l",ylab="density", 
+     xlab=expression(alpha),ylim=c(0, 0.5))
+plot(b,dnorm(b,mean=priors_beta[1],sd=priors_beta[2]),type="l",ylab="density",
+     xlab=expression(beta),ylim=c(0, 0.5))
+sig<-seq(0,priors_sigma_e[2]*3,by=0.01)
+plot(sig,dnorm(sig,mean=priors_sigma_e[1],sd=priors_sigma_e[2]),type="l",ylab="density",
+     xlab=expression(sigma[e]))
+plot(sig,dnorm(sig,mean=priors_sigma_u[1],sd=priors_sigma_u[2]),type="l",ylab="density",
+     xlab=expression(sigma[u[0]]))
+plot(sig,dnorm(sig,mean=priors_sigma_u[1],sd=priors_sigma_u[2]),type="l",ylab="density",
+     xlab=expression(sigma[w[0,1]]))
+plot(density(corrs[[3]],bw=0.15),ylab="density",xlab=expression(rho),xlim=c(-1,1),main="")
+```
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## Fit the model using brms
+
+```{r}
+priors <- c(set_prior("normal(0, 10)", 
+                      class = "Intercept"),
+                      set_prior("normal(0, 1)", 
+                                class = "b", 
+                                coef = "so"),
+                      set_prior("normal(0, 1)", 
+                                class = "sd"),
+                      set_prior("normal(0, 1)", 
+                                class = "sigma"),
+                      set_prior("lkj(2)", 
+                                class = "cor"))
+```
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## Fit the model using brms
+
+
+```{r results="hide",cache=TRUE,message=FALSE}
+m_gg<-brm(rawRT~so + (1+so|subject) + (1+so|item),
+          gge1crit,family=lognormal(),
+    prior=priors)
+```
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## Fit the model using brms
+
+```{r echo=FALSE,message=FALSE,fig.height=5}
+stanplot(m_gg,type="hist")
+```
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## Fit the model using brms
+
+Look at the posterior distributions of the parameters on the log ms scale (for the coefficients and standard deviations). Notice that
+
+  - The object relative takes longer to read than the subject relative, as predicted. We know this because the parameter b_so is positive.
+  - The largest sources of variance are the subject intercepts, slopes, and the residual standard deviation. Look at the sd_subject parameters, and sigma.
+  - The by-item variance components are relatively small. Look at the sd_item parameters.
+  - The correlations have very wide uncertainty---the prior is dominating in determining the posteriors as there isn't that much data to obtain accurate estimates of these parameters. Look at the cor parameters.
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## Examine by subject random effects visually
+
+First, extract the posterior samples of the parameters that we will need to compute individual differences.
+
+```{r message=FALSE}
+library(bayesplot)
+```
+
+```{r}
+postgg<-posterior_samples(m_gg)
+## extract variances:
+alpha<-postgg$b_Intercept
+beta<-postgg$b_so
+cor<-posterior_samples(m_gg,"^cor")
+sd<-posterior_samples(m_gg,"^sd")
+sigma<-posterior_samples(m_gg,"sigma")
+```
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## Examine by subject random effects visually
+
+```{r}
+## item random effects won't be used below
+item_re<-posterior_samples(m_gg,"^r_item")
+subj_re<-posterior_samples(m_gg,"^r_subj")
+```
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## By subject slope adjustments
+
+
+```{r echo=FALSE,fig.height=3,fig.cap="\\label{fig:ggsubjslope}Variability in subject slope adjustments in the Grodner and Gibson data."}
+subjslope<-subj_re[,(1:42)+42]
+colnames(subjslope)<-c(paste("u1,",1:42,sep=""))
+slopemns <- colMeans(subjslope)
+subjslope<-subjslope[,order(slopemns)]
+mcmc_areas(subjslope)
+```
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## By subject slope adjustments
+
+
+```{r echo=FALSE,fig.height=3,fig.cap="\\label{fig:ggsubjsloperidges}Variability in subject slope adjustments in the Grodner and Gibson data."}
+mcmc_areas_ridges(subjslope)
+```
+
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## By subject slope adjustments
+
+```{r echo=FALSE,fig.height=3,fig.cap="\\label{fig:ggpostcorr}Posterior distributions of subject varying intercept and slope correlation parameter in the Grodner and Gibson data."}
+stanplot(m_gg,type="hist",pars="cor_subject__Intercept__so")
+```
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## Examine mean and individual differences on the raw ms scale 
+
+It is useful to see the effects on the raw ms scale. The log ms scale is difficult to interpret. 
+
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## Mean difference
+
+```{r}
+meandiff<- exp(alpha + beta) - exp(alpha - beta)
+mean(meandiff)
+round(quantile(meandiff,prob=c(0.025,0.975)),0)
+```
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## Mean difference
+
+
+```{r echo=FALSE,fig.height=3,fig.cap="\\label{fig:ggmeandiff}Mean OR processing cost effect in the Grodner and Gibson data."}
+hist(meandiff,freq=FALSE,
+     main="Mean OR vs SR processing cost",
+     xlab=expression(exp(alpha + beta)- exp(alpha - beta)))
+```
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## Individual effects of OR processing cost
+
+
+```{r echo=FALSE,fig.height=3,fig.cap="\\label{fig:ggsubjeffect}Variability in subject OR processing cost effect in the Grodner and Gibson data."}
+subjdiff<-matrix(rep(NA,42*4000),nrow=42)
+for(i in 1:42){
+subjdiff[i,]<-exp(alpha + subj_re[,i]  + (beta+subj_re[,i+42])) - exp(alpha + subj_re[,i] - (beta+subj_re[,i+42]))
+}
+
+subjdiff<-t(subjdiff)
+
+subjdiff<-as.data.frame(subjdiff)
+colnames(subjdiff)<-c(1:42)
+mns <- colMeans(subjdiff)
+subjdiff<-subjdiff[,order(mns)]
+```
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## Individual effects of OR processing cost
+
+
+```{r eval=FALSE}
+for(i in 1:42){
+  hist(subjdiff[,i],xlim=c(min(subjdiff),
+                           max(subjdiff)),
+       main=paste("subj",colnames(subjdiff)[i],sep=" "))
+  Sys.sleep(.2)
+}
+```
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## Individual effects of OR processing cost
+
+This illustrates a point that @blastland2014norm make: ``The average is an abstraction. The reality is variation.'' 
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## To make discovery claims about the mean effect, calibrate the true and false discovery rate \label{tdr}
+
+  - Suppose that, based on these data and this model, we want to claim that there is a mean OR processing cost in English. 
+  - In order to make a discovery claim, we need to understand the **true discovery rate** of this effect. 
+ - In the frequentist world, this would be the *statistical power*, the probability of detecting an effect if there is in fact one.
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## To make discovery claims, calibrate the true and false discovery rate 
+
+
+First, we write a function to generate fake data.
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## To make discovery claims, calibrate the true and false discovery rate 
+
+Load file: gen_fake_lnorm.R
+
+```{r echo=FALSE}
+library(MASS)
+gen_fake_lnorm <- function(nitem=16,nsubj=42,
+alpha=NULL,beta=NULL,
+                        Sigma_u=NULL,Sigma_w=NULL,sigma_e=NULL){
+  ## prepare data frame for two condition in a latin square design:
+g1<-data.frame(item=1:nitem,
+                 cond=rep(c("objgap","subjgap"),nitem/2))
+g2<-data.frame(item=1:nitem,
+                 cond=rep(c("objgap","subjgap"),nitem/2))
+
+## assemble data frame in long format:
+gp1<-g1[rep(seq_len(nrow(g1)),
+              nsubj/2),]
+gp2<-g2[rep(seq_len(nrow(g2)),
+              nsubj/2),]
+
+fakedat<-rbind(gp1,gp2)
+
+## add subjects:
+fakedat$subj<-rep(1:nsubj,each=nitem)
+fakedat<-fakedat[,c(3,1,2)]  
+fakedat$so<-ifelse(fakedat$cond=="objgap",1,-1)
+## subject random effects:
+  u<-mvrnorm(n=length(unique(fakedat$subj)),
+             mu=c(0,0),Sigma=Sigma_u)
+  ## item random effects
+  w<-mvrnorm(n=length(unique(fakedat$item)),
+             mu=c(0,0),Sigma=Sigma_w)
+
+## generate data row by row:
+  N<-dim(fakedat)[1]
+  rt<-rep(NA,N)
+  for(i in 1:N){
+    rt[i] <- rlnorm(1,alpha +
+                      u[fakedat[i,]$subj,1] +
+                      w[fakedat[i,]$item,1] +
+                      (beta+u[fakedat[i,]$subj,2]+
+                         w[fakedat[i,]$item,2])*fakedat$so[i],
+                   sigma_e)}
+  fakedat$rt<-rt
+  fakedat$subj<-factor(fakedat$subj); fakedat$item<-factor(fakedat$item)
+  fakedat}
+```
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## To make discovery claims, calibrate the true and false discovery rate 
+
+Extract the parameter means from the Bayesian model, and assemble the variance covariance matrices for the subject and item random effects.
+ 
+```{r} 
+sds<-colMeans(sd)
+cors<-colMeans(cor)
+sig<-mean(sigma$sigma)
+Sigma_u<-diag(sds[3:4]^2)
+Sigma_u[1,2]<-Sigma_u[2,1]<-cors[2]*sds[3]*sds[4]
+Sigma_w<-diag(sds[1:2]^2)
+Sigma_w[1,2]<-Sigma_w[2,1]<-cors[1]*sds[1]*sds[2]
+```
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## To make discovery claims, calibrate the true and false discovery rate 
+
+  - Then, we run 50 simulations, computing the 95% credible interval of the OR processing cost effect.
+  - Because this is a very time-consuming calculation, we are going to use previously computed values.
+
+```{r}
+nsim<-50
+betaquants<-matrix(rep(NA,nsim*2),ncol =2)
+betameans<-matrix(rep(NA,nsim),ncol =2)
+```
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## To make discovery claims, calibrate the true and false discovery rate 
+
+
+```{r eval=FALSE,echo=TRUE}
+for(i in 1:nsim){
+gg_fake<-gen_fake_lnorm(alpha=mean(alpha),
+                        beta=mean(beta),
+               Sigma_u=Sigma_u,Sigma_w=Sigma_w,
+               sigma_e=sig)
+
+m_gg_fake<-brm(rt~so + (1+so|subj) + (1+so|item),gg_fake,family=lognormal(),
+    prior=priors,
+    control = list(adapt_delta = 0.99,max_treedepth=15))
+betapost<-posterior_samples(m_gg_fake)$b_so
+betaquants[i,]<-quantile(betapost,prob=c(0.025,0.975))
+betameans[i]<-mean(betapost)
+}
+```
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## To make discovery claims, calibrate the true and false discovery rate 
+
+  - Assume that we are willing to declare an effect just in case 0 is not included in the 95% credible interval of the effect.
+  - The above simulation shows that we would detect the effect in only half of the repeated experiments. 
+
+
+length(which(betaquants[,1]>0))/50
+[1] 0.5
+
+
+Thus, the true discovery rate is quite low. One would want the true discovery rate to be at least 80%. 
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## To make discovery claims, calibrate the true and false discovery rate 
+
+
+  - We can also investigate the false discovery rate---the proportion of times we would declare that we found an effect, when there is none. 
+  - In frequentist statistics, this is called Type I error. The only change needed in the above simulation is to set $\beta$ to 0, to reflect the assumption that there is no effect.
+
+# Example 1: Reading time differences in subject vs object relatives in English
+## Posterior predictive checks
+
+```{r fig.height=3,fig.cap="\\label{fig:ggpostpred}Posterior predictive check for the Grodner and Gibson data."}
+pp_check(m_gg, nsamples = 100)+
+  theme(text = element_text(size=16),
+        legend.text=element_text(size=16))
+```
+
+# Example 2: Question-response accuracies (Logistic regression)
+
+The @grodner data also has question-response accuracies: 1 if the response to a question following the sentence was correct, 0 otherwise. We show only the relevant columns below:
+
+```{r}
+head(gge1crit[,c(1,2,3,8,11)])
+```
+
+# Example 2: Question-response accuracies (Logistic regression)
+
+One could aggregate the accuracy by item, and then just fit a hierarchical linear model:
+
+```{r}
+meanp<-with(gge1crit,tapply(qcorrect,
+                     IND=list(condition,subject),
+                     mean))
+q_df<-data.frame(subj=rep(c(1:42),2),
+           so=rep(c(1,-1),each=42),
+           p=c(meanp[1,],meanp[2,]))
+
+head(q_df)
+```
+
+# Example 2: Question-response accuracies (Logistic regression)
+
+```{r}
+mqlmer<-lmer(p~so+(1|subj),q_df)
+summary(mqlmer)
+```
+
+
+# Example 2: Question-response accuracies (Logistic regression)
+
+Think about the generative process; a 0,1 response is best seen as generated by a Bernoulli distribution with probability of success $p$: $\hbox{response} \sim Bernoulli(p)$. This is the same as a Binomial process, with one trial.
+
+One can therefore model each 0,1 response as being generated from a Bernoulli distribution, which is just a Binomial with a single trial. Thus, what is of interest is the probability of correct responses in subject vs object relatives:
+
+```{r}
+round(100*with(gge1crit,
+               tapply(qcorrect,condition,mean)))
+```
+
+# Example 2: Question-response accuracies (Logistic regression)
+
+We will transform the probability $p$ of a correct response to a log-odds:
+
+\begin{equation}
+\log \frac{p}{1-p}
+\end{equation}
+
+and assume that the log-odds of a correct response is affected by the relative clause type:
+
+\begin{equation}
+\log \frac{p}{1-p} = \alpha + \beta * so 
+\end{equation}
+
+# Example 2: Question-response accuracies (Logistic regression)
+
+This model is called a *logistic* regression because it uses the logistic or logit function to transform $p$ to log odds space. Notice that there is no residual term in this model. 
+
+# Example 2: Question-response accuracies (Logistic regression)
+
+We can fit the above model easily using brms:
+
+```{r results="hide",cache=TRUE}
+m_gg_q1<-brm(qcorrect~so,gge1crit,
+             family=bernoulli(link="logit"))
+summary(m_gg_q1)
+```
+
+# Example 2: Question-response accuracies (Logistic regression)
+
+Obviously, because the question-response data are also repeated measures, we must use a hierarchical linear model, with varying intercepts and slopes for subject and item, as in Example 1:
+
+```{r results="hide",cache=TRUE}
+m_gg_q2<-brm(qcorrect~so+(1+so|subject) + (1+so|item),
+             gge1crit,family=bernoulli(link="logit"))
+summary(m_gg_q2)
+```
+
+This model is not especially good because many of the response accuracies are at ceiling. However, in principle this kind of model is appropriate for binary responses.
+
+# Example 2: Question-response accuracies (Logistic regression)
+## Convert posteriors back to probability space
+
+What is theoretically important is the posterior distribution of the difference between object and subject relative response accuracy. That is on the probability scale.
+We can go from log-odds space to probability space by solving this equation for $p$. 
+
+Using simple algebra, we can go from:
+
+\begin{equation}
+\log \frac{p}{1-p} = \alpha + \beta * so = \mu
+\end{equation}
+
+to:
+
+\begin{equation}
+p = \exp(\mu)/(1+\exp(\mu))
+\end{equation}
+
+# Example 2: Question-response accuracies (Logistic regression)
+## Convert posteriors back to probability space
+
+For object gap sentences, the factor $so$ is coded as 1, so we have $\mu=\alpha+\beta$. For subject gap sentences, $so$ is coded as -1, so we have $\mu=\alpha-\beta$. Therefore, we just need to plug in the expression for $\mu$ for object and subject relatives.
+
+We can now straightforwardly plot the posterior distribution of the difference between object and subject relatives. See Figure \ref{fig:ggprob}. We see that there isn't any important difference between the two relative clause types. 
+
+# Example 2: Question-response accuracies (Logistic regression)
+## Convert posteriors back to probability space
+
+```{r fig.cap="\\label{fig:ggprob}The difference in question-response accuracies between object and subject relatives."}
+postq<-posterior_samples(m_gg_q2)
+alpha<-postq$b_Intercept
+beta<-postq$b_so
+mu_or<-alpha+beta
+probor<-exp(mu_or)/(1+exp(mu_or))
+mu_sr<-alpha-beta
+probsr<-exp(mu_sr)/(1+exp(mu_sr))
+```
+
+# Example 2: Question-response accuracies (Logistic regression)
+## Convert posteriors back to probability space
+
+
+```{r fig.height=3}
+hist(probor-probsr,freq=FALSE)
+abline(v=0,lwd=2)
+```
+
+# References
