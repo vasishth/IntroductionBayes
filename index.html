@@ -19,12 +19,12 @@
 
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="../css/normalize.css">
-  <link rel="stylesheet" href="../css/skeleton.css">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
 
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="icon" type="image/png" href="../images/lorikeet.jpg">
+  <link rel="icon" type="image/png" href="images/lorikeet.jpg">
 
 </head>
 <body>
@@ -37,15 +37,18 @@
 <div class="column">
 
 <p>
-  <h3>An introduction to computational Bayesian methods using Stan</h3>
+  <h3>Physalia course: An introduction to computational Bayesian methods using Stan</h3>
 
 <br>
 
   <h4>Instructor</h3>
 
-  <a href="http://www.ling.uni-potsdam.de/~vasishth/">Shravan Vasishth</a>. In case of illness,  <a href="http://www.ling.uni-potsdam.de/~nicenboim/">Bruno Nicenboim</a> will replace me. 
+  <a href="http://www.ling.uni-potsdam.de/~vasishth/">Shravan Vasishth</a>. In case of illness,  <a href="http://www.ling.uni-potsdam.de/~nicenboim/">Bruno Nicenboim</a> will replace me. <br><br>
+
 
   <h4>Dates and location</h3>
+
+ Taught at <a href="https://www.physalia-courses.org/about-us/">Physalia</a>.<br>
 
  March 25-29 2019. Our classroom is the seminar room “Ehrenbergsaal” of the Department of Biology, Chemistry, Pharmacy at the Freie Universität Berlin, Königin-Luise-Str. 1-3, 14195 Berlin-Dahlem. Our classroom is on the second floor.
 
@@ -75,16 +78,49 @@ You should also install the R package <a href="https://github.com/stan-dev/rstan
 
 <h4>Outcomes</h4>
 
-After completing this course, the participant will have become familiar with the foundations of Bayesian inference using Stan (RStan and brms), and will be able to fit a range of multiple regression models and hierarchical models, for normally distributed data, and for lognormal, Poisson, multinomial, and Binomially distributed data. They will know how to calibrate their models using prior and posterior predictive checks; they will be able to establish true and false discovery rates to validate discovery claims, and to carry out model comparison using cross-validation methods, and Bayes factors. 
+After completing this course, the participant will have become familiar with the foundations of Bayesian inference using Stan (RStan and brms), and will be able to fit a range of multiple regression models and hierarchical models, for normally distributed data, and for lognormal, Poisson, multinomial, and Binomially distributed data. They will know how to calibrate their models using prior and posterior predictive checks; they will be able to establish true and false discovery rates to validate discovery claims, and to carry out model comparison using Bayes factors. 
 
 <br><br>
 
+<h4>Course materials</h4>
 
-<h4>Approximate/tentative schedule</h4>
+<a href="materials.zip">Click here to download everything</a>. Solutions to exercises are not publicly available; they will only be provided to participants.
 
-Note: we may adapt this schedule to class needs.<br><br>
+<ol>
+<li><a href="slides/00_FrequentistReview.pdf">00 Frequentist review</a>, <a href="slides/00_IntroLectureBayesCourse.pdf">00 Comparison: Frequentist vs Bayesian methods</a></li>
+<li><a href="slides/01_foundations.pdf">01 Foundations</a></li>
+<ol>
+<li><a href="exercises/01_Exercises.pdf">01 Exercises</a></li>  
+</ol>  
+<li><a href="slides/02_bayes.pdf">02 Introduction to Bayesian methods</a></li>
+<ol>
+<li><a href="exercises/02_Exercises.pdf">02 Exercises</a></li>  
+</ol>  
+<li><a href="slides/03_linearmodeling.pdf">03 Linear Modeling</a></li>
+<ol>
+<li>
+  <a href="exercises/03_01_PriorPredDistrn_FakeDataGen.pdf">03.01 Exercises</a>,
+<a href="exercises/03_02_LinearModelingExercise_PowerPose.pdf">03.02 Exercises</a></li>  
+</ol>  
+<li><a href="slides/04_hlm.pdf">04 Hierarchical Linear Models</a></li>
+<ol>
+<li><a href="exercises/04_01_RepeatedMeasures_FDR_TDR.pdf">04.01 Exercises</a>,
 
-<strong>Mon-Thu schedule</strong>:
+<a href="exercises/04_02_RepeatedMeasures_Unaggregated.pdf">04.02 Exercises</a>
+</li>  
+</ol>  
+<li><a href="slides/05_modelcomparison.pdf">05 Model Comparison using Bayes Factor</a></li>
+<ol>
+<li><a href="exercises/05_01_BayesFactors.pdf">05.01 Exercises</a>,
+<a href="exercises/05_02_MiscellaneousTopics.pdf">05.02 Exercises</a></li>  
+</ol>  
+</ol>  
+
+
+<h4>Schedule</h4>
+
+
+<strong>Mon-Fri</strong>:
 
 <ol>
   <li>9:30AM-11:00AM Lecture 1</li>
@@ -93,37 +129,25 @@ Note: we may adapt this schedule to class needs.<br><br>
   <li>1:00AM-2:00PM Lunch break</li>
   <li>2:00PM-3:30PM Lecture 3/Exercises</li>
   <li>3:30:00PM-4:00PM Coffee break</li>  
-  <li>4:00PM-5:30PM Lecture 4/Exercises</li>
-</ol> 
-
-<strong>Friday schedule</strong>:
-
-<ol>
-  <li>9:30AM-11:00AM Lecture 1</li>
-  <li>11:00AM-11:30AM Coffee break</li>
-  <li>11:30AM-1:00PM Lecture 2</li>
-  <li>1:00AM-2:00PM Lunch break</li>
-  <li>2:00PM-3:30PM Lecture 3/Exercises</li>
-  <li>3:30:00PM-4:00PM Coffee break</li>  
-  <li>4:00PM-4:45PM Feedback and closing discussion</li>
+  <li>4:00PM-5:30PM Lecture 4/Exercises (May end earlier than 5:30PM) </li>
 </ol> 
 
 
 
 <ol>
-<li><strong>Monday - Classes from 9:30 to 17:30: Foundations of Bayesian inference</strong><br>
+<li><strong>Monday: Foundations of Bayesian inference</strong><br>
 
  Probability theory and Bayes' rule, Probability distributions, Understanding and eliciting priors, Analytical Bayes: Beta-Binomial, Poisson-Gamma, Normal-Normal
 </li>
  
-<li><strong>Tuesday - Classes from 9:30 to 17:30: Computational Bayes</strong><br>
+<li><strong>Tuesday: Computational Bayes</strong><br>
 
  
 Generating prior predictive distributions using RStan and R, Fake-data simulation for model evaluation, Sampling methods: Inverse sampling, Gibbs sampling, Random Walk Metropolis, Hamiltonian Monte Carlo
 </li>
 
  
-<li><strong>Wednesday - Classes from 9:30 to 17:30: Bayesian Modeling with Stan and brms</strong><br>
+<li><strong>Wednesday: Bayesian Modeling with Stan and brms</strong><br>
 
  
 Introduction to Stan syntax, Introduction to brms, Linear models using RStan and brms, fake-data generation, true and false discovery rate
@@ -131,7 +155,7 @@ Introduction to Stan syntax, Introduction to brms, Linear models using RStan and
 </li>
  
 
-<li><strong>Thursday - Classes from 9:30 to 17:30: Regression modeling using Stan and brms</strong><br>
+<li><strong>Thursday: Regression modeling using Stan and brms</strong><br>
 
  
 Generalized linear models, Model evaluation and calibration, Hierarchical linear models, Fake-data generation for hierarchical data, Posterior predictive checks,
@@ -139,7 +163,7 @@ Generalized linear models, Model evaluation and calibration, Hierarchical linear
 </li>
 
 
-<li><strong>Friday - Classes from 9:30 to 16:45: Model evaluation and comparison</strong> <br>
+<li><strong>Friday: Model evaluation and comparison</strong> <br>
 
 Model comparison using Bayes factor, 
 Some instructive case studies and examples of models</li>
@@ -147,8 +171,8 @@ Some instructive case studies and examples of models</li>
 
 </ol>
 
-
 <br><br>
+
 
 <h4>Additional readings</h4>
 
