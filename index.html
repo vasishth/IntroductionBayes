@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Shravan Vasishth's Physalia course home page</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="../css/normalize.css">
+  <link rel="stylesheet" href="../css/skeleton.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="../images/lorikeet.jpg">
+
+</head>
+<body>
+
+
+<section>
+  <div class="container">
+
+
+<div class="column">
+
+<p>
+  <h3>An introduction to computational Bayesian methods using Stan</h3>
+
+<br>
+
+  <h4>Instructor</h3>
+
+  <a href="http://www.ling.uni-potsdam.de/~vasishth/">Shravan Vasishth</a>. In case of illness,  <a href="http://www.ling.uni-potsdam.de/~nicenboim/">Bruno Nicenboim</a> will replace me. 
+
+  <h4>Dates and location</h3>
+
+ March 25-29 2019. Our classroom is the seminar room “Ehrenbergsaal” of the Department of Biology, Chemistry, Pharmacy at the Freie Universität Berlin, Königin-Luise-Str. 1-3, 14195 Berlin-Dahlem. Our classroom is on the second floor.
+
+<br><br>
+
+<h4>Overview</h4>
+
+ In recent years, Bayesian methods have come to be widely adopted in all areas of science. This is in large part due to the development of sophisticated software for probabilisic programming; a recent example is the astonishing computing capability afforded by the language Stan (mc-stan.org). However, the underlying theory needed to use this software sensibly is often inaccessible because end-users don't necessarily have the statistical and mathematical background to read the primary textbooks (such as Gelman et al's classic Bayesian data analysis, 3rd edition). In this course, we seek to cover this gap, by providing a relatively accessible and technically non-demanding introduction to the basic workflow for fitting different kinds of linear models using Stan. To illustrate the capability of Bayesian modeling, we will use the R package RStan and a powerful front-end R package for Stan called brms.
+
+<br><br>
+ 
+<h4>Prerequisites</h4>
+
+We assume familiarity with R. Participants will benefit most if they have previously fit linear models and linear mixed models (using lme4) in R, in any scientific domain. No knowledge of calculus or linear algebra is assumed, but basic school level mathematics knowledge is assumed (this will be quickly revisited in class). 
+
+<br><br>
+
+<h4>Please install the following software before coming to the course</h4>
+
+We will be using the software <a href="http://cran.r-project.org/">R</a>,
+and <a href="https://www.rstudio.com/">RStudio</a>,
+ so make sure you install these on your computer.  
+You should also install the R package <a href="https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started">rstan</a>; the R package <a href="https://github.com/paul-buerkner/brms">brms</a>.
+
+
+<br><br>
+
+<h4>Outcomes</h4>
+
+After completing this course, the participant will have become familiar with the foundations of Bayesian inference using Stan (RStan and brms), and will be able to fit a range of multiple regression models and hierarchical models, for normally distributed data, and for lognormal, Poisson, multinomial, and Binomially distributed data. They will know how to calibrate their models using prior and posterior predictive checks; they will be able to establish true and false discovery rates to validate discovery claims, and to carry out model comparison using cross-validation methods, and Bayes factors. 
+
+<br><br>
+
+
+<h4>Approximate/tentative schedule</h4>
+
+Note: we may adapt this schedule to class needs.<br><br>
+
+<strong>Mon-Thu schedule</strong>:
+
+<ol>
+  <li>9:30AM-11:00AM Lecture 1</li>
+  <li>11:00AM-11:30AM Coffee break</li>
+  <li>11:30AM-1:00PM Lecture 2</li>
+  <li>1:00AM-2:00PM Lunch break</li>
+  <li>2:00PM-3:30PM Lecture 3/Exercises</li>
+  <li>3:30:00PM-4:00PM Coffee break</li>  
+  <li>4:00PM-5:30PM Lecture 4/Exercises</li>
+</ol> 
+
+<strong>Friday schedule</strong>:
+
+<ol>
+  <li>9:30AM-11:00AM Lecture 1</li>
+  <li>11:00AM-11:30AM Coffee break</li>
+  <li>11:30AM-1:00PM Lecture 2</li>
+  <li>1:00AM-2:00PM Lunch break</li>
+  <li>2:00PM-3:30PM Lecture 3/Exercises</li>
+  <li>3:30:00PM-4:00PM Coffee break</li>  
+  <li>4:00PM-4:45PM Feedback and closing discussion</li>
+</ol> 
+
+
+
+<ol>
+<li><strong>Monday - Classes from 9:30 to 17:30: Foundations of Bayesian inference</strong><br>
+
+ Probability theory and Bayes' rule, Probability distributions, Understanding and eliciting priors, Analytical Bayes: Beta-Binomial, Poisson-Gamma, Normal-Normal
+</li>
+ 
+<li><strong>Tuesday - Classes from 9:30 to 17:30: Computational Bayes</strong><br>
+
+ 
+Generating prior predictive distributions using RStan and R, Fake-data simulation for model evaluation, Sampling methods: Inverse sampling, Gibbs sampling, Random Walk Metropolis, Hamiltonian Monte Carlo
+</li>
+
+ 
+<li><strong>Wednesday - Classes from 9:30 to 17:30: Bayesian Modeling with Stan and brms</strong><br>
+
+ 
+Introduction to Stan syntax, Introduction to brms, Linear models using RStan and brms, fake-data generation, true and false discovery rate
+
+</li>
+ 
+
+<li><strong>Thursday - Classes from 9:30 to 17:30: Regression modeling using Stan and brms</strong><br>
+
+ 
+Generalized linear models, Model evaluation and calibration, Hierarchical linear models, Fake-data generation for hierarchical data, Posterior predictive checks,
+
+</li>
+
+
+<li><strong>Friday - Classes from 9:30 to 16:45: Model evaluation and comparison</strong> <br>
+
+Model comparison using Bayes factor, 
+Some instructive case studies and examples of models</li>
+
+
+</ol>
+
+
+<br><br>
+
+<h4>Additional readings</h4>
+
+<strong>R programming</strong>
+
+<ol>
+  <li><a href="https://r4ds.had.co.nz/">R for data science</a></li>
+  <li><a href="https://csgillespie.github.io/efficientR/">Efficient R programming</a>.</li>
+</ol>  
+
+<strong>Books</strong>
+
+<ol>
+  <li>
+ <a href="https://www.amazon.co.uk/Students-Guide-Bayesian-Statistics/dp/1473916364">A Student's Guide to Bayesian Statistics, by Ben Lambert</a>: A good, non-technical introduction to Stan and Bayesian modeling.</li>
+  <li><a href="https://xcelab.net/rm/statistical-rethinking/">Statistical Rethinking, by Richard McElreath</a>: A classic introduction.</li>
+  <li><a href="http://www.indiana.edu/~kruschke/DoingBayesianDataAnalysis/">Doing Bayesian Data Analysis, Second Edition:
+A Tutorial with R, JAGS, and Stan, By John Kruschke</a>: A good introduction specifically for psychologists.</li>
+</ol>
+
+
+<strong>Tutorial articles</strong>
+
+<ol>
+ <li>
+ <a href="https://econpapers.repec.org/article/jssjstsof/v_3a080_3ai01.htm">brms tutorial by the author of the package, Paul Buerkner.</a> 
+<li><a href="https://psyarxiv.com/x8swp/">Ordinal regression models in psychological research: A tutorial, by Buerkner and Vuorre.</a></li>
+ <a href="https://arxiv.org/abs/1807.10451">Contrast coding tutorial, by Schad, Hohenstein, Vasishth, Kliegl.</a>
+</li> 
+  <li>
+ <a href="https://osf.io/b2vx9/">Bayesian workflow tutorial, by Schad, Betancourt, Vasishth</a>.
+</li>
+  <li>
+ <a href="http://www.tqmp.org/RegularArticles/vol12-3/p175/p175.pdf">Linear mixed models tutorial, Sorensen, Hohenstein, Vasishth.</a>
+</li>
+  <li>
+ <a href="https://osf.io/g4zpv/">brms tutorial for phonetics/phonology, Vasishth, Nicenboim, Beckman, Li, Kong.</a>
+</li>
+
+
+</ol>
+
+<strong>Some example articles from our lab that use Bayesian methods</strong>
+
+
+
+<ol>
+<li>
+ <a href="https://osf.io/g5ndw/">Example random-effects meta-analysis.</a>
+</li> 
+  <li>
+ <a href="https://mc-stan.org/events/stancon2017-notebooks/stancon2017-nicenboim-vasishth-retrieval-models.html">Example of finite mixture models using Stan.</a>
+</li>
+<li><a href="https://osf.io/eyphj/">Replication attempt of a published study.</a></li>
+<li><a href="https://osf.io/mmr7s/">Bayesian analysis of relatively large-sample psycholinguistic experiment.</a></li>
+</ol>
+
+</p>
+</div>
+</div>
+
+</body>
+</html>
