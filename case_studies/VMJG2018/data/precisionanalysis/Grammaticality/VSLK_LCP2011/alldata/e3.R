@@ -1,1 +1,0 @@
-data<-read.table("e3.critdata.txt")
