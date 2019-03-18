@@ -143,7 +143,7 @@ nsubj <- 42
 g1<-data.frame(item=1:nitem,
                  cond=rep(c("objgap","subjgap"),nitem/2))
 g2<-data.frame(item=1:nitem,
-                 cond=rep(c("objgap","subjgap"),nitem/2))
+                 cond=rep(c("subjgap","objgap"),nitem/2))
 ```
 
 # Example 1: Reading time differences in subject vs object relatives in English
@@ -194,7 +194,7 @@ The above design implies a particular statistical model that takes us beyond the
 To remind you, a simple linear model of the above data would be:
 
 \begin{equation}
-y = \alpha + \beta * x + \varepsilon \hbox{ where } \varepsilon \sim Normal(0,\sigma)
+y \sim Normal(\alpha + \beta * so, \sigma) 
 \end{equation}
 
 Here, object gaps are coded +1, subject gaps -1. See @SchadEtAlcontrasts for an explanation of contrast coding.
@@ -214,6 +214,14 @@ plot(density(gge1crit$rawRT),main="Grodner and Gibson Expt 1",xlab="RTs (ms)")
 ```
 
 # Example 1: Reading time differences in subject vs object relatives in English
+## The implied generative model
+
+\begin{equation}
+y \sim LogNormal(\alpha + \beta * so, \sigma) 
+\end{equation}
+
+
+# Example 1: Reading time differences in subject vs object relatives in English
 ## Between subject variability in mean reading time
 
 
@@ -230,13 +238,13 @@ hist(with(gge1crit,tapply(rawRT,subject,mean)),
 In the linear model, we can express the assumption that the grand mean intercept $\alpha$ needs an adjustment by subject, where subjects are indexed from $j=1,\dots,J$:
 
 \begin{equation}
-y_j = \alpha + u_{0j} + \beta * x_j + \varepsilon_j 
+y_j \sim LogNormal(\alpha + u_{0j} + \beta * so_j, \sigma)
 \end{equation}
 
 where we now have two sources of variance:
 
-- within subject variance, $\varepsilon_j \sim Normal(0,\sigma)$ 
-- between subject variance in mean reading times, $u_{0j} \sim Normal(0,\sigma_{u0})$ 
+- within subject: $\sigma$ 
+- between subject variance in mean reading times:  $u_{0j} \sim Normal(0,\sigma_{u0})$ 
 
 
 # Example 1: Reading time differences in subject vs object relatives in English
@@ -255,12 +263,12 @@ hist(with(gge1crit,tapply(rawRT,item,mean)),
 For items ranging from $k=1,\dots,K$, we can add this assumption to the model:
 
 \begin{equation}
-y_{kj} = \alpha + u_{0j} + w_{0k} + \beta * x_{kj} + \varepsilon_{kj}
+y_{kj} \sim LogNormal(\alpha + u_{0j} + w_{0k} + \beta * so_{kj},\sigma)
 \end{equation}
 
 where there are now three variance components:
 
-- $\varepsilon_{kj} \sim Normal(0,\sigma)$
+- $\sigma$
 - $u_{0j} \sim Normal(0,\sigma_{u0})$
 - between item variability in mean reading time, $w_{0k} \sim Normal(0,\sigma_{w0})$
 
@@ -277,13 +285,13 @@ meanssubj<-with(gge1crit,
 diff<-meanssubj[,2]-meanssubj[,1]
 
 hist(diff,
-     main="Between subject variability",xlab="mean objgap cost",freq=FALSE)
+     main="Between subject variability",xlab="mean objgap cost",freq=FALSE,xlim=c(-800,200),ylim=c(0,0.005))
 
 meansitem<-with(gge1crit,tapply(rawRT,IND=list(item,condition),mean))
 diff<-meansitem[,2]-meansitem[,1]
 
 hist(diff,
-     main="Between item variability",xlab="mean objgap cost",freq=FALSE)
+     main="Between item variability",xlab="mean objgap cost",freq=FALSE,xlim=c(-800,200),ylim=c(0,0.005))
 ```
 
 # Example 1: Reading time differences in subject vs object relatives in English
@@ -292,12 +300,12 @@ hist(diff,
 We can incorporate this assumption into the model by adding adjustments to the $\beta$ parameter:
 
 \begin{equation}
-y_{kj} = \alpha + u_{0j} + w_{0k} + (\beta + u_{1j} + w_{1k}) * x_{kj} + \varepsilon_{kj}
+y_{kj} \sim LogNormal(\alpha + u_{0j} + w_{0k} + (\beta + u_{1j} + w_{1k}  * so_{kj},\sigma) 
 \end{equation}
 
 where 
 
-  - $\varepsilon_{kj} \sim Normal(0,\sigma)$ 
+  - $\sigma$ 
   - $u_{0j} \sim Normal(0,\sigma_{u0})$
   - $u_{1j} \sim Normal(0,\sigma_{u1})$
   - $w_{0k} \sim Normal(0,\sigma_{w0})$
@@ -306,20 +314,20 @@ where
 This is called the *varying intercepts and slopes* model with *no correlation* between the intercepts and slopes.
 
 # Example 1: Reading time differences in subject vs object relatives in English
-## The maximal model \label{maximal}
+## The ``maximal'' model \label{maximal}
 
   - There is one detail still missing in the model: the adjustments to the intercept and slope are correlated for subjects, and also for items. 
   - In other words, we have a bivariate distribution for the subject and item random effects:
 
 # Example 1: Reading time differences in subject vs object relatives in English
-## The maximal model 
+## The ``maximal'' model 
 
 
 \begin{equation}
-y_{kj} = \alpha + u_{0j} + w_{0k} + (\beta + u_{1j} + w_{1k}) * x_{kj} + \varepsilon_{kj}
+y_{kj} \sim LogNormal(\alpha + u_{0j} + w_{0k} + (\beta + u_{1j} + w_{1k}) * so_{kj}, \sigma)
 \end{equation}
 
-where $\varepsilon_{kj} \sim Normal(0,\sigma)$ and 
+where we have variance components: $\sigma$ and 
 
 \begin{equation}\label{eq:covmat}
 \Sigma _u
@@ -383,8 +391,8 @@ We define some priors first:
 \begin{enumerate}
 \item $\alpha \sim Normal(0,10)$
 \item $\beta \sim Normal(0,1)$
-\item Residual standard deviation: $\sigma \sim Normal(0,1)$
-\item All other standard deviations: $\sigma \sim Normal(0,1)$
+\item Residual standard deviation: $\sigma \sim Normal_{+}(0,1)$
+\item All other standard deviations: $\sigma \sim Normal_{+}(0,1)$
 \item Correlation matrix: $\rho \sim LKJ(2)$. 
 \end{enumerate}
 
@@ -940,7 +948,7 @@ p = \exp(\mu)/(1+\exp(\mu))
 
 For object gap sentences, the factor $so$ is coded as 1, so we have $\mu=\alpha+\beta$. For subject gap sentences, $so$ is coded as -1, so we have $\mu=\alpha-\beta$. Therefore, we just need to plug in the expression for $\mu$ for object and subject relatives.
 
-We can now straightforwardly plot the posterior distribution of the difference between object and subject relatives. See Figure \ref{fig:ggprob}. We see that there isn't any important difference between the two relative clause types. 
+We can now straightforwardly plot the posterior distribution of the difference between object and subject relatives. We see that there isn't any important difference between the two relative clause types. 
 
 # Example 2: Question-response accuracies (Logistic regression)
 ## Convert posteriors back to probability space
