@@ -1,0 +1,5 @@
+Warning messages:
+1: In mer_finalize(ans) : singular convergence (7)
+2: In mer_finalize(ans) : singular convergence (7)
+3: In mer_finalize(ans) : iteration limit reached without convergence (9)
+4: In mer_finalize(ans) : false convergence (8)

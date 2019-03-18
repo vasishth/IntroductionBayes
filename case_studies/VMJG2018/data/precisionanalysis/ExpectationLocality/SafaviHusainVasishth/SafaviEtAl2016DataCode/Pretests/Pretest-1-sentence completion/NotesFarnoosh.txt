@@ -1,0 +1,33 @@
+Being sorted by the verb alphabetically, you can see that most of these two-word verbs belong to conditions c and d. As a complex predicate has a fixed struture, for analysis of the sentence completion data, I had considered only the exact light verbs that I had used in the stimuli. 
+
+Looking at the translations, these are the cases where we have synonyms but they don't always collocate with the other words in the context (for example the verb doesn't collocate with the preposition we have used in the PP) :
+
+dar mian gozashtan (formal) , bazgu kardan (formal), tarif kardan, goftan, naghl kardan : to tell/to narrate
+matrah kardan/ matrah nemudan, onvan kardan, baian kardan: to mention
+anjam dadan/ be anjam resandan/ ejra kardan: to do 
+amade kardan/tahie kardan: to prepare
+khandan/ ghera'at kardan(formal) : to read
+
+In the following cases, the verbs can be used interchangably:
+
+penhan kardan/makhfi kardan: to hide
+pishnahad dadan/pishnahad kardan : to suggest
+zarbe zadan, zarbe vared kardan : to damage
+hedie dadan/hedie kardan : to give a gift
+gharz kardan/gharz gereftan : to borrow
+gharz dadan/ amani dadan/ amanat dadan : to lend
+yad dadan/amukhtan: to teach
+fahmidan,motevajeh shodan : to understand
+
+These are the cases where I believe the sentence has been totally misinterpreted, and the output can be ignored:
+
+E2, 15 c and E1 15 b--> 
+ "Ruh dadan" (frequence : once) ,"omid dadan" (frequency: once), and "garma bakhshidan" (frequency: once)
+The reason is that the readers has mistaken the nominal with a common Proper name in Persian called "Shadi" and has misread the sentence.
+
+E1, 1 b "arezu kardan" (frequency: once)
+The reader has simply repeated the nominal "arezu".
+
+E1, 3 a "delneshin budan" (frequence: once)
+The reader has misread the sentence as if there was a comma after the subject. So it has addressed the subject directly and changing the meaning completely. It reads like this : Mother ! your prayer is sweet to me. 
+

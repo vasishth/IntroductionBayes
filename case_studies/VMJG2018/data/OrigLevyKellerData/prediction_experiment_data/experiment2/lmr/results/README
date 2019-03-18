@@ -1,0 +1,62 @@
+(1) Clean up the data with EyeDoctor: .da1 and .edd files in ../data
+
+(2) Compute measures with EyeDry: 
+
+The following input files are needed:
+
+exp3.con  control files for EyeDry
+exp3.cnt  region count file
+exp3.lst  list of subject files
+
+The output files are:
+
+exp3.tra  log of the EyeDry session
+exp3*.res result files (see below)
+
+To gererate exp3.del, first reformat the experimental script in a
+format with one stimulus per line (exp3.inl), then convert this using:
+
+delimit_regions.perl exp3.inl | grep -v \#\# > exp3.del
+
+Note that condition IDs have to start with C, not with E (an old
+EyeTrack format is assumed).
+
+To generate the count file for EyeDry then use edprep.exe, which ships
+with EyeDry.
+
+Once you've run EyeDry, use the rename_files script to rename the
+files from DOS names.
+
+
+(3) Compute statistics with Eyenal:
+
+exp3_1fx.res	       first fixation			eyedry option 1
+exp3_1ps.res	       first pass			eyedry option 2
+exp3_tt.res	       total time			eyedry option 3
+exp3_fpr.res	       first pass regressions out	eyedry option 4
+exp3_skp.res	       skipping probability		eyedry option 6
+exp3_2ps.res	       second pass			eyedry option 8
+exp3_rpt.res	       regression path time		eyedry option 13, suboption 1
+exp3_rbt.res	       right bounded time		eyedry option 13, suboption 2
+exp3_gaz.res	       gaze duration			eyedry option 16
+
+# make sure to keep zeros in -- we will remove them using R
+# get raw reading times, and switch conditionalization off
+# if in doubt, select option 1 (or default option) for each measure
+
+# run analysis on region 8 (critical region)
+# other interesting regions are: 7 and 9; 2, 3, 4
+
+# reformat data for use in R:
+
+cat exp3_1fx.res | ../scripts/reformat.pl > exp3_1fx_r.res
+cat exp3_1ps.res | ../scripts/reformat.pl > exp3_1ps_r.res
+cat exp3_tt.res  | ../scripts/reformat.pl > exp3_tt_r.res
+cat exp3_fpr.res | ../scripts/reformat_binary.pl > exp3_fpr_r.res
+cat exp3_skp.res | ../scripts/reformat_binary.pl > exp3_skp_r.res
+cat exp3_2ps.res | ../scripts/reformat.pl > exp3_2ps_r.res
+cat exp3_rpt.res | ../scripts/reformat.pl > exp3_rpt_r.res
+cat exp3_rbt.res | ../scripts/reformat.pl > exp3_rbt_r.res
+cat exp3_gaz.res | ../scripts/reformat.pl > exp3_gaz_r.res
+
+# then analyze using ../scritps/analyze.R

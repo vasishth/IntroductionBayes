@@ -1,0 +1,17 @@
+# to generate stimulus list
+lexicalizations.pl lexicalizations stimuli
+
+# line breaks need to be inserted by hand; criteria:
+# the following must not be separated by a line breat:
+#
+#   1 word + direct object + critical region (verb) + 2 words
+#   (spillover) + 1 word 
+#
+# for the subordinate claus (first critical region) the spillover can
+# be reduced to one word
+#
+# the extra word at the beginning and end should be at leat 4
+# characters
+#
+# the second critical region always has to be on the same line (this
+# is not possible for the first critical region)

@@ -1,0 +1,9 @@
+mv EXP1.TRA      exp1.tra    
+mv EXP1_1FX.RES  exp1_1fx.res
+mv EXP1_1PS.RES  exp1_1ps.res
+mv EXP1_2PS.RES  exp1_2ps.res
+mv EXP1_FPR.RES  exp1_fpr.res
+mv EXP1_GAZ.RES  exp1_gaz.res
+mv EXP1_RPT.RES  exp1_rpt.res
+mv EXP1_SKP.RES  exp1_skp.res
+mv EXP1_TT.RES   exp1_tt.res 

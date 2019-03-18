@@ -1,0 +1,90 @@
+From: Roger Levy <rlevy@inf.ed.ac.uk>
+To: Frank Keller <keller@inf.ed.ac.uk>
+Subject: Re: Linebreaks
+Date: Thu, 22 Jun 2006 16:58:44 +0100
+
+Hi Frank,
+
+Frank Keller wrote:
+> Hi Roger,
+> 
+> I'm starting on the linebreaks for Exp 3 at the moment -- before I get
+> going, could you please have a look at the following example. Does
+> that conform to what we had agreed yesterday?
+> 
+> Btw, I think it's impossible to make sure that the first critical
+> region ("verheimlichte") is always on the same line. For the second
+> critical region ("bot"), it's ok though.
+
+Yes, we definitely can't get the first critical region on the same line 
+across conditions.
+
+> 
+> Also, note that I've decided to go for a simple past in the second
+> critical region ("bot" instead of "hat geboten"). I think that sounds
+> more natural in terms of temporal sequence.
+
+Really?  Is that because simple past sort of "comes before" present 
+perfect in temporal sequence?
+
+I think it'd be preferable to use the present perfect because then we 
+have exactly the same region -- the participial "geboten" -- as in expt 
+1.  But if it's much less natural than simple past then we should go 
+with simple past.
+
+> 
+> Frank
+> 
+> 
+> E.01.01. Weil der Verkäufer den Mangel verheimlichte, hat der Kunde,
+> der ohne langes Bedenken des problematischen Sachverhalts dem
+> arroganten Händler des vornehmen 
+> Autohauses den Höchstpreis bot, einen Verlust gemacht.
+> 
+> E.01.02. Weil der Verkäufer ohne langes Bedenken des problematischen
+> Sachverhalts den Mangel verheimlichte, hat der Kunde, der dem
+> arroganten Händler des vornehmen 
+> Autohauses den Höchstpreis bot, einen Verlust gemacht.
+> 
+> E.01.03. Weil der Verkäufer dem arroganten Händler des vornehmen
+> Autohauses den Mangel verheimlichte, hat der Kunde, der ohne langes
+> Bedenken des problematischen 
+> Sachverhalts den Höchstpreis bot, einen Verlust gemacht.
+
+Somehow it seems to me like we shouldn't make the line before the 
+critical region too short.  Maybe these instead?
+
+E.01.01.
+Weil der Verkäufer den Mangel verheimlichte, hat der Kunde,
+der ohne langes Bedenken des problematischen
+Sachverhalts dem arroganten Händler des vornehmen
+Autohauses den Höchstpreis bot, einen Verlust gemacht.
+
+E.01.02.
+Weil der Verkäufer ohne langes Bedenken des problematischen
+Sachverhalts den Mangel verheimlichte, hat der Kunde,
+der dem arroganten Händler des vornehmen
+Autohauses den Höchstpreis bot, einen Verlust gemacht.
+
+E.01.03.
+Weil der Verkäufer dem arroganten Händler des vornehmen
+Autohauses den Mangel verheimlichte, hat der Kunde,
+der ohne langes Bedenken des problematischen
+Sachverhalts den Höchstpreis bot, einen Verlust gemacht.
+
+> E.01.04. Weil der Verkäufer ohne langes Bedenken des problematischen
+> Sachverhalts dem arroganten Händler des vornehmen 
+> Autohauses den Mangel verheimlichte, hat der 
+> Kunde, der den Höchstpreis bot, einen Verlust gemacht.
+
+This one looks good.
+
+
+Also, I'd say it's not strictly necessary that the critical region 
+appear on the same line for all conditions of a given item, but rather 
+that the average (across items) line number that the critical region 
+appears on should be the same for each condition.  But if you can get 
+the critical region on the same line for each condition, that's terrific!
+
+Roger
+

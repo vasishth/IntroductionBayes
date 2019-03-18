@@ -1,0 +1,1477 @@
+ 1 gug 13 a 10 berated -   498 v1
+ 1 gug  1 a 10 supervised -   611 v1
+ 1 gug  5 a 10 cooked -   475 v1
+ 1 gug  5 a 10 for -   410 v1
+ 1 gug 14 b 10 convinced -   436 v1
+ 1 gug  6 b 10 thanked -  1167 v1
+ 1 gug  9 a 10 tipped -   506 v1
+ 1 gug  2 b 10 greeted -   625 v1
+ 1 gug 10 b 10 instructed -   521 v1
+ 2 gug  9 b 10 tipped -  1531 v1
+ 2 gug  1 b 10 supervised -  1683 v1
+ 2 gug  4 a 10 annoyed -   737 v1
+ 2 gug 16 a 10 admired -   835 v1
+ 2 gug  8 a 10 surprised -  1667 v1
+ 2 gug  5 b 10 cooked -   640 v1
+ 2 gug  5 b 10 for -   338 v1
+ 2 gug 12 a 10 visited -   362 v1
+ 2 gug 13 b 10 berated -   426 v1
+ 3 gug  3 a 10 questioned -   459 v1
+ 3 gug  7 a 10 questioned -   370 v1
+ 3 gug  8 b 10 surprised -   369 v1
+ 3 gug 12 b 10 visited -   386 v1
+ 3 gug  4 b 10 annoyed -   441 v1
+ 3 gug 16 b 10 admired -   227 v1
+ 3 gug 15 a 10 hated -   888 v1
+ 3 gug 11 a 10 annoyed -   521 v1
+ 4 gug 10 a 10 instructed -  2217 v1
+ 4 gug  3 b 10 questioned -  2066 v1
+ 4 gug  7 b 10 questioned -  1961 v1
+ 4 gug 15 b 10 hated -   633 v1
+ 4 gug  6 a 10 thanked -  2493 v1
+ 4 gug 14 a 10 convinced -   416 v1
+ 4 gug  2 a 10 greeted -   359 v1
+ 4 gug 11 b 10 annoyed -   310 v1
+ 5 gug  2 b 10 greeted -   338 v1
+ 5 gug  5 a 10 cooked -   250 v1
+ 5 gug  5 a 10 for -   243 v1
+ 5 gug 14 b 10 convinced -   252 v1
+ 5 gug  1 a 10 supervised -   241 v1
+ 5 gug 13 a 10 berated -   282 v1
+ 5 gug  6 b 10 thanked -   565 v1
+ 5 gug 10 b 10 instructed -   531 v1
+ 5 gug  9 a 10 tipped -   209 v1
+ 6 gug  1 b 10 supervised -  1939 v1
+ 6 gug 12 a 10 visited -   395 v1
+ 6 gug  4 a 10 annoyed -  2488 v1
+ 6 gug  5 b 10 cooked -  2106 v1
+ 6 gug  5 b 10 for -   370 v1
+ 6 gug  9 b 10 tipped -  1887 v1
+ 6 gug 16 a 10 admired -  1698 v1
+ 6 gug  8 a 10 surprised -   433 v1
+ 6 gug 13 b 10 berated -   450 v1
+ 7 gug 15 a 10 hated -  1268 v1
+ 7 gug 16 b 10 admired -   785 v1
+ 7 gug  4 b 10 annoyed -   626 v1
+ 7 gug  8 b 10 surprised -   457 v1
+ 7 gug 11 a 10 annoyed -   395 v1
+ 7 gug  3 a 10 questioned -   643 v1
+ 7 gug 12 b 10 visited -   391 v1
+ 7 gug  7 a 10 questioned -   266 v1
+ 8 gug 11 b 10 annoyed -   503 v1
+ 8 gug 14 a 10 convinced -   483 v1
+ 8 gug  2 a 10 greeted -   930 v1
+ 8 gug  3 b 10 questioned -  1562 v1
+ 8 gug 10 a 10 instructed -  1043 v1
+ 8 gug  7 b 10 questioned -   969 v1
+ 8 gug 15 b 10 hated -   529 v1
+ 8 gug  6 a 10 thanked -   764 v1
+ 9 gug 13 a 10 berated -   434 v1
+ 9 gug 14 b 10 convinced -   385 v1
+ 9 gug 10 b 10 instructed -   605 v1
+ 9 gug  5 a 10 cooked -   489 v1
+ 9 gug  5 a 10 for -   386 v1
+ 9 gug  2 b 10 greeted -   201 v1
+ 9 gug  6 b 10 thanked -   471 v1
+ 9 gug  1 a 10 supervised -   362 v1
+ 9 gug  9 a 10 tipped -   337 v1
+10 gug  4 a 10 annoyed -   641 v1
+10 gug  8 a 10 surprised -   554 v1
+10 gug  9 b 10 tipped -   681 v1
+10 gug  5 b 10 cooked -   738 v1
+10 gug  5 b 10 for -   434 v1
+10 gug 13 b 10 berated -   681 v1
+10 gug  1 b 10 supervised -   922 v1
+10 gug 12 a 10 visited -   497 v1
+10 gug 16 a 10 admired -   786 v1
+11 gug  8 b 10 surprised -   529 v1
+11 gug 12 b 10 visited -   418 v1
+11 gug 15 a 10 hated -   450 v1
+11 gug  3 a 10 questioned -  1001 v1
+11 gug 11 a 10 annoyed -   362 v1
+11 gug  4 b 10 annoyed -   313 v1
+11 gug 16 b 10 admired -   451 v1
+11 gug  7 a 10 questioned -   448 v1
+12 gug 15 b 10 hated -  1604 v1
+12 gug 14 a 10 convinced -   771 v1
+12 gug  3 b 10 questioned -   906 v1
+12 gug 10 a 10 instructed -   331 v1
+12 gug 11 b 10 annoyed -   477 v1
+12 gug  6 a 10 thanked -   406 v1
+12 gug  7 b 10 questioned -   393 v1
+12 gug  2 a 10 greeted -   777 v1
+13 gug  2 b 10 greeted -   467 v1
+13 gug  6 b 10 thanked -   387 v1
+13 gug 10 b 10 instructed -   348 v1
+13 gug  1 a 10 supervised -   241 v1
+13 gug 13 a 10 berated -  2368 v1
+13 gug  9 a 10 tipped -   353 v1
+13 gug 14 b 10 convinced -  2761 v1
+13 gug  5 a 10 cooked -   376 v1
+13 gug  5 a 10 for -   377 v1
+14 gug 12 a 10 visited -  3364 v1
+14 gug 13 b 10 berated -   340 v1
+14 gug  4 a 10 annoyed -   530 v1
+14 gug  9 b 10 tipped -   346 v1
+14 gug  5 b 10 cooked -   417 v1
+14 gug  5 b 10 for -   483 v1
+14 gug 16 a 10 admired -   315 v1
+14 gug  1 b 10 supervised -   491 v1
+14 gug  8 a 10 surprised -   289 v1
+15 gug  7 a 10 questioned -  1708 v1
+15 gug 15 a 10 hated -  2947 v1
+15 gug  3 a 10 questioned -  1884 v1
+15 gug 12 b 10 visited -  3993 v1
+15 gug  8 b 10 surprised -   864 v1
+15 gug 11 a 10 annoyed -   463 v1
+15 gug  4 b 10 annoyed -  1697 v1
+15 gug 16 b 10 admired -   638 v1
+16 gug  3 b 10 questioned -  1162 v1
+16 gug 11 b 10 annoyed -   671 v1
+16 gug 10 a 10 instructed -   314 v1
+16 gug  2 a 10 greeted -   328 v1
+16 gug 15 b 10 hated -   308 v1
+16 gug  7 b 10 questioned -   364 v1
+16 gug  6 a 10 thanked -   863 v1
+16 gug 14 a 10 convinced -   137 v1
+17 gug  9 a 10 tipped -  1187 v1
+17 gug 14 b 10 convinced -  1100 v1
+17 gug  5 a 10 cooked -   737 v1
+17 gug  5 a 10 for -   851 v1
+17 gug 10 b 10 instructed -   554 v1
+17 gug  6 b 10 thanked -  1247 v1
+17 gug  1 a 10 supervised -  3186 v1
+17 gug 13 a 10 berated -   539 v1
+17 gug  2 b 10 greeted -   720 v1
+18 gug  1 b 10 supervised -   507 v1
+18 gug 16 a 10 admired -   322 v1
+18 gug  9 b 10 tipped -   443 v1
+18 gug  4 a 10 annoyed -   618 v1
+18 gug  5 b 10 cooked -   362 v1
+18 gug  5 b 10 for -   362 v1
+18 gug 13 b 10 berated -   450 v1
+18 gug  8 a 10 surprised -   305 v1
+18 gug 12 a 10 visited -   369 v1
+19 gug 16 b 10 admired -   516 v1
+19 gug 11 a 10 annoyed -   547 v1
+19 gug 15 a 10 hated -  2778 v1
+19 gug  4 b 10 annoyed -   323 v1
+19 gug  3 a 10 questioned -   364 v1
+19 gug 12 b 10 visited -   632 v1
+19 gug  8 b 10 surprised -  1304 v1
+19 gug  7 a 10 questioned -   290 v1
+20 gug 10 a 10 instructed -   826 v1
+20 gug  3 b 10 questioned -   946 v1
+20 gug 15 b 10 hated -   699 v1
+20 gug 14 a 10 convinced -   545 v1
+20 gug  6 a 10 thanked -   559 v1
+20 gug  7 b 10 questioned -   329 v1
+20 gug 11 b 10 annoyed -   527 v1
+20 gug  2 a 10 greeted -   681 v1
+21 gug 14 b 10 convinced -   546 v1
+21 gug  5 a 10 cooked -   458 v1
+21 gug  5 a 10 for -   356 v1
+21 gug  2 b 10 greeted -   585 v1
+21 gug  9 a 10 tipped -   217 v1
+21 gug  1 a 10 supervised -   313 v1
+21 gug 10 b 10 instructed -  1402 v1
+21 gug 13 a 10 berated -   241 v1
+21 gug  6 b 10 thanked -   214 v1
+22 gug  1 b 10 supervised -   874 v1
+22 gug  5 b 10 cooked -  3875 v1
+22 gug  5 b 10 for -   392 v1
+22 gug  4 a 10 annoyed -   720 v1
+22 gug 12 a 10 visited -   889 v1
+22 gug 13 b 10 berated -   514 v1
+22 gug 16 a 10 admired -   305 v1
+22 gug  8 a 10 surprised -   394 v1
+22 gug  9 b 10 tipped -   728 v1
+23 gug 16 b 10 admired -  1049 v1
+23 gug 11 a 10 annoyed -   826 v1
+23 gug  7 a 10 questioned -   505 v1
+23 gug  4 b 10 annoyed -   658 v1
+23 gug 12 b 10 visited -  2202 v1
+23 gug  3 a 10 questioned -   448 v1
+23 gug  8 b 10 surprised -   736 v1
+23 gug 15 a 10 hated -   449 v1
+24 gug 10 a 10 instructed -  4392 v1
+24 gug  6 a 10 thanked -  3088 v1
+24 gug 11 b 10 annoyed -  5384 v1
+24 gug 14 a 10 convinced -  1427 v1
+24 gug  2 a 10 greeted -  3538 v1
+24 gug  3 b 10 questioned -   459 v1
+24 gug  7 b 10 questioned -  1339 v1
+24 gug 15 b 10 hated -   697 v1
+25 gug 10 b 10 instructed -  1663 v1
+25 gug 13 a 10 berated -  1167 v1
+25 gug 14 b 10 convinced -   447 v1
+25 gug  9 a 10 tipped -   622 v1
+25 gug  2 b 10 greeted -   415 v1
+25 gug  5 a 10 cooked -  1711 v1
+25 gug  5 a 10 for -   382 v1
+25 gug  1 a 10 supervised -   735 v1
+25 gug  6 b 10 thanked -   335 v1
+26 gug  8 a 10 surprised -   667 v1
+26 gug 16 a 10 admired -   643 v1
+26 gug 12 a 10 visited -   836 v1
+26 gug  5 b 10 cooked -   985 v1
+26 gug  5 b 10 for -   321 v1
+26 gug  1 b 10 supervised -  1489 v1
+26 gug  9 b 10 tipped -   626 v1
+26 gug  4 a 10 annoyed -   426 v1
+26 gug 13 b 10 berated -  1401 v1
+27 gug  3 a 10 questioned -   659 v1
+27 gug  8 b 10 surprised -   834 v1
+27 gug 15 a 10 hated -  1850 v1
+27 gug  7 a 10 questioned -   944 v1
+27 gug 16 b 10 admired -   665 v1
+27 gug  4 b 10 annoyed -   378 v1
+27 gug 12 b 10 visited -   440 v1
+27 gug 11 a 10 annoyed -  2112 v1
+28 gug  3 b 10 questioned -   650 v1
+28 gug 14 a 10 convinced -   569 v1
+28 gug  2 a 10 greeted -   553 v1
+28 gug 11 b 10 annoyed -   607 v1
+28 gug  7 b 10 questioned -   570 v1
+28 gug  6 a 10 thanked -   557 v1
+28 gug 10 a 10 instructed -   698 v1
+28 gug 15 b 10 hated -   720 v1
+29 gug  5 a 10 cooked -   795 v1
+29 gug  5 a 10 for -   748 v1
+29 gug  6 b 10 thanked -   735 v1
+29 gug  1 a 10 supervised -   595 v1
+29 gug  2 b 10 greeted -   577 v1
+29 gug  9 a 10 tipped -   705 v1
+29 gug 10 b 10 instructed -   329 v1
+29 gug 14 b 10 convinced -   378 v1
+29 gug 13 a 10 berated -   585 v1
+30 gug  1 b 10 supervised -   410 v1
+30 gug  5 b 10 cooked -   545 v1
+30 gug  5 b 10 for -   369 v1
+30 gug  8 a 10 surprised -   553 v1
+30 gug 13 b 10 berated -   504 v1
+30 gug  4 a 10 annoyed -   744 v1
+30 gug  9 b 10 tipped -   342 v1
+30 gug 12 a 10 visited -   425 v1
+30 gug 16 a 10 admired -   496 v1
+31 gug 16 b 10 admired -   707 v1
+31 gug  4 b 10 annoyed -   833 v1
+31 gug 12 b 10 visited -  1835 v1
+31 gug  3 a 10 questioned -  1113 v1
+31 gug  8 b 10 surprised -   730 v1
+31 gug  7 a 10 questioned -  1122 v1
+31 gug 15 a 10 hated -   961 v1
+31 gug 11 a 10 annoyed -   275 v1
+32 gug 11 b 10 annoyed -   495 v1
+32 gug  7 b 10 questioned -   543 v1
+32 gug 15 b 10 hated -   751 v1
+32 gug 10 a 10 instructed -   814 v1
+32 gug  2 a 10 greeted -   735 v1
+32 gug  6 a 10 thanked -   527 v1
+32 gug  3 b 10 questioned -  1215 v1
+32 gug 14 a 10 convinced -   447 v1
+33 gug  2 b 10 greeted -  1762 v1
+33 gug 13 a 10 berated -   401 v1
+33 gug  1 a 10 supervised -   353 v1
+33 gug  9 a 10 tipped -   360 v1
+33 gug  6 b 10 thanked -   463 v1
+33 gug 10 b 10 instructed -  2984 v1
+33 gug 14 b 10 convinced -   667 v1
+33 gug  5 a 10 cooked -   408 v1
+33 gug  5 a 10 for -   402 v1
+34 gug 13 b 10 berated -   970 v1
+34 gug  5 b 10 cooked -   586 v1
+34 gug  5 b 10 for -   562 v1
+34 gug  8 a 10 surprised -   785 v1
+34 gug 16 a 10 admired -   785 v1
+34 gug  1 b 10 supervised -  1297 v1
+34 gug  9 b 10 tipped -   850 v1
+34 gug 12 a 10 visited -   961 v1
+34 gug  4 a 10 annoyed -   531 v1
+35 gug 11 a 10 annoyed -   291 v1
+35 gug  7 a 10 questioned -   306 v1
+35 gug 16 b 10 admired -   449 v1
+35 gug  3 a 10 questioned -   344 v1
+35 gug  4 b 10 annoyed -   416 v1
+35 gug 15 a 10 hated -   313 v1
+35 gug  8 b 10 surprised -   377 v1
+35 gug 12 b 10 visited -   279 v1
+36 gug 11 b 10 annoyed -  2215 v1
+36 gug 14 a 10 convinced -  1313 v1
+36 gug  2 a 10 greeted -   962 v1
+36 gug  6 a 10 thanked -  1310 v1
+36 gug 10 a 10 instructed -  1113 v1
+36 gug  3 b 10 questioned -  1458 v1
+36 gug 15 b 10 hated -  1481 v1
+36 gug  7 b 10 questioned -   912 v1
+37 gug  5 a 10 cooked -   450 v1
+37 gug  5 a 10 for -   520 v1
+37 gug 13 a 10 berated -   419 v1
+37 gug  2 b 10 greeted -   411 v1
+37 gug 14 b 10 convinced -   720 v1
+37 gug  6 b 10 thanked -   236 v1
+37 gug  9 a 10 tipped -   401 v1
+37 gug  1 a 10 supervised -   273 v1
+37 gug 10 b 10 instructed -   338 v1
+38 gug 16 a 10 admired -   505 v1
+38 gug  1 b 10 supervised -   611 v1
+38 gug 13 b 10 berated -   642 v1
+38 gug  8 a 10 surprised -  1058 v1
+38 gug  5 b 10 cooked -   893 v1
+38 gug  5 b 10 for -   657 v1
+38 gug 12 a 10 visited -   617 v1
+38 gug  4 a 10 annoyed -   706 v1
+38 gug  9 b 10 tipped -  1079 v1
+39 gug 11 a 10 annoyed -   649 v1
+39 gug  8 b 10 surprised -   720 v1
+39 gug  7 a 10 questioned -   608 v1
+39 gug 16 b 10 admired -  1553 v1
+39 gug  3 a 10 questioned -   433 v1
+39 gug 12 b 10 visited -   490 v1
+39 gug  4 b 10 annoyed -   353 v1
+39 gug 15 a 10 hated -   241 v1
+40 gug 10 a 10 instructed -   523 v1
+40 gug  6 a 10 thanked -   520 v1
+40 gug  2 a 10 greeted -   687 v1
+40 gug 11 b 10 annoyed -  3398 v1
+40 gug  3 b 10 questioned -   433 v1
+40 gug 15 b 10 hated -   729 v1
+40 gug 14 a 10 convinced -   505 v1
+40 gug  7 b 10 questioned -  1977 v1
+41 gug  2 b 10 greeted -  1043 v1
+41 gug 13 a 10 berated -  1081 v1
+41 gug 14 b 10 convinced -   290 v1
+41 gug  9 a 10 tipped -  2115 v1
+41 gug  5 a 10 cooked -   673 v1
+41 gug  5 a 10 for -   577 v1
+41 gug 10 b 10 instructed -   946 v1
+41 gug  6 b 10 thanked -   735 v1
+41 gug  1 a 10 supervised -   465 v1
+42 gug 13 b 10 berated -   944 v1
+42 gug  9 b 10 tipped -   610 v1
+42 gug  8 a 10 surprised -   529 v1
+42 gug  5 b 10 cooked -   610 v1
+42 gug  5 b 10 for -   313 v1
+42 gug 16 a 10 admired -   330 v1
+42 gug  4 a 10 annoyed -   354 v1
+42 gug 12 a 10 visited -   599 v1
+42 gug  1 b 10 supervised -  3543 v1
+43 gug 15 a 10 hated -   532 v1
+43 gug  3 a 10 questioned -   372 v1
+43 gug 16 b 10 admired -   347 v1
+43 gug  8 b 10 surprised -   267 v1
+43 gug 11 a 10 annoyed -   250 v1
+43 gug  7 a 10 questioned -   266 v1
+43 gug  4 b 10 annoyed -   233 v1
+43 gug 12 b 10 visited -   274 v1
+44 gug  2 a 10 greeted -   416 v1
+44 gug 14 a 10 convinced -   419 v1
+44 gug  6 a 10 thanked -   383 v1
+44 gug  7 b 10 questioned -   763 v1
+44 gug  3 b 10 questioned -   410 v1
+44 gug 11 b 10 annoyed -   342 v1
+44 gug 10 a 10 instructed -   530 v1
+44 gug 15 b 10 hated -   601 v1
+45 gug  5 a 10 cooked -   497 v1
+45 gug  5 a 10 for -   482 v1
+45 gug  9 a 10 tipped -  2840 v1
+45 gug  6 b 10 thanked -  1175 v1
+45 gug 13 a 10 berated -   368 v1
+45 gug 14 b 10 convinced -   848 v1
+45 gug 10 b 10 instructed -    89 v1
+45 gug  2 b 10 greeted -  5088 v1
+45 gug  1 a 10 supervised -  2465 v1
+46 gug  8 a 10 surprised -   547 v1
+46 gug  4 a 10 annoyed -   385 v1
+46 gug 12 a 10 visited -  1706 v1
+46 gug  5 b 10 cooked -   298 v1
+46 gug  5 b 10 for -   290 v1
+46 gug 13 b 10 berated -   394 v1
+46 gug  1 b 10 supervised -   639 v1
+46 gug  9 b 10 tipped -   337 v1
+46 gug 16 a 10 admired -   368 v1
+47 gug 12 b 10 visited -   356 v1
+47 gug  4 b 10 annoyed -   386 v1
+47 gug  3 a 10 questioned -   300 v1
+47 gug  8 b 10 surprised -  3377 v1
+47 gug  7 a 10 questioned -   223 v1
+47 gug 16 b 10 admired -   490 v1
+47 gug 15 a 10 hated -   201 v1
+47 gug 11 a 10 annoyed -   201 v1
+48 gug 14 a 10 convinced -   986 v1
+48 gug 15 b 10 hated -   889 v1
+48 gug  7 b 10 questioned -  1265 v1
+48 gug  6 a 10 thanked -   808 v1
+48 gug  2 a 10 greeted -   673 v1
+48 gug  3 b 10 questioned -  1169 v1
+48 gug 10 a 10 instructed -  1363 v1
+48 gug 11 b 10 annoyed -   957 v1
+49 gug  5 a 10 cooked -   626 v1
+49 gug  5 a 10 for -   601 v1
+49 gug  2 b 10 greeted -  1010 v1
+49 gug  9 a 10 tipped -   559 v1
+49 gug  6 b 10 thanked -  1862 v1
+49 gug  1 a 10 supervised -  2321 v1
+49 gug 14 b 10 convinced -   504 v1
+49 gug 13 a 10 berated -  1033 v1
+49 gug 10 b 10 instructed -  2143 v1
+50 gug 16 a 10 admired -   474 v1
+50 gug  1 b 10 supervised -  1281 v1
+50 gug  9 b 10 tipped -   386 v1
+50 gug  4 a 10 annoyed -   417 v1
+50 gug  8 a 10 surprised -  1574 v1
+50 gug  5 b 10 cooked -   559 v1
+50 gug  5 b 10 for -   505 v1
+50 gug 13 b 10 berated -  2192 v1
+50 gug 12 a 10 visited -   504 v1
+ 1 gug 12 d  9 visited -  1929 v1
+ 1 gug 15 c  9 hated -   435 v1
+ 1 gug  3 c  9 questioned -   431 v1
+ 1 gug  7 c  9 questioned -   651 v1
+ 1 gug  8 d  9 surprised -   577 v1
+ 1 gug  4 d  9 annoyed -   963 v1
+ 1 gug 11 c  9 annoyed -   370 v1
+ 1 gug 16 d  9 admired -   304 v1
+ 2 gug 15 d  9 hated -   755 v1
+ 2 gug  2 c  9 greeted -   498 v1
+ 2 gug  7 d  9 questioned -   608 v1
+ 2 gug 14 c  9 convinced -   626 v1
+ 2 gug 10 c  9 instructed -   627 v1
+ 2 gug 11 d  9 annoyed -   393 v1
+ 2 gug  3 d  9 questioned -   562 v1
+ 2 gug  6 c  9 thanked -   609 v1
+ 3 gug  2 d  9 greeted -   450 v1
+ 3 gug 10 d  9 instructed -   507 v1
+ 3 gug 14 d  9 convinced -   346 v1
+ 3 gug  5 c  9 cooked -   259 v1
+ 3 gug  5 c  9 for -   306 v1
+ 3 gug  1 c  9 supervised -   466 v1
+ 3 gug  6 d  9 thanked -   251 v1
+ 3 gug  9 c  9 tipped -   562 v1
+ 3 gug 13 c  9 berated -   793 v1
+ 4 gug  9 d  9 tipped -   387 v1
+ 4 gug 13 d  9 berated -   433 v1
+ 4 gug  4 c  9 annoyed -   395 v1
+ 4 gug 16 c  9 admired -   506 v1
+ 4 gug  8 c  9 surprised -   449 v1
+ 4 gug  5 d  9 cooked -   384 v1
+ 4 gug  5 d  9 for -   370 v1
+ 4 gug  1 d  9 supervised -   298 v1
+ 4 gug 12 c  9 visited -   360 v1
+ 5 gug 16 d  9 admired -   402 v1
+ 5 gug  8 d  9 surprised -   699 v1
+ 5 gug  3 c  9 questioned -   449 v1
+ 5 gug  4 d  9 annoyed -   603 v1
+ 5 gug 11 c  9 annoyed -   362 v1
+ 5 gug 15 c  9 hated -   195 v1
+ 5 gug 12 d  9 visited -   234 v1
+ 5 gug  7 c  9 questioned -   210 v1
+ 6 gug 15 d  9 hated -  1426 v1
+ 6 gug  7 d  9 questioned -   619 v1
+ 6 gug  6 c  9 thanked -   396 v1
+ 6 gug  2 c  9 greeted -  4330 v1
+ 6 gug 14 c  9 convinced -  1874 v1
+ 6 gug 10 c  9 instructed -   289 v1
+ 6 gug 11 d  9 annoyed -   544 v1
+ 6 gug  3 d  9 questioned -   348 v1
+ 7 gug  6 d  9 thanked -   672 v1
+ 7 gug 14 d  9 convinced -   579 v1
+ 7 gug  5 c  9 cooked -   418 v1
+ 7 gug  5 c  9 for -   369 v1
+ 7 gug  2 d  9 greeted -   539 v1
+ 7 gug 13 c  9 berated -   552 v1
+ 7 gug  9 c  9 tipped -   562 v1
+ 7 gug 10 d  9 instructed -   288 v1
+ 7 gug  1 c  9 supervised -   280 v1
+ 8 gug  9 d  9 tipped -   409 v1
+ 8 gug 12 c  9 visited -   514 v1
+ 8 gug  1 d  9 supervised -   378 v1
+ 8 gug  8 c  9 surprised -   330 v1
+ 8 gug  4 c  9 annoyed -   362 v1
+ 8 gug  5 d  9 cooked -   401 v1
+ 8 gug  5 d  9 for -   522 v1
+ 8 gug 13 d  9 berated -   722 v1
+ 8 gug 16 c  9 admired -   353 v1
+ 9 gug 16 d  9 admired -   514 v1
+ 9 gug 12 d  9 visited -   554 v1
+ 9 gug  3 c  9 questioned -   308 v1
+ 9 gug  8 d  9 surprised -   402 v1
+ 9 gug  7 c  9 questioned -   441 v1
+ 9 gug  4 d  9 annoyed -   267 v1
+ 9 gug 11 c  9 annoyed -   209 v1
+ 9 gug 15 c  9 hated -   521 v1
+10 gug  2 c  9 greeted -   402 v1
+10 gug 15 d  9 hated -   440 v1
+10 gug  3 d  9 questioned -   449 v1
+10 gug 14 c  9 convinced -   448 v1
+10 gug  6 c  9 thanked -   384 v1
+10 gug  7 d  9 questioned -   834 v1
+10 gug 10 c  9 instructed -   505 v1
+10 gug 11 d  9 annoyed -   456 v1
+11 gug  5 c  9 cooked -   640 v1
+11 gug  5 c  9 for -   465 v1
+11 gug 10 d  9 instructed -   434 v1
+11 gug 13 c  9 berated -   377 v1
+11 gug  2 d  9 greeted -   473 v1
+11 gug  6 d  9 thanked -   449 v1
+11 gug  9 c  9 tipped -   521 v1
+11 gug  1 c  9 supervised -   304 v1
+11 gug 14 d  9 convinced -   369 v1
+12 gug  5 d  9 cooked -   538 v1
+12 gug  5 d  9 for -   411 v1
+12 gug 16 c  9 admired -  1050 v1
+12 gug 12 c  9 visited -   498 v1
+12 gug  4 c  9 annoyed -   474 v1
+12 gug 13 d  9 berated -   457 v1
+12 gug  1 d  9 supervised -   424 v1
+12 gug  8 c  9 surprised -   424 v1
+12 gug  9 d  9 tipped -  2320 v1
+13 gug  4 d  9 annoyed -   363 v1
+13 gug 11 c  9 annoyed -   468 v1
+13 gug  8 d  9 surprised -   497 v1
+13 gug  7 c  9 questioned -   491 v1
+13 gug 12 d  9 visited -   451 v1
+13 gug 16 d  9 admired -   601 v1
+13 gug 15 c  9 hated -   474 v1
+13 gug  3 c  9 questioned -   787 v1
+14 gug 15 d  9 hated -   804 v1
+14 gug  6 c  9 thanked -   444 v1
+14 gug 10 c  9 instructed -   499 v1
+14 gug 14 c  9 convinced -   434 v1
+14 gug 11 d  9 annoyed -   531 v1
+14 gug  2 c  9 greeted -   481 v1
+14 gug  3 d  9 questioned -   400 v1
+14 gug  7 d  9 questioned -   668 v1
+15 gug  1 c  9 supervised -  1169 v1
+15 gug  6 d  9 thanked -   474 v1
+15 gug  9 c  9 tipped -  1898 v1
+15 gug 10 d  9 instructed -   738 v1
+15 gug 13 c  9 berated -  1666 v1
+15 gug 14 d  9 convinced -   443 v1
+15 gug  2 d  9 greeted -   595 v1
+15 gug  5 c  9 cooked -   618 v1
+15 gug  5 c  9 for -   256 v1
+16 gug 12 c  9 visited -   419 v1
+16 gug 16 c  9 admired -   362 v1
+16 gug  8 c  9 surprised -  1539 v1
+16 gug  5 d  9 cooked -   499 v1
+16 gug  5 d  9 for -   306 v1
+16 gug  9 d  9 tipped -   969 v1
+16 gug 13 d  9 berated -   210 v1
+16 gug  1 d  9 supervised -   194 v1
+16 gug  4 c  9 annoyed -   153 v1
+17 gug 16 d  9 admired -   907 v1
+17 gug 11 c  9 annoyed -   817 v1
+17 gug  4 d  9 annoyed -   780 v1
+17 gug  7 c  9 questioned -  1139 v1
+17 gug  3 c  9 questioned -  1899 v1
+17 gug 15 c  9 hated -   363 v1
+17 gug  8 d  9 surprised -  1368 v1
+17 gug 12 d  9 visited -   975 v1
+18 gug  6 c  9 thanked -   426 v1
+18 gug  7 d  9 questioned -   489 v1
+18 gug  2 c  9 greeted -   345 v1
+18 gug 10 c  9 instructed -   362 v1
+18 gug 14 c  9 convinced -   339 v1
+18 gug 11 d  9 annoyed -   393 v1
+18 gug 15 d  9 hated -   370 v1
+18 gug  3 d  9 questioned -   345 v1
+19 gug  6 d  9 thanked -   490 v1
+19 gug  2 d  9 greeted -   553 v1
+19 gug 13 c  9 berated -  1370 v1
+19 gug 14 d  9 convinced -   329 v1
+19 gug  5 c  9 cooked -   540 v1
+19 gug  5 c  9 for -  1241 v1
+19 gug  9 c  9 tipped -   345 v1
+19 gug  1 c  9 supervised -  1217 v1
+19 gug 10 d  9 instructed -   647 v1
+20 gug  4 c  9 annoyed -   475 v1
+20 gug  8 c  9 surprised -   601 v1
+20 gug 16 c  9 admired -   434 v1
+20 gug 13 d  9 berated -   530 v1
+20 gug  5 d  9 cooked -   408 v1
+20 gug  5 d  9 for -   299 v1
+20 gug 12 c  9 visited -   417 v1
+20 gug  1 d  9 supervised -   448 v1
+20 gug  9 d  9 tipped -   424 v1
+21 gug  7 c  9 questioned -   363 v1
+21 gug  3 c  9 questioned -  1761 v1
+21 gug  4 d  9 annoyed -  1282 v1
+21 gug 12 d  9 visited -   586 v1
+21 gug 11 c  9 annoyed -   370 v1
+21 gug  8 d  9 surprised -   201 v1
+21 gug 16 d  9 admired -   257 v1
+21 gug 15 c  9 hated -   591 v1
+22 gug  6 c  9 thanked -  2451 v1
+22 gug  7 d  9 questioned -  2923 v1
+22 gug 10 c  9 instructed -   619 v1
+22 gug 14 c  9 convinced -   481 v1
+22 gug  3 d  9 questioned -   490 v1
+22 gug  2 c  9 greeted -   386 v1
+22 gug 11 d  9 annoyed -   378 v1
+22 gug 15 d  9 hated -   576 v1
+23 gug  9 c  9 tipped -   713 v1
+23 gug 14 d  9 convinced -   497 v1
+23 gug  5 c  9 cooked -   432 v1
+23 gug  5 c  9 for -   354 v1
+23 gug  1 c  9 supervised -   657 v1
+23 gug  6 d  9 thanked -   553 v1
+23 gug 10 d  9 instructed -   465 v1
+23 gug 13 c  9 berated -   601 v1
+23 gug  2 d  9 greeted -  1552 v1
+24 gug  1 d  9 supervised -   458 v1
+24 gug  8 c  9 surprised -   346 v1
+24 gug  5 d  9 cooked -  1666 v1
+24 gug  5 d  9 for -   354 v1
+24 gug 13 d  9 berated -   274 v1
+24 gug  4 c  9 annoyed -   380 v1
+24 gug 16 c  9 admired -   561 v1
+24 gug  9 d  9 tipped -   592 v1
+24 gug 12 c  9 visited -  2640 v1
+25 gug  8 d  9 surprised -   479 v1
+25 gug  7 c  9 questioned -   463 v1
+25 gug 15 c  9 hated -   351 v1
+25 gug 12 d  9 visited -   495 v1
+25 gug 16 d  9 admired -   671 v1
+25 gug  3 c  9 questioned -   207 v1
+25 gug 11 c  9 annoyed -   383 v1
+25 gug  4 d  9 annoyed -  1295 v1
+26 gug 11 d  9 annoyed -   546 v1
+26 gug 15 d  9 hated -   369 v1
+26 gug  2 c  9 greeted -  1241 v1
+26 gug  3 d  9 questioned -   449 v1
+26 gug 14 c  9 convinced -   618 v1
+26 gug  6 c  9 thanked -   400 v1
+26 gug  7 d  9 questioned -   417 v1
+26 gug 10 c  9 instructed -   496 v1
+27 gug  2 d  9 greeted -   811 v1
+27 gug  6 d  9 thanked -   586 v1
+27 gug 13 c  9 berated -   552 v1
+27 gug 10 d  9 instructed -   522 v1
+27 gug  1 c  9 supervised -   473 v1
+27 gug  9 c  9 tipped -   442 v1
+27 gug  5 c  9 cooked -   425 v1
+27 gug  5 c  9 for -   408 v1
+27 gug 14 d  9 convinced -   464 v1
+28 gug  5 d  9 cooked -   481 v1
+28 gug  5 d  9 for -   419 v1
+28 gug  1 d  9 supervised -   577 v1
+28 gug  8 c  9 surprised -   459 v1
+28 gug  9 d  9 tipped -   523 v1
+28 gug 12 c  9 visited -   375 v1
+28 gug 16 c  9 admired -   407 v1
+28 gug 13 d  9 berated -   609 v1
+28 gug  4 c  9 annoyed -   792 v1
+29 gug  7 c  9 questioned -   778 v1
+29 gug 11 c  9 annoyed -  2186 v1
+29 gug 16 d  9 admired -   569 v1
+29 gug 12 d  9 visited -   563 v1
+29 gug  8 d  9 surprised -   794 v1
+29 gug 15 c  9 hated -   384 v1
+29 gug  4 d  9 annoyed -   473 v1
+29 gug  3 c  9 questioned -   433 v1
+30 gug  2 c  9 greeted -   562 v1
+30 gug  6 c  9 thanked -   954 v1
+30 gug 14 c  9 convinced -   546 v1
+30 gug 15 d  9 hated -  1739 v1
+30 gug 11 d  9 annoyed -   442 v1
+30 gug 10 c  9 instructed -   946 v1
+30 gug  7 d  9 questioned -   433 v1
+30 gug  3 d  9 questioned -   350 v1
+31 gug  2 d  9 greeted -   562 v1
+31 gug  9 c  9 tipped -   635 v1
+31 gug 10 d  9 instructed -   411 v1
+31 gug  6 d  9 thanked -   323 v1
+31 gug 14 d  9 convinced -   368 v1
+31 gug  1 c  9 supervised -   656 v1
+31 gug  5 c  9 cooked -   722 v1
+31 gug  5 c  9 for -   314 v1
+31 gug 13 c  9 berated -   769 v1
+32 gug  1 d  9 supervised -  1263 v1
+32 gug  9 d  9 tipped -   687 v1
+32 gug  8 c  9 surprised -   431 v1
+32 gug  5 d  9 cooked -   479 v1
+32 gug  5 d  9 for -   302 v1
+32 gug 13 d  9 berated -   719 v1
+32 gug 16 c  9 admired -  2287 v1
+32 gug 12 c  9 visited -   622 v1
+32 gug  4 c  9 annoyed -  2111 v1
+33 gug 16 d  9 admired -  5360 v1
+33 gug  3 c  9 questioned -  3561 v1
+33 gug  8 d  9 surprised -  1617 v1
+33 gug 11 c  9 annoyed -  1211 v1
+33 gug  7 c  9 questioned -  6279 v1
+33 gug  4 d  9 annoyed -   378 v1
+33 gug 15 c  9 hated -  2865 v1
+33 gug 12 d  9 visited -  2482 v1
+34 gug  2 c  9 greeted -   555 v1
+34 gug 10 c  9 instructed -   529 v1
+34 gug  7 d  9 questioned -   626 v1
+34 gug  6 c  9 thanked -   570 v1
+34 gug 14 c  9 convinced -  1106 v1
+34 gug  3 d  9 questioned -   529 v1
+34 gug 15 d  9 hated -   418 v1
+34 gug 11 d  9 annoyed -   489 v1
+35 gug  5 c  9 cooked -   355 v1
+35 gug  5 c  9 for -   347 v1
+35 gug 10 d  9 instructed -   482 v1
+35 gug  1 c  9 supervised -   425 v1
+35 gug  9 c  9 tipped -  1584 v1
+35 gug  2 d  9 greeted -   274 v1
+35 gug  6 d  9 thanked -   314 v1
+35 gug 13 c  9 berated -   296 v1
+35 gug 14 d  9 convinced -   497 v1
+36 gug  8 c  9 surprised -   747 v1
+36 gug  5 d  9 cooked -   827 v1
+36 gug  5 d  9 for -   563 v1
+36 gug 13 d  9 berated -  2346 v1
+36 gug  4 c  9 annoyed -   624 v1
+36 gug  1 d  9 supervised -   776 v1
+36 gug  9 d  9 tipped -  1208 v1
+36 gug 12 c  9 visited -   888 v1
+36 gug 16 c  9 admired -   770 v1
+37 gug  7 c  9 questioned -  1242 v1
+37 gug 12 d  9 visited -   863 v1
+37 gug  4 d  9 annoyed -   432 v1
+37 gug 15 c  9 hated -   440 v1
+37 gug 16 d  9 admired -   289 v1
+37 gug  8 d  9 surprised -   362 v1
+37 gug  3 c  9 questioned -   257 v1
+37 gug 11 c  9 annoyed -   313 v1
+38 gug 14 c  9 convinced -   331 v1
+38 gug 11 d  9 annoyed -   409 v1
+38 gug 10 c  9 instructed -  1603 v1
+38 gug  2 c  9 greeted -  1010 v1
+38 gug  7 d  9 questioned -   729 v1
+38 gug 15 d  9 hated -   539 v1
+38 gug  6 c  9 thanked -   545 v1
+38 gug  3 d  9 questioned -   456 v1
+39 gug  2 d  9 greeted -   314 v1
+39 gug  5 c  9 cooked -   458 v1
+39 gug  5 c  9 for -   562 v1
+39 gug  6 d  9 thanked -   499 v1
+39 gug  9 c  9 tipped -   343 v1
+39 gug  1 c  9 supervised -   385 v1
+39 gug 10 d  9 instructed -   288 v1
+39 gug 13 c  9 berated -   416 v1
+39 gug 14 d  9 convinced -   370 v1
+40 gug  5 d  9 cooked -   394 v1
+40 gug  5 d  9 for -   248 v1
+40 gug  4 c  9 annoyed -   385 v1
+40 gug 16 c  9 admired -   321 v1
+40 gug 12 c  9 visited -   256 v1
+40 gug  9 d  9 tipped -  4705 v1
+40 gug 13 d  9 berated -   817 v1
+40 gug  8 c  9 surprised -   769 v1
+40 gug  1 d  9 supervised -   848 v1
+41 gug 16 d  9 admired -   492 v1
+41 gug  3 c  9 questioned -   532 v1
+41 gug  8 d  9 surprised -  2540 v1
+41 gug 12 d  9 visited -  4154 v1
+41 gug  4 d  9 annoyed -   527 v1
+41 gug 15 c  9 hated -   426 v1
+41 gug  7 c  9 questioned -   603 v1
+41 gug 11 c  9 annoyed -   577 v1
+42 gug 10 c  9 instructed -  1209 v1
+42 gug 11 d  9 annoyed -   475 v1
+42 gug  2 c  9 greeted -  2571 v1
+42 gug  3 d  9 questioned -   585 v1
+42 gug  6 c  9 thanked -   418 v1
+42 gug 15 d  9 hated -  1505 v1
+42 gug  7 d  9 questioned -  2583 v1
+42 gug 14 c  9 convinced -  3488 v1
+43 gug 10 d  9 instructed -   347 v1
+43 gug  6 d  9 thanked -   434 v1
+43 gug  1 c  9 supervised -   394 v1
+43 gug 14 d  9 convinced -   363 v1
+43 gug  5 c  9 cooked -   322 v1
+43 gug  5 c  9 for -   234 v1
+43 gug  2 d  9 greeted -   288 v1
+43 gug  9 c  9 tipped -   235 v1
+43 gug 13 c  9 berated -   298 v1
+44 gug 16 c  9 admired -   491 v1
+44 gug 12 c  9 visited -   618 v1
+44 gug  1 d  9 supervised -   457 v1
+44 gug  4 c  9 annoyed -   354 v1
+44 gug  9 d  9 tipped -   319 v1
+44 gug  8 c  9 surprised -   335 v1
+44 gug  5 d  9 cooked -   281 v1
+44 gug  5 d  9 for -   289 v1
+44 gug 13 d  9 berated -   311 v1
+45 gug 16 d  9 admired -   356 v1
+45 gug 15 c  9 hated -   506 v1
+45 gug  4 d  9 annoyed -  1440 v1
+45 gug  8 d  9 surprised -   610 v1
+45 gug  3 c  9 questioned -  1842 v1
+45 gug 12 d  9 visited -   219 v1
+45 gug  7 c  9 questioned -  2698 v1
+45 gug 11 c  9 annoyed -   488 v1
+46 gug 11 d  9 annoyed -   344 v1
+46 gug 14 c  9 convinced -   288 v1
+46 gug  3 d  9 questioned -   570 v1
+46 gug  7 d  9 questioned -   395 v1
+46 gug  6 c  9 thanked -   304 v1
+46 gug 15 d  9 hated -  1113 v1
+46 gug  2 c  9 greeted -   736 v1
+46 gug 10 c  9 instructed -  1784 v1
+47 gug  6 d  9 thanked -   352 v1
+47 gug 10 d  9 instructed -   288 v1
+47 gug  1 c  9 supervised -   274 v1
+47 gug 13 c  9 berated -   299 v1
+47 gug 14 d  9 convinced -   258 v1
+47 gug  5 c  9 cooked -   203 v1
+47 gug  5 c  9 for -   297 v1
+47 gug  9 c  9 tipped -   265 v1
+47 gug  2 d  9 greeted -   271 v1
+48 gug  4 c  9 annoyed -   569 v1
+48 gug 13 d  9 berated -   471 v1
+48 gug 12 c  9 visited -   459 v1
+48 gug  9 d  9 tipped -   515 v1
+48 gug  8 c  9 surprised -   539 v1
+48 gug 16 c  9 admired -   458 v1
+48 gug  5 d  9 cooked -   768 v1
+48 gug  5 d  9 for -   377 v1
+48 gug  1 d  9 supervised -   623 v1
+49 gug 15 c  9 hated -   490 v1
+49 gug 11 c  9 annoyed -   577 v1
+49 gug  4 d  9 annoyed -   593 v1
+49 gug 12 d  9 visited -   626 v1
+49 gug  7 c  9 questioned -   609 v1
+49 gug 16 d  9 admired -  1186 v1
+49 gug  8 d  9 surprised -  1769 v1
+49 gug  3 c  9 questioned -   687 v1
+50 gug  6 c  9 thanked -   561 v1
+50 gug 11 d  9 annoyed -   506 v1
+50 gug  7 d  9 questioned -   497 v1
+50 gug  3 d  9 questioned -   386 v1
+50 gug 14 c  9 convinced -   423 v1
+50 gug  2 c  9 greeted -   336 v1
+50 gug 10 c  9 instructed -   990 v1
+50 gug 15 d  9 hated -   573 v1
+ 1 gug 13 a 11 the -   612 postv1
+ 1 gug  1 a 11 the -   490 postv1
+ 1 gug  9 a 11 the -   682 postv1
+ 1 gug  2 b 11 the -   490 postv1
+ 2 gug  9 b 11 the -   353 postv1
+ 2 gug  1 b 11 the -   642 postv1
+ 2 gug  4 a 11 the -   723 postv1
+ 2 gug 16 a 11 the -   419 postv1
+ 2 gug  8 a 11 the -   419 postv1
+ 2 gug 12 a 11 the -   506 postv1
+ 2 gug 13 b 11 the -   842 postv1
+ 3 gug  7 a 11 the -   401 postv1
+ 3 gug  8 b 11 the -   363 postv1
+ 3 gug 12 b 11 the -   226 postv1
+ 3 gug  4 b 11 the -   226 postv1
+ 3 gug 16 b 11 the -   218 postv1
+ 3 gug 15 a 11 the -   209 postv1
+ 4 gug  7 b 11 the -   426 postv1
+ 4 gug 15 b 11 the -   347 postv1
+ 4 gug  2 a 11 the -   336 postv1
+ 5 gug  2 b 11 the -   355 postv1
+ 5 gug  1 a 11 the -   222 postv1
+ 5 gug 13 a 11 the -   745 postv1
+ 5 gug  9 a 11 the -   208 postv1
+ 6 gug  1 b 11 the -   490 postv1
+ 6 gug 12 a 11 the -   347 postv1
+ 6 gug  4 a 11 the -   355 postv1
+ 6 gug  9 b 11 the -   339 postv1
+ 6 gug 16 a 11 the -   385 postv1
+ 6 gug  8 a 11 the -   418 postv1
+ 6 gug 13 b 11 the -   418 postv1
+ 7 gug 15 a 11 the -   705 postv1
+ 7 gug 16 b 11 the -   986 postv1
+ 7 gug  4 b 11 the -   706 postv1
+ 7 gug  8 b 11 the -   467 postv1
+ 7 gug 12 b 11 the -   554 postv1
+ 7 gug  7 a 11 the -   312 postv1
+ 8 gug  2 a 11 the -   387 postv1
+ 8 gug  7 b 11 the -   394 postv1
+ 8 gug 15 b 11 the -   289 postv1
+ 9 gug 13 a 11 the -   498 postv1
+ 9 gug  2 b 11 the -  1265 postv1
+ 9 gug  1 a 11 the -   322 postv1
+ 9 gug  9 a 11 the -   713 postv1
+10 gug  4 a 11 the -   476 postv1
+10 gug  8 a 11 the -   498 postv1
+10 gug  9 b 11 the -   539 postv1
+10 gug 13 b 11 the -   643 postv1
+10 gug  1 b 11 the -   521 postv1
+10 gug 12 a 11 the -   609 postv1
+10 gug 16 a 11 the -   697 postv1
+11 gug  8 b 11 the -   586 postv1
+11 gug 12 b 11 the -   434 postv1
+11 gug 15 a 11 the -   370 postv1
+11 gug  4 b 11 the -   571 postv1
+11 gug 16 b 11 the -   376 postv1
+11 gug  7 a 11 the -   354 postv1
+12 gug 15 b 11 the -   426 postv1
+12 gug  7 b 11 the -   394 postv1
+12 gug  2 a 11 the -   287 postv1
+13 gug  2 b 11 the -   424 postv1
+13 gug  1 a 11 the -   403 postv1
+13 gug 13 a 11 the -   362 postv1
+13 gug  9 a 11 the -   490 postv1
+14 gug 12 a 11 the -   298 postv1
+14 gug 13 b 11 the -  1179 postv1
+14 gug  4 a 11 the -   451 postv1
+14 gug  9 b 11 the -   386 postv1
+14 gug 16 a 11 the -   289 postv1
+14 gug  1 b 11 the -   472 postv1
+14 gug  8 a 11 the -   266 postv1
+15 gug  7 a 11 the -   409 postv1
+15 gug 15 a 11 the -   502 postv1
+15 gug 12 b 11 the -   354 postv1
+15 gug  8 b 11 the -   379 postv1
+15 gug  4 b 11 the -   284 postv1
+15 gug 16 b 11 the -   323 postv1
+16 gug  2 a 11 the -   298 postv1
+16 gug 15 b 11 the -   330 postv1
+16 gug  7 b 11 the -   712 postv1
+17 gug  9 a 11 the -  1387 postv1
+17 gug  1 a 11 the -   987 postv1
+17 gug 13 a 11 the -   423 postv1
+17 gug  2 b 11 the -   546 postv1
+18 gug  1 b 11 the -   475 postv1
+18 gug 16 a 11 the -   322 postv1
+18 gug  9 b 11 the -   370 postv1
+18 gug  4 a 11 the -   372 postv1
+18 gug 13 b 11 the -   360 postv1
+18 gug  8 a 11 the -   330 postv1
+18 gug 12 a 11 the -   408 postv1
+19 gug 16 b 11 the -   283 postv1
+19 gug 15 a 11 the -   251 postv1
+19 gug  4 b 11 the -   298 postv1
+19 gug 12 b 11 the -   107 postv1
+19 gug  8 b 11 the -  1009 postv1
+19 gug  7 a 11 the -   460 postv1
+20 gug 15 b 11 the -   482 postv1
+20 gug  7 b 11 the -  1011 postv1
+20 gug  2 a 11 the -   343 postv1
+21 gug  2 b 11 the -   330 postv1
+21 gug  9 a 11 the -   307 postv1
+21 gug  1 a 11 the -   169 postv1
+21 gug 13 a 11 the -   370 postv1
+22 gug  1 b 11 the -   409 postv1
+22 gug  4 a 11 the -   385 postv1
+22 gug 12 a 11 the -   377 postv1
+22 gug 13 b 11 the -   345 postv1
+22 gug 16 a 11 the -   346 postv1
+22 gug  8 a 11 the -   312 postv1
+22 gug  9 b 11 the -   314 postv1
+23 gug 16 b 11 the -   753 postv1
+23 gug  7 a 11 the -   401 postv1
+23 gug  4 b 11 the -   522 postv1
+23 gug 12 b 11 the -  1592 postv1
+23 gug  8 b 11 the -  1297 postv1
+23 gug 15 a 11 the -   377 postv1
+24 gug  2 a 11 the -   394 postv1
+24 gug  7 b 11 the -   273 postv1
+24 gug 15 b 11 the -   320 postv1
+25 gug 13 a 11 the -   447 postv1
+25 gug  9 a 11 the -   734 postv1
+25 gug  2 b 11 the -   303 postv1
+25 gug  1 a 11 the -   351 postv1
+26 gug  8 a 11 the -   408 postv1
+26 gug 16 a 11 the -   506 postv1
+26 gug 12 a 11 the -   729 postv1
+26 gug  1 b 11 the -   338 postv1
+26 gug  9 b 11 the -   386 postv1
+26 gug  4 a 11 the -   378 postv1
+26 gug 13 b 11 the -   392 postv1
+27 gug  8 b 11 the -   673 postv1
+27 gug 15 a 11 the -   392 postv1
+27 gug  7 a 11 the -   435 postv1
+27 gug 16 b 11 the -   466 postv1
+27 gug  4 b 11 the -   386 postv1
+27 gug 12 b 11 the -   329 postv1
+28 gug  2 a 11 the -  1193 postv1
+28 gug  7 b 11 the -   482 postv1
+28 gug 15 b 11 the -   281 postv1
+29 gug  1 a 11 the -   664 postv1
+29 gug  2 b 11 the -   442 postv1
+29 gug  9 a 11 the -   347 postv1
+29 gug 13 a 11 the -   609 postv1
+30 gug  1 b 11 the -   711 postv1
+30 gug  8 a 11 the -   498 postv1
+30 gug 13 b 11 the -  1449 postv1
+30 gug  4 a 11 the -   378 postv1
+30 gug  9 b 11 the -   322 postv1
+30 gug 12 a 11 the -   432 postv1
+30 gug 16 a 11 the -   368 postv1
+31 gug 16 b 11 the -   362 postv1
+31 gug  4 b 11 the -   484 postv1
+31 gug 12 b 11 the -   377 postv1
+31 gug  8 b 11 the -   344 postv1
+31 gug  7 a 11 the -   434 postv1
+31 gug 15 a 11 the -   401 postv1
+32 gug  7 b 11 the -   303 postv1
+32 gug 15 b 11 the -   319 postv1
+32 gug  2 a 11 the -   287 postv1
+33 gug  2 b 11 the -   675 postv1
+33 gug 13 a 11 the -  1211 postv1
+33 gug  1 a 11 the -   345 postv1
+33 gug  9 a 11 the -   291 postv1
+34 gug 13 b 11 the -   435 postv1
+34 gug  8 a 11 the -   529 postv1
+34 gug 16 a 11 the -   577 postv1
+34 gug  1 b 11 the -  1089 postv1
+34 gug  9 b 11 the -  2602 postv1
+34 gug 12 a 11 the -   337 postv1
+34 gug  4 a 11 the -   447 postv1
+35 gug  7 a 11 the -   327 postv1
+35 gug 16 b 11 the -   377 postv1
+35 gug  4 b 11 the -   272 postv1
+35 gug 15 a 11 the -   286 postv1
+35 gug  8 b 11 the -   265 postv1
+35 gug 12 b 11 the -   256 postv1
+36 gug  2 a 11 the -   602 postv1
+36 gug 15 b 11 the -   432 postv1
+36 gug  7 b 11 the -   602 postv1
+37 gug 13 a 11 the -   488 postv1
+37 gug  2 b 11 the -   839 postv1
+37 gug  9 a 11 the -   416 postv1
+37 gug  1 a 11 the -   286 postv1
+38 gug 16 a 11 the -   508 postv1
+38 gug  1 b 11 the -   738 postv1
+38 gug 13 b 11 the -   377 postv1
+38 gug  8 a 11 the -   513 postv1
+38 gug 12 a 11 the -   489 postv1
+38 gug  4 a 11 the -   511 postv1
+38 gug  9 b 11 the -   697 postv1
+39 gug  8 b 11 the -   552 postv1
+39 gug  7 a 11 the -   656 postv1
+39 gug 16 b 11 the -   651 postv1
+39 gug 12 b 11 the -   474 postv1
+39 gug  4 b 11 the -   361 postv1
+39 gug 15 a 11 the -   258 postv1
+40 gug  2 a 11 the -  1370 postv1
+40 gug 15 b 11 the -  4993 postv1
+40 gug  7 b 11 the -   319 postv1
+41 gug  2 b 11 the -  1393 postv1
+41 gug 13 a 11 the -   491 postv1
+41 gug  9 a 11 the -   499 postv1
+41 gug  1 a 11 the -   392 postv1
+42 gug 13 b 11 the -   384 postv1
+42 gug  9 b 11 the -   369 postv1
+42 gug  8 a 11 the -   347 postv1
+42 gug 16 a 11 the -   368 postv1
+42 gug  4 a 11 the -   318 postv1
+42 gug 12 a 11 the -   330 postv1
+42 gug  1 b 11 the -   247 postv1
+43 gug 15 a 11 the -   281 postv1
+43 gug 16 b 11 the -   331 postv1
+43 gug  8 b 11 the -   289 postv1
+43 gug  7 a 11 the -   314 postv1
+43 gug  4 b 11 the -   250 postv1
+43 gug 12 b 11 the -   289 postv1
+44 gug  2 a 11 the -   368 postv1
+44 gug  7 b 11 the -   369 postv1
+44 gug 15 b 11 the -   378 postv1
+45 gug  9 a 11 the -   226 postv1
+45 gug 13 a 11 the -   226 postv1
+45 gug  2 b 11 the -   361 postv1
+45 gug  1 a 11 the -   263 postv1
+46 gug  8 a 11 the -   930 postv1
+46 gug  4 a 11 the -   834 postv1
+46 gug 12 a 11 the -   554 postv1
+46 gug 13 b 11 the -   344 postv1
+46 gug  1 b 11 the -   322 postv1
+46 gug  9 b 11 the -   431 postv1
+46 gug 16 a 11 the -   320 postv1
+47 gug 12 b 11 the -   323 postv1
+47 gug  4 b 11 the -   306 postv1
+47 gug  8 b 11 the -   249 postv1
+47 gug  7 a 11 the -   441 postv1
+47 gug 16 b 11 the -   393 postv1
+47 gug 15 a 11 the -   267 postv1
+48 gug 15 b 11 the -   881 postv1
+48 gug  7 b 11 the -   532 postv1
+48 gug  2 a 11 the -   435 postv1
+49 gug  2 b 11 the -   667 postv1
+49 gug  9 a 11 the -   696 postv1
+49 gug  1 a 11 the -   353 postv1
+49 gug 13 a 11 the -   576 postv1
+50 gug 16 a 11 the -   473 postv1
+50 gug  1 b 11 the -   528 postv1
+50 gug  9 b 11 the -   503 postv1
+50 gug  4 a 11 the -   992 postv1
+50 gug  8 a 11 the -   408 postv1
+50 gug 13 b 11 the -   360 postv1
+50 gug 12 a 11 the -  1432 postv1
+ 1 gug 12 d 10 the -   761 postv1
+ 1 gug 15 c 10 the -   347 postv1
+ 1 gug  3 c 10 the -   347 postv1
+ 1 gug  7 c 10 the -   385 postv1
+ 1 gug  8 d 10 the -   409 postv1
+ 1 gug  4 d 10 the -   384 postv1
+ 1 gug 11 c 10 the -   552 postv1
+ 1 gug 16 d 10 the -   547 postv1
+ 2 gug 15 d 10 the -   394 postv1
+ 2 gug  2 c 10 the -   418 postv1
+ 2 gug  7 d 10 the -   409 postv1
+ 2 gug 14 c 10 the -   553 postv1
+ 2 gug 10 c 10 the -   449 postv1
+ 2 gug 11 d 10 the -   362 postv1
+ 2 gug  3 d 10 the -   417 postv1
+ 2 gug  6 c 10 the -   355 postv1
+ 3 gug  2 d 10 the -   467 postv1
+ 3 gug 10 d 10 the -   290 postv1
+ 3 gug 14 d 10 the -   267 postv1
+ 3 gug  1 c 10 the -   209 postv1
+ 3 gug  6 d 10 the -   268 postv1
+ 3 gug  9 c 10 the -   322 postv1
+ 3 gug 13 c 10 the -   273 postv1
+ 4 gug  9 d 10 the -   410 postv1
+ 4 gug 13 d 10 the -   873 postv1
+ 4 gug  4 c 10 the -   369 postv1
+ 4 gug 16 c 10 the -   434 postv1
+ 4 gug  8 c 10 the -   401 postv1
+ 4 gug  1 d 10 the -   290 postv1
+ 4 gug 12 c 10 the -   241 postv1
+ 5 gug 16 d 10 the -   339 postv1
+ 5 gug  8 d 10 the -   313 postv1
+ 5 gug  3 c 10 the -   834 postv1
+ 5 gug  4 d 10 the -   305 postv1
+ 5 gug 11 c 10 the -   295 postv1
+ 5 gug 15 c 10 the -   252 postv1
+ 5 gug 12 d 10 the -   911 postv1
+ 5 gug  7 c 10 the -   226 postv1
+ 6 gug 15 d 10 the -   819 postv1
+ 6 gug  7 d 10 the -   644 postv1
+ 6 gug  6 c 10 the -   408 postv1
+ 6 gug  2 c 10 the -  1386 postv1
+ 6 gug 14 c 10 the -   456 postv1
+ 6 gug 10 c 10 the -   442 postv1
+ 6 gug 11 d 10 the -   314 postv1
+ 6 gug  3 d 10 the -   336 postv1
+ 7 gug  6 d 10 the -   548 postv1
+ 7 gug 14 d 10 the -   577 postv1
+ 7 gug  2 d 10 the -   377 postv1
+ 7 gug 13 c 10 the -   378 postv1
+ 7 gug  9 c 10 the -   352 postv1
+ 7 gug 10 d 10 the -   313 postv1
+ 7 gug  1 c 10 the -   209 postv1
+ 8 gug  9 d 10 the -   363 postv1
+ 8 gug 12 c 10 the -   338 postv1
+ 8 gug  1 d 10 the -   393 postv1
+ 8 gug  8 c 10 the -   321 postv1
+ 8 gug  4 c 10 the -   289 postv1
+ 8 gug 13 d 10 the -   455 postv1
+ 8 gug 16 c 10 the -   825 postv1
+ 9 gug 16 d 10 the -   506 postv1
+ 9 gug 12 d 10 the -   321 postv1
+ 9 gug  3 c 10 the -   271 postv1
+ 9 gug  8 d 10 the -   312 postv1
+ 9 gug  7 c 10 the -   193 postv1
+ 9 gug  4 d 10 the -   167 postv1
+ 9 gug 11 c 10 the -   185 postv1
+ 9 gug 15 c 10 the -   176 postv1
+10 gug  2 c 10 the -   400 postv1
+10 gug 15 d 10 the -   410 postv1
+10 gug  3 d 10 the -   394 postv1
+10 gug 14 c 10 the -   363 postv1
+10 gug  6 c 10 the -   370 postv1
+10 gug  7 d 10 the -   432 postv1
+10 gug 10 c 10 the -   400 postv1
+10 gug 11 d 10 the -   409 postv1
+11 gug 10 d 10 the -   347 postv1
+11 gug 13 c 10 the -   524 postv1
+11 gug  2 d 10 the -   387 postv1
+11 gug  6 d 10 the -   347 postv1
+11 gug  9 c 10 the -   483 postv1
+11 gug  1 c 10 the -   464 postv1
+11 gug 14 d 10 the -   430 postv1
+12 gug 16 c 10 the -   385 postv1
+12 gug 12 c 10 the -   385 postv1
+12 gug  4 c 10 the -   370 postv1
+12 gug 13 d 10 the -   395 postv1
+12 gug  1 d 10 the -   450 postv1
+12 gug  8 c 10 the -   353 postv1
+12 gug  9 d 10 the -   425 postv1
+13 gug  4 d 10 the -   369 postv1
+13 gug 11 c 10 the -   362 postv1
+13 gug  8 d 10 the -   364 postv1
+13 gug  7 c 10 the -   340 postv1
+13 gug 12 d 10 the -   545 postv1
+13 gug 16 d 10 the -   337 postv1
+13 gug 15 c 10 the -   257 postv1
+13 gug  3 c 10 the -   313 postv1
+14 gug 15 d 10 the -   402 postv1
+14 gug  6 c 10 the -   294 postv1
+14 gug 10 c 10 the -   410 postv1
+14 gug 14 c 10 the -   242 postv1
+14 gug 11 d 10 the -   426 postv1
+14 gug  2 c 10 the -   299 postv1
+14 gug  3 d 10 the -   187 postv1
+14 gug  7 d 10 the -   194 postv1
+15 gug  1 c 10 the -   370 postv1
+15 gug  6 d 10 the -   267 postv1
+15 gug  9 c 10 the -   349 postv1
+15 gug 10 d 10 the -   252 postv1
+15 gug 13 c 10 the -   307 postv1
+15 gug 14 d 10 the -   304 postv1
+15 gug  2 d 10 the -   431 postv1
+16 gug 12 c 10 the -   554 postv1
+16 gug 16 c 10 the -   308 postv1
+16 gug  8 c 10 the -   506 postv1
+16 gug  9 d 10 the -   305 postv1
+16 gug 13 d 10 the -   355 postv1
+16 gug  1 d 10 the -   905 postv1
+16 gug  4 c 10 the -   251 postv1
+17 gug 16 d 10 the -   834 postv1
+17 gug 11 c 10 the -   388 postv1
+17 gug  4 d 10 the -   675 postv1
+17 gug  7 c 10 the -   666 postv1
+17 gug  3 c 10 the -   562 postv1
+17 gug 15 c 10 the -   377 postv1
+17 gug  8 d 10 the -   642 postv1
+17 gug 12 d 10 the -   457 postv1
+18 gug  6 c 10 the -   387 postv1
+18 gug  7 d 10 the -   435 postv1
+18 gug  2 c 10 the -   331 postv1
+18 gug 10 c 10 the -   458 postv1
+18 gug 14 c 10 the -  1091 postv1
+18 gug 11 d 10 the -   353 postv1
+18 gug 15 d 10 the -   386 postv1
+18 gug  3 d 10 the -   314 postv1
+19 gug  6 d 10 the -   453 postv1
+19 gug  2 d 10 the -   706 postv1
+19 gug 13 c 10 the -   330 postv1
+19 gug 14 d 10 the -   370 postv1
+19 gug  9 c 10 the -   273 postv1
+19 gug  1 c 10 the -   353 postv1
+19 gug 10 d 10 the -   314 postv1
+20 gug  4 c 10 the -   338 postv1
+20 gug  8 c 10 the -   394 postv1
+20 gug 16 c 10 the -   432 postv1
+20 gug 13 d 10 the -   522 postv1
+20 gug 12 c 10 the -   289 postv1
+20 gug  1 d 10 the -   402 postv1
+20 gug  9 d 10 the -   320 postv1
+21 gug  7 c 10 the -   418 postv1
+21 gug  3 c 10 the -   276 postv1
+21 gug  4 d 10 the -   418 postv1
+21 gug 12 d 10 the -   419 postv1
+21 gug 11 c 10 the -   440 postv1
+21 gug  8 d 10 the -   194 postv1
+21 gug 16 d 10 the -   241 postv1
+21 gug 15 c 10 the -   200 postv1
+22 gug  6 c 10 the -   449 postv1
+22 gug  7 d 10 the -   408 postv1
+22 gug 10 c 10 the -   327 postv1
+22 gug 14 c 10 the -   387 postv1
+22 gug  3 d 10 the -   466 postv1
+22 gug  2 c 10 the -   369 postv1
+22 gug 11 d 10 the -   456 postv1
+22 gug 15 d 10 the -   426 postv1
+23 gug  9 c 10 the -  1241 postv1
+23 gug 14 d 10 the -   385 postv1
+23 gug  1 c 10 the -   408 postv1
+23 gug  6 d 10 the -   481 postv1
+23 gug 10 d 10 the -   386 postv1
+23 gug 13 c 10 the -   746 postv1
+23 gug  2 d 10 the -   474 postv1
+24 gug  1 d 10 the -   410 postv1
+24 gug  8 c 10 the -   361 postv1
+24 gug 13 d 10 the -   393 postv1
+24 gug  4 c 10 the - 10130 postv1
+24 gug 16 c 10 the -   489 postv1
+24 gug  9 d 10 the -   306 postv1
+24 gug 12 c 10 the -   353 postv1
+25 gug  8 d 10 the -   399 postv1
+25 gug  7 c 10 the -   415 postv1
+25 gug 15 c 10 the -   287 postv1
+25 gug 12 d 10 the -   367 postv1
+25 gug 16 d 10 the -   527 postv1
+25 gug  3 c 10 the -   351 postv1
+25 gug 11 c 10 the -   351 postv1
+25 gug  4 d 10 the -   287 postv1
+26 gug 11 d 10 the -   497 postv1
+26 gug 15 d 10 the -   402 postv1
+26 gug  2 c 10 the -   313 postv1
+26 gug  3 d 10 the -   555 postv1
+26 gug 14 c 10 the -   463 postv1
+26 gug  6 c 10 the -   319 postv1
+26 gug  7 d 10 the -   472 postv1
+26 gug 10 c 10 the -   378 postv1
+27 gug  2 d 10 the -   642 postv1
+27 gug  6 d 10 the -   450 postv1
+27 gug 13 c 10 the -   498 postv1
+27 gug 10 d 10 the -   378 postv1
+27 gug  1 c 10 the -   625 postv1
+27 gug  9 c 10 the -   394 postv1
+27 gug 14 d 10 the -   431 postv1
+28 gug  1 d 10 the -   411 postv1
+28 gug  8 c 10 the -   609 postv1
+28 gug  9 d 10 the -   400 postv1
+28 gug 12 c 10 the -   321 postv1
+28 gug 16 c 10 the -   360 postv1
+28 gug 13 d 10 the -   360 postv1
+28 gug  4 c 10 the -   320 postv1
+29 gug  7 c 10 the -   834 postv1
+29 gug 11 c 10 the -   531 postv1
+29 gug 16 d 10 the -   491 postv1
+29 gug 12 d 10 the -   361 postv1
+29 gug  8 d 10 the -   505 postv1
+29 gug 15 c 10 the -   378 postv1
+29 gug  4 d 10 the -   339 postv1
+29 gug  3 c 10 the -   322 postv1
+30 gug  2 c 10 the -   425 postv1
+30 gug  6 c 10 the -   449 postv1
+30 gug 14 c 10 the -   433 postv1
+30 gug 15 d 10 the -   503 postv1
+30 gug 11 d 10 the -   385 postv1
+30 gug 10 c 10 the -   387 postv1
+30 gug  7 d 10 the -   394 postv1
+30 gug  3 d 10 the -   361 postv1
+31 gug  2 d 10 the -   412 postv1
+31 gug  9 c 10 the -   473 postv1
+31 gug 10 d 10 the -   338 postv1
+31 gug  6 d 10 the -   338 postv1
+31 gug 14 d 10 the -   313 postv1
+31 gug  1 c 10 the -   427 postv1
+31 gug 13 c 10 the -   362 postv1
+32 gug  1 d 10 the -   303 postv1
+32 gug  9 d 10 the -   398 postv1
+32 gug  8 c 10 the -   319 postv1
+32 gug 13 d 10 the -   335 postv1
+32 gug 16 c 10 the -   399 postv1
+32 gug 12 c 10 the -   334 postv1
+32 gug  4 c 10 the -   351 postv1
+33 gug 16 d 10 the -   379 postv1
+33 gug  3 c 10 the -  1427 postv1
+33 gug  8 d 10 the -   313 postv1
+33 gug 11 c 10 the -   761 postv1
+33 gug  7 c 10 the -   304 postv1
+33 gug  4 d 10 the -   650 postv1
+33 gug 15 c 10 the -   312 postv1
+33 gug 12 d 10 the -   567 postv1
+34 gug  2 c 10 the -   482 postv1
+34 gug 10 c 10 the -   761 postv1
+34 gug  7 d 10 the -   410 postv1
+34 gug  6 c 10 the -   402 postv1
+34 gug 14 c 10 the -  1304 postv1
+34 gug  3 d 10 the -   424 postv1
+34 gug 15 d 10 the -   355 postv1
+34 gug 11 d 10 the -   400 postv1
+35 gug 10 d 10 the -   370 postv1
+35 gug  1 c 10 the -   369 postv1
+35 gug  9 c 10 the -   346 postv1
+35 gug  2 d 10 the -   266 postv1
+35 gug  6 d 10 the -   256 postv1
+35 gug 13 c 10 the -   351 postv1
+35 gug 14 d 10 the -   248 postv1
+36 gug  8 c 10 the -   713 postv1
+36 gug 13 d 10 the -   518 postv1
+36 gug  4 c 10 the -   483 postv1
+36 gug  1 d 10 the -   537 postv1
+36 gug  9 d 10 the -   575 postv1
+36 gug 12 c 10 the -   697 postv1
+36 gug 16 c 10 the -   729 postv1
+37 gug  7 c 10 the -   387 postv1
+37 gug 12 d 10 the -  1050 postv1
+37 gug  4 d 10 the -   322 postv1
+37 gug 15 c 10 the -   978 postv1
+37 gug 16 d 10 the -   352 postv1
+37 gug  8 d 10 the -   248 postv1
+37 gug  3 c 10 the -   248 postv1
+37 gug 11 c 10 the -   257 postv1
+38 gug 14 c 10 the -   433 postv1
+38 gug 11 d 10 the -   360 postv1
+38 gug 10 c 10 the -   353 postv1
+38 gug  2 c 10 the -   433 postv1
+38 gug  7 d 10 the -   402 postv1
+38 gug 15 d 10 the -   416 postv1
+38 gug  6 c 10 the -   375 postv1
+38 gug  3 d 10 the -   280 postv1
+39 gug  2 d 10 the -   337 postv1
+39 gug  6 d 10 the -  1405 postv1
+39 gug  9 c 10 the -   379 postv1
+39 gug  1 c 10 the -   370 postv1
+39 gug 10 d 10 the -   234 postv1
+39 gug 13 c 10 the -   218 postv1
+39 gug 14 d 10 the -   367 postv1
+40 gug  4 c 10 the -   202 postv1
+40 gug 16 c 10 the -   481 postv1
+40 gug 12 c 10 the -   338 postv1
+40 gug  9 d 10 the -   393 postv1
+40 gug 13 d 10 the -   417 postv1
+40 gug  8 c 10 the -   433 postv1
+40 gug  1 d 10 the -   431 postv1
+41 gug 16 d 10 the -   417 postv1
+41 gug  3 c 10 the -   761 postv1
+41 gug  8 d 10 the -   337 postv1
+41 gug 12 d 10 the -  1154 postv1
+41 gug  4 d 10 the -   883 postv1
+41 gug 15 c 10 the -   363 postv1
+41 gug  7 c 10 the -   392 postv1
+41 gug 11 c 10 the -  1146 postv1
+42 gug 10 c 10 the -   393 postv1
+42 gug 11 d 10 the -   649 postv1
+42 gug  2 c 10 the -   633 postv1
+42 gug  3 d 10 the -   322 postv1
+42 gug  6 c 10 the -   273 postv1
+42 gug 15 d 10 the -   298 postv1
+42 gug  7 d 10 the -   321 postv1
+42 gug 14 c 10 the -   295 postv1
+43 gug 10 d 10 the -   346 postv1
+43 gug  6 d 10 the -   275 postv1
+43 gug  1 c 10 the -   242 postv1
+43 gug 14 d 10 the -   284 postv1
+43 gug  2 d 10 the -   274 postv1
+43 gug  9 c 10 the -   329 postv1
+43 gug 13 c 10 the -   257 postv1
+44 gug 16 c 10 the -   402 postv1
+44 gug 12 c 10 the -   400 postv1
+44 gug  1 d 10 the -   402 postv1
+44 gug  4 c 10 the -   362 postv1
+44 gug  9 d 10 the -   370 postv1
+44 gug  8 c 10 the -   321 postv1
+44 gug 13 d 10 the -   402 postv1
+45 gug 16 d 10 the -   434 postv1
+45 gug 15 c 10 the -   480 postv1
+45 gug  4 d 10 the -   275 postv1
+45 gug  8 d 10 the -   305 postv1
+45 gug  3 c 10 the -   256 postv1
+45 gug 12 d 10 the -   257 postv1
+45 gug  7 c 10 the -   238 postv1
+45 gug 11 c 10 the -   489 postv1
+46 gug 11 d 10 the -   336 postv1
+46 gug 14 c 10 the -   386 postv1
+46 gug  3 d 10 the -  1769 postv1
+46 gug  7 d 10 the -   313 postv1
+46 gug  6 c 10 the -   322 postv1
+46 gug 15 d 10 the -   297 postv1
+46 gug  2 c 10 the -   283 postv1
+46 gug 10 c 10 the -  2152 postv1
+47 gug  6 d 10 the -   322 postv1
+47 gug 10 d 10 the -   316 postv1
+47 gug  1 c 10 the -   291 postv1
+47 gug 13 c 10 the -   322 postv1
+47 gug 14 d 10 the -   313 postv1
+47 gug  9 c 10 the -   306 postv1
+47 gug  2 d 10 the -   289 postv1
+48 gug  4 c 10 the -   315 postv1
+48 gug 13 d 10 the -   395 postv1
+48 gug 12 c 10 the -   537 postv1
+48 gug  9 d 10 the -  1209 postv1
+48 gug  8 c 10 the -   561 postv1
+48 gug 16 c 10 the -   994 postv1
+48 gug  1 d 10 the -   481 postv1
+49 gug 15 c 10 the -   498 postv1
+49 gug 11 c 10 the -   570 postv1
+49 gug  4 d 10 the -   402 postv1
+49 gug 12 d 10 the -   369 postv1
+49 gug  7 c 10 the -   378 postv1
+49 gug 16 d 10 the -   344 postv1
+49 gug  8 d 10 the -   345 postv1
+49 gug  3 c 10 the -   391 postv1
+50 gug  6 c 10 the -   401 postv1
+50 gug 11 d 10 the -   376 postv1
+50 gug  7 d 10 the -   457 postv1
+50 gug  3 d 10 the -   385 postv1
+50 gug 14 c 10 the -   944 postv1
+50 gug  2 c 10 the -   640 postv1
+50 gug 10 c 10 the -  1032 postv1
+50 gug 15 d 10 the -   650 postv1

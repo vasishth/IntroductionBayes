@@ -1,0 +1,1363 @@
+ \documentclass[man,apacite,natbibapa, floatsintext]{apa6}
+
+
+\usepackage[american]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{csquotes}
+\usepackage{setspace}
+\usepackage{geometry}
+
+\usepackage{url}   
+\usepackage[colorlinks=true,
+            linkcolor=red,
+            urlcolor=blue,
+            citecolor=black]{hyperref}
+\usepackage[font=scriptsize]{caption}
+%\usepackage[justification=centering]{caption}
+\usepackage{graphicx}   % allows for graphic to float when doing jou or doc style
+\usepackage{lscape} % landscape table
+\usepackage{longtable}
+\usepackage{threeparttablex}
+\usepackage{booktabs}
+\usepackage{multirow} % multirows in tables 
+\usepackage{bigdelim} % curly braces in table
+\usepackage{xcolor,colortbl}
+\usepackage{amsmath}
+\usepackage{enumerate}
+% \usepackage[raggedrightboxes]{ragged2e}
+\usepackage{amssymb,amsfonts}
+
+% packages for Chinese characters
+\usepackage{covington} 
+\usepackage{CJKutf8} 
+\usepackage{pifont}
+\usepackage{textcomp}
+\usepackage{verbatim}   % allows us to use \begin{comment} environment
+\usepackage{caption}
+\usepackage{subcaption}
+%\usepackage{lscape}
+\usepackage{pdflscape}
+\usepackage{fancyvrb}
+%\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage[
+    left = ``,%
+    right = '',%
+    leftsub = `,%
+    rightsub = '%
+]{dirtytalk}          %quotations US English
+\usepackage{ragged2e} %fully-justified text \justify
+
+\graphicspath{{images/}}
+
+\definecolor{light-gray}{gray}{0.85}
+
+\newcommand{\Dutchvon}[2]{#2}
+\newcommand{\ck}{\ding{52}}
+\newcommand{\nope}{\ding{56}}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+\newcommand{\R}{\textsf{R}}
+\newcommand{\actrcue}[1]{\textit{#1}}
+\newcommand{\match}[1]{$+$\textit{#1}}
+\newcommand{\mismatch}[1]{$-$\textit{#1}}
+\newcommand{\featureset}[2]{$\{^{\textit{#1}}_{\textit{#2}}\}$}
+\newcommand{\featuresetNP}[2]{$^{\textit{#1}}_{\textit{#2}}$}
+\mathchardef\mhyphen="2D 
+\newcommand\ccom{\mathop{c\mhyphen com}}
+\newcommand{\me}{\mathrm{e}}
+\newcommand{\revised}[1]{{\color{blue}{#1}}}
+\newcommand{\revisedII}[1]{{\color{green}{#1}}}
+\newcommand{\exitem}{\refstepcounter{example}\item[(\arabic{example})]}
+\newcounter{example}
+
+
+\makeatletter
+\newif\ifhbtwocolumn
+\@ifclasswith{apa6}{jou}{\hbtwocolumntrue}{\hbtwocolumnfalse}
+\makeatother
+
+
+
+\title{Pre-Registration of Replication Study (Levy \& Keller, 2013)}
+\shorttitle{Replication Study (Levy \& Keller, 2013)}
+
+\threeauthors{Daniela Mertzen}{Lena A. J{\"a}ger}{Shravan Vasishth}
+
+\threeaffiliations{University of Potsdam, Germany}{University of Potsdam, Germany}{University of Potsdam, Germany}
+
+\leftheader{Mertzen, J{\"a}ger, Vasishth}
+
+\authornote{Please send correspondence to vasishth@uni-potsdam.de.}
+\note{\today}
+
+
+
+\ccoppy{Draft of \today} 
+
+\begin{document}
+\maketitle
+
+<<setup,include=FALSE,cache=FALSE,echo=FALSE>>=
+remove(list=ls())
+library(knitr)
+library(coda)
+library(dplyr)
+#library(rjags)
+library(ggplot2)
+library(xtable)
+
+#opts_chunk$set(fig.path='figures/fig-', fig.align='center', fig.show='hold')
+options(replace.assign=TRUE,show.signif.stars=FALSE)
+options(replace.assign=TRUE,width=75)
+#options(digits = 2)
+opts_chunk$set(dev='postscript')
+@
+
+
+\section{Background to the current study}
+\justify
+We attempt to replicate a psycholinguistic study by \citet{levykeller13} (henceforth, LK13) who investigated locality and anti-locality effects in German. The main claim of this study is that both locality and anti-locality effects play a role in the processing of verb-final clauses of German, however, locality effects dominate over anti-locality effects when memory load is high.
+
+The study comprises of two eyetracking-while-reading experiments. 
+\noindent \textit{Experiment 1} tested predictions of surprisal theory: Intervening material between a verb and its subject should \textit{facilitate} the parser’s prediction of the verb and, thus, its processing (anti-locality effect).\\
+\noindent \textit{Experiment 2} tested predictions of memory-based theories: There should be more \textit{processing difficulty} at the verb due to intervening material between the verb and its subject (locality effect). 
+This was investigated using complex syntactic structures where the subject and the critical matrix verb had four configurations in which the position of a \textit{dative noun phrase} (Dat NP) and of a \textit{prepositional adjunct} (PP Adj) were manipulated (see Table \ref{itemsE1} for a simplified example of an experimental item of Experiment 1). Experiment 1 had the target construction in a main clause; in Experiment 2 the same target construction as in Exp. 1 was more deeply embedded in a relative clause, making the sentence syntactically more complex (see Table \ref{itemsE2} for a simplified experimental item of Exp. 2). The critical region in Exp.\ 1 was the matrix clause verb; in Exp. 2 the critical region was the head verb of the relative clause and the auxiliary (\textit{versteckt} in Exp.\ 1 vs. \textit{versteckt hat} in Exp.\ 2 (Tables \ref{itemsE1} and \ref{itemsE2}, respectively).
+ \\
+
+\begin{landscape}
+\pagestyle{empty}
+\noindent
+%\singlespacing
+\begin{table}
+\caption{LK13 Exp.\ 1: Example of experimental item (simplified).}
+{\tiny
+\begin{tabular}{l l l l l l l l l l l l l l l l l}
+\multicolumn{11}{l}{\textbf{a.  PP Adjunct in subordinate clause, Dative NP in subordinate clause}}\\
+Nachdem & der & Lehrer & [\textbf{PP} zur & Ahnd.] & [\textbf{NP} dem & Sohn] & ..., & hat &  \textcolor{blue}{Hans Gerstner} ... &  &  &  &  & den & Fußball & \textcolor{blue}{\textbf{versteckt}}, ...\\
+ \textit{After} & \textit{the} & \textit{teacher} & [\textbf{PP} \textit{as} & \textit{payback}] & [\textbf{NP} \textit{the} & \textit{son}] & ..., & \textit{has} & \textcolor{blue}{\textit{Hans Gerstner}} ... &  &  &  &  & \textit{the} & \textit{football} & \textcolor{blue}{\textit{hid}}, ...\\[4pt]
+\multicolumn{11}{l}{\textbf{b. PP Adjunct in main clause, Dative NP in subordinate clause}}\\
+Nachdem & der & Lehrer & & & [\textbf{NP} dem & Sohn] & ..., & hat & \textcolor{blue}{Hans Gerstner} ... & [\textbf{PP} zur & Ahnd.] &  &   & den & Fußball & \textcolor{blue}{\textbf{versteckt}}, ...\\
+\textit{After} & \textit{the} & \textit{teacher} & & & [\textbf{NP} \textit{the} & \textit{son}] & ..., & \textit{has} & \textcolor{blue}{\textit{Hans Gerstner}} ... & [\textbf{PP} \textit{as} & \textit{payback}] &  &  & \textit{the} & \textit{football} & \textcolor{blue}{\textit{hid}}, ...\\[4pt]
+\multicolumn{11}{l}{\textbf{c.  PP Adjunct in subordinate clause, Dative NP in main clause}}\\
+Nachdem & der & Lehrer & [\textbf{PP} zur & Ahnd.] & & & ..., & hat & \textcolor{blue}{Hans Gerstner} ... &     & & [\textbf{NP} dem & Sohn] &  den & Fußball & \textcolor{blue}{\textbf{versteckt}}, ...\\
+\textit{After} & \textit{the} & \textit{teacher} & [\textbf{PP} \textit{as} & \textit{payback}] &  & & ..., &  \textit{has} & \textcolor{blue}{\textit{Hans Gerstner}} ... &   & & [\textbf{NP} \textit{the} & \textit{son}] & \textit{the} & \textit{football} & \textcolor{blue}{\textit{hid}}, ...\\[4pt]
+\multicolumn{11}{l}{\textbf{d. PP Adjunct in main clause, Dative NP in main clause}}\\
+Nachdem & der & Lehrer & &  &  & & ..., & hat & \textcolor{blue}{Hans Gerstner} ... & [\textbf{PP} zur & Ahnd.] & [\textbf{NP} dem & Sohn] & den & Fußball & \textcolor{blue}{\textbf{versteckt}}, ...\\
+ \textit{After} & \textit{the} & \textit{teacher} &  &  & & & ..., & \textit{has} & \textcolor{blue}{\textit{Hans Gerstner}} ... & [\textbf{PP} \textit{as} & \textit{payback}] & [\textbf{NP} \textit{the} & \textit{son}] & \textit{the} & \textit{football} & \textcolor{blue}{\textit{hid}}, ...
+\end{tabular}
+}
+\label{itemsE1}
+\begin{tablenotes}
+\item \textit{`After the teacher imposed detention classes, Hans Gerstner hid the football from the naughty son of the industrious janitor as additional payback for the multiple wrongdoings, and thus corrected the affair.'}
+\end{tablenotes}
+\end{table}
+
+
+
+\noindent
+%\singlespacing
+\begin{table}
+\caption{LK13 Exp.\ 2: Example of experimental item (simplified)}
+{\tiny
+\begin{tabular}{l l l l l l l l l l l l l l l l l l l}
+\multicolumn{11}{l}{\textbf{a.  PP Adjunct in subordinate clause, Dative NP in subordinate clause}}\\
+Nachdem & der & Lehrer & [\textbf{PP} zur & Ahnd.] & [\textbf{NP} dem & Sohn] & ..., & hat &  \textcolor{blue}{der Mitschüler}, & der  &  &  & &  & den & Fußball & \textcolor{blue}{\textbf{versteckt hat}}, ...\\
+ \textit{After} & \textit{the} & \textit{teacher} & [\textbf{PP} \textit{as} & \textit{payback}] & [\textbf{NP} \textit{the} & \textit{son}] & ..., & \textit{has} & \textcolor{blue}{\textit{the classmate}}, & who  &  &  & & & \textit{the} & \textit{football} & \textcolor{blue}{\textit{hid}}, ...\\[4pt]
+\multicolumn{11}{l}{\textbf{b. PP Adjunct in relative clause, Dative NP in subordinate clause}}\\
+Nachdem & der & Lehrer & & & [\textbf{NP} dem & Sohn] & ..., & hat & \textcolor{blue}{der Mitschüler}, & der &[\textbf{PP} zur & Ahnd.] & &  & den & Fußball & \textcolor{blue}{\textbf{versteckt hat}}, ...\\
+\textit{After} & \textit{the} & \textit{teacher} & & & [\textbf{NP} \textit{the} & \textit{son}] & ..., & \textit{has} & \textcolor{blue}{\textit{the classmate}}, & who & [\textbf{PP} \textit{as} & \textit{payback}] & & & \textit{the} & \textit{football} & \textcolor{blue}{\textit{hid}}, ...\\[4pt]
+\multicolumn{11}{l}{\textbf{c.  PP Adjunct in subordinate clause, Dative NP in relative clause}}\\
+Nachdem & der & Lehrer & [\textbf{PP} zur & Ahnd.] & & & ..., & hat & \textcolor{blue}{der Mitschüler}, & der &    & & [\textbf{NP} dem & Sohn] &  den & Fußball & \textcolor{blue}{\textbf{versteckt hat}}, ...\\
+\textit{After} & \textit{the} & \textit{teacher} & [\textbf{PP} \textit{as} & \textit{payback}] &  & & ..., &  \textit{has} & \textcolor{blue}{\textit{the classmate}}, & who & & & [\textbf{NP} \textit{the} & \textit{son}] & \textit{the} & \textit{football} & \textcolor{blue}{\textit{hid}}, ...\\[4pt]
+\multicolumn{11}{l}{\textbf{d. PP Adjunct in relative clause, Dative NP in relative clause}}\\
+Nachdem & der & Lehrer & &  & & & ..., & hat & \textcolor{blue}{der Mitschüler}, & der & [\textbf{PP} zur & Ahnd.] & [\textbf{NP} dem & Sohn] & den & Fußball & \textcolor{blue}{\textbf{versteckt hat}}, ...\\
+ \textit{After} & \textit{the} & \textit{teacher} &  & & & & ..., & \textit{has} & \textcolor{blue}{\textit{the classmate}}, & who & [\textbf{PP} \textit{as} & \textit{payback}] & [\textbf{NP} \textit{the} & \textit{son}] & \textit{the} & \textit{football} & \textcolor{blue}{\textit{hid}}, ...
+\end{tabular}
+}
+\label{itemsE2}
+\begin{tablenotes}
+\item \textit{`After the teacher imposed detention classes, the classmate who hid the football from the naughty son of the industrious janitor as additional payback for the multiple wrongdoings corrected the affair.'}
+\end{tablenotes}
+\end{table}
+
+
+\end{landscape}
+
+ 
+% remove original due to copyright
+%\begin{figure}[H]
+%\centering
+%\includegraphics[width=6.5in]{LK13originalitemE1simplified.png}
+%\caption{LK13 example of experimental item (simplified).\\ Experiment 1: Condition \textbf{(a)} had both the Dat NP and the PP Adj in the subordinate clause (SC), condition \textbf{(b)} had the Dat NP in the SC and the PP Adj in the main clause (MC), in condition \textbf{(c)} the Dat NP was in the MC and the PP Adj in the SC, in condition \textbf{(d)} both the Dat NP and the PP Adj were in the MC}
+%\label{itemE1}
+%\end{figure}
+
+%\begin{figure}[H]
+%\centering
+%\includegraphics[width=6.5in]{LK13originalitemE1c.png}
+%\caption{LK13, example item (full sentence, Exp. 1, cond. \textbf{(c)})}
+%\label{itemE1c}
+%\end{figure}
+
+
+%\begin{figure}[H]
+%\centering
+%\includegraphics[width=6.5in]{LK13originalitemE2.png}
+%\caption{LK13, Experiment 2: example of experimental item (simplified)}
+%\label{itemE2}
+%\end{figure}
+
+
+%\begin{figure}[H]
+%\centering
+%\includegraphics[width=6.5in]{LK13originalitemE2c.png}
+%\caption{LK13, example item (full sentence, Exp. 2, cond. \textbf{(c)})}
+%\label{itemE2c}
+%\end{figure}
+
+
+\subsection{Predictions of the original study} 
+Predictions for the original LK13 Experiments 1 and 2 were as follows: According to surprisal, the verb \textit{versteckt} in condition (a) should be read slower than in (b), and (c) slower than (d); hence, (d) should show the most facilitation (\textit{anti-locality effect}) as the upcoming verb is more expected (see left panel of Fig.\ \ref{pred}).\\
+\noindent Memory-based theories, on the other hand, predict a \textit{locality effect}: (a) should be read faster than (b), and (c) faster than (d); i.e., (d) should yield the greatest slowdown at the critical matrix clause verb (see right panel of Fig.\ \ref{pred}). \\
+
+\begin{figure}[!ht]
+  \centering
+  \begin{minipage}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{LK13PredE1.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{LK13PredE2.png}
+  \end{minipage}
+  \caption{\label{pred} LK13 predictions for Exp.\ 1 and 2: Left panel: Anti-locality effect predicted by surprisal theory. Right panel: Locality effect predicted by memory-based theories.}
+\end{figure}
+
+%\begin{figure}
+%\centering
+%\includegraphics[width=6.0in]{LKoriginalpredictions.png}
+%\caption{LK13 predictions, Experiment 1 (left panel) and 2 (right panel)}
+%\end{figure}
+
+\subsection{Results of the original study} 
+The original analysis of reading measures was carried out on the raw scale. To display the original results, we show model output of the raw reading time. However, we will re-run the analysis using a log-transformation of the reading measures. Analyzing the reading measures (here, total reading time) on the raw scale yields residuals which are non-normally distributed violating the normality assumption of the model whereas using a log-transformation yields normal residuals (see Fig. \ref{residuals}), satisfying model assumptions.
+
+
+<<residuals, include=FALSE,cache=FALSE,echo=FALSE>>=
+library(lme4)
+
+cat('########## EXPERIMENT 1 ##########\n\n')
+
+cat('########## REGION 7 CRITICAL REGION ##########\n\n')
+cat('\n\n# Total time\n\n')
+reading_time <- read.table('../LevyKellerData/prediction_experiment_data/experiment1/lmr/results/exp1_tt_r.res', header=TRUE)
+#head(reading_time)
+condition<-ifelse(reading_time$dat=="sub" & reading_time$adj=="sub","a",ifelse(reading_time$dat=="sub" & reading_time$adj=="main","b",ifelse(reading_time$dat=="main" & reading_time$adj=="sub","c",
+                                                                                                                                             ifelse(reading_time$dat=="main" & reading_time$adj=="main","d","NA"))))
+#summary(factor(condition))
+reading_time$condition<-factor(condition)
+
+## +/- 0.5 coding for dat:
+reading_time$dat <- as.numeric(reading_time$dat)
+reading_time$dat <- reading_time$dat - mean(reading_time$dat)
+
+reading_time$adj <- as.numeric(reading_time$adj)
+reading_time$adj <- reading_time$adj - mean(reading_time$adj)
+
+reading_time_nozeros <- reading_time[reading_time$region7 != 0,]
+
+interact  <- lmer(region7 ~ dat*adj + (dat*adj|subj) + (dat*adj|item), data=reading_time_nozeros)
+summary(interact)$coefficients[,1:2]
+
+### Plot residuals of model 'interact' (rt on raw scale)
+library(car)
+qqPlot(residuals(interact))
+
+interactlog  <- lmer(log(region7) ~ dat*adj + (dat*adj|subj) + (dat*adj|item), data=reading_time_nozeros)
+#summary(interactlog)
+
+### plot residuals of model 'interactlog' (logtransformed rt)
+qqPlot(residuals(interactlog))
+
+
+
+############################ plot results ###########################
+#estimates<-summary(interact)$coefficients[,1:2]
+#str(estimates)
+#is.data.frame(estimates)
+#estimates<-as.data.frame(estimates)
+
+#par(mar=c(5.1,6.1,4.1,2.1))
+#plot(1:3,estimates[2:4,1], ylim=c(-300,300),
+#     pch=1,cex=2,xaxt='n',
+#     xlab="effects",
+#     cex.lab=1.2,
+#     cex.axis=1.2,
+#     ylab="TRT (ms)",main="Exp.1 (critical region)")
+
+#arrows(x0=1:3,y0=estimates[2:4,1]-2*estimates[2:4,2],
+#       x1=1:3,y1=estimates[2:4,1]+2*estimates[2:4,2],
+#       angle=90,code=3,lwd=1.5,length = 0.05)
+
+#abline(h=0)
+#offst<-.05
+
+#mtext(c("Dat", "Adj", "Dat:Adj"),side=1,at=1:4,cex=1.2,
+#      line=1.5)
+
+#plotestimates<-function(estimates=estimates,maintitle="Exp.1 critical region",ylabel="TRT (ms)", ylimits=c(-300,300)){
+#par(mar=c(5.1,6.1,4.1,2.1))
+#plot(1:3,estimates[2:4,1], ylim=ylimits,
+#     pch=1,cex=2,xaxt='n',
+#     xlab="effects",
+#     cex.lab=1.2,
+#     cex.axis=1.2,
+#     ylab=ylabel,main=maintitle)
+
+#arrows(x0=1:3,y0=estimates[2:4,1]-2*estimates[2:4,2],
+#       x1=1:3,y1=estimates[2:4,1]+2*estimates[2:4,2],
+#       angle=90,code=3,lwd=1.5,length = 0.05)
+
+#abline(h=0)
+#offst<-.05
+
+#mtext(c("Dat", "Adj", "Dat:Adj"),side=1,at=1:3,cex=1.2,
+#      line=1.5)
+#}
+
+# plot side by side
+
+
+@
+
+\begin{figure}[!h]
+  \centering
+  \begin{minipage}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{fig-residuals-1-eps-converted-to.pdf}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{fig-residuals-2-eps-converted-to.pdf}
+  \end{minipage}
+  \caption{\label{residuals} Left panel: Residuals (plotted against quantiles of the normal distribution) of linear mixed effects model analyzing raw reading time. Right panel: Residuals of linear mixed effects model analyzing log-transformed reading time.}
+\end{figure}
+
+%Furthermore, the model for total reading time at the critical region (Exp. 1) and for re-reading time (RRT) at the post-critical region (Exp. 2) in the original analysis failed to converge. Model convergence is, however, achieved with a log-tranformation of the reading times. Model output for raw re-reading time vs. logged re-reading time is shown below. \textcolor{red}{double-check this, log models also do not converge, does when * removed (dat+adj|item),}
+
+<<model convergence,include=FALSE,cache=FALSE,echo=FALSE,warnings = FALSE>>=
+
+#cat('\n\n########## REGION 8 ##########\n\n') 
+### post-crit region of Exp. 1
+
+#cat('########## EXPERIMENT 1 ##########\n\n')
+
+#cat('\n\n# Total time\n\n')
+#reading_time <- read.table('../LevyKellerData/prediction_experiment_data/experiment1/lmr/results/exp1_tt_r.res', header=TRUE)
+#reading_time$dat <- as.numeric(reading_time$dat)
+#reading_time$dat <- reading_time$dat - mean(reading_time$dat)
+#reading_time$adj <- as.numeric(reading_time$adj)
+#reading_time$adj <- reading_time$adj - mean(reading_time$adj)
+#reading_time_nozeros <- reading_time[reading_time$region8 != 0,]
+#interact  <- lmer(region8 ~ dat*adj + (dat*adj|subj) + (dat*adj|item), data=reading_time_nozeros)
+#summary(interact)
+
+# model (total reading time) fails to converge
+
+#interactlogTRT  <- lmer(log(region8) ~ dat*adj + (dat+adj|subj) + (dat+adj|item), data=reading_time_nozeros)
+#summary(interactlogTRT)
+
+#cat('########## EXPERIMENT 2 ##########\n\n')
+
+#cat('########## REGION 8 ##########\n\n')
+### critical region of Exp. 2
+
+#cat('\n\n# Second pass\n\n')
+#reading_time <- read.table('../LevyKellerData/prediction_experiment_data/experiment2/lmr/results/exp3_2ps_r.res', header=TRUE)
+#reading_time$dat <- as.numeric(reading_time$dat)
+#reading_time$dat <- reading_time$dat - mean(reading_time$dat)
+#reading_time$adj <- as.numeric(reading_time$adj)
+#reading_time$adj <- reading_time$adj - mean(reading_time$adj)
+#interact  <- lmer(region8 ~ dat*adj + (dat*adj|subj) + (dat*adj|item), data=reading_time)
+#summary(interact)
+#xtable(summary(interact)$coefficients)
+
+## model (second pass time) fails to converge
+#interactlogSPRT  <- lmer(log(region8+1) ~ dat*adj + (dat*adj|subj) + (dat+adj|item), data=reading_time)
+#summary(interactlogSPRT)
+
+@
+
+%\begin{verbatim}
+%Linear mixed model fit by REML ['lmerMod']
+%Formula: region8 ~ dat * adj + (dat * adj | subj) + (dat + adj | item)
+%   Data: reading_time_nozeros
+
+%REML criterion at convergence: 9148.5
+
+%Scaled residuals: 
+%    Min      1Q  Median      3Q     Max 
+%-3.8183 -0.5737 -0.1791  0.3991  6.3913 
+
+%Random effects:
+% Groups   Name        Variance Std.Dev. Corr          
+% subj     (Intercept)  41510.0 203.74                 
+%          dat           5221.7  72.26   0.96          
+%          adj           5445.2  73.79   0.97 1.00     
+%          dat:adj      31869.2 178.52   0.72 0.89 0.86
+% item     (Intercept)   9261.1  96.23                 
+%          dat            115.3  10.74   1.00          
+%          adj           4920.8  70.15   0.69 0.69     
+% Residual             110252.4 332.04                 
+%Number of obs: 629, groups:  subj, 28; item, 24
+
+%Fixed effects:
+%            Estimate Std. Error t value
+%(Intercept)   558.68      45.25  12.347
+%dat            59.38      29.98   1.981
+%adj            29.99      33.31   0.900
+%dat:adj        50.31      63.11   0.797
+
+%Correlation of Fixed Effects:
+%        (Intr) dat   adj  
+%dat     0.402             
+%adj     0.477  0.238      
+%dat:adj 0.337  0.222 0.190
+%convergence code: 0
+%unable to evaluate scaled gradient
+%Model failed to converge: degenerate  Hessian with 1 negative eigenvalues
+%\end{verbatim}
+
+
+
+%\begin{verbatim}
+%Linear mixed model fit by REML ['lmerMod']
+%Formula: log(region8 + 1) ~ dat * adj + (dat * adj | subj) + (dat + adj |      item)
+%   Data: reading_time
+
+%REML criterion at convergence: 3271
+
+%Scaled residuals: 
+%    Min      1Q  Median      3Q     Max 
+%-2.1237 -0.8785  0.1892  0.7919  2.2508 
+
+%Random effects:
+% Groups   Name        Variance Std.Dev. Corr             
+% subj     (Intercept) 1.92321  1.3868                    
+%          dat         0.12649  0.3557   -0.43            
+%          adj         0.04964  0.2228    0.96 -0.16      
+%          dat:adj     0.05702  0.2388   -0.82 -0.16 -0.95
+% item     (Intercept) 0.13267  0.3642                    
+%          dat         0.09252  0.3042    1.00            
+%          adj         0.11381  0.3374   -1.00 -1.00      
+% Residual             6.83517  2.6144                    
+%Number of obs: 672, groups:  subj, 28; item, 24
+
+%Fixed effects:
+%            Estimate Std. Error t value
+%(Intercept)   3.3937     0.2905  11.683
+%dat           0.4014     0.2215   1.812
+%adj           0.1214     0.2173   0.559
+%dat:adj       1.9814     0.4059   4.881
+
+%Correlation of Fixed Effects:
+%        (Intr) dat    adj   
+%dat     -0.046              
+%adj      0.087 -0.099       
+%dat:adj -0.083 -0.005 -0.020
+%\end{verbatim}
+
+
+<<resultsE1,include=FALSE,cache=FALSE,echo=FALSE,warnings=FALSE,message=FALSE>>=
+
+
+#condition dat    adj
+#a         sub    sub
+#b         sub    main 
+#c         main   sub
+#d         main   main 
+
+library(lme4)
+
+#cat('########## EXPERIMENT 1 ##########\n\n')
+
+#cat('########## REGION 7 CRITICAL REGION ##########\n\n')
+
+#cat('\n\n# Total time\n\n')
+reading_time <- read.table('../LevyKellerData/prediction_experiment_data/experiment1/lmr/results/exp1_tt_r.res', header=TRUE)
+condition<-ifelse(reading_time$dat=="sub" & reading_time$adj=="sub","a",ifelse(reading_time$dat=="sub" & reading_time$adj=="main","b",ifelse(reading_time$dat=="main" & reading_time$adj=="sub","c",
+                                                                                                                                             ifelse(reading_time$dat=="main" & reading_time$adj=="main","d","NA"))))
+#summary(factor(condition))
+reading_time$condition<-factor(condition)
+
+## +/- 0.5 coding for dat:
+reading_time$dat <- as.numeric(reading_time$dat)
+reading_time$dat <- reading_time$dat - mean(reading_time$dat)
+
+reading_time$adj <- as.numeric(reading_time$adj)
+reading_time$adj <- reading_time$adj - mean(reading_time$adj)
+
+
+reading_time_nozeros <- reading_time[reading_time$region7 != 0,]
+#head(reading_time_nozeros)
+interactE1crit  <- lmer(region7 ~ dat*adj + (dat*adj|subj) + (dat*adj|item), data=reading_time_nozeros)
+#interactE1crit  <- lmer(log(region7) ~ dat*adj + (dat*adj|subj) + (dat*adj|item), data=reading_time_nozeros)
+#summary(interactE1crit)
+
+
+###### PLOT RESULTS ME DAT ME ADJ INT DAT:ADJ CRIT (TFT) ########
+
+estimates<-summary(interactE1crit)$coefficients[,1:2]
+#str(estimates)
+#is.data.frame(estimates)
+estimates<-as.data.frame(estimates)
+#estimates
+
+par(mar=c(5.1,6.1,4.1,2.1))
+plot(1:3,estimates[2:4,1], ylim=c(-400,400),yaxt='n',
+     pch=20,cex=1.5,xaxt='n',
+     xlab="",
+     cex.lab=1.2,
+     cex.axis=1.2,
+     ylab="TRT (ms)", font.lab=2, main="LK13 Exp.1 (critical region)")
+
+
+arrows(x0=1:3,y0=estimates[2:4,1]-2*estimates[2:4,2],
+       x1=1:3,y1=estimates[2:4,1]+2*estimates[2:4,2],
+       angle=90,code=3,lwd=1.5,length = 0.05)
+
+abline(h=0)
+#offst<-.05
+
+axis(side=2,at=c(-400,-200, 0, 200, 400), cex.axis=1.2)
+mtext(c("Dat", "Adj", "Dat:Adj"),side=1,at=1:3,cex=1.2,
+      line=1.5)
+
+###### function plot estimates #####
+
+plotestimates<-function(estimates=estimates,maintitle="LK13 Exp.1 (critical region)",ylabel="TRT (ms)", ylimits=c(-400,400)){
+par(mar=c(5.1,6.1,4.1,2.1))
+plot(1:3,estimates[2:4,1], ylim=ylimits, yaxt='n',
+     pch=20,cex=1.5,xaxt='n',
+     xlab="",
+     cex.lab=1.2,
+     cex.axis=1.2,
+     ylab=ylabel, font.lab=2, main=maintitle)
+
+arrows(x0=1:3,y0=estimates[2:4,1]-2*estimates[2:4,2],
+       x1=1:3,y1=estimates[2:4,1]+2*estimates[2:4,2],
+       angle=90,code=3,lwd=1.5,length = 0.05)
+
+abline(h=0)
+
+axis(side=2,at=c(-400, -200, 0, 200, 400), cex.axis=1.2)
+mtext(c("Dat", "Adj", "Dat:Adj"),side=1,at=1:3,cex=1.2,
+      line=1.5)
+}
+
+
+plotestimates(estimates)
+# plot side by side
+
+
+
+#cat('\n\n########## REGION 8 ##########\n\n')
+## postcritical region 
+
+#cat('\n\n# Total time\n\n')
+reading_time <- read.table('../LevyKellerData/prediction_experiment_data/experiment1/lmr/results/exp1_tt_r.res', header=TRUE)
+reading_time$dat <- as.numeric(reading_time$dat)
+reading_time$dat <- reading_time$dat - mean(reading_time$dat)
+reading_time$adj <- as.numeric(reading_time$adj)
+reading_time$adj <- reading_time$adj - mean(reading_time$adj)
+reading_time_nozeros <- reading_time[reading_time$region8 != 0,]
+interactE1postcrit  <- lmer(region8 ~ dat*adj + (dat*adj|subj) + (dat*adj|item), data=reading_time_nozeros)
+#summary(interactE1postcrit)
+
+
+###### PLOT RESULTS ME DAT ME ADJ INT DAT:ADJ POSTCRIT (TFT) ########
+
+estimates<-summary(interactE1postcrit)$coefficients[,1:2]
+#str(estimates)
+#is.data.frame(estimates)
+estimates<-as.data.frame(estimates)
+#estimates
+
+plotestimates(estimates, main="LK13 Exp.1 (postcritical region)")
+
+
+@
+
+\begin{figure}[!ht]
+  \centering
+  \begin{minipage}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{LK13CondMeans1.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{LK13CondMeans2.png}
+  \end{minipage}
+  \caption{\label{condmeans} Left panel: LK13 Exp.\ 1: Per-condition means (total reading time) and 95\% confidence intervals at the critical region. Right panel: LK13 Exp.\ 2: Per-condition means and 95\% confidence intervals at the critical region }
+\end{figure}
+
+
+Results for Experiment 1 show a speed-up for (d) over (c) consistent with surprisal (i.e., an anti-locality effect, see left panel of Fig.\ \ref{condmeans}).
+
+In Experiment 1, it was \say{found that the presence of a dative noun phrase led to decreased reading time at the corresponding verb, compared to a condition in which there is no preceding dative noun phrase. This can be explained by assuming that the presence [of] the additional preverbal material allows the processor to predict the upcoming verb, which leads to a facilitation effect} \citep[p.214]{levykeller13}. See Fig. \ref{LK13plotsE1} for coefficient estimates of main effects and interaction.
+%(E1, crit region, ME, TFT, p.214)
+
+\begin{figure}[!ht]
+  \centering
+  \begin{minipage}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{PlotLK13E1crit.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{PlotLK13E1post.png}
+  \end{minipage}
+  \caption{\label{LK13plotsE1} LK13 Exp. 1: Coefficient estimates (total reading time in ms) and 95\% confidence intervals at the critical and postcritical region for main effect of `Dat', main effect of `Adj' and interaction of `Dat:Adj'}
+\end{figure}
+
+However, in Experiment 2, the opposite pattern was observed: (d) was read slower than (c) (i.e., a locality effect as predicted by memory-based theories, see right panel of Fig.\ \ref{condmeans}).
+
+<<resultsE2,include=FALSE,cache=FALSE,echo=FALSE,warnings=FALSE,message=FALSE>>=
+
+#E2: PLOT RESULTS ME DAT ME ADJ INT DAT:ADJ CRIT AND POSTCRIT (TFT)
+
+#cat('########## EXPERIMENT 2 ##########\n\n')
+
+#cat('########## REGION 8 ##########\n\n')
+### critical region
+
+#cat('\n\n# Total time\n\n')
+reading_time <- read.table('../LevyKellerData/prediction_experiment_data/experiment2/lmr/results/exp3_tt_r.res', header=TRUE)
+
+#head(reading_time)
+
+condition<-ifelse(reading_time$dat=="sub" & reading_time$adj=="sub","a",ifelse(reading_time$dat=="sub" & reading_time$adj=="main","b",ifelse(reading_time$dat=="main" & reading_time$adj=="sub","c",
+                                                                                                                                             ifelse(reading_time$dat=="main" & reading_time$adj=="main","d","NA"))))
+#summary(factor(condition))
+reading_time$condition<-factor(condition)
+
+
+reading_time$dat <- as.numeric(reading_time$dat)
+reading_time$dat <- reading_time$dat - mean(reading_time$dat)
+reading_time$adj <- as.numeric(reading_time$adj)
+reading_time$adj <- reading_time$adj - mean(reading_time$adj)
+reading_time_nozeros <- reading_time[reading_time$region8 != 0,]
+
+interactE2crit  <- lmer(region8 ~ dat*adj + (dat*adj|subj) + (dat*adj|item), data=reading_time_nozeros)
+#summary(interactE2crit)
+
+#interactE2crit  <- lmer(log(region8) ~ dat*adj + (dat*adj|subj) + (dat*adj|item), data=reading_time_nozeros)
+
+
+estimates<-summary(interactE2crit)$coefficients[,1:2]
+estimates<-as.data.frame(estimates)
+
+plotestimates(estimates, main="LK13 Exp.2 (critical region)")
+
+
+
+#cat('\n\n########## REGION 9 ##########\n\n')
+## postcritical region 
+
+#cat('\n\n# Total time\n\n')
+reading_time <- read.table('../LevyKellerData/prediction_experiment_data/experiment2/lmr/results/exp3_tt_r.res', header=TRUE)
+reading_time$dat <- as.numeric(reading_time$dat)
+reading_time$dat <- reading_time$dat - mean(reading_time$dat)
+reading_time$adj <- as.numeric(reading_time$adj)
+reading_time$adj <- reading_time$adj - mean(reading_time$adj)
+reading_time_nozeros <- reading_time[reading_time$region9 != 0,]
+interactE2postcrit  <- lmer(region9 ~ dat*adj + (dat*adj|subj) + (dat+adj|item), data=reading_time_nozeros)
+#summary(interactE2postcrit)
+
+#interactE2postcrit  <- lmer(log(region9) ~ dat*adj + (dat*adj|subj) + (dat+adj|item), data=reading_time_nozeros)
+
+estimates<-summary(interactE2postcrit)$coefficients[,1:2]
+estimates<-as.data.frame(estimates)
+
+plotestimates(estimates, main="LK13 Exp.2 (postcritical region)")
+
+@
+
+
+
+% application OmniGraffle add fig. and circle
+\begin{figure}[!ht]
+  \centering
+  \begin{minipage}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{PlotLK13E2crit.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{PlotLK13E2post.png}
+  \end{minipage}
+  \caption{\label{LK13plotsE2} LK13 Exp. 2: Coefficient estimates (total reading time in ms) and 95\% confidence intervals at the critical and postcritical region for main effect of `Dat', main effect of `Adj' and interaction of `Dat:Adj'}
+\end{figure}
+
+Experiment 2 \say{showed an interaction of adjunct position and dative position, with the verb more difficult to process when both the adjunct and the dative phrase were present than when only one was present. This suggests the presence of a locality effect, i.e., the additional material that needs to be integrated at the verb, leading to a distance-based cost} \citep[p.214]{levykeller13}. See Fig. \ref{LK13plotsE2} for coefficient estimates of main effects and interaction.
+The \say{interaction of dative and adjunct position [is] significant in second-pass times for the critical and spillover regions and in total times for the spillover region.} The \say{interaction in total time at the critical region is not significant in Experiment 2, the qualitative pattern is the same as second-pass time at the region, for which the interaction is significant} \citep[p.213]{levykeller13}. 
+% (E2, crit, RRT, p.214)
+
+To summarize, Levy \& Keller found evidence of both locality and anti-locality effects for the processing of complex syntactic structures in German. Anti-locality effects were found in Experiment 1 where a \textit{facilitation} of processing was observed at the critical matrix verb when a dative noun phrase intervened between the verb and its subject. A locality effect was present in Experiment 2 in which the target construction was embedded in a relative clause as opposed to a main clause leading the authors to conclude that locality effects dominate over anti-locality effects when syntactic complexity is increased, as in Experiment 2.\\
+
+
+\section{Aim of our replication attempts}
+
+Statistical theory \citep{GelmanCarlin14} states that, if an effect is indeed present in reality, repeatedly conducting an experiment with low power will lead to a high proportion of (i) null results, and (ii) exaggerated effect sizes which could be in the wrong direction. 
+
+Our aim was to investigate whether the relatively small sample sizes in psycholinguistic studies lead to statistically significant results that subsequently cannot be reproduced.
+We chose the study by \citet{levykeller13} as a test case, because it has a sample size typical for psycholinguistic studies (28 subjects in each of their two studies) and its results are highly plausible. Findings are supported by surprisal- \citep{Hale2001, levy08} and memory-based theories \citep{gibson00, LewisVasishth2005} and there is independent empirical evidence in favor of locality and anti-locality effects (Locality: \textit{English}: \citet{grodnergibson05, BartekEtAl11}; \textit{Hindi}: \citet{HusainVasishthSrinivasan2014}; \textit{Persian}: \citet{SafaviEtAl16}; Anti-locality:  \textit{English}: \citet{BostonEtAl08, LinzenJaeger16}; \textit{German}: \citet{lars00, bostonEtAl11, FrankEtAl2015}.
+
+
+\section{Existing replication data}
+We conducted a total of six attempted replications of LK13 Experiment 1 and 2 using the same 24 experimental items and identical participant sample size of 28 for each of the six replication attempts. More specifically, we tested:
+
+\begin{itemize}
+\item LK13 Exp. 1: Attempted replication 1, \textit{self-paced reading (SPR)}, N = 28 
+\item LK13 Exp. 1: Attempted replication 2, \textit{eye-tracking (ET)}; N = 28
+
+\item LK13 Exp. 2: Attempted replication 3, \textit{SPR}, N = 28 
+\item LK13 Exp. 2: Attempted replication 4, \textit{ET}, N = 28 
+\end{itemize}
+%changed order (was: 1=E1 SPR, 2 = E2 SPR, 3 = E1 ET, 4 = E2 ET)
+
+As LK13 found statistically significant effects in only conditions (c) and (d) of their Experiments 1 and 2, we combined conditions (c) and (d) from each of their two experiments and ran this as one experiment, using both self-paced reading and eye-tracking:
+
+\begin{itemize}
+\item LK13 Exp. 1,2 (c, d): Attempted replication 5, \textit{SPR}, N = 28
+\item LK13 Exp. 1,2 (c, d): Attempted replication 6, \textit{ET}, N = 28
+\end{itemize}
+
+
+\subsection{Replication results (Experiment 1)}
+Figures \ref{SPRRepE1} and \ref{ETRepE1} show a summary of the results of the attempted replication of Exp.\ 1, for both the SPR and the ET study. Dependent measures are raw reading time (RT) and total reading time (TRT) for SPR and ET, repectively. Note that we originally ran the analyses of our previous six replication attempts using a log-transformation of reading measures. However, here, we show coefficient estimates based on models on the raw scale (as was done by LK13). 
+No dependent measure showed any statistically significant effect. 
+
+<<RepResultsE1,include=FALSE,cache=FALSE,echo=FALSE,warnings=FALSE,message=FALSE>>=
+
+#PLOT LK13 AND OUR EXP 1 CRIT AND POSTCRIT
+
+### LK
+### Our repl. of Exp. 1
+### SPR crit
+### SPR postcrit
+
+dat<-read.table("../our_dataE1_E6/E1levykellerSPR_e1.txt",header=T)
+colnames(dat)<-c("subj","expt","item","cond","roi","word","region","rt")
+spr21<-subset(dat,roi!="?" & expt=="Kevy")
+spr21<-spr21[,c(1,2,3,4,7,8)]
+
+verb<-subset(spr21,region=="verb")
+verb1<-subset(spr21,region=="verb1")
+
+#crit
+verb$dat<-ifelse(verb$cond%in%c("a","b"),1/2,-1/2)
+verb$adj<-ifelse(verb$cond%in%c("b","d"),-1/2,1/2)
+verb$int<-ifelse(verb$cond%in%c("b","c"),-1/2,1/2)
+
+#postcrit
+verb1$dat<-ifelse(verb1$cond%in%c("a","b"),1/2,-1/2)
+verb1$adj<-ifelse(verb1$cond%in%c("b","d"),-1/2,1/2)
+verb1$int<-ifelse(verb1$cond%in%c("b","c"),-1/2,1/2)
+
+#crit
+mE1crit <-lmer(rt~dat+adj+int+(1+dat+adj+int||subj)+(1+dat+adj+int||item),verb)
+#summary(mE1crit)
+#mE1crit <-lmer(log(rt)~dat+adj+int+(1+dat+adj+int||subj)+(1+dat+adj+int||item),verb)
+#summary(mE1crit)
+
+estimates<-summary(mE1crit)$coefficients[,1:2]
+estimates<-as.data.frame(estimates)
+
+
+plotestimates<-function(estimates=estimates,maintitle="SPR Replication Exp.1 (critical region)",ylabel="RT (ms)", ylimits=c(-150,150)){
+par(mar=c(5.1,6.1,4.1,2.1))
+plot(1:3,estimates[2:4,1], ylim=ylimits, yaxt='n',
+     pch=20,cex=1.5,xaxt='n',
+     xlab="",
+     cex.lab=1.2,
+     cex.axis=1.2,
+     ylab=ylabel, font.lab=2, main=maintitle)
+
+arrows(x0=1:3,y0=estimates[2:4,1]-2*estimates[2:4,2],
+       x1=1:3,y1=estimates[2:4,1]+2*estimates[2:4,2],
+       angle=90,code=3,lwd=1.5,length = 0.05)
+
+abline(h=0)
+
+axis(side=2,at=c(-150, -100,-50, 0, 50, 100, 150), cex.axis=1.2)
+mtext(c("Dat", "Adj", "Dat:Adj"),side=1,at=1:3,cex=1.2,
+      line=1.5)
+}
+
+
+plotestimates(estimates)
+
+
+#postcrit
+
+mE1postcrit<-lmer(rt~dat+adj+int+(1+dat+adj+int||subj)+(1+dat+adj+int||item),verb1)
+#mE1postcrit<-lmer(log(rt)~dat+adj+int+(1+dat+adj+int||subj)+(1+dat+adj+int||item),verb1)
+#summary(mE1postcrit)
+
+estimates<-summary(mE1postcrit)$coefficients[,1:2]
+estimates<-as.data.frame(estimates)
+
+plotestimates(estimates, main="SPR Replication Exp. 1 (postcritical region)")
+
+
+### ET crit (TFT)
+### ET postcrit (TFT)
+
+dat<-read.table("../our_dataE1_E6/E3levykellerETfullreplication_e1.txt",header=T)
+
+dat<-subset(dat,condition!="f" & condition!="p")
+
+dat$dat<-ifelse(dat$condition%in%c("a","b"),1/2,-1/2)
+dat$adj<-ifelse(dat$condition%in%c("b","d"),-1/2,1/2)
+dat$int<-ifelse(dat$condition%in%c("b","c"),-1/2,1/2)
+
+dat$roi<-factor(dat$roi)
+#unique(dat$roi)
+
+#rois:
+#precrit (cond a - d): 22 (merged 22+ 23, NP acc)
+#crit (cond a - d): 24 (verb)
+#postcrit (cond a - d): 25 (und)
+
+region<-ifelse(dat$roi==22,"npacc",
+               ifelse(dat$roi==24,"verb",
+                      ifelse(dat$roi==25,"verb1","noncritical")))
+
+dat$region<-region
+dat<-subset(dat,region!="noncritical")
+dat$region<-factor(dat$region)
+#head(dat)
+
+### E1 ET TFT critical 
+
+mTFTcrit<-lmer(TFT~dat+adj+int+(1+dat+adj+int||subject) +(1+dat+adj+int||itemid),subset(dat,region=="verb" & TFT>0))
+#summary(mTFTcrit)
+
+#summary(mTFTcrit<-lmer(log(TFT)~dat+adj+int+(1+dat+adj+int||subject) +(1+dat+adj+int||itemid),subset(dat,region=="verb" & TFT>0)))
+
+estimates<-summary(mTFTcrit)$coefficients[,1:2]
+estimates<-as.data.frame(estimates)
+
+
+plotestimates(estimates, main="ET Replication Exp. 1 (critical region)",ylabel="TRT (ms)")
+
+
+
+
+### E1 ET TFT postcritical
+mTFTpostcrit<-lmer(TFT~dat+adj+int+(1+dat+adj+int||subject) +(1+dat+adj+int||itemid),subset(dat,region=="verb1" & TFT>0))
+#summary(mTFTpostcrit)
+#summary(mTFTpostcrit<-lmer(log(TFT)~dat+adj+int+(1+dat+adj+int||subject) +(1+dat+adj+int||itemid),subset(dat,region=="verb1" & TFT>0)))
+
+
+estimates<-summary(mTFTpostcrit)$coefficients[,1:2]
+estimates<-as.data.frame(estimates)
+
+plotestimates(estimates, main="ET Replication Exp. 1 (postcritical region)",ylabel="TRT (ms)")
+
+@
+
+
+\begin{figure}[!ht]
+  \centering
+  \begin{minipage}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{PlotSPRRepE1crit.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{PlotSPRRepE1post.png}
+  \end{minipage}
+  \caption{\label{SPRRepE1} SPR Replication of LK13 Exp.\ 1: Coefficient estimates (RT in ms) and 95\% confidence intervals at the critical and postcritical region for main effect of `Dat', main effect of `Adj' and interaction of `Dat:Adj'}
+\end{figure}
+
+
+\begin{figure}[!ht]
+  \centering
+  \begin{minipage}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{PlotETRepE1crit.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{PlotETRepE1post.png}
+  \end{minipage}
+  \caption{\label{ETRepE1} ET Replication of LK13 Exp.\ 1: Coefficient estimates (reading time in ms) and 95\% confidence intervals at the critical and postcritical region for main effect of `Dat', main effect of `Adj' and interaction of `Dat:Adj'}
+\end{figure}
+
+\subsection{Replication results (Experiment 2)}
+Figures \ref{SPRRepE2} and \ref{ETRepE2} summarize results for the replication attempt of LK13 Experiment 2.
+
+<<RepResultsE2,include=FALSE,cache=FALSE,echo=FALSE,warnings=FALSE,message=FALSE>>=
+#OUR EXP 2 CRIT AND POSTCRIT
+
+### LK
+### Our repl. of Exp. 2
+### SPR crit
+### SPR postcrit
+dat<-read.table("../our_dataE1_E6/E2levykellerSPR_2.txt",header=F)
+colnames(dat)<-c("subj","expt","item","cond","roi","word","region","rt")
+
+spr22<-subset(dat,roi!="?")
+#unique(spr22$region)
+
+## critical region
+verb<-subset(spr22,region=="verb" & expt=="Kevy")
+## postcritical region
+verb1<-subset(spr22,region=="verb1" & expt=="Kevy")
+
+## crit
+verb$dat<-ifelse(verb$cond%in%c("a","b"),1/2,-1/2)
+verb$adj<-ifelse(verb$cond%in%c("b","d"),-1/2,1/2)
+verb$int<-ifelse(verb$cond%in%c("b","c"),-1/2,1/2)
+
+## postcrit
+verb1$dat<-ifelse(verb1$cond%in%c("a","b"),1/2,-1/2)
+verb1$adj<-ifelse(verb1$cond%in%c("b","d"),-1/2,1/2)
+verb1$int<-ifelse(verb1$cond%in%c("b","c"),-1/2,1/2)
+
+## crit
+mSPRE2crit<-lmer(rt~dat+adj+int+(1+dat+adj+int||subj)+(1+dat+adj+int||item),verb)
+#mSPRE2crit<-lmer(log(rt)~dat+adj+int+(1+dat+adj+int||subj)+(1+dat+adj+int||item),verb)
+#summary(mSPRE2crit)
+
+
+estimates<-summary(mSPRE2crit)$coefficients[,1:2]
+estimates<-as.data.frame(estimates)
+
+plotestimates(estimates, main="SPR Replication Exp. 2 (critical region)",ylabel="RT (ms)")
+
+## postcrit
+mSPRE2post<-lmer(rt~dat+adj+int+(1+dat+adj+int||subj)+(1+dat+adj+int||item),verb1)
+#mSPRE2post<-lmer(log(rt)~dat+adj+int+(1+dat+adj+int||subj)+(1+dat+adj+int||item),verb1)
+#summary(mSPRE2post)
+
+estimates<-summary(mSPRE2post)$coefficients[,1:2]
+estimates<-as.data.frame(estimates)
+
+plotestimates(estimates, main="SPR Replication Exp. 2 (postcritical region)",ylabel="RT (ms)")
+
+
+
+### ET crit
+### ET postcrit
+dat<-read.table("../our_dataE1_E6/E4levykellerETfullreplication_e2.txt",header=T)
+
+## reading times:
+dat<-subset(dat,condition!="f" & condition!="p")
+
+
+dat$dat<-ifelse(dat$condition%in%c("a","b"),1/2,-1/2)
+dat$adj<-ifelse(dat$condition%in%c("b","d"),-1/2,1/2)
+dat$int<-ifelse(dat$condition%in%c("b","c"),-1/2,1/2)
+
+dat$roi<-factor(dat$roi)
+#unique(dat$roi)
+
+region<-ifelse(dat$roi==23,"npacc",
+               ifelse(dat$roi==25,"verb",
+                      ifelse(dat$roi==27,"verb1","noncritical")))
+
+dat$region<-region
+dat<-subset(dat,region!="noncritical")
+dat$region<-factor(dat$region)
+
+
+## crit
+mTFTE2crit<-lmer(TFT~dat+adj+int+(1+dat+adj+int||subject) +(1+dat+adj+int||itemid),subset(dat,region=="verb" & TFT>0))
+#summary(mTFTE2crit<-lmer(log(TFT)~dat+adj+int+(1+dat+adj+int||subject) +(1+dat+adj+int||itemid),subset(dat,region=="verb" & TFT>0)))
+
+estimates<-summary(mTFTE2crit)$coefficients[,1:2]
+estimates<-as.data.frame(estimates)
+
+plotestimates(estimates, main="ET Replication Exp. 2 (critical region)",ylabel="TRT (ms)")
+
+
+## postcrit
+mTFTE2postcrit<-lmer(TFT~dat+adj+int+(1+dat+adj+int||subject) +(1+dat+adj+int||itemid),subset(dat,region=="verb1" & TFT>0))
+#summary(mTFTE2postcrit<-lmer(log(TFT)~dat+adj+int+(1+dat+adj+int||subject) +(1+dat+adj+int||itemid),subset(dat,region=="verb1" & TFT>0)))
+
+estimates<-summary(mTFTE2postcrit)$coefficients[,1:2]
+estimates<-as.data.frame(estimates)
+#estimates
+
+plotestimates(estimates, main="ET Replication Exp. 2 (postcritical region)",ylabel="TRT (ms)")
+
+@
+
+\begin{figure}[!ht]
+  \centering
+  \begin{minipage}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{PlotSPRRepE2crit.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{PlotSPRRepE2post.png}
+  \end{minipage}
+  \caption{\label{SPRRepE2}SPR Replication of LK13 Exp. 2: Coefficient estimates (reading time in ms) and 95\% confidence intervals at the critical and postcritical region for main effect of `Dat', main effect of `Adj' and interaction of `Dat:Adj'}
+\end{figure}
+
+
+\begin{figure}[!ht]
+  \centering
+  \begin{minipage}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{PlotETRepE2crit.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{PlotETRepE2post.png}
+  \end{minipage}
+  \caption{\label{ETRepE2} Coefficient estimates (total reading time in ms) and 95\% confidence intervals at the critical and postcritical region for main effect of `Dat', main effect of `Adj' and interaction of `Dat:Adj'}
+\end{figure}
+
+\subsection{Results (`combined' Exp. 1 \& 2, conditions c, d)}
+
+A summary of the results for combined replication attempts 5 and 6 are shown in Figures \ref{SPRMerged} and \ref{ETmerged}. Recall that in the `combined' studies, conditions (a) and (b) had the target construction in a main clause whereas in (c) and (d) the target construction was embedded in a relative clause (i.e., `load' refers to the target construction in main clause vs relative clause\footnote{Note that the main effect of `load' is statistically significant; however, this is not a contrast of interest. }). Conditions (a) and (c) had an intervening dative NP between the critical verb and its subject; in (b) and (d) both a dative NP and a PP adjunct served as the intervening material between the critical verb and the subject (this is referred to as the `distance' manipulation here). Pairwise comparisons of (a) vs (b), and (c) vs (d) showed no statistical significance. 
+
+<<RepResultsE12,include=FALSE,cache=FALSE,echo=FALSE,warnings=FALSE,message=FALSE>>=
+
+##OUR MERGED EXP CRIT AND POSTCRIT
+
+### SPR merged
+# crit and postcrit
+#dat<-read.table("../our_dataE1_E6/E5levykellerSPRmerged.txt",header=FALSE)
+#colnames(dat)<-c("subj","expt","item","cond","pos","word",
+#                 "roi","rt")
+
+#dat<-subset(dat,pos!="?" & expt=="Kevy")
+
+#dat$load<-ifelse(dat$cond%in%c("a","b"),-1/2,1/2)
+#dat$dist<-ifelse(dat$cond%in%c("a","c"),-1/2,1/2)
+#dat$int<-ifelse(dat$cond%in%c("a","d"),-1/2,1/2)
+
+#dat$roi<-factor(dat$roi)
+#unique(dat$roi)
+
+## crit
+#mMergeSPRcrit<-lmer(rt~load+dist+int+(1+load+dist+int||subj)+(1+load+dist+int||item),subset(dat,roi=="verb"))
+#summary(mMergeSPRcrit)
+#mMergeSPRcrit<-lmer(log(rt)~load+dist+int+(1+load+dist+int||subj)+(1+load+dist+int||item),subset(dat,roi=="verb"))
+#summary(mMergeSPRcrit)
+
+#estimates<-summary(mMergeSPRcrit)$coefficients[,1:2]
+#estimates<-as.data.frame(estimates)
+#plotestimatesMerge(estimates, maintitle="SPR Exp.1,2 combined (critical region)")
+
+#dat$int.MC<-ifelse(dat$cond=="a",-0.5,
+#                        ifelse(dat$cond=="b",0.5,0))
+
+#dat$int.RC<-ifelse(dat$cond=="d",0.5,
+#                       ifelse(dat$cond=="c",-0.5,0))
+#head(dat)
+
+#mInt<-lmer(rt~load+int.MC+int.RC+(1+load+int.MC+int.RC||subj) +(1+load+int.MC+int.RC||item),subset(dat,roi=="verb"))
+#summary(mInt<-lmer(log(rt)~load+int.MC+int.RC+(1+load+int.MC+int.RC||subj) +(1+load+int.MC+int.RC||item),subset(dat,region=="verb")))
+
+#estimates<-summary(mInt)$coefficients[,1:2]
+#str(estimates)
+#is.data.frame(estimates)
+#estimates<-as.data.frame(estimates)
+
+###### function plot estimates #####
+
+#plotestimatesMerge<-function(estimates=estimates,maintitle="Exp.1,2 combined (critical region)",ylabel="RT (ms)", ylimits=c(-250,250)){
+#par(mar=c(5.1,6.1,4.1,2.1))
+#plot(1:3,estimates[2:4,1], ylim=ylimits, yaxt='n',
+#     pch=20,cex=1.5,xaxt='n',
+#     xlab="",
+#     cex.lab=1.2,
+#     cex.axis=1.2,
+#     ylab=ylabel, font.lab=2, main=maintitle)
+
+#arrows(x0=1:3,y0=estimates[2:4,1]-2*estimates[2:4,2],
+#       x1=1:3,y1=estimates[2:4,1]+2*estimates[2:4,2],
+#       angle=90,code=3,lwd=1.5,length = 0.05)
+
+#abline(h=0)
+
+#axis(side=2,at=c(-200, -150,-100, -50, 0, 50, 100, 150, 200, 250),cex.axis=1.2)
+#mtext(c("Load", "Dist", "Load:Dist"),side=1,at=1:3,cex=1.2,
+#      line=1.5)
+#}
+
+## postcrit
+#mMergeSPRpostcrit<-lmer(rt~load*dist+(1+dist||subj)+(1+load+load:dist||item),subset(dat,roi =="verb1"))
+#mIntMergeSPRpostcrit<-lmer(rt~load+int.MC+int.RC+(1+load+int.MC+int.RC||subj) +(1+load+int.MC+int.RC||item),subset(dat,roi=="verb1"))
+#summary(mIntMergeSPRpostcrit)
+#mMergeSPRpostcrit<-lmer(log(rt)~load*dist+(1+dist||subj)+(1+load+load:dist||item),subset(dat,roi=="verb1"))
+#summary(mMergeSPRpostcrit)
+
+#estimates<-summary(mMergeSPRpostcrit)$coefficients[,1:2]
+#str(estimates)
+#is.data.frame(estimates)
+#estimates<-as.data.frame(estimates)
+
+#plotestimatesMerge(estimates, maintitle="SPR Exp.1,2 combined (postcritical region)" )
+
+
+### ET merged
+# crit and postcrit
+#dat<-read.table("../our_dataE1_E6/E6levykellerETmerged.txt",header=TRUE)
+#dat<-subset(dat,condition!="f" & condition!="p")
+
+#dat$load<-ifelse(dat$condition%in%c("a","b"),-1/2,1/2)
+#dat$dist<-ifelse(dat$condition%in%c("a","c"),-1/2,1/2)
+#dat$int<-ifelse(dat$condition%in%c("a","d"),-1/2,1/2)
+
+#dat$roi<-factor(dat$roi)
+#unique(dat$roi)
+
+#region<-ifelse(dat$condition%in%c("a","b") & dat$roi==22,"npacc",
+#               ifelse(dat$condition%in%c("c","d") & dat$roi==23,"npacc",
+#                ifelse(dat$condition%in%c("a","b") & dat$roi==24,"verb",
+#                    ifelse(dat$condition%in%c("c","d") & dat$roi==25,"verb",   
+#                              ifelse(dat$condition%in%c("a","b") & dat$roi==25,"verb1",
+#                    ifelse(dat$condition%in%c("c","d") & dat$roi==26,"verb1","noncritical"))))))
+
+
+#dat$region<-region
+#dat<-subset(dat,region!="noncritical")
+#dat$region<-factor(dat$region)
+
+## crit
+#mTFTMergeCrit<-lmer(TFT~load+dist+int+(1+load+dist+int||subject) +(1+load+dist+int||itemid),subset(dat,region=="verb" & TFT>0))
+#summary(mTFTMergeCrit<-lmer(log(TFT)~load+dist+int+(1+load+dist+int||subject) +(1+load+dist+int||itemid),subset(dat,region=="verb" & TFT>0)))
+
+#estimates<-summary(mTFTMergeCrit)$coefficients[,1:2]
+#estimates<-as.data.frame(estimates)
+#plotestimatesMerge(estimates, maintitle="ET Exp.1,2 combined (critical region)",ylabel = "TRT (ms)" )
+
+## postcrit
+#mTFTMergePostcrit<-lmer(TFT~load+dist+int+(1+load+dist+int||subject) +(1+load+dist+int||itemid),subset(dat,region=="verb1" & TFT>0))
+#summary(mTFTMergePostcrit<-lmer(log(TFT)~load+dist+int+(1+load+dist+int||subject) +(1+load+dist+int||itemid),subset(dat,region=="verb1" & TFT>0)))
+
+#estimates<-summary(mTFTMergePostcrit)$coefficients[,1:2]
+#estimates<-as.data.frame(estimates)
+#plotestimatesMerge(estimates, maintitle="ET Exp.1,2 combined (postcritical region)",ylabel = "TRT (ms)" )
+
+### pairwise comparison
+
+# distance effect in MC conditions (a-b) 
+# (cond b MC long dist pos, cond a short dist neg; positive coef will mean that MC long dist 
+# have slower/longer RTs or TFT; neg coef that MC)
+#dat$int.MC<-ifelse(dat$condition=="a",-0.5,
+#                        ifelse(dat$condition=="b",0.5,0))
+
+# dist effect in RC conditions (d-c)
+#dat$int.RC<-ifelse(dat$condition=="d",0.5,
+#                       ifelse(dat$condition=="c",-0.5,0))
+
+
+#mTFTint<-lmer(TFT~load+int.MC+int.RC+(1+load+int.MC+int.RC||subject) +(1+load+int.MC+int.RC||itemid),subset(dat,region=="verb" & TFT>0))
+#summary(mTFTint)
+#summary(mTFTint<-lmer(log(TFT)~load+int.MC+int.RC+(1+load+int.MC+int.RC||subject) +(1+load+int.MC+int.RC||itemid),subset(dat,region=="verb" & TFT>0)))
+
+#estimates<-summary(mTFTint)$coefficients[,1:2]
+#str(estimates)
+#is.data.frame(estimates)
+#estimates<-as.data.frame(estimates)
+
+
+#plotestimatesMerge(estimates, maintitle="ET Exp.1,2 combined (critical region)" )
+
+
+## postcritical region 
+#mTFTintpost<-lmer(TFT~load+int.MC+int.RC+(1+load+int.MC+int.RC||subject) +(1+load+int.MC+int.RC||itemid),subset(dat,region=="verb1" & TFT>0))
+#summary(mTFTintpost)
+
+#estimates<-summary(mTFTintpost)$coefficients[,1:2]
+#str(estimates)
+#is.data.frame(estimates)
+#estimates<-as.data.frame(estimates)
+#estimates
+
+#plotestimatesMerge(estimates, maintitle="ET Exp.1,2 combined (postcritical region)" )
+
+
+@
+
+
+\begin{figure}[!ht]
+  \centering
+  \begin{minipage}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{PlotSPRRepMergedcrit.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{PlotSPRRepMergedpost.png}
+  \end{minipage}
+  \caption{\label{SPRMerged} Combined SPR Replication Exp. 1, 2: Coefficient estimates (reading time in ms) and 95\% confidence intervals at the critical and postcritical region for main effect of `load', main effect of `distance' and interaction of load:dist} 
+\end{figure}
+
+\begin{figure}[!ht]
+  \centering
+  \begin{minipage}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{PlotETRepMergedcrit.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{PlotETRepMergedpost.png}
+  \end{minipage}
+  \caption{\label{ETmerged} Combined ET Replication Exp. 1,2: Coefficient estimates (total reading time in ms) and 95\% confidence intervals at the critical and postcritical region for main effect of `load', main effect of `distance' and interaction of load:dist}
+\end{figure}
+
+All six attempts to reproduce the originally significant results were unsuccessful; no dependent measure showed any effect.
+
+%Our failure to replicate the the results of the LK13 experiments is indicative of low statistical power. Given that it is common to run reading time experiments with 24 to 36 participants in psycholinguistic studies, it is very unlikely that we can obtain accurate estimates of the true parameters due to Type M error. A significant number of published findings may be reporting exaggerated estimates (see \citep{GelmanCarlin14}).  Due to the low power of our previous replication attempts, a higher power study should be conducted. 
+
+\section{The planned replication study}
+To investigate whether the originally statistically significant effects are present, we re-run our attempted replication 6 (see details above), aiming for a high degree of precision in our estimate.\\
+The reason for choosing to replicate the `combined' study rather than attempting to replicate the original experiments (Exp.\ 1 and 2) separately, is that statistically significant effects were found in only conditions (c) and (d) of Levy \& Keller's original studies. Furthermore, we choose to run the replication study using the eye-tracking rather than the self-paced reading method, as the original study was conducted using the eye-tracking method and the originally significant effects were observed in eye-tracking reading measures. 
+
+
+\subsection{Predictions}
+Recall that in Experiment 1 it was \say{found that the presence of a dative noun phrase led to decreased reading time at the corresponding verb, compared to a condition in which there is no preceding dative noun phrase} (i.e., an anti-locality effect as predicted by surprisal) \citep[p.214]{levykeller13} whereas results of Experiment 2 \say{showed an interaction of adjunct position and dative position, with the verb more difficult to process when both the adjunct and the dative phrase were present than when only one was present} (i.e., a locality effect as predicted by memory-based accounts) \citep[p.214]{levykeller13}.
+
+
+\begin{figure}[!ht]
+  \centering
+  \begin{minipage}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{LK13CondMeans1.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{LK13CondMeans2.png}
+  \end{minipage}
+  \caption{\label{predRep} Our predictions based on original LK13 results. Left panel: LK13 Exp.\ 1: Per-condition means (total reading time) and 95\% confidence intervals at the critical region. Right panel: LK13 Exp.\ 2: Per-condition means and 95\% confidence intervals at the critical region. We will attempt to replicate the patterns for only \textit{conditions (c) and (d)} of Exp.\ 1 and 2.}
+\end{figure}
+
+  
+On the basis of the originally statistically significant effects (Exp. 1: speed-up in (d) vs (c); Exp. 2: slowdown in (d) vs (c)), we will attempt to replicate the patterns for (c) and (d) (Figure \ref{predRep}) of the original Exp.\ 1 and 2. 
+Pairwise comparisons in our planned replication study should therefore show a speed-up for (b) vs (a) (these were conditons (d) and (c) of the original Experiment 1) and a slowdown for (d) compared to (c) (these were conditions (d) and (c) of the original Experiment 2). 
+
+\subsection{Method}
+An eyetracking-while-reading study will be conducted. 
+
+\subsubsection{Participants}
+Participants will be native German (mostly) undergraduate students from the University of Potsdam, Germany.\\
+Participants will be recruited via the undergraduate participant pool of the language processing laboratory (Prof. Shravan Vasishth, Department of Linguistics, University of Potsdam, Germany).\\
+All participants will receive financial compensation, or, if preferred, will receive course credit for their participation. 
+
+\subsubsection{Design}
+2 x 2 fully-crossed factorial design
+\begin{itemize}
+\item Factor 1: memory load (\textit{target construction in main clause} vs. \textit{target construction embedded in relative clause})
+\item Factor 2: distance between the critical matrix clause verb and its subject (\textit{dative NP only} vs. \textit{dative NP and PP adjunct}) 
+\item Both factors are within-items, within-subjects manipulations
+\end{itemize}
+
+\subsubsection{Experimental items}
+Experimental items were made available to us by the authors of the original study \citep{levykeller13}. In our planned `combined' replication study, conditions (a) and (b) were orginally conditions (c) and (d) of LK13 Exp.\ 1 and have the target construction in a main clause whereas conditions (c) and (d) of our planned study were originally conditions (c) and (d) of LK13 Exp.\ 2 and have the target construction in a relative clause (see Table \ref{itemsE12} for a  simplified example item of the `combined' study). \\
+
+\begin{landscape}
+\pagestyle{empty}
+\noindent
+%\singlespacing
+\begin{table}
+\caption{Example of experimental item (simplified) `combined' replication study}
+{\tiny
+\begin{tabular}{l l l l l l l l l l l l l l l l l l l}
+\multicolumn{11}{l}{\textbf{a.  PP Adjunct in subordinate clause, Dative NP in main clause}}\\
+Nachdem & der & Lehrer & [\textbf{PP} zur & Ahnd.] &  & ..., & & hat &  \textcolor{blue}{Hans Gerstner}, &   &  &  &  [\textbf{NP} dem & Sohn] & den & Fußball & \textcolor{blue}{\textbf{versteckt hat}}, ...\\
+ \textit{After} & \textit{the} & \textit{teacher} & [\textbf{PP} \textit{as} & \textit{payback}] &  & ..., & & \textit{has} &  \textcolor{blue}{\textit{Hans Gerstner}}, &   &  &  &  [\textbf{NP} \textit{the} & \textit{son}] & \textit{the} & \textit{football} & \textcolor{blue}{\textit{hid}}, ...\\[4pt]
+\multicolumn{11}{l}{\textbf{b. PP Adjunct in main clause, Dative NP in main clause}}\\
+Nachdem & der & Lehrer &   & & & ..., & & hat &  \textcolor{blue}{Hans Gerstner}, &  &[\textbf{PP} zur & Ahnd.] &  [\textbf{NP} dem & Sohn] & den & Fußball & \textcolor{blue}{\textbf{versteckt hat}}, ...\\
+\textit{After} & \textit{the} & \textit{teacher} &   & & & ..., & & \textit{has}  & \textcolor{blue}{\textit{Hans Gerstner}}, &  & [\textbf{PP} \textit{as} & \textit{payback}] &  [\textbf{NP} \textit{the} & \textit{son}] & \textit{the} & \textit{football} & \textcolor{blue}{\textit{hid}}, ...\\[4pt]
+\multicolumn{11}{l}{\textbf{c.  PP Adjunct in subordinate clause, Dative NP in relative clause}}\\
+Nachdem & der & Lehrer & [\textbf{PP} zur & Ahnd.] & & & ..., & hat & \textcolor{blue}{der Mitschüler}, & der &   & & [\textbf{NP} dem & Sohn] &  den & Fußball & \textcolor{blue}{\textbf{versteckt hat}}, ...\\
+\textit{After} & \textit{the} & \textit{teacher} & [\textbf{PP} \textit{as} & \textit{payback}] &  & & ..., &  \textit{has} & \textcolor{blue}{\textit{the classmate}}, & \textit{who} &  & & [\textbf{NP} \textit{the} & \textit{son}] & \textit{the} & \textit{football} & \textcolor{blue}{\textit{hid}}, ...\\[4pt]
+\multicolumn{11}{l}{\textbf{d. PP Adjunct in relative clause, Dative NP in relative clause}}\\
+Nachdem & der & Lehrer & &  & & & ..., & hat & \textcolor{blue}{der Mitschüler}, & der & [\textbf{PP} zur & Ahnd.] & [\textbf{NP} dem & Sohn] & den & Fußball & \textcolor{blue}{\textbf{versteckt hat}}, ...\\
+ \textit{After} & \textit{the} & \textit{teacher} &  & & & & ..., & \textit{has} & \textcolor{blue}{\textit{the classmate}}, & \textit{who} & [\textbf{PP} \textit{as} & \textit{payback}] & [\textbf{NP} \textit{the} & \textit{son}] & \textit{the} & \textit{football} & \textcolor{blue}{\textit{hid}}, ...
+\end{tabular}
+}
+\label{itemsE12}
+\begin{tablenotes}
+\item \textit{`After the teacher imposed detention classes, Hans Gerstner/the classmate (who) hid the football from the naughty son of the industrious janitor as additional payback for the multiple wrongdoings corrected the affair.'}
+\end{tablenotes}
+\end{table}
+\end{landscape}
+
+
+%\begin{figure}[!ht]
+%\centering
+%   \begin{subfigure}[b]{0.9\textwidth}
+%   \includegraphics[width=5.0in]{E1cd.png}
+   %\caption{xx}
+%\end{subfigure}
+%\begin{subfigure}[b]{0.9\textwidth}
+%   \includegraphics[width=5.0in]{E2cd.png}
+   %\caption{xx}
+%\end{subfigure}
+%\caption{\label{E12cd} Example item of `combined' replication study (simplified, originally cond. (c), (d) of Exp.\ 1 and cond (c), (d) of Exp.\ 2 \citep{levykeller13}).}
+%\end{figure}
+
+
+%\begin{figure}[H]
+%\centering
+%\includegraphics[width=5.0in]{LKitem2.png}
+%\caption{Conditions c and d of original LK13 Exp. 1. These were combined in our replication 6 with conditions c and d of the original LK13 Exp. 2 in which the target construction was more deeply embedded in a relative clause.}
+%\end{figure}
+
+Filler items from the original experiments were used for our previous replication attempts as well as our planned replication study.
+Items will be presented in a Latin-square design and will be pseudo-randomised. 
+
+\subsubsection{The stopping rule}
+Data will be collected until either
+
+\begin{enumerate}[(a)]
+
+\item we reach our goal of achieving a high degree of precision. We aim for a small standard error of $\leq$ 10 for total reading time (TRT). Thus, when our estimate reaches $\hat{\beta}$ $\pm$ 2 $\times$ 10 --- fitting a Bayesian linear mixed model in Stan (\citet{rSTAN} assuming a log-normal distribution for reading times) --- testing will stop. 
+The reason for aiming for high precision in total reading time, as opposed to first-pass reading time, is that FPRTs are commonly lower (with a smaller standard error) than TFTs, and, thus, a desired precision would be reached sooner in FPRTs compared to TRTs. Aiming for a certain degree of precision in total reading time is therefore more conservative. Or, 
+
+\item the study will run until we reach a maximum participant sample size of 150 due to logistical limitations. 
+\end{enumerate}
+
+
+\subsubsection{Procedure}
+The procedure of the upcoming replication study will be identical to the previous small sample (N = 28) study, i.e., our previous replication attempt 6. The planned replication will be conducted in the same laboratory under the same conditions. Participants will be recruited via the Vasishth laboratory participant pool. Before the start of the experiment, participants will be briefed and must give their consent. Instructions regarding the experimental procedure will be given in writing and will be identical to the previous replication study. The setup of the eye-tracker, the eye-tracking procedure as well as the room conditions will be identical to those of the previous replication study. The experiment will take approximately 45 minutes.\\
+ 
+\subsubsection{Eye-tracker settings}
+The experiment was created with the Experiment Builder software (SR Research). We use an EyeLink 1000 eye-tracker (SR Research) with a desktop-mounted camera setup for data collection. All settings will be identical to those used for our replication attempt 6. (Further information on the experimental procedure and set-up of the eye-tracker available upon request).\\
+
+\subsubsection{Data exclusion/missing data}
+No data cleaning will be carried out, i.e., fixations which fall outside of the pre-defined interest areas will be excluded from analysis.
+
+\subsubsection{Deviations from the original study}
+In our `combined' experiment, filler items from both the original Exp. 1 and 2 were used. 
+
+Different eye-tracking systems were used: The original experiments were carried out with an Eyelink II (500 Hz sampling rate) head-mounted system by SR Research. The `Eyetrack' software (which was developed at the University of Massachusetts at Amherst) was used to implement the experiment.
+Our previous replication attempts as well as the planned study will be conducted using an Eyelink 1000 (SR Research) with a sampling rate of 1000 Hz. The Experiment Builder software by SR Research was used to create the experiment. 
+
+Presentation of the experimental items on the presentation monitor varied from the original study. In the original Exp. 1\ the critical verb appeared in the middle of either the third or fourth line of the presented text. In Exp. 2\ the critical verb was always the fourth word of the fourth line on the presentation screen. 
+In our replication attempts, the critical verb always appears in the same position, i.e., as the fourth word of the fourth line of the presented text.
+
+The original LK13 study was conducted with native German undergraduate students (attending a summer school) at Edinburgh University, UK.
+
+\subsection{Analysis of reading measures}
+As in the original LK13 study as well as our six previous replication attempts, reading measures will be analyzed at the critical region (matrix clause verb) and the postcritical region (the word following the matrix clause verb). 
+Linear mixed-effects models (with varying intercepts and varying slopes for subjects and items --- given model convergence) will be used to analyze the following eye-tracking reading measures: First-pass reading time (FPRT), total reading time (TRT) and re-reading time (RRT). In the analysis of the original study, zero values were not removed from the RRT analysis. This implies an invalid underlying generative model for the data: In the data approximately 50\% of the trials had zero re-reading times. It is arguable whether a linear mixed model assuming a normal distribution as a generative distribution should be fit in this case. Therefore, we will run two models for RRT --- including zero values in one of the models and excluding zero values in the other. We will further analyze re-reading probability (RRP) at the critical and post-critical region of the original study, as well as our replication attempts. The reason for looking at RRP is that it allows us to investigate whether interposing a dative NP or PP adjunct increases or decreases the probability of re-reading. The Box Cox function will determine the appropriate transformation of the reading measures. \\
+In the analysis of our six previous replication attempts, reading measures were log-transformed as mentioned above,  so we will analyze on the log scale in addition to whatever the Box Cox procedure suggests.\\
+Additionally, we will conduct two separate analyses of the reading measures at the critical and postcritical region. In the first analysis outliers will not be removed. In a second analysis, outliers will be removed as is commonly done in psycholinguistic reading studies. Here, fixations > 800 ms will be excluded before analysis of the reading measures, and, for each reading measure, outliers that are below or above 3.5 standard deviations of participants' mean RT will be removed.
+
+We will subsequently carry out an analysis of the data  within a Bayesian framework for all replication attempts of the original study, as well as the original studies (raw data of the original study was obtained from the authors\footnote{Our thanks to Roger Levy and Frank Keller for sharing experimental items and code of the original analyses.}). We will run a correlated varying intercepts, varying slopes mixed-effects model in Stan (\citealp{rSTAN}) to derive a posterior distribution of our parameters of interest.\\
+
+
+
+
+
+ 
+<<loaddata, echo=FALSE>>=
+
+@
+
+
+\bibliography{lit}
+\appendix
+
+\end{document}

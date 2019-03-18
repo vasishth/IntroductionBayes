@@ -1,0 +1,50 @@
+Hi Frank,
+
+Been delayed in putting together stimuli for the verb-final expt, but
+I've done a bit of corpus work and I wonder if we shouldn't change the
+order of constituents a bit.  The main problem is that the Mittelfeld
+order
+
+  NP-acc (NP-dat) (PP) Adv V
+
+seems to be pretty rare, at least in the Tiger corpus.  What if we
+switched it up as follows:
+
+  (PP) (NP-dat) NP-acc V
+
+All the possible constituent orders from this are fairly common, and
+there's the nice property that adding each optional constituent always
+increases the conditional probability of V after the NP-acc.  This
+would give us the following sample stimulus set:
+
+  Er hat das Auto verkauft, und ...
+
+  Er hat ohne jegliche Kenntnis seines defekten Motors das Auto
+  verkauft, und ...
+
+  Er hat dem freundlichen Nachbar meines fremden Verwandten das Auto
+  verkauft, und ...
+
+  Er hat ohne jegliche Kenntnis seines defekten Motors dem
+  freundlichen Nachbar meines fremden Verwandten das Auto verkauft,
+  und ...
+
+Intuitively for you, is there still greater difficulty at "verkauft"
+for the final sentence as compared to any of the other three?
+
+
+Also, I've put together a proposed list of ditransitive verbs to work with;
+they're at
+
+  good-ditransitive-verbs
+
+The first set is ones that appear as some nnV[A-Z]+ in Ulrike's file
+at least three times; the second set is other verbs that I thought
+might be good.  I marked some of them with question marks if I thought
+that they might be bad to include because they're too rare, or because
+perhaps the ditransitive use is too idiomatic, or for other reasons.
+Take a look and see if there are any major modifications you'd
+propose.  There are about 30+ verbs on the list, so hopefully this is
+enough to construct a set of 24 lexicalizations...
+
+Roger

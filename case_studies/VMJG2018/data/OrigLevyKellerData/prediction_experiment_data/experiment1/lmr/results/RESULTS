@@ -1,0 +1,484 @@
+########## EXPERIMENT 1 ##########
+
+########## REGION 7 ##########
+
+# First fixation
+
+Linear mixed model fit by REML 
+Formula: region7 ~ dat * adj + (dat * adj | subj) + (dat * adj | item) 
+   Data: reading_time_nozeros 
+  AIC  BIC logLik deviance REMLdev
+ 7762 7874  -3856     7738    7712
+Random effects:
+ Groups   Name        Variance   Std.Dev.   Corr                 
+ subj     (Intercept) 1.8127e+03 42.5757369                      
+          dat         1.1841e+02 10.8817965  0.140               
+          adj         7.1141e+02 26.6722142 -0.553 -0.409        
+          dat:adj     5.7746e+03 75.9907688 -0.151 -0.831  0.781 
+ item     (Intercept) 1.5829e-06  0.0012581                      
+          dat         1.1579e-06  0.0010760 -0.735               
+          adj         9.2451e-06  0.0030406  0.198  0.079        
+          dat:adj     7.0477e-02  0.2654749  0.003 -0.002 -0.009 
+ Residual             8.4984e+03 92.1870324                      
+Number of obs: 645, groups: subj, 28; item, 24
+
+Fixed effects:
+            Estimate Std. Error t value
+(Intercept)  260.461      8.830  29.498
+dat           11.298      7.558   1.495
+adj          -17.130      8.847  -1.936
+dat:adj      -13.642     20.440  -0.667
+
+Correlation of Fixed Effects:
+        (Intr) dat    adj   
+dat      0.033              
+adj     -0.284 -0.059       
+dat:adj -0.096 -0.153  0.310
+
+
+# First pass
+
+Linear mixed model fit by REML 
+Formula: region7 ~ dat * adj + (dat * adj | subj) + (dat * adj | item) 
+   Data: reading_time_nozeros 
+  AIC  BIC logLik deviance REMLdev
+ 8450 8561  -4200     8430    8400
+Random effects:
+ Groups   Name        Variance Std.Dev. Corr                 
+ subj     (Intercept)  8344.82  91.350                       
+          dat           739.65  27.196   1.000               
+          adj          1912.64  43.734   0.019  0.019        
+          dat:adj      9388.04  96.892  -0.774 -0.774  0.240 
+ item     (Intercept)  2241.26  47.342                       
+          dat          1071.67  32.736  -0.405               
+          adj           697.22  26.405   0.883 -0.787        
+          dat:adj      2506.51  50.065  -0.700 -0.370 -0.282 
+ Residual             23263.23 152.523                       
+Number of obs: 645, groups: subj, 28; item, 24
+
+Fixed effects:
+            Estimate Std. Error t value
+(Intercept)  332.211     20.682  16.063
+dat           28.541     14.701   1.941
+adj           -2.851     15.571  -0.183
+dat:adj      -26.479     31.942  -0.829
+
+Correlation of Fixed Effects:
+        (Intr) dat    adj   
+dat      0.204              
+adj      0.154 -0.118       
+dat:adj -0.475 -0.203  0.038
+
+
+# Regression path time
+
+Linear mixed model fit by REML 
+Formula: region7 ~ dat * adj + (dat * adj | subj) + (dat * adj | item) 
+   Data: reading_time_nozeros 
+   AIC   BIC logLik deviance REMLdev
+ 10604 10716  -5277    10598   10554
+Random effects:
+ Groups   Name        Variance  Std.Dev. Corr                 
+ subj     (Intercept)  78423.03 280.041                       
+          dat            486.07  22.047   1.000               
+          adj           1692.56  41.141  -1.000 -1.000        
+          dat:adj     158128.81 397.654  -1.000 -1.000  1.000 
+ item     (Intercept)   6785.18  82.372                       
+          dat          24667.23 157.058   0.635               
+          adj          65039.03 255.028   0.206 -0.214        
+          dat:adj     116941.06 341.966  -0.146  0.269  0.521 
+ Residual             730624.88 854.766                       
+Number of obs: 645, groups: subj, 28; item, 24
+
+Fixed effects:
+            Estimate Std. Error t value
+(Intercept)   613.73      64.97   9.446
+dat            55.71      74.78   0.745
+adj            41.08      85.54   0.480
+dat:adj      -205.93     169.48  -1.215
+
+Correlation of Fixed Effects:
+        (Intr) dat    adj   
+dat      0.113              
+adj     -0.038 -0.058       
+dat:adj -0.376  0.030  0.168
+
+
+# Total time
+
+Linear mixed model fit by REML 
+Formula: region7 ~ dat * adj + (dat * adj | subj) + (dat * adj | item) 
+   Data: reading_time_nozeros 
+  AIC  BIC logLik deviance REMLdev
+ 9780 9892  -4865     9768    9730
+Random effects:
+ Groups   Name        Variance  Std.Dev. Corr                 
+ subj     (Intercept)  77546.58 278.472                       
+          dat           9797.96  98.985   0.496               
+          adj            265.84  16.305  -0.810  0.107        
+          dat:adj      25683.10 160.259  -0.970 -0.269  0.929 
+ item     (Intercept)  11013.84 104.947                       
+          dat           9431.70  97.117   0.119               
+          adj           4036.91  63.537   0.342 -0.892        
+          dat:adj      14523.72 120.514  -0.973  0.115 -0.550 
+ Residual             130247.41 360.898                       
+Number of obs: 660, groups: subj, 28; item, 24
+
+Fixed effects:
+            Estimate Std. Error t value
+(Intercept)   660.62      58.53  11.287
+dat           102.48      39.17   2.617
+adj            16.28      31.12   0.523
+dat:adj       -96.82      68.47  -1.414
+
+Correlation of Fixed Effects:
+        (Intr) dat    adj   
+dat      0.234              
+adj     -0.020 -0.184       
+dat:adj -0.514 -0.035 -0.047
+
+
+# Second pass
+
+Linear mixed model fit by REML 
+Formula: region7 ~ dat * adj + (dat * adj | subj) + (dat * adj | item) 
+   Data: reading_time 
+  AIC  BIC logLik deviance REMLdev
+ 9748 9861  -4849     9735    9698
+Random effects:
+ Groups   Name        Variance Std.Dev. Corr                 
+ subj     (Intercept) 60596.12 246.163                       
+          dat          9294.66  96.409   0.601               
+          adj           485.71  22.039   0.889  0.169        
+          dat:adj     10300.56 101.492  -0.889 -0.901 -0.581 
+ item     (Intercept)  2980.62  54.595                       
+          dat          3969.54  63.004   0.545               
+          adj           748.79  27.364  -0.312 -0.967        
+          dat:adj      3443.20  58.679  -0.999 -0.508  0.270 
+ Residual             98074.40 313.168                       
+Number of obs: 672, groups: subj, 28; item, 24
+
+Fixed effects:
+            Estimate Std. Error t value
+(Intercept)   272.88      49.34   5.531
+dat            73.26      32.88   2.228
+adj            28.82      25.15   1.146
+dat:adj       -21.79      53.35  -0.408
+
+Correlation of Fixed Effects:
+        (Intr) dat    adj   
+dat      0.362              
+adj      0.123 -0.068       
+dat:adj -0.352 -0.224 -0.021
+
+
+# First pass regressions
+
+Generalized linear mixed model fit by the Laplace approximation 
+Formula: region7 ~ dat * adj + (dat * adj | subj) + (dat * adj | item) 
+   Data: reading_time 
+   AIC   BIC logLik deviance
+ 747.3 855.6 -349.7    699.3
+Random effects:
+ Groups Name        Variance Std.Dev. Corr                 
+ subj   (Intercept) 0.551527 0.74265                       
+        dat         0.314420 0.56073  -0.200               
+        adj         0.183387 0.42824  -0.105  0.995        
+        dat:adj     0.563685 0.75079  -0.921 -0.198 -0.290 
+ item   (Intercept) 0.010919 0.10450                       
+        dat         0.395726 0.62907  0.312                
+        adj         0.036531 0.19113  0.838  0.780         
+        dat:adj     0.757833 0.87054  0.429  0.992  0.853  
+Number of obs: 672, groups: subj, 28; item, 24
+
+Fixed effects:
+              Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -1.3884720  0.1732324  -8.015  1.1e-15 ***
+dat         -0.0953772  0.2553829  -0.373    0.709    
+adj         -0.0009882  0.2131620  -0.005    0.996    
+dat:adj      0.2512625  0.4495816   0.559    0.576    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Correlation of Fixed Effects:
+        (Intr) dat    adj   
+dat     -0.041              
+adj     -0.011  0.212       
+dat:adj -0.240  0.173  0.044
+
+
+# Skipping probability
+
+Generalized linear mixed model fit by the Laplace approximation 
+Formula: region7 ~ dat * adj + (dat * adj | subj) + (dat * adj | item) 
+   Data: reading_time 
+   AIC   BIC logLik deviance
+ 223.6 331.8 -87.78    175.6
+Random effects:
+ Groups Name        Variance Std.Dev. Corr                 
+ subj   (Intercept)  30.525   5.5250                       
+        dat         117.327  10.8318  -0.980               
+        adj         119.799  10.9453   0.984 -0.952        
+        dat:adj     489.239  22.1187  -0.987  0.961 -0.962 
+ item   (Intercept)  27.401   5.2346                       
+        dat         102.127  10.1058  -0.942               
+        adj         108.483  10.4155   0.991 -0.977        
+        dat:adj     376.164  19.3949  -0.998  0.931 -0.988 
+Number of obs: 672, groups: subj, 28; item, 24
+
+Fixed effects:
+            Estimate Std. Error z value Pr(>|z|)    
+(Intercept)   11.290      3.283   3.439 0.000583 ***
+dat          -11.269      6.507  -1.732 0.083337 .  
+adj           11.057      6.558   1.686 0.091782 .  
+dat:adj      -26.129     12.964  -2.015 0.043858 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Correlation of Fixed Effects:
+        (Intr) dat    adj   
+dat     -0.970              
+adj      0.975 -0.984       
+dat:adj -0.988  0.970 -0.977
+
+
+########## REGION 8 ##########
+
+# First fixation
+
+Linear mixed model fit by REML 
+Formula: region8 ~ dat * adj + (dat * adj | subj) + (dat * adj | item) 
+   Data: reading_time_nozeros 
+  AIC  BIC logLik deviance REMLdev
+ 6727 6837  -3338     6700    6677
+Random effects:
+ Groups   Name        Variance   Std.Dev.   Corr                 
+ subj     (Intercept) 1.0786e+03 3.2842e+01                      
+          dat         4.6627e+02 2.1593e+01 -0.102               
+          adj         1.0927e+02 1.0453e+01  0.078  0.984        
+          dat:adj     2.6199e+02 1.6186e+01 -0.938 -0.249 -0.418 
+ item     (Intercept) 2.1999e-08 1.4832e-04                      
+          dat         1.1066e-13 3.3265e-07 -1.000               
+          adj         2.3669e-09 4.8650e-05  0.000  0.000        
+          dat:adj     1.8386e+02 1.3559e+01  0.000  0.000  0.000 
+ Residual             3.9093e+03 6.2524e+01                      
+Number of obs: 597, groups: subj, 28; item, 24
+
+Fixed effects:
+            Estimate Std. Error t value
+(Intercept) 214.8412     6.7214   31.96
+dat           0.2502     6.5706    0.04
+adj           3.4868     5.5134    0.63
+dat:adj       6.4433    11.0766    0.58
+
+Correlation of Fixed Effects:
+        (Intr) dat    adj   
+dat     -0.061              
+adj      0.030  0.253       
+dat:adj -0.223 -0.037 -0.047
+
+
+# First pass
+
+Linear mixed model fit by REML 
+Formula: region8 ~ dat * adj + (dat * adj | subj) + (dat * adj | item) 
+   Data: reading_time_nozeros 
+  AIC  BIC logLik deviance REMLdev
+ 7513 7622  -3731     7491    7463
+Random effects:
+ Groups   Name        Variance  Std.Dev. Corr                 
+ subj     (Intercept)  4752.718  68.9400                      
+          dat           297.421  17.2459 -0.156               
+          adj           117.590  10.8439  0.087  0.970        
+          dat:adj       494.541  22.2383 -0.987 -0.001 -0.243 
+ item     (Intercept)   753.826  27.4559                      
+          dat            11.463   3.3857 -1.000               
+          adj            31.172   5.5832 -1.000  1.000        
+          dat:adj      6011.322  77.5327 -0.098  0.098  0.098 
+ Residual             14177.880 119.0709                      
+Number of obs: 597, groups: subj, 28; item, 24
+
+Fixed effects:
+            Estimate Std. Error t value
+(Intercept)  299.030     15.019  19.911
+dat            6.638     10.359   0.641
+adj          -10.948     10.091  -1.085
+dat:adj      -20.531     25.596  -0.802
+
+Correlation of Fixed Effects:
+        (Intr) dat    adj   
+dat     -0.071              
+adj     -0.023  0.113       
+dat:adj -0.151  0.009 -0.007
+
+
+# Regression path time
+
+Linear mixed model fit by REML 
+Formula: region8 ~ dat * adj + (dat * adj | subj) + (dat * adj | item) 
+   Data: reading_time_nozeros 
+  AIC  BIC logLik deviance REMLdev
+ 9243 9353  -4597     9233    9193
+Random effects:
+ Groups   Name        Variance Std.Dev. Corr                 
+ subj     (Intercept)  14136.9 118.899                       
+          dat          24246.2 155.712  -0.291               
+          adj          29283.9 171.125  -0.623  0.930        
+          dat:adj     119204.9 345.261   0.903 -0.674 -0.899 
+ item     (Intercept)  11560.2 107.519                       
+          dat           2958.1  54.389  -1.000               
+          adj           2221.1  47.129  -1.000  1.000        
+          dat:adj     167031.5 408.695   1.000 -1.000 -1.000 
+ Residual             273886.0 523.341                       
+Number of obs: 597, groups: subj, 28; item, 24
+
+Fixed effects:
+            Estimate Std. Error t value
+(Intercept)  400.087     38.169  10.482
+dat            3.625     53.467   0.068
+adj          -15.552     54.858  -0.284
+dat:adj       88.961    136.849   0.650
+
+Correlation of Fixed Effects:
+        (Intr) dat    adj   
+dat     -0.220              
+adj     -0.317  0.375       
+dat:adj  0.626 -0.303 -0.367
+
+
+# Total time
+
+Linear mixed model fit by REML 
+Formula: region8 ~ dat * adj + (dat * adj | subj) + (dat * adj | item) 
+   Data: reading_time_nozeros 
+  AIC  BIC logLik deviance REMLdev
+ 9194 9305  -4572     9181    9144
+Random effects:
+ Groups   Name        Variance  Std.Dev. Corr              
+ subj     (Intercept)  42349.46 205.790                    
+          dat           4789.82  69.209  1.000             
+          adj           5092.95  71.365  1.000 1.000       
+          dat:adj      28772.33 169.624  0.768 0.768 0.768 
+ item     (Intercept)   9515.66  97.548                    
+          dat            114.79  10.714  1.000             
+          adj           6105.26  78.136  0.626 0.626       
+          dat:adj      28892.88 169.979  0.543 0.543 0.995 
+ Residual             108400.50 329.242                    
+Number of obs: 629, groups: subj, 28; item, 24
+
+Fixed effects:
+            Estimate Std. Error t value
+(Intercept)   557.83      45.67  12.214
+dat            58.98      29.54   1.997
+adj            29.89      33.70   0.887
+dat:adj        45.54      70.96   0.642
+
+Correlation of Fixed Effects:
+        (Intr) dat   adj  
+dat     0.409             
+adj     0.473  0.226      
+dat:adj 0.421  0.180 0.368
+
+
+# Second pass
+
+Linear mixed model fit by REML 
+Formula: region8 ~ dat * adj + (dat * adj | subj) + (dat * adj | item) 
+   Data: reading_time 
+  AIC  BIC logLik deviance REMLdev
+ 9662 9775  -4806     9648    9612
+Random effects:
+ Groups   Name        Variance Std.Dev. Corr              
+ subj     (Intercept) 37253.2  193.011                    
+          dat          2257.9   47.517  1.000             
+          adj          3572.8   59.773  1.000 1.000       
+          dat:adj      2217.1   47.086  1.000 1.000 1.000 
+ item     (Intercept)  2817.0   53.076                    
+          dat          1450.7   38.088  1.000             
+          adj          6151.9   78.434  1.000 1.000       
+          dat:adj     23465.9  153.186  1.000 1.000 1.000 
+ Residual             88073.4  296.772                    
+Number of obs: 672, groups: subj, 28; item, 24
+
+Fixed effects:
+            Estimate Std. Error t value
+(Intercept)   237.85      39.74   5.986
+dat            52.86      25.79   2.049
+adj            38.18      30.14   1.267
+dat:adj        40.77      56.16   0.726
+
+Correlation of Fixed Effects:
+        (Intr) dat   adj  
+dat     0.402             
+adj     0.489  0.291      
+dat:adj 0.297  0.223 0.355
+
+
+# First pass regressions
+
+Generalized linear mixed model fit by the Laplace approximation 
+Formula: region8 ~ dat * adj + (dat * adj | subj) + (dat * adj | item) 
+   Data: reading_time 
+   AIC BIC logLik deviance
+ 401.7 510 -176.9    353.7
+Random effects:
+ Groups Name        Variance Std.Dev. Corr                 
+ subj   (Intercept) 0.47533  0.68944                       
+        dat         0.53641  0.73240  -0.061               
+        adj         0.68921  0.83019  -0.681 -0.591        
+        dat:adj     1.44560  1.20233  -0.422  0.650  0.133 
+ item   (Intercept) 0.00000  0.00000                       
+        dat         0.99124  0.99561     NaN               
+        adj         0.22593  0.47532     NaN  1.000        
+        dat:adj     1.70865  1.30715     NaN -0.983 -0.983 
+Number of obs: 672, groups: subj, 28; item, 24
+
+Fixed effects:
+            Estimate Std. Error z value Pr(>|z|)    
+(Intercept)  -3.0054     0.2175 -13.816   <2e-16 ***
+dat           0.4751     0.4133   1.150    0.250    
+adj           0.3560     0.3886   0.916    0.360    
+dat:adj       0.9151     0.7513   1.218    0.223    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Correlation of Fixed Effects:
+        (Intr) dat    adj   
+dat     -0.120              
+adj     -0.213 -0.088       
+dat:adj -0.197 -0.101 -0.201
+
+
+# Skipping probability
+
+Generalized linear mixed model fit by the Laplace approximation 
+Formula: region8 ~ dat * adj + (dat * adj | subj) + (dat * adj | item) 
+   Data: reading_time 
+ AIC   BIC logLik deviance
+ 462 570.3   -207      414
+Random effects:
+ Groups Name        Variance Std.Dev. Corr                 
+ subj   (Intercept) 0.967960 0.98385                       
+        dat         0.020361 0.14269  1.000                
+        adj         0.374892 0.61228  1.000  1.000         
+        dat:adj     0.044588 0.21116  0.984  0.984  0.984  
+ item   (Intercept) 1.218137 1.10369                       
+        dat         0.395318 0.62874   0.628               
+        adj         0.205016 0.45279   0.245  0.671        
+        dat:adj     6.539503 2.55725  -0.424 -0.799 -0.142 
+Number of obs: 672, groups: subj, 28; item, 24
+
+Fixed effects:
+            Estimate Std. Error z value Pr(>|z|)    
+(Intercept)  3.08907    0.34718   8.898  < 2e-16 ***
+dat          0.54113    0.33413   1.620  0.10533    
+adj         -0.04699    0.34521  -0.136  0.89173    
+dat:adj     -2.44088    0.85447  -2.857  0.00428 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Correlation of Fixed Effects:
+        (Intr) dat    adj   
+dat      0.318              
+adj      0.191 -0.159       
+dat:adj -0.322 -0.326  0.130

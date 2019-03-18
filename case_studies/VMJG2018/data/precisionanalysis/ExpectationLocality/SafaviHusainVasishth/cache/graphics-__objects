@@ -1,0 +1,32 @@
+unnamed-chunk-1	
+sentcomp	condition	d	exp1	exp2	hit	i	itemid	nrows	sce1_xtab	sce2_xtab	sentcomp_mn_exp1	sentcomp_mn_exp2	sentcompstane1	sentcompstane2	sentcomptargete1	sentcomptargete2	summary_stan_model	target_row	target_verbs_ab	target_verbs_cd	targets	targets_ab_df	targets_cd_df	targetverb	tmp	tmpverb
+sce1table	
+sce2table	
+exp1analysis	data1	data1.q	e1crit	m1	m1glmer	meansq	stanglmerm1	stanglmerm1_tab	stanm1	stanm1_tab	stanm1nested	stanm1nested_tab
+unnamed-chunk-2	data2	data2.q	e1crit	e1e2crit	e2crit	me1e2	meansq	stanglmerm2	stanglmerm2_tab	stanm2	stanm2_tab	stanm2combined	stanm2combined_tab	stanm2nested	stanm2nested_tab
+plotexpt1	a.regions	b.regions	c.regions	cond.id	d.regions	data.id	data.rs	data1	data1.merged	data1.uniq.reg	dist	Expectation	GM	k	M.id.w	M.id.w.orig	M.id.w.pred	p1a	region.df	region.id	regions	temp
+plotexpt2	a.regions	b.regions	c.regions	cond.id	d.regions	data.id	data.rs	data2	data2.merged	data2.uniq.reg	dist	Expectation	GM	k	M.id.w	M.id.w.orig	M.id.w.pred	p2a	region.df	region.id	regions	temp
+unnamed-chunk-3	
+unnamed-chunk-4	data1	ET1.FPRT	etdata1	stanm3fprt	stanm3fprt_tab	stanm3nestedfprt	stanm3nestedfprt_tab	stanm3nestedrpd	stanm3nestedrpd_tab	stanm3rpd	stanm3rpd_tab
+plotsET1	a.regions	b.regions	c.regions	cond.id	d.regions	data1	data1.merged	data1.uniq.reg	dataFPRT.id	dataFPRT.rs	dataRPD.id	dataRPD.rs	dist	GM	k	M.id.w	M.id.w.cp	M.id.w.orig	M.id.w.pred	M.id.w.sp	multiplot	plotfprt	plotrpd	pred	region.df	region.id	regions	temp
+exptET2analysis	a.regions	b.regions	c.regions	cond.id	d.regions	data2	etdata2	region.df	region.id	regions	stanm4fprt	stanm4fprt_tab	stanm4nestedfprt	stanm4nestedfprt_tab	stanm4nestedrpd	stanm4nestedrpd_tab	stanm4rpd	stanm4rpd_tab
+unnamed-chunk-5	etdata1q	meanset1q	stanglmeretqm1	stanglmeretqm1_tab	stanglmeretqm1nested	stanglmeretqm1nested_tab
+unnamed-chunk-6	etdata2q	meanset2q	stanglmeretqm2	stanglmeretqm2_tab	stanglmeretqm2nested	stanglmeretqm2nested_tab
+unnamed-chunk-7	data2	data2.uniq.reg	dataFPRT.id	dataFPRT.rs	dataRPD.id	dataRPD.rs	dist	GM	k	M.id.w	M.id.w.pred	pFPRT	pred	pRPD	temp
+unnamed-chunk-8	decorate	etdatafprt	etdatarpd	etplotfprt	etplotrpd	pd	sprdata	sprplot	stanm1_tab	stanm2_tab	stanm3fprt_tab	stanm3rpd_tab	stanm4fprt_tab	stanm4rpd_tab
+loadlibraries	
+exp2analysis	data2	data2.q	e1crit	e1e2crit	e2crit	me1e2	meansq	stanglmerm2	stanglmerm2_tab	stanm2	stanm2_tab	stanm2combined	stanm2combined_tab	stanm2nested	stanm2nested_tab
+byregionplotexcluded	
+exp3analysis	data1	ET1.FPRT	etdata1	stanm3fprt	stanm3fprt_tab	stanm3nestedfprt	stanm3nestedfprt_tab	stanm3nestedrpd	stanm3nestedrpd_tab	stanm3rpd	stanm3rpd_tab
+exp3questionresponseanalysis	etdata1q	meanset1q	stanglmeretqm1	stanglmeretqm1_tab	stanglmeretqm1nested	stanglmeretqm1nested_tab
+exp4questionresponseanalysis	etdata2q	meanset2q	stanglmeretqm2	stanglmeretqm2_tab	stanglmeretqm2nested	stanglmeretqm2nested_tab
+plotexp4	data2	data2.uniq.reg	dataFPRT.id	dataFPRT.rs	dataRPD.id	dataRPD.rs	dist	GM	k	M.id.w	M.id.w.pred	pFPRT	pred	pRPD	temp
+summarizeresults	decorate	etdatafprt	etdatarpd	etplotfprt	etplotrpd	pd	sprdata	sprplot	stanm1_tab	stanm2_tab	stanm3fprt_tab	stanm3rpd_tab	stanm4fprt_tab	stanm4rpd_tab
+entropycode	cond	d	Distance	entp1	entp2	entropydate1	entropydate2	exp1	exp1.frame	exp1.verbcount	exp2	exp2.frame	exp2.verbcount	i	j	k	means	multiplot	Predicate_Type	stddev	stderr	sum	temp	temp1	verbs
+entropyplot	
+entropydiffse1e2	diffe1ba	diffe2ba	diffente1e2stan	diffente1e2stan_tab	e1e2entdata	e1entdata	e2entdata
+entropyrtanalysis	data1	data1crit	data1critent	exp1entropy	exp2entropy	m1ent	rtente1stan	rtente1stan_tab
+grammaticalitysentcomp	exp1abo	gramodds	gramoddslower	gramoddsupper	logodds	logoddslower	logoddsupper	means	mstangram	mstangram_tab	probneg
+probexpectationweakening	condition	d	exp1	exp1ab	hit	i	itemid	mstanhits	mstanhits_tab	nrows	target_row	target_verbs_ab	targets	targetverb	tmp	tmpverb
+probexpectationweakeninge1	condition	d	exp1	exp1ab	hit	i	itemid	mstanhits	mstanhits_tab	nrows	target_row	target_verbs_ab	targets	targetverb	tmp	tmpverb
+probexpectationweakeninge2	exp2abo	lowere2	mne2	mstan.target.expt2	mstan.target.expt2_tab	oddsratioe2	probe2	uppere2

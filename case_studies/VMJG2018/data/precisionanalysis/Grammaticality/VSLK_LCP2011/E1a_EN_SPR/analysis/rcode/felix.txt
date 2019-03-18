@@ -1,0 +1,22 @@
+English without commas (1b)
+
+  gram   M   CI.lower CI.upper  verb
+gram     922  886      959      V3  
+gram     886  852      920      V2  
+gram     622  586      658      V1  
+gram     481  457      505 Post-V1  
+ungram   877  845      909      V3  
+ungram   NA   NA       NA      V2   
+ungram   488  461      514      V1  
+ungram   443  423      463 Post-V1  
+
+German with commas
+gram      M     ci.lower ci.upper  verb
+gram   1635     1471     1798      V3
+gram   1517     1310     1724      V2
+gram    824      771      878      V1
+gram   1198     1103     1294 Post-V1
+ungram 1645     1484     1806      V3
+ungram   NA       NA       NA      V2
+ungram 1227     1090     1364      V1
+ungram 1894     1673     2114 Post-V1

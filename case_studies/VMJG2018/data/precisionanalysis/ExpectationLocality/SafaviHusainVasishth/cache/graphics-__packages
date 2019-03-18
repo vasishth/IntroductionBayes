@@ -1,0 +1,14 @@
+base
+knitr
+Matrix
+lme4
+gridExtra
+RePsychLing
+car
+reshape
+ggplot2
+plyr
+lattice
+xtable
+Rcpp
+rstanarm

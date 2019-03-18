@@ -1,0 +1,10 @@
+mv EXP3.TRA      exp3.tra    
+mv EXP3.CNT      exp3.cnt
+mv EXP3_1FX.RES  exp3_1fx.res
+mv EXP3_1PS.RES  exp3_1ps.res
+mv EXP3_2PS.RES  exp3_2ps.res
+mv EXP3_FPR.RES  exp3_fpr.res
+mv EXP3_GAZ.RES  exp3_gaz.res
+mv EXP3_RPT.RES  exp3_rpt.res
+mv EXP3_SKP.RES  exp3_skp.res
+mv EXP3_TT.RES   exp3_tt.res 

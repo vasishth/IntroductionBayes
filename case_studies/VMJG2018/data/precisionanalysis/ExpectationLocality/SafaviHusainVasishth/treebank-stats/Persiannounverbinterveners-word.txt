@@ -1,0 +1,86 @@
+0	3826/4003	0.955783163
+1	104/104		1
+2	36/39		0.92
+3	4/5		.8
+4	9/10		.9
+5	3/3		1
+6	3/3		1
+7	1/1		1
+8	2/2		1
+10	2/2		1
+12	1/1		1
+13	1/1		1
+14	1/1		1
+
+#0
+Verb, count=3826
+Noun, count=171
+Adjective, count=6
+
+#1
+Verb  Verb, count=68
+Noun  Verb, count=28
+Preverbal-particle  Verb, count=4
+Delimiter  Verb, count=1
+Conjunction  Verb, count=1
+Adjective  Verb, count=1
+Pronoun  Verb, count=1
+
+#2
+Conjunction  Noun  Verb, count=19
+Preposition  Noun  Verb, count=11
+Conjunction  Adjective  Verb, count=4
+Preposition  Noun  Noun, count=1
+Conjunction  Noun  Noun, count=1
+Preposition  Noun  Adjective, count=1
+Noun  Noun  Verb, count=1
+Noun  Verb  Verb, count=1
+
+#3
+Preposition  Noun  Adjective  Verb, count=1
+Preposition  Noun  Noun  Verb, count=1
+Conjunction  DET  Noun  Noun, count=1
+Conjunction  Adverb  Noun  Verb, count=1
+Noun  Conjunction  Noun  Verb, count=1
+
+#4
+Noun  Noun  Adjective  Verb  Verb, count=1
+Preposition  Noun  Preposition  Noun  Verb, count=1
+Preposition  Noun  Conjunction  Noun  Verb, count=1
+Preposition  Adjective  Noun  Noun  Verb, count=1
+Preposition  Noun  Noun  Noun  Verb, count=1
+Conjunction  Pronoun  Accusative-marker  Noun  Verb, count=1
+Conjunction  Preposition  Noun  Noun  Verb, count=1
+Conjunction  Noun  Adjective  Adjective  Verb, count=1
+Conjunction  Noun  Conjunction  Noun  Noun, count=1
+Preposition  Noun  DET  Noun  Verb, count=1
+
+#5
+Conjunction  Preposition  Noun  Numeral  Noun  Verb, count=1
+Noun  Conjunction  Preposition  Noun  Noun  Verb, count=1
+Preposition  Noun  Noun  Conjunction  Noun  Verb, count=1
+
+#6
+Conjunction  Noun  Noun  Preposition  Noun  Accusative-marker  Verb, count=1
+Conjunction  Noun  Noun  Noun  Pronoun  Adjective  Verb, count=1
+Preposition  Noun  Adjective  Noun  Noun  Noun  Verb, count=1
+
+#7
+Preposition  Noun  Conjunction  Noun  Noun  Conjunction  Noun  Verb, count=1
+
+#8
+Conjunction  Noun  Noun  Noun  Accusative-marker  Preposition  Pronoun  Noun  Verb, count=1
+Preposition  Noun  Noun  Numeral  Noun  Preposition  Noun  Adjective  Verb, count=1
+
+#10
+Conjunction  Noun  Adjective  Accusative-marker  Preposition  Noun  Conjunction  Noun  Noun  Noun  Verb, count=1
+Conjunction  Preposition  Noun  Noun  Conjunction  Noun  Noun  Noun  Pronoun  Adjective  Verb, count=1
+
+#12
+Conjunction  Preposition  Noun  Verb  Conjunction  Adverb  Noun  Conjunction  Noun  Pronoun  Verb  Noun  Verb, count=1
+
+#13
+Noun  Adjective  Preposition  Noun  Noun  Delimiter  Conjunction  Noun  Adjective  Adjective  Preposition  Noun  Noun  Verb, count=1
+
+#14
+Noun  Adjective  Conjunction  Noun  Adjective  Conjunction  Noun  Noun  Preposition  Noun  Adjective  Conjunction  Noun  Pronoun  Verb, count=1

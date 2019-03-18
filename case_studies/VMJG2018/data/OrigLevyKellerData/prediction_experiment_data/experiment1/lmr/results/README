@@ -1,0 +1,36 @@
+(1) Clean up the data with EyeDoctor: .da1 and .edd files in ../data
+
+(2) Compute measures with EyeDry: log file in exp1.tra
+
+(3) Compute statistics with Eyenal:
+
+exp1_1fx.res	       first fixation			eyedry option 1
+exp1_1ps.res	       first pass			eyedry option 2
+exp1_tt.res	       total time			eyedry option 3
+exp1_fpr.res	       first pass regressions out	eyedry option 4
+exp1_skp.res	       skipping probability		eyedry option 6
+exp1_2ps.res	       second pass			eyedry option 8
+exp1_rpt.res	       regression path time		eyedry option 13, suboption 1
+exp1_rbt.res	       right bounded time		eyedry option 13, suboption 2
+exp1_gaz.res	       gaze duration			eyedry option 16
+
+# make sure to keep zeros in -- we will remove them using R
+# get raw reading times, and switch conditionalization off
+# if in doubt, select option 1 (or default option) for each measure
+
+# run analysis on region 7 (critical region)
+# other interesting regions are: 6 and 8; 2, 3, 4
+
+# reformat data for use in R:
+
+cat exp1_1fx.res | ../scripts/reformat.pl > exp1_1fx_r.res
+cat exp1_1ps.res | ../scripts/reformat.pl > exp1_1ps_r.res
+cat exp1_tt.res  | ../scripts/reformat.pl > exp1_tt_r.res
+cat exp1_fpr.res | ../scripts/reformat_binary.pl > exp1_fpr_r.res
+cat exp1_skp.res | ../scripts/reformat_binary.pl > exp1_skp_r.res
+cat exp1_2ps.res | ../scripts/reformat.pl > exp1_2ps_r.res
+cat exp1_rpt.res | ../scripts/reformat.pl > exp1_rpt_r.res
+cat exp1_rbt.res | ../scripts/reformat.pl > exp1_rbt_r.res
+cat exp1_gaz.res | ../scripts/reformat.pl > exp1_gaz_r.res
+
+# then analyze using ../scritps/analyze.R

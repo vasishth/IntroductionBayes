@@ -1,0 +1,869 @@
+
+Version EYEDRY VERSION OF 9/20/04 (with Egan modifications)
+
+DATE: 12/11/2009
+
+EXPERIMENT 3 -- NEW SPILLOVER REGION
+
+10000 fixations max on one item
+Starting .CRN file = exp3.con
+0: debug level   =       0		1  qskip   =       1
+   (iff qskip = 1, interpret lookahead as corr. resp. to question
+   and if lookahead is nonzero, make the following 2 values nonzero)
+2:   lookahead        =       0
+3:   minimum question =       0
+4:   maximum question =       0
+5: smallest item      =       1
+6: largest item       =       32
+7: maximum regions    =       10
+8: smallest condition =       1
+9: largest condition  =       4
+10: number of subconds=       4
+11:position of cond # =       2
+12:position of item # =       3
+13:position of #fix   =       8
+14:data start position=       9
+15:longcutoff         =       4000
+16:shorttime          =       20
+  (next 2 zero unless rejecting on basis of questions)
+17:  pos. of ques #   =       0
+18:  pos. of ques resp=       0
+19:screen width (char)=       160
+20:max lines of text  =       5
+21: region wrap around end? 0 = no, 1 = yes:   0
+
+22: doublespace? 0 = no, 1 = yes:   0
+
+23: first_seq         =       0
+24: last_seq         =        0
+25: max_in_cond   =           0datalst = exp3.lst
+Control (.CNT) file exp3.cnt
+control file length 96
+***********************************************************
+
+type of analysis 1
+
+*****
+FIRST FIXATION
+*****
+Subj X Items file exp3_1fx.res
+
+S# 1, ****S01L01E1.DA1****
+longcount 0 shortcount 0
+S# 2, ****S02L02E1.DA1****
+longcount 0 shortcount 0
+S# 3, ****S03L03E1.DA1****
+longcount 0 shortcount 0
+S# 4, ****S04L04E1.DA1****
+longcount 0 shortcount 0
+S# 5, ****S05L01E1.DA1****
+longcount 0 shortcount 0
+S# 6, ****S06L02E1.DA1****
+longcount 0 shortcount 0
+S# 7, ****S07L03E1.DA1****
+longcount 0 shortcount 0
+S# 8, ****S08L04E1.DA1****
+longcount 0 shortcount 0
+S# 9, ****S09L01E1.DA1****
+longcount 0 shortcount 0
+S# 10, ****S10L02E1.DA1****
+longcount 0 shortcount 0
+S# 11, ****S11L03E1.DA1****
+longcount 0 shortcount 0
+S# 12, ****S12L04E1.DA1****
+longcount 0 shortcount 0
+S# 13, ****S13L01E1.DA1****
+longcount 0 shortcount 0
+S# 14, ****S14L02E1.DA1****
+longcount 0 shortcount 0
+S# 15, ****S15L03E1.DA1****
+longcount 0 shortcount 0
+S# 16, ****S16L04E1.DA1****
+longcount 0 shortcount 0
+S# 17, ****S17L01E1.DA1****
+longcount 0 shortcount 0
+S# 18, ****S18L02E1.DA1****
+longcount 0 shortcount 0
+S# 19, ****S19L03E1.DA1****
+longcount 0 shortcount 0
+S# 20, ****S20L04E1.DA1****
+longcount 0 shortcount 0
+S# 21, ****S21L01E1.DA1****
+longcount 0 shortcount 0
+S# 22, ****S22L02E1.DA1****
+longcount 0 shortcount 0
+S# 23, ****S23L03E1.DA1****WARNING!!!: 23476 fixations on trial 3 for subject 23
+
+longcount 0 shortcount 0
+S# 24, ****S24L04E1.DA1****
+longcount 0 shortcount 0
+S# 25, ****S25L01E1.DA1****
+longcount 0 shortcount 0
+S# 26, ****S26L02E1.DA1****
+longcount 0 shortcount 0
+S# 27, ****S27L03E1.DA1****
+longcount 0 shortcount 0
+S# 28, ****S28L04E1.DA1****
+longcount 0 shortcount 0
+
+***** OUTPUT *****
+1
+*****
+
+First fixation
+
+THROWING AWAY trials with no fixations.
+
+AVERAGED OVER ITEMS AND SUBJECTS, BY CONDITIONS
+
+Means where each subject gets equal weight
+COND  1   192 (28)  216 (28)  237 (28)  254 (25)  211 (28)  253 (28)  237 (28)
+         237 (28)  214 (28)  257 (28)
+COND  2   244 (28)  225 (28)  262 (28)  275 (26)  207 (28)  256 (28)  229 (28)
+         254 (28)  208 (28)  264 (28)
+COND  3   243 (28)  231 (28)  264 (28)  257 (27)  231 (28)  251 (28)  223 (28)
+         241 (28)  219 (28)  265 (28)
+COND  4   254 (28)  227 (28)  268 (28)  307 (27)  251 (28)  224 (28)  208 (28)
+         231 (28)  214 (28)  283 (28)
+
+Means where each response receives equal weight; under test - report problems please
+COND  1   192 (164)  217 (162)  238 (162)  256 (85)  212 (160)  256 (134)  239 (160)
+         237 (161)  214 (159)  257 (166)
+COND  2   237 (139)  226 (161)  264 (157)  274 (91)  207 (163)  256 (137)  231 (159)
+         253 (161)  209 (164)  268 (163)
+COND  3   244 (141)  231 (162)  266 (160)  266 (94)  231 (158)  253 (153)  223 (163)
+         241 (166)  222 (159)  267 (165)
+COND  4   258 (139)  224 (157)  264 (156)  278 (116)  251 (137)  231 (76)  209 (161)
+         231 (163)  216 (156)  284 (161)
+type of analysis 2
+
+*****
+FIRST PASS
+*****
+cumulating multiple phrases in a region
+Subj X Items file exp3_1ps.res
+
+S# 1, ****S01L01E1.DA1****
+longcount 0 shortcount 0
+S# 2, ****S02L02E1.DA1****
+longcount 0 shortcount 0
+S# 3, ****S03L03E1.DA1****
+longcount 0 shortcount 0
+S# 4, ****S04L04E1.DA1****
+longcount 0 shortcount 0
+S# 5, ****S05L01E1.DA1****
+longcount 0 shortcount 0
+S# 6, ****S06L02E1.DA1****
+longcount 0 shortcount 0
+S# 7, ****S07L03E1.DA1****
+longcount 0 shortcount 0
+S# 8, ****S08L04E1.DA1****
+longcount 0 shortcount 0
+S# 9, ****S09L01E1.DA1****
+longcount 0 shortcount 0
+S# 10, ****S10L02E1.DA1****
+longcount 0 shortcount 0
+S# 11, ****S11L03E1.DA1****
+longcount 0 shortcount 0
+S# 12, ****S12L04E1.DA1****
+longcount 0 shortcount 0
+S# 13, ****S13L01E1.DA1****
+longcount 0 shortcount 0
+S# 14, ****S14L02E1.DA1****
+longcount 0 shortcount 0
+S# 15, ****S15L03E1.DA1****
+longcount 0 shortcount 0
+S# 16, ****S16L04E1.DA1****
+longcount 0 shortcount 0
+S# 17, ****S17L01E1.DA1****
+longcount 0 shortcount 0
+S# 18, ****S18L02E1.DA1****
+longcount 0 shortcount 0
+S# 19, ****S19L03E1.DA1****
+longcount 0 shortcount 0
+S# 20, ****S20L04E1.DA1****
+longcount 0 shortcount 0
+S# 21, ****S21L01E1.DA1****
+longcount 0 shortcount 0
+S# 22, ****S22L02E1.DA1****
+longcount 0 shortcount 0
+S# 23, ****S23L03E1.DA1****WARNING!!!: 23476 fixations on trial 3 for subject 23
+
+longcount 0 shortcount 0
+S# 24, ****S24L04E1.DA1****
+longcount 0 shortcount 0
+S# 25, ****S25L01E1.DA1****
+longcount 0 shortcount 0
+S# 26, ****S26L02E1.DA1****
+longcount 0 shortcount 0
+S# 27, ****S27L03E1.DA1****
+longcount 0 shortcount 0
+S# 28, ****S28L04E1.DA1****
+longcount 0 shortcount 0
+
+***** OUTPUT *****
+FIRST PASS
+*****
+
+First pass time (gaze duration if one-word regions)
+Upper cutoff for gaze duration 10000
+
+KEEPING trials with no fixations (count as 0 duration).
+
+AVERAGED OVER ITEMS AND SUBJECTS, BY CONDITIONS
+
+Means where each subject gets equal weight
+COND  1   562 (28)  502 (28)  334 (28)  138 (28)  462 (28)  298 (28)  371 (28)
+         368 (28)  326 (28)  331 (28)
+COND  2   337 (28)  471 (28)  364 (28)  149 (28)  386 (28)  294 (28)  383 (28)
+         363 (28)  352 (28)  335 (28)
+COND  3   339 (28)  436 (28)  334 (28)  157 (28)  421 (28)  317 (28)  365 (28)
+         382 (28)  334 (28)  330 (28)
+COND  4   312 (28)  418 (28)  327 (28)  207 (28)  276 (28)  111 (28)  356 (28)
+         377 (28)  334 (28)  346 (28)
+
+Means where each response receives equal weight; under test - report problems please
+COND  1   562 (168)  502 (168)  334 (168)  138 (168)  463 (168)  298 (168)  371 (168)
+         369 (168)  327 (168)  332 (168)
+COND  2   337 (168)  471 (168)  364 (168)  150 (168)  387 (168)  294 (168)  384 (168)
+         363 (168)  352 (168)  335 (168)
+COND  3   340 (168)  437 (168)  335 (168)  158 (168)  421 (168)  317 (168)  365 (168)
+         382 (168)  335 (168)  331 (168)
+COND  4   312 (168)  418 (168)  327 (168)  207 (168)  276 (168)  111 (168)  356 (168)
+         377 (168)  334 (168)  347 (168)
+type of analysis 3
+
+*****
+TOTAL TIME
+*****
+cumulating multiple phrases in a region
+Subj X Items file exp3_tt.res
+
+S# 1, ****S01L01E1.DA1****
+longcount 0 shortcount 0 total number fixations 1846
+proportion long times 0.000000 proportion short times 0.000000
+S# 2, ****S02L02E1.DA1****
+longcount 0 shortcount 0 total number fixations 2192
+proportion long times 0.000000 proportion short times 0.000000
+S# 3, ****S03L03E1.DA1****
+longcount 0 shortcount 0 total number fixations 2851
+proportion long times 0.000000 proportion short times 0.000000
+S# 4, ****S04L04E1.DA1****
+longcount 0 shortcount 0 total number fixations 1618
+proportion long times 0.000000 proportion short times 0.000000
+S# 5, ****S05L01E1.DA1****
+longcount 0 shortcount 0 total number fixations 1904
+proportion long times 0.000000 proportion short times 0.000000
+S# 6, ****S06L02E1.DA1****
+longcount 0 shortcount 0 total number fixations 1311
+proportion long times 0.000000 proportion short times 0.000000
+S# 7, ****S07L03E1.DA1****
+longcount 0 shortcount 0 total number fixations 985
+proportion long times 0.000000 proportion short times 0.000000
+S# 8, ****S08L04E1.DA1****
+longcount 0 shortcount 0 total number fixations 1272
+proportion long times 0.000000 proportion short times 0.000000
+S# 9, ****S09L01E1.DA1****
+longcount 0 shortcount 0 total number fixations 1330
+proportion long times 0.000000 proportion short times 0.000000
+S# 10, ****S10L02E1.DA1****
+longcount 0 shortcount 0 total number fixations 1889
+proportion long times 0.000000 proportion short times 0.000000
+S# 11, ****S11L03E1.DA1****
+longcount 0 shortcount 0 total number fixations 1421
+proportion long times 0.000000 proportion short times 0.000000
+S# 12, ****S12L04E1.DA1****
+longcount 0 shortcount 0 total number fixations 1088
+proportion long times 0.000000 proportion short times 0.000000
+S# 13, ****S13L01E1.DA1****
+longcount 0 shortcount 0 total number fixations 858
+proportion long times 0.000000 proportion short times 0.000000
+S# 14, ****S14L02E1.DA1****
+longcount 0 shortcount 0 total number fixations 1721
+proportion long times 0.000000 proportion short times 0.000000
+S# 15, ****S15L03E1.DA1****
+longcount 0 shortcount 0 total number fixations 1263
+proportion long times 0.000000 proportion short times 0.000000
+S# 16, ****S16L04E1.DA1****
+longcount 0 shortcount 0 total number fixations 2527
+proportion long times 0.000000 proportion short times 0.000000
+S# 17, ****S17L01E1.DA1****
+longcount 0 shortcount 0 total number fixations 1719
+proportion long times 0.000000 proportion short times 0.000000
+S# 18, ****S18L02E1.DA1****
+longcount 0 shortcount 0 total number fixations 2370
+proportion long times 0.000000 proportion short times 0.000000
+S# 19, ****S19L03E1.DA1****
+longcount 0 shortcount 0 total number fixations 1760
+proportion long times 0.000000 proportion short times 0.000000
+S# 20, ****S20L04E1.DA1****
+longcount 0 shortcount 0 total number fixations 1175
+proportion long times 0.000000 proportion short times 0.000000
+S# 21, ****S21L01E1.DA1****
+longcount 0 shortcount 0 total number fixations 1414
+proportion long times 0.000000 proportion short times 0.000000
+S# 22, ****S22L02E1.DA1****
+longcount 0 shortcount 0 total number fixations 1470
+proportion long times 0.000000 proportion short times 0.000000
+S# 23, ****S23L03E1.DA1****
+SHORT: Cnd   1 Itm   3 Fix 189 Pos   0 Time     0 Reg from    0 to   16
+SHORT: Cnd   1 Itm   3 Fix 190 Pos   0 Time     0 Reg from    0 to   16
+SHORT: Cnd   1 Itm   3 Fix 191 Pos   0 Time     0 Reg from    0 to   16
+SHORT: Cnd   1 Itm   3 Fix 188 Pos 532 Time -22050 Reg from  530 to  550WARNING!!!: 23476 fixations on trial 3 for subject 23
+
+longcount 0 shortcount 4 total number fixations 2283
+proportion long times 0.000000 proportion short times 0.001752
+S# 24, ****S24L04E1.DA1****
+longcount 0 shortcount 0 total number fixations 1809
+proportion long times 0.000000 proportion short times 0.000000
+S# 25, ****S25L01E1.DA1****
+longcount 0 shortcount 0 total number fixations 1436
+proportion long times 0.000000 proportion short times 0.000000
+S# 26, ****S26L02E1.DA1****
+longcount 0 shortcount 0 total number fixations 1140
+proportion long times 0.000000 proportion short times 0.000000
+S# 27, ****S27L03E1.DA1****
+longcount 0 shortcount 0 total number fixations 1130
+proportion long times 0.000000 proportion short times 0.000000
+S# 28, ****S28L04E1.DA1****
+longcount 0 shortcount 0 total number fixations 1776
+proportion long times 0.000000 proportion short times 0.000000
+
+***** OUTPUT *****
+TOTAL TIME
+*****
+
+Total time: Upper cutoff for cumulated total time duration 10000
+
+Individual fixations eliminated with long time 4000, short time 20
+Proportion of long times 0.000000
+Proportion of short times 0.000063
+
+
+KEEPING trials with no fixations (count as 0 duration).
+
+AVERAGED OVER ITEMS AND SUBJECTS, BY CONDITIONS
+
+Means where each subject gets equal weight
+COND  1  1179 (28) 1169 (28)  834 (28)  447 (28) 1097 (28)  542 (28)  752 (28)
+         732 (28)  822 (28)  605 (28)
+COND  2   749 (28) 1215 (28)  867 (28)  433 (28) 1031 (28)  505 (28)  686 (28)
+         640 (28)  740 (28)  558 (28)
+COND  3   628 (28) 1105 (28)  756 (28)  372 (28)  894 (28)  542 (28)  713 (28)
+         743 (28)  694 (28)  511 (28)
+COND  4   578 (28)  908 (28)  676 (28)  421 (28)  548 (28)  272 (28)  848 (28)
+         782 (28)  784 (28)  566 (28)
+
+Means where each response receives equal weight; under test - report problems please
+COND  1  1180 (168) 1170 (168)  835 (168)  447 (168) 1097 (168)  542 (168)  752 (168)
+         732 (168)  822 (168)  606 (168)
+COND  2   749 (168) 1216 (168)  867 (168)  434 (168) 1031 (168)  505 (168)  686 (168)
+         641 (168)  741 (168)  558 (168)
+COND  3   628 (168) 1105 (168)  756 (168)  372 (168)  895 (168)  542 (168)  713 (168)
+         743 (168)  694 (168)  511 (168)
+COND  4   578 (168)  908 (168)  677 (168)  421 (168)  548 (168)  272 (168)  848 (168)
+         782 (168)  784 (168)  566 (168)
+type of analysis 4
+
+*****
+FIRST PASS REGRESSIONS
+*****
+Subj X Items file exp3_fpr.res
+
+S# 1, ****S01L01E1.DA1****
+longcount 0 shortcount 0
+S# 2, ****S02L02E1.DA1****
+longcount 0 shortcount 0
+S# 3, ****S03L03E1.DA1****
+longcount 0 shortcount 0
+S# 4, ****S04L04E1.DA1****
+longcount 0 shortcount 0
+S# 5, ****S05L01E1.DA1****
+longcount 0 shortcount 0
+S# 6, ****S06L02E1.DA1****
+longcount 0 shortcount 0
+S# 7, ****S07L03E1.DA1****
+longcount 0 shortcount 0
+S# 8, ****S08L04E1.DA1****
+longcount 0 shortcount 0
+S# 9, ****S09L01E1.DA1****
+longcount 0 shortcount 0
+S# 10, ****S10L02E1.DA1****
+longcount 0 shortcount 0
+S# 11, ****S11L03E1.DA1****
+longcount 0 shortcount 0
+S# 12, ****S12L04E1.DA1****
+longcount 0 shortcount 0
+S# 13, ****S13L01E1.DA1****
+longcount 0 shortcount 0
+S# 14, ****S14L02E1.DA1****
+longcount 0 shortcount 0
+S# 15, ****S15L03E1.DA1****
+longcount 0 shortcount 0
+S# 16, ****S16L04E1.DA1****
+longcount 0 shortcount 0
+S# 17, ****S17L01E1.DA1****
+longcount 0 shortcount 0
+S# 18, ****S18L02E1.DA1****
+longcount 0 shortcount 0
+S# 19, ****S19L03E1.DA1****
+longcount 0 shortcount 0
+S# 20, ****S20L04E1.DA1****
+longcount 0 shortcount 0
+S# 21, ****S21L01E1.DA1****
+longcount 0 shortcount 0
+S# 22, ****S22L02E1.DA1****
+longcount 0 shortcount 0
+S# 23, ****S23L03E1.DA1****
+SHORT: Cnd   1 Itm   3 Fix 188 Pos 532 Time -22050 Reg from  530 to  550WARNING!!!: 23476 fixations on trial 3 for subject 23
+
+longcount 0 shortcount 1
+S# 24, ****S24L04E1.DA1****
+longcount 0 shortcount 0
+S# 25, ****S25L01E1.DA1****
+longcount 0 shortcount 0
+S# 26, ****S26L02E1.DA1****
+longcount 0 shortcount 0
+S# 27, ****S27L03E1.DA1****
+longcount 0 shortcount 0
+S# 28, ****S28L04E1.DA1****
+longcount 0 shortcount 0
+
+***** OUTPUT *****
+FIRST PASS REGRESSIONS
+*****
+
+Percentage of trials where one or more legal first pass fixations in region
+were followed by a legal fixation to earlier point in the sentence.
+
+AVERAGED OVER ITEMS AND SUBJECTS, BY CONDITIONS
+
+Means where each subject gets equal weight
+COND  1     0 (28)    7 (28)   21 (28)   14 (25)   31 (28)    1 (28)   15 (28)
+          16 (28)    7 (28)   98 (28)
+COND  2     3 (28)   22 (28)   39 (28)   22 (26)   32 (28)    3 (28)   12 (28)
+          18 (28)    6 (28)   97 (28)
+COND  3     1 (28)   19 (28)   39 (28)    9 (27)   33 (28)    4 (28)   13 (28)
+          24 (28)    7 (28)   96 (28)
+COND  4     7 (28)   16 (28)   29 (28)   18 (27)    9 (28)   41 (28)   25 (28)
+          14 (28)   10 (28)   97 (28)
+
+Means where each response receives equal weight; under test - report problems please
+COND  1     0 (164)    8 (162)   21 (162)   16 (85)   31 (160)    1 (134)   15 (160)
+          16 (161)    7 (159)   98 (164)
+COND  2     3 (139)   21 (161)   38 (157)   25 (91)   33 (163)    3 (137)   12 (159)
+          18 (161)    6 (164)   97 (157)
+COND  3     1 (141)   18 (162)   40 (160)   11 (94)   33 (158)    4 (153)   13 (163)
+          24 (166)    7 (159)   96 (164)
+COND  4     7 (139)   15 (157)   28 (156)   18 (116)    8 (137)   31 (76)   26 (161)
+          14 (163)   10 (156)   97 (160)
+type of analysis 6
+
+*****
+SKIPPING PROBABILITY
+*****
+Subj X Items file exp3_skp.res
+
+S# 1, ****S01L01E1.DA1****
+longcount 0 shortcount 0
+S# 2, ****S02L02E1.DA1****
+longcount 0 shortcount 0
+S# 3, ****S03L03E1.DA1****
+longcount 0 shortcount 0
+S# 4, ****S04L04E1.DA1****
+longcount 0 shortcount 0
+S# 5, ****S05L01E1.DA1****
+longcount 0 shortcount 0
+S# 6, ****S06L02E1.DA1****
+longcount 0 shortcount 0
+S# 7, ****S07L03E1.DA1****
+longcount 0 shortcount 0
+S# 8, ****S08L04E1.DA1****
+longcount 0 shortcount 0
+S# 9, ****S09L01E1.DA1****
+longcount 0 shortcount 0
+S# 10, ****S10L02E1.DA1****
+longcount 0 shortcount 0
+S# 11, ****S11L03E1.DA1****
+longcount 0 shortcount 0
+S# 12, ****S12L04E1.DA1****
+longcount 0 shortcount 0
+S# 13, ****S13L01E1.DA1****
+longcount 0 shortcount 0
+S# 14, ****S14L02E1.DA1****
+longcount 0 shortcount 0
+S# 15, ****S15L03E1.DA1****
+longcount 0 shortcount 0
+S# 16, ****S16L04E1.DA1****
+longcount 0 shortcount 0
+S# 17, ****S17L01E1.DA1****
+longcount 0 shortcount 0
+S# 18, ****S18L02E1.DA1****
+longcount 0 shortcount 0
+S# 19, ****S19L03E1.DA1****
+longcount 0 shortcount 0
+S# 20, ****S20L04E1.DA1****
+longcount 0 shortcount 0
+S# 21, ****S21L01E1.DA1****
+longcount 0 shortcount 0
+S# 22, ****S22L02E1.DA1****
+longcount 0 shortcount 0
+S# 23, ****S23L03E1.DA1****
+SHORT: Cnd   1 Itm   3 Fix 188 Pos 532 Time -22050 Reg from  530 to  550WARNING!!!: 23476 fixations on trial 3 for subject 23
+
+longcount 0 shortcount 1
+S# 24, ****S24L04E1.DA1****
+longcount 0 shortcount 0
+S# 25, ****S25L01E1.DA1****
+longcount 0 shortcount 0
+S# 26, ****S26L02E1.DA1****
+longcount 0 shortcount 0
+S# 27, ****S27L03E1.DA1****
+longcount 0 shortcount 0
+S# 28, ****S28L04E1.DA1****
+longcount 0 shortcount 0
+
+***** OUTPUT *****
+1
+*****
+
+Percentage of trials on which a nonregressive fixation was madein a region
+
+
+AVERAGED OVER ITEMS AND SUBJECTS, BY CONDITIONS
+
+Means where each subject gets equal weight
+COND  1    97 (28)   96 (28)   96 (28)   50 (28)   95 (28)   79 (28)   95 (28)
+          95 (28)   94 (28)   98 (28)
+COND  2    82 (28)   95 (28)   93 (28)   53 (28)   96 (28)   81 (28)   94 (28)
+          95 (28)   97 (28)   97 (28)
+COND  3    83 (28)   96 (28)   95 (28)   55 (28)   93 (28)   90 (28)   96 (28)
+          98 (28)   94 (28)   98 (28)
+COND  4    83 (28)   93 (28)   93 (28)   69 (28)   81 (28)   45 (28)   96 (28)
+          97 (28)   93 (28)   96 (28)
+
+Means where each response receives equal weight; under test - report problems please
+COND  1    97 (168)   96 (168)   96 (168)   50 (168)   95 (168)   79 (168)   95 (168)
+          95 (168)   94 (168)   98 (168)
+COND  2    82 (168)   95 (168)   93 (168)   54 (168)   97 (168)   81 (168)   94 (168)
+          95 (168)   97 (168)   97 (168)
+COND  3    83 (168)   96 (168)   95 (168)   55 (168)   94 (168)   91 (168)   97 (168)
+          98 (168)   94 (168)   98 (168)
+COND  4    83 (167)   94 (167)   93 (167)   69 (167)   82 (167)   45 (167)   96 (167)
+          97 (167)   93 (167)   96 (167)
+type of analysis 8
+
+*****
+SECOND PASS
+*****
+cumulating multiple phrases in a region
+Subj X Items file exp3_2ps.res
+
+S# 1, ****S01L01E1.DA1****
+longcount 0 shortcount 0
+S# 2, ****S02L02E1.DA1****
+longcount 0 shortcount 0
+S# 3, ****S03L03E1.DA1****
+longcount 0 shortcount 0
+S# 4, ****S04L04E1.DA1****
+longcount 0 shortcount 0
+S# 5, ****S05L01E1.DA1****
+longcount 0 shortcount 0
+S# 6, ****S06L02E1.DA1****
+longcount 0 shortcount 0
+S# 7, ****S07L03E1.DA1****
+longcount 0 shortcount 0
+S# 8, ****S08L04E1.DA1****
+longcount 0 shortcount 0
+S# 9, ****S09L01E1.DA1****
+longcount 0 shortcount 0
+S# 10, ****S10L02E1.DA1****
+longcount 0 shortcount 0
+S# 11, ****S11L03E1.DA1****
+longcount 0 shortcount 0
+S# 12, ****S12L04E1.DA1****
+longcount 0 shortcount 0
+S# 13, ****S13L01E1.DA1****
+longcount 0 shortcount 0
+S# 14, ****S14L02E1.DA1****
+longcount 0 shortcount 0
+S# 15, ****S15L03E1.DA1****
+longcount 0 shortcount 0
+S# 16, ****S16L04E1.DA1****
+longcount 0 shortcount 0
+S# 17, ****S17L01E1.DA1****
+longcount 0 shortcount 0
+S# 18, ****S18L02E1.DA1****
+longcount 0 shortcount 0
+S# 19, ****S19L03E1.DA1****
+longcount 0 shortcount 0
+S# 20, ****S20L04E1.DA1****
+longcount 0 shortcount 0
+S# 21, ****S21L01E1.DA1****
+longcount 0 shortcount 0
+S# 22, ****S22L02E1.DA1****
+longcount 0 shortcount 0
+S# 23, ****S23L03E1.DA1****WARNING!!!: 23476 fixations on trial 3 for subject 23
+
+longcount 0 shortcount 3
+S# 24, ****S24L04E1.DA1****
+longcount 0 shortcount 0
+S# 25, ****S25L01E1.DA1****
+longcount 0 shortcount 0
+S# 26, ****S26L02E1.DA1****
+longcount 0 shortcount 0
+S# 27, ****S27L03E1.DA1****
+longcount 0 shortcount 0
+S# 28, ****S28L04E1.DA1****
+longcount 0 shortcount 0
+
+***** OUTPUT *****
+1
+*****
+
+Second pass: Treating non-regressions as zero durations in means.
+Including only rereading time after gone past region.
+
+KEEPING trials with no fixations (count as 0 duration).
+
+AVERAGED OVER ITEMS AND SUBJECTS, BY CONDITIONS
+
+Means where each subject gets equal weight
+COND  1   616 (28)  635 (28)  450 (28)  297 (28)  520 (28)  237 (28)  335 (28)
+         311 (28)  458 (28)    0 (28)
+COND  2   401 (28)  637 (28)  407 (28)  257 (28)  507 (28)  196 (28)  260 (28)
+         224 (28)  352 (28)    0 (28)
+COND  3   286 (28)  566 (28)  345 (28)  201 (28)  366 (28)  216 (28)  301 (28)
+         267 (28)  341 (28)    0 (28)
+COND  4   253 (28)  428 (28)  286 (28)  196 (28)  262 (28)  153 (28)  411 (28)
+         346 (28)  418 (28)    0 (28)
+
+Means where each response receives equal weight; under test - report problems please
+COND  1   617 (168)  635 (168)  451 (168)  298 (168)  520 (168)  237 (168)  336 (168)
+         311 (168)  458 (168)    0 (168)
+COND  2   401 (168)  637 (168)  408 (168)  258 (168)  507 (168)  197 (168)  261 (168)
+         224 (168)  352 (168)    0 (168)
+COND  3   287 (168)  566 (168)  345 (168)  201 (168)  366 (168)  216 (168)  301 (168)
+         268 (168)  342 (168)    0 (168)
+COND  4   253 (168)  428 (168)  286 (168)  196 (168)  262 (168)  153 (168)  412 (168)
+         346 (168)  419 (168)    0 (168)
+type of analysis 13
+
+*****
+REGRESSION PATH TIME
+*****
+cumulating multiple phrases in a region
+Subj X Items file exp3_rpt.res
+
+S# 1, ****S01L01E1.DA1****
+longcount 0 shortcount 0
+S# 2, ****S02L02E1.DA1****
+longcount 0 shortcount 0
+S# 3, ****S03L03E1.DA1****
+longcount 0 shortcount 0
+S# 4, ****S04L04E1.DA1****
+longcount 0 shortcount 0
+S# 5, ****S05L01E1.DA1****
+longcount 0 shortcount 0
+S# 6, ****S06L02E1.DA1****
+longcount 0 shortcount 0
+S# 7, ****S07L03E1.DA1****
+longcount 0 shortcount 0
+S# 8, ****S08L04E1.DA1****
+longcount 0 shortcount 0
+S# 9, ****S09L01E1.DA1****
+longcount 0 shortcount 0
+S# 10, ****S10L02E1.DA1****
+longcount 0 shortcount 0
+S# 11, ****S11L03E1.DA1****
+longcount 0 shortcount 0
+S# 12, ****S12L04E1.DA1****
+longcount 0 shortcount 0
+S# 13, ****S13L01E1.DA1****
+longcount 0 shortcount 0
+S# 14, ****S14L02E1.DA1****
+longcount 0 shortcount 0
+S# 15, ****S15L03E1.DA1****
+longcount 0 shortcount 0
+S# 16, ****S16L04E1.DA1****
+longcount 0 shortcount 0
+S# 17, ****S17L01E1.DA1****
+longcount 0 shortcount 0
+S# 18, ****S18L02E1.DA1****
+longcount 0 shortcount 0
+S# 19, ****S19L03E1.DA1****
+longcount 0 shortcount 0
+S# 20, ****S20L04E1.DA1****
+longcount 0 shortcount 0
+S# 21, ****S21L01E1.DA1****
+longcount 0 shortcount 0
+S# 22, ****S22L02E1.DA1****
+longcount 0 shortcount 0
+S# 23, ****S23L03E1.DA1****
+NEGATIVE V: item 12 cond 4 region 9
+NEGATIVE V: item 12 cond 4 region 9
+NEGATIVE V: item 12 cond 4 region 9
+NEGATIVE V: item 12 cond 4 region 9
+NEGATIVE V: item 12 cond 4 region 9
+NEGATIVE V: item 12 cond 4 region 9
+NEGATIVE V: item 12 cond 4 region 9
+NEGATIVE V: item 12 cond 4 region 9
+NEGATIVE V: item 12 cond 4 region 9
+NEGATIVE V: item 12 cond 4 region 9
+NEGATIVE V: item 12 cond 4 region 9
+NEGATIVE V: item 12 cond 4 region 9
+SHORT: Cnd   1 Itm   3 Fix 188 Pos 532 Time -22050 Reg from  530 to  550
+SHORT: Cnd   1 Itm   3 Fix 189 Pos   0 Time     0 Reg from  530 to  550
+SHORT: Cnd   1 Itm   3 Fix 190 Pos   0 Time     0 Reg from  530 to  550
+SHORT: Cnd   1 Itm   3 Fix 191 Pos   0 Time     0 Reg from  530 to  550WARNING!!!: 23476 fixations on trial 3 for subject 23
+
+longcount 0 shortcount 4
+S# 24, ****S24L04E1.DA1****
+longcount 0 shortcount 0
+S# 25, ****S25L01E1.DA1****
+longcount 0 shortcount 0
+S# 26, ****S26L02E1.DA1****
+longcount 0 shortcount 0
+S# 27, ****S27L03E1.DA1****
+longcount 0 shortcount 0
+S# 28, ****S28L04E1.DA1****
+longcount 0 shortcount 0
+
+***** OUTPUT *****
+1
+*****
+
+Time from entering region to first going past it (quasi-first-pass time).
+  Sum of ALL time since entering, including time outside region.
+
+KEEPING trials with no fixations (count as 0 duration).
+
+AVERAGED OVER ITEMS AND SUBJECTS, BY CONDITIONS
+
+Means where each subject gets equal weight
+COND  1   562 (28)  556 (28)  473 (28)  179 (28)  731 (28)  333 (28)  488 (28)
+         617 (28)  701 (28) 6069 (28)
+COND  2   380 (28)  715 (28)  836 (28)  364 (28)  813 (28)  381 (28)  477 (28)
+         553 (28)  685 (28) 5195 (28)
+COND  3   356 (28)  621 (28)  879 (28)  218 (28)  817 (28)  376 (28)  531 (28)
+         681 (28)  513 (28) 4636 (28)
+COND  4   388 (28)  537 (28)  742 (28)  391 (28)  327 (28)  179 (28)  569 (28)
+         555 (28)  637 (28) 5004 (28)
+
+Means where each response receives equal weight; under test - report problems please
+COND  1   562 (168)  556 (168)  473 (168)  179 (168)  731 (168)  334 (168)  489 (168)
+         617 (168)  701 (168) 6069 (168)
+COND  2   380 (168)  716 (168)  836 (168)  364 (168)  814 (168)  382 (168)  477 (168)
+         554 (168)  686 (168) 5195 (168)
+COND  3   357 (168)  621 (168)  879 (168)  218 (168)  817 (168)  377 (168)  531 (168)
+         682 (168)  514 (168) 4636 (168)
+COND  4   389 (168)  537 (168)  742 (168)  392 (168)  327 (168)  180 (168)  569 (168)
+         555 (168)  638 (168) 5004 (168)
+type of analysis 16
+
+*****
+GAZE DURATION
+*****
+critical region is 8
+adjusting 3 characters left
+Subj X Items file exp3_gaz.res
+
+S# 1, ****S01L01E1.DA1****
+longcount 0 shortcount 0
+S# 2, ****S02L02E1.DA1****
+longcount 0 shortcount 0
+S# 3, ****S03L03E1.DA1****
+longcount 0 shortcount 0
+S# 4, ****S04L04E1.DA1****
+No fix in adj reg: cond   2 item   3 chars moved   4
+longcount 0 shortcount 0
+S# 5, ****S05L01E1.DA1****
+No fix in adj reg: cond   4 item  28 chars moved   4
+Adj reg: C 31 I   6 Fix  92 Pos  18 Time   206 Reg  509 -  523 chars moved 1
+longcount 0 shortcount 0
+S# 6, ****S06L02E1.DA1****
+longcount 0 shortcount 0
+S# 7, ****S07L03E1.DA1****
+Adj reg: C 31 I  26 Fix  34 Pos   6 Time   186 Reg  504 -  518 chars moved 2
+longcount 0 shortcount 0
+S# 8, ****S08L04E1.DA1****
+Adj reg: C 32 I  31 Fix  45 Pos 539 Time    30 Reg  506 -  522 chars moved 2
+Adj reg: C 32 I  18 Fix  39 Pos 525 Time   134 Reg  504 -  517 chars moved 1
+No fix in adj reg: cond   4 item  15 chars moved   4
+longcount 0 shortcount 0
+S# 9, ****S09L01E1.DA1****
+longcount 0 shortcount 0
+S# 10, ****S10L02E1.DA1****
+longcount 0 shortcount 0
+S# 11, ****S11L03E1.DA1****
+longcount 0 shortcount 0
+S# 12, ****S12L04E1.DA1****
+longcount 0 shortcount 0
+S# 13, ****S13L01E1.DA1****
+longcount 0 shortcount 0
+S# 14, ****S14L02E1.DA1****
+longcount 0 shortcount 0
+S# 15, ****S15L03E1.DA1****
+longcount 0 shortcount 0
+S# 16, ****S16L04E1.DA1****
+No fix in adj reg: cond   4 item   6 chars moved   4
+No fix in adj reg: cond   1 item  22 chars moved   4
+longcount 0 shortcount 0
+S# 17, ****S17L01E1.DA1****
+longcount 0 shortcount 0
+S# 18, ****S18L02E1.DA1****
+longcount 0 shortcount 0
+S# 19, ****S19L03E1.DA1****
+longcount 0 shortcount 0
+S# 20, ****S20L04E1.DA1****
+No fix in adj reg: cond   4 item  15 chars moved   4
+No fix in adj reg: cond   3 item  14 chars moved   4
+longcount 0 shortcount 0
+S# 21, ****S21L01E1.DA1****
+No fix in adj reg: cond   3 item  18 chars moved   4
+No fix in adj reg: cond   1 item  10 chars moved   4
+longcount 0 shortcount 0
+S# 22, ****S22L02E1.DA1****
+No fix in adj reg: cond   2 item  29 chars moved   4
+longcount 0 shortcount 0
+S# 23, ****S23L03E1.DA1****
+No fix in adj reg: cond   1 item   3 chars moved   4WARNING!!!: 23476 fixations on trial 3 for subject 23
+
+No fix in adj reg: cond   1 item   8 chars moved   4
+No fix in adj reg: cond   2 item  28 chars moved   4
+Adj reg: C 34 I  30 Fix  44 Pos  18 Time   138 Reg  507 -  522 chars moved 3
+Adj reg: C 32 I  20 Fix  32 Pos  42 Time    34 Reg  504 -  519 chars moved 1
+No fix in adj reg: cond   2 item  32 chars moved   4
+longcount 0 shortcount 0
+S# 24, ****S24L04E1.DA1****
+longcount 0 shortcount 0
+S# 25, ****S25L01E1.DA1****
+longcount 0 shortcount 0
+S# 26, ****S26L02E1.DA1****
+longcount 0 shortcount 0
+S# 27, ****S27L03E1.DA1****
+No fix in adj reg: cond   1 item  31 chars moved   4
+longcount 0 shortcount 0
+S# 28, ****S28L04E1.DA1****
+longcount 0 shortcount 0
+
+***** OUTPUT *****
+GAZE DURATION
+*****
+
+Totalgaze (total time in single region of interest, moving boundary left
+just in case eyegaze moved it left)
+
+AVERAGED OVER ITEMS AND SUBJECTS, BY CONDITIONS
+
+Means where each subject gets equal weight
+COND  1   740 (28)
+COND  2   652 (28)
+COND  3   749 (28)
+COND  4   798 (28)
+
+Means where each response receives equal weight; under test - report problems please
+COND  1   736 (163)
+COND  2   654 (164)
+COND  3   752 (166)
+COND  4   798 (164)

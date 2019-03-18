@@ -1,0 +1,2666 @@
+%BeginHeader
+EyeTrack Script for 
+  (1) German RC ditrans+adjunct expt (experiment 3), plus 
+  (2) German predictive auxiliary expt (experiment 4).
+Roger Levy and Frank Keller
+August/September 2006
+
+Note that font size is 14.
+%EndHeader
+
+set conditions =  4
+set experiments = 1
+set background =  16777215
+set foreground =  0
+
+trial_type Question
+  text_format =    'Lucida Console' 14 25 35 250 cleartype
+  button =         blue
+  button =         red
+  output =         nostream
+  trigger =        nogaze
+  cursor_size =    0
+  dc_delay =       0
+  stimulus_delay = 0
+  revert =         0
+end Question
+
+trial_type Reading
+  text_format =    'Lucida Console' 14 25 35 250 cleartype
+  button =         purple
+  output =         nostream
+  trigger =        gaze
+  cursor_size =    0
+  dc_delay =       0
+  stimulus_delay = 0
+  revert =         0
+end Reading
+
+trial P1I1D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Milchbauer bedauerte es sehr, dass die Hälfte seiner Milchkühe im letzten\nJahr der Rinderpest zum Opfer gefallen war, und er immer noch auf die\nEntschädigung aus Brüssel wartet, obwohl er sie sofort beantragt hatte.
+  max_display_time = 600000
+  trial_type =       Reading
+end P1I1D0
+
+trial P2I1D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Die Sekretärin wird jetzt gleich ihrem jungen Chef den Brief tippen, obwohl\ndieser ihn erst morgen früh benötigt, wie er ihr bereits mehrmal gesagt hat.
+  max_display_time = 600000
+  trial_type =       Reading
+end P2I1D0
+
+trial P3I1D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Da der zitterige Großvater seine Rentenzahlung verspätet erhalten hatte, musste\ner am Monatsende seinen Sohn um Hilfe mit der Miete seiner Wohnung bitten, was\ndiesem jedoch gar nicht Recht war.
+  max_display_time = 600000
+  trial_type =       Reading
+end P3I1D0
+
+trial P3I1D1
+  button =           blue
+  gc_rect =          (0 0 0 0)
+  inline =           |Hat der Großvater seinen Sohn um Hilfe gebeten?
+  max_display_time = 600000
+  trial_type =       Question
+end P3I1D1
+
+sequence SP3I1
+  P3I1D0
+  P3I1D1
+end SP3I1
+
+trial P4I1D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil die alte Angorakatze immer wieder eklige Mäusekadaver aus der nahegelegenen\nMülldeponie anschleppte, sperrte der rüstige Rentner sie in den Keller.
+  max_display_time = 600000
+  trial_type =       Reading
+end P4I1D0
+
+trial P4I1D1
+  button =           red
+  gc_rect =          (0 0 0 0)
+  inline =           |Sperrte der Rentner die Katze in den Schrank?
+  max_display_time = 600000
+  trial_type =       Question
+end P4I1D1
+
+sequence SP4I1
+  P4I1D0
+  P4I1D1
+end SP4I1
+
+trial E1I1D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Verkäufer den Mangel verheimlichte, hat der Kunde,\nder ohne langes Bedenken des problematischen\nSachverhalts dem arroganten Händler des vornehmen\nAutohauses den Höchstpreis geboten hat, einen Verlust gemacht.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I1D0
+
+trial E1I1D1
+  button =           blue
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Verkäufer den Mangel verheimlicht?
+  max_display_time = 600000
+  trial_type =       Question
+end E1I1D1
+
+sequence SE1I1
+  E1I1D0
+  E1I1D1
+end SE1I1
+
+trial E2I1D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Verkäufer ohne langes Bedenken des problematischen\nSachverhalts den Mangel verheimlichte, hat der Kunde,\nder dem arroganten Händler des vornehmen\nAutohauses den Höchstpreis geboten hat, einen Verlust gemacht.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I1D0
+
+trial E2I1D1
+  button =           blue
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Verkäufer den problematischen Sachverhalt bedacht? 
+  max_display_time = 600000
+  trial_type =       Question
+end E2I1D1
+
+sequence SE2I1
+  E2I1D0
+  E2I1D1
+end SE2I1
+
+trial E3I1D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Verkäufer dem arroganten Händler des vornehmen\nAutohauses den Mangel verheimlichte, hat der Kunde,\nder ohne langes Bedenken des problematischen\nSachverhalts den Höchstpreis geboten hat, einen Verlust gemacht.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I1D0
+
+trial E3I1D1
+  button =           blue
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Verkäufer dem arroganten Händler etwas verheimlicht? 
+  max_display_time = 600000
+  trial_type =       Question
+end E3I1D1
+
+sequence SE3I1
+  E3I1D0
+  E3I1D1
+end SE3I1
+
+trial E4I1D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Verkäufer ohne langes Bedenken des problematischen\nSachverhalts dem arroganten Händler des vornehmen\nAutohauses den Mangel verheimlichte, hat der\nKunde, der den Höchstpreis geboten hat, einen Verlust gemacht.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I1D0
+
+trial E4I1D1
+  button =           blue
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Verkäufer den problematischen Sachverhalt bedacht?
+  max_display_time = 600000
+  trial_type =       Question
+end E4I1D1
+
+sequence SE4I1
+  E4I1D0
+  E4I1D1
+end SE4I1
+
+trial E1I2D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Lehrer den Strafunterricht verhängte, hat der Mitschüler,\nder zur zusätzlichen Ahndung des mehrfachen\nFehlverhaltens dem ungezogenen Sohn des fleißigen\nHausmeisters den Fußball versteckt hat, die Sache bereinigt.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I2D0
+
+trial E1I2D1
+  button =           blue
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Mitschüler das mehrfache Fehlverhalten geahndet?
+  max_display_time = 600000
+  trial_type =       Question
+end E1I2D1
+
+sequence SE1I2
+  E1I2D0
+  E1I2D1
+end SE1I2
+
+trial E2I2D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Lehrer zur zusätzlichen Ahndung des mehrfachen\nFehlverhaltens den Strafunterricht verhängte, hat der Mitschüler,\nder dem ungezogenen Sohn des fleißigen\nHausmeisters den Fußball versteckt hat, die Sache bereinigt.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I2D0
+
+trial E2I2D1
+  button =           blue
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Lehrer den Strafunterricht verhängt?
+  max_display_time = 600000
+  trial_type =       Question
+end E2I2D1
+
+sequence SE2I2
+  E2I2D0
+  E2I2D1
+end SE2I2
+
+trial E3I2D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Lehrer dem ungezogenen Sohn des fleißigen\nHausmeisters den Strafunterricht verhängte, hat der Mitschüler,\nder zur zusätzlichen Ahndung des mehrfachen\nFehlverhaltens den Fußball versteckt hat, die Sache bereinigt.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I2D0
+
+trial E3I2D1
+  button =           blue
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Lehrer den Strafunterricht verhängt?
+  max_display_time = 600000
+  trial_type =       Question
+end E3I2D1
+
+sequence SE3I2
+  E3I2D0
+  E3I2D1
+end SE3I2
+
+trial E4I2D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Lehrer zur zusätzlichen Ahndung des mehrfachen\nFehlverhaltens dem ungezogenen Sohn des fleißigen\nHausmeisters den Strafunterricht verhängte, hat der\nMitschüler, der den Fußball versteckt hat, die Sache bereinigt.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I2D0
+
+trial E4I2D1
+  button =           blue
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Lehrer dem ungezogenen Sohn etwas verhängt?
+  max_display_time = 600000
+  trial_type =       Question
+end E4I2D1
+
+sequence SE4I2
+  E4I2D0
+  E4I2D1
+end SE4I2
+
+trial E1I3D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Kollege den Bestechungsvorwurf machte, hat der Lehrling,\nder nach intensiver Diskussion des brisanten\nFalls dem fleißigen Mitarbeiter des strengen\nChefs den Aktenkoffer entwendet hat, eine Straftat begangen.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I3D0
+
+trial E1I3D1
+  button =           blue
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Lehrling dem fleißigen Mitarbeiter etwas entwendet?
+  max_display_time = 600000
+  trial_type =       Question
+end E1I3D1
+
+sequence SE1I3
+  E1I3D0
+  E1I3D1
+end SE1I3
+
+trial E2I3D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Kollege nach intensiver Diskussion des brisanten\nFalls den Bestechungsvorwurf machte, hat der Lehrling,\nder dem fleißigen Mitarbeiter des strengen\nChefs den Aktenkoffer entwendet hat, eine Straftat begangen.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I3D0
+
+trial E2I3D1
+  button =           blue
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Lehrling dem fleißigen Mitarbeiter etwas entwendet?
+  max_display_time = 600000
+  trial_type =       Question
+end E2I3D1
+
+sequence SE2I3
+  E2I3D0
+  E2I3D1
+end SE2I3
+
+trial E3I3D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Kollege dem fleißigen Mitarbeiter des strengen\nChefs den Bestechungsvorwurf machte, hat der Lehrling,\nder nach intensiver Diskussion des brisanten\nFalls den Aktenkoffer entwendet hat, eine Straftat begangen.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I3D0
+
+trial E3I3D1
+  button =           blue
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Lehrling den brisanten Fall intensiv diskutiert?
+  max_display_time = 600000
+  trial_type =       Question
+end E3I3D1
+
+sequence SE3I3
+  E3I3D0
+  E3I3D1
+end SE3I3
+
+trial E4I3D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Kollege nach intensiver Diskussion des brisanten\nFalls dem fleißigen Mitarbeiter des strengen\nChefs den Bestechungsvorwurf machte, hat der\nLehrling, der den Aktenkoffer entwendet hat, eine Straftat begangen.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I3D0
+
+trial E4I3D1
+  button =           blue
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Kollege den Bestechungsvorwurf gemacht?
+  max_display_time = 600000
+  trial_type =       Question
+end E4I3D1
+
+sequence SE4I3
+  E4I3D0
+  E4I3D1
+end SE4I3
+
+trial E1I5D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Stadtrat den Antrag ablehnte, hat der Berater,\nder nach stundenlanger Erörterung des langen\nBerichts dem schmierigen Politiker des kleinen\nOrts den Finanzplan präsentiert hat, die Krise entschärft.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I5D0
+
+trial E1I5D1
+  button =           blue
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Berater den Finanzplan präsentiert?
+  max_display_time = 600000
+  trial_type =       Question
+end E1I5D1
+
+sequence SE1I5
+  E1I5D0
+  E1I5D1
+end SE1I5
+
+trial E2I5D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Stadtrat nach stundenlanger Erörterung des langen\nBerichts den Antrag ablehnte, hat der Berater,\nder dem schmierigen Politiker des kleinen\nOrts den Finanzplan präsentiert hat, die Krise entschärft.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I5D0
+
+trial E2I5D1
+  button =           blue
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Berater den Finanzplan präsentiert?
+  max_display_time = 600000
+  trial_type =       Question
+end E2I5D1
+
+sequence SE2I5
+  E2I5D0
+  E2I5D1
+end SE2I5
+
+trial E3I5D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Stadtrat dem schmierigen Politiker des kleinen\nOrts den Antrag ablehnte, hat der Berater,\nder nach stundenlanger Erörterung des langen\nBerichts den Finanzplan präsentiert hat, die Krise entschärft.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I5D0
+
+trial E3I5D1
+  button =           blue
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Berater den Finanzplan präsentiert?
+  max_display_time = 600000
+  trial_type =       Question
+end E3I5D1
+
+sequence SE3I5
+  E3I5D0
+  E3I5D1
+end SE3I5
+
+trial E4I5D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Stadtrat nach stundenlanger Erörterung des langen\nBerichts dem schmierigen Politiker des kleinen\nOrts den Antrag ablehnte, hat der\nBerater, der den Finanzplan präsentiert hat, die Krise entschärft.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I5D0
+
+trial E4I5D1
+  button =           blue
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Berater den Finanzplan präsentiert?
+  max_display_time = 600000
+  trial_type =       Question
+end E4I5D1
+
+sequence SE4I5
+  E4I5D0
+  E4I5D1
+end SE4I5
+
+trial E1I6D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Manager den Vorschlag zurückwies, hat der Vorstand,\nder nach sofortiger Angabe des überzeugenden\nGrunds dem senilen Vorstand des unrentablen\nUnternehmens den Aktienanteil entzogen hat, die Pleite verursacht.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I6D0
+
+trial E1I6D1
+  button =           red
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Vorstand den Vorschlag zurückgewiesen?
+  max_display_time = 600000
+  trial_type =       Question
+end E1I6D1
+
+sequence SE1I6
+  E1I6D0
+  E1I6D1
+end SE1I6
+
+trial E2I6D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Manager nach sofortiger Angabe des überzeugenden\nGrunds den Vorschlag zurückwies, hat der Vorstand,\nder dem senilen Vorstand des unrentablen\nUnternehmens den Aktienanteil entzogen hat, die Pleite verursacht.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I6D0
+
+trial E2I6D1
+  button =           red
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Vorstand einen überzeugenden Grund angegeben?
+  max_display_time = 600000
+  trial_type =       Question
+end E2I6D1
+
+sequence SE2I6
+  E2I6D0
+  E2I6D1
+end SE2I6
+
+trial E3I6D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Manager dem senilen Vorstand des unrentablen\nUnternehmens den Vorschlag zurückwies, hat der Vorstand,\nder nach sofortiger Angabe des überzeugenden\nGrunds den Aktienanteil entzogen hat, die Pleite verursacht.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I6D0
+
+trial E3I6D1
+  button =           red
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Vorstand dem senilen Vorstand etwas zurückgewiesen?
+  max_display_time = 600000
+  trial_type =       Question
+end E3I6D1
+
+sequence SE3I6
+  E3I6D0
+  E3I6D1
+end SE3I6
+
+trial E4I6D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Manager nach sofortiger Angabe des überzeugenden\nGrunds dem senilen Vorstand des unrentablen\nUnternehmens den Vorschlag zurückwies, hat der\nVorstand, der den Aktienanteil entzogen hat, die Pleite verursacht.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I6D0
+
+trial E4I6D1
+  button =           red
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Vorstand einen überzeugenden Grund angegeben?
+  max_display_time = 600000
+  trial_type =       Question
+end E4I6D1
+
+sequence SE4I6
+  E4I6D0
+  E4I6D1
+end SE4I6
+
+trial E1I7D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Obwohl der Komplize den Zeugendienst verweigerte, hat der Verdächtige,\nder nach stundenlangem Abstreiten des fraglichen\nSachverhalts dem wütenden Polizisten des kleinen\nOrts den Mittäter genannt hat, den Fall abgeschlossen.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I7D0
+
+trial E1I7D1
+  button =           red
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Komplize den fraglichen Sachverhalts abgestritten?
+  max_display_time = 600000
+  trial_type =       Question
+end E1I7D1
+
+sequence SE1I7
+  E1I7D0
+  E1I7D1
+end SE1I7
+
+trial E2I7D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Obwohl der Komplize nach stundenlangem Abstreiten des fraglichen\nSachverhalts den Zeugendienst verweigerte, hat der Verdächtige,\nder dem wütenden Polizisten des kleinen\nOrts den Mittäter genannt hat, den Fall abgeschlossen.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I7D0
+
+trial E2I7D1
+  button =           red
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Verdächtige den Zeugendienst verweigert?
+  max_display_time = 600000
+  trial_type =       Question
+end E2I7D1
+
+sequence SE2I7
+  E2I7D0
+  E2I7D1
+end SE2I7
+
+trial E3I7D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Obwohl der Komplize dem wütenden Polizisten des kleinen\nOrts den Zeugendienst verweigerte, hat der Verdächtige,\nder nach stundenlangem Abstreiten des fraglichen\nSachverhalts den Mittäter genannt hat, den Fall abgeschlossen.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I7D0
+
+trial E3I7D1
+  button =           red
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Verdächtige den Zeugendienst verweigert?
+  max_display_time = 600000
+  trial_type =       Question
+end E3I7D1
+
+sequence SE3I7
+  E3I7D0
+  E3I7D1
+end SE3I7
+
+trial E4I7D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Obwohl der Komplize nach stundenlangem Abstreiten des fraglichen\nSachverhalts dem wütenden Polizisten des kleinen\nOrts den Zeugendienst verweigerte, hat der\nVerdächtige, der den Mittäter genannt hat, den Fall abgeschlossen.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I7D0
+
+trial E4I7D1
+  button =           red
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Verdächtige dem wütenden Polizisten etwas verweigert?
+  max_display_time = 600000
+  trial_type =       Question
+end E4I7D1
+
+sequence SE4I7
+  E4I7D0
+  E4I7D1
+end SE4I7
+
+trial E1I8D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Als der Vertreter den Vertriebsplan vorstellte, hat der Chef,\nder nach erfolgreicher Widerlegung des unbegründeten\nEinwands dem ungeduldigen Vorsitzenden des großen\nKonzerns den Vertrag gesichert hat, ein Riesengeschäft gemacht.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I8D0
+
+trial E1I8D1
+  button =           red
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Vertreter dem ungeduldigen Vorsitzenden etwas gesichert?
+  max_display_time = 600000
+  trial_type =       Question
+end E1I8D1
+
+sequence SE1I8
+  E1I8D0
+  E1I8D1
+end SE1I8
+
+trial E2I8D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Als der Vertreter nach erfolgreicher Widerlegung des unbegründeten\nEinwands den Vertriebsplan vorstellte, hat der Chef,\nder dem ungeduldigen Vorsitzenden des großen\nKonzerns den Vertrag gesichert hat, ein Riesengeschäft gemacht.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I8D0
+
+trial E2I8D1
+  button =           red
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Vertreter dem ungeduldigen Vorsitzenden etwas gesichert?
+  max_display_time = 600000
+  trial_type =       Question
+end E2I8D1
+
+sequence SE2I8
+  E2I8D0
+  E2I8D1
+end SE2I8
+
+trial E3I8D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Als der Vertreter dem ungeduldigen Vorsitzenden des großen\nKonzerns den Vertriebsplan vorstellte, hat der Chef,\nder nach erfolgreicher Widerlegung des unbegründeten\nEinwands den Vertrag gesichert hat, ein Riesengeschäft gemacht.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I8D0
+
+trial E3I8D1
+  button =           red
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Vertreter den unbegründeten Einwand widerlegt?
+  max_display_time = 600000
+  trial_type =       Question
+end E3I8D1
+
+sequence SE3I8
+  E3I8D0
+  E3I8D1
+end SE3I8
+
+trial E4I8D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Als der Vertreter nach erfolgreicher Widerlegung des unbegründeten\nEinwands dem ungeduldigen Vorsitzenden des großen\nKonzerns den Vertriebsplan vorstellte, hat der\nChef, der den Vertrag gesichert hat, ein Riesengeschäft gemacht.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I8D0
+
+trial E4I8D1
+  button =           red
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Chef den Vertriebsplan vorgestellt?
+  max_display_time = 600000
+  trial_type =       Question
+end E4I8D1
+
+sequence SE4I8
+  E4I8D0
+  E4I8D1
+end SE4I8
+
+trial E1I9D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Einkäufer den Preis erhöhte, hat der Geldgeber,\nder nach erneuter Ausweitung des großzügigen\nAngebots dem kränkelnden Betrieb des alternden\nUnternehmers den Auftrag versprochen hat, den Konkurs abgewendet.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I9D0
+
+trial E1I9D1
+  button =           red
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Einkäufer den Auftrag versprochen?
+  max_display_time = 600000
+  trial_type =       Question
+end E1I9D1
+
+sequence SE1I9
+  E1I9D0
+  E1I9D1
+end SE1I9
+
+trial E2I9D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Einkäufer nach erneuter Ausweitung des großzügigen\nAngebots den Preis erhöhte, hat der Geldgeber,\nder dem kränkelnden Betrieb des alternden\nUnternehmers den Auftrag versprochen hat, den Konkurs abgewendet.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I9D0
+
+trial E2I9D1
+  button =           red
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Einkäufer den Auftrag versprochen?
+  max_display_time = 600000
+  trial_type =       Question
+end E2I9D1
+
+sequence SE2I9
+  E2I9D0
+  E2I9D1
+end SE2I9
+
+trial E3I9D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Einkäufer dem kränkelnden Betrieb des alternden\nUnternehmers den Preis erhöhte, hat der Geldgeber,\nder nach erneuter Ausweitung des großzügigen\nAngebots den Auftrag versprochen hat, den Konkurs abgewendet.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I9D0
+
+trial E3I9D1
+  button =           red
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Einkäufer den Auftrag versprochen?
+  max_display_time = 600000
+  trial_type =       Question
+end E3I9D1
+
+sequence SE3I9
+  E3I9D0
+  E3I9D1
+end SE3I9
+
+trial E4I9D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Einkäufer nach erneuter Ausweitung des großzügigen\nAngebots dem kränkelnden Betrieb des alternden\nUnternehmers den Preis erhöhte, hat der\nGeldgeber, der den Auftrag versprochen hat, den Konkurs abgewendet.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I9D0
+
+trial E4I9D1
+  button =           red
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Einkäufer den Auftrag versprochen?
+  max_display_time = 600000
+  trial_type =       Question
+end E4I9D1
+
+sequence SE4I9
+  E4I9D0
+  E4I9D1
+end SE4I9
+
+trial E1I10D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Beamte den Schadensfall bescheinigte, hat der Großvater,\nder trotz vereinzelter Bedenken des weitläufigen\nFamilienkreises dem effizienten Versorgungsamt des kleinen\nKurorts den Rentenantrag gestellt hat, den Lebensabend genossen.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I10D0
+
+trial E1I10D1
+  button =           blue
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Beamte den Schadensfall bescheinigt?
+  max_display_time = 600000
+  trial_type =       Question
+end E1I10D1
+
+sequence SE1I10
+  E1I10D0
+  E1I10D1
+end SE1I10
+
+trial E2I10D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Beamte trotz vereinzelter Bedenken des weitläufigen\nFamilienkreises den Schadensfall bescheinigte, hat der Großvater,\nder dem effizienten Versorgungsamt des kleinen\nKurorts den Rentenantrag gestellt hat, den Lebensabend genossen.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I10D0
+
+trial E2I10D1
+  button =           blue
+  gc_rect =          (0 0 0 0)
+  inline =           |Hat der Familienkreis vereinzelte Bedenken gehabt?
+  max_display_time = 600000
+  trial_type =       Question
+end E2I10D1
+
+sequence SE2I10
+  E2I10D0
+  E2I10D1
+end SE2I10
+
+trial E3I10D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Beamte dem effizienten Versorgungsamt des kleinen\nKurorts den Schadensfall bescheinigte, hat der Großvater,\nder trotz vereinzelter Bedenken des weitläufigen\nFamilienkreises den Rentenantrag gestellt hat, den Lebensabend genossen.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I10D0
+
+trial E3I10D1
+  button =           blue
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Beamte dem effizienten Versorgungsamt etwas bescheinigt?
+  max_display_time = 600000
+  trial_type =       Question
+end E3I10D1
+
+sequence SE3I10
+  E3I10D0
+  E3I10D1
+end SE3I10
+
+trial E4I10D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Beamte trotz vereinzelter Bedenken des weitläufigen\nFamilienkreises dem effizienten Versorgungsamt des kleinen\nKurorts den Schadensfall bescheinigte, hat der\nGroßvater, der den Rentenantrag gestellt hat, den Lebensabend genossen.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I10D0
+
+trial E4I10D1
+  button =           blue
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Familienkreis vereinzelte Bedenken gehabt?
+  max_display_time = 600000
+  trial_type =       Question
+end E4I10D1
+
+sequence SE4I10
+  E4I10D0
+  E4I10D1
+end SE4I10
+
+trial E1I12D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Konzern den Filmvertrags anbot, hat der Agent,\nder trotz heftigen Protestes des verärgerten\nProduzenten dem berühmten Regisseur des erstklassigen\nWerks den Schauspieler vorgestellt hat, die Produktion ermöglicht.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I12D0
+
+trial E1I12D1
+  button =           blue
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der verärgerte Produzent heftig protestiert?
+  max_display_time = 600000
+  trial_type =       Question
+end E1I12D1
+
+sequence SE1I12
+  E1I12D0
+  E1I12D1
+end SE1I12
+
+trial E2I12D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Konzern trotz heftigen Protestes des verärgerten\nProduzenten den Filmvertrags anbot, hat der Agent,\nder dem berühmten Regisseur des erstklassigen\nWerks den Schauspieler vorgestellt hat, die Produktion ermöglicht.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I12D0
+
+trial E2I12D1
+  button =           blue
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Konzern den Filmvertrag angeboten?
+  max_display_time = 600000
+  trial_type =       Question
+end E2I12D1
+
+sequence SE2I12
+  E2I12D0
+  E2I12D1
+end SE2I12
+
+trial E3I12D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Konzern dem berühmten Regisseur des erstklassigen\nWerks den Filmvertrags anbot, hat der Agent,\nder trotz heftigen Protestes des verärgerten\nProduzenten den Schauspieler vorgestellt hat, die Produktion ermöglicht.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I12D0
+
+trial E3I12D1
+  button =           blue
+  gc_rect =          (0 0 0 0)
+  inline =           |Hat der Konzern den Filmvertrags angeboten?
+  max_display_time = 600000
+  trial_type =       Question
+end E3I12D1
+
+sequence SE3I12
+  E3I12D0
+  E3I12D1
+end SE3I12
+
+trial E4I12D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Konzern trotz heftigen Protestes des verärgerten\nProduzenten dem berühmten Regisseur des erstklassigen\nWerks den Filmvertrags anbot, hat der\nAgent, der den Schauspieler vorgestellt hat, die Produktion ermöglicht.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I12D0
+
+trial E4I12D1
+  button =           blue
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Konzern dem berühmten Regisseur etwas angeboten?
+  max_display_time = 600000
+  trial_type =       Question
+end E4I12D1
+
+sequence SE4I12
+  E4I12D0
+  E4I12D1
+end SE4I12
+
+trial E1I13D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Manager den Bonus auszahlte, hat der Aufsichtsrat,\nder wegen guter Leistung des restrukturierten\nAußendiensts dem verdienten Mitarbeiter des profitablen\nBetriebs den Vertrag verlängert hat, Weitsicht bewiesen.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I13D0
+
+trial E1I13D1
+  button =           red
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Manager dem verdienten Mitarbeiter etwas verlängert?
+  max_display_time = 600000
+  trial_type =       Question
+end E1I13D1
+
+sequence SE1I13
+  E1I13D0
+  E1I13D1
+end SE1I13
+
+trial E2I13D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Manager wegen guter Leistung des restrukturierten\nAußendiensts den Bonus auszahlte, hat der Aufsichtsrat,\nder dem verdienten Mitarbeiter des profitablen\nBetriebs den Vertrag verlängert hat, Weitsicht bewiesen.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I13D0
+
+trial E2I13D1
+  button =           red
+  gc_rect =          (0 0 0 0)
+  inline =           |Hat der Manager dem verdienten Mitarbeiter etwas verlängert?
+  max_display_time = 600000
+  trial_type =       Question
+end E2I13D1
+
+sequence SE2I13
+  E2I13D0
+  E2I13D1
+end SE2I13
+
+trial E3I13D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Manager dem verdienten Mitarbeiter des profitablen\nBetriebs den Bonus auszahlte, hat der Aufsichtsrat,\nder wegen guter Leistung des restrukturierten\nAußendiensts den Vertrag verlängert hat, Weitsicht bewiesen.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I13D0
+
+trial E3I13D1
+  button =           red
+  gc_rect =          (0 0 0 0)
+  inline =           |Hat der Manager eine gute Leistung gebracht? 
+  max_display_time = 600000
+  trial_type =       Question
+end E3I13D1
+
+sequence SE3I13
+  E3I13D0
+  E3I13D1
+end SE3I13
+
+trial E4I13D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Manager wegen guter Leistung des restrukturierten\nAußendiensts dem verdienten Mitarbeiter des profitablen\nBetriebs den Bonus auszahlte, hat der\nAufsichtsrat, der den Vertrag verlängert hat, Weitsicht bewiesen.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I13D0
+
+trial E4I13D1
+  button =           red
+  gc_rect =          (0 0 0 0)
+  inline =           |Hat der Aufsichtsrat den Bonus ausgezahlt?
+  max_display_time = 600000
+  trial_type =       Question
+end E4I13D1
+
+sequence SE4I13
+  E4I13D0
+  E4I13D1
+end SE4I13
+
+trial E1I14D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Koch den Truthahn zubereitete, hat der Kellner,\nder unter genauer Beachtung des detaillierten\nReglements dem treuen Stammgast des französischen\nRestaurants den Hauptgang serviert hat, den Kritiker beschwichtigt.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I14D0
+
+trial E1I14D1
+  button =           red
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Koch den Hauptgang serviert?
+  max_display_time = 600000
+  trial_type =       Question
+end E1I14D1
+
+sequence SE1I14
+  E1I14D0
+  E1I14D1
+end SE1I14
+
+trial E2I14D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Koch unter genauer Beachtung des detaillierten\nReglements den Truthahn zubereitete, hat der Kellner,\nder dem treuen Stammgast des französischen\nRestaurants den Hauptgang serviert hat, den Kritiker beschwichtigt.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I14D0
+
+trial E2I14D1
+  button =           red
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Koch den Hauptgang serviert?
+  max_display_time = 600000
+  trial_type =       Question
+end E2I14D1
+
+sequence SE2I14
+  E2I14D0
+  E2I14D1
+end SE2I14
+
+trial E3I14D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Koch dem treuen Stammgast des französischen\nRestaurants den Truthahn zubereitete, hat der Kellner,\nder unter genauer Beachtung des detaillierten\nReglements den Hauptgang serviert hat, den Kritiker beschwichtigt.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I14D0
+
+trial E3I14D1
+  button =           red
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Koch den Hauptgang serviert?
+  max_display_time = 600000
+  trial_type =       Question
+end E3I14D1
+
+sequence SE3I14
+  E3I14D0
+  E3I14D1
+end SE3I14
+
+trial E4I14D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Koch unter genauer Beachtung des detaillierten\nReglements dem treuen Stammgast des französischen\nRestaurants den Truthahn zubereitete, hat der\nKellner, der den Hauptgang serviert hat, den Kritiker beschwichtigt.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I14D0
+
+trial E4I14D1
+  button =           red
+  gc_rect =          (0 0 0 0)
+  inline =           | Hat der Koch den Hauptgang serviert?
+  max_display_time = 600000
+  trial_type =       Question
+end E4I14D1
+
+sequence SE4I14
+  E4I14D0
+  E4I14D1
+end SE4I14
+
+trial E1I15D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Trainer den Übungsplan entwickelte, hat der Journalist,\nder trotz negativer Berichterstattung des dummen\nJournalisten dem ehrgeizigen Sportler des aufgestiegenen\nVereins den Erfolg vorhergesagt hat, Recht behalten.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I15D0
+
+trial E2I15D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Trainer trotz negativer Berichterstattung des dummen\nJournalisten den Übungsplan entwickelte, hat der Journalist,\nder dem ehrgeizigen Sportler des aufgestiegenen\nVereins den Erfolg vorhergesagt hat, Recht behalten.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I15D0
+
+trial E3I15D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Trainer dem ehrgeizigen Sportler des aufgestiegenen\nVereins den Übungsplan entwickelte, hat der Journalist,\nder trotz negativer Berichterstattung des dummen\nJournalisten den Erfolg vorhergesagt hat, Recht behalten.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I15D0
+
+trial E4I15D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Trainer trotz negativer Berichterstattung des dummen\nJournalisten dem ehrgeizigen Sportler des aufgestiegenen\nVereins den Übungsplan entwickelte, hat der\nJournalist, der den Erfolg vorhergesagt hat, Recht behalten.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I15D0
+
+trial E1I17D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Landtag den Zuschuss bewilligte, hat der Direktor,\nder nach langwierigem Aushandeln des schwierigen\nVertrags dem kleinen Betrieb des ehemaligen\nZonenrandgebiets den Auftrag eingebracht hat, Arbeitsplätze gesichert.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I17D0
+
+trial E2I17D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Landtag nach langwierigem Aushandeln des schwierigen\nVertrags den Zuschuss bewilligte, hat der Direktor,\nder dem kleinen Betrieb des ehemaligen\nZonenrandgebiets den Auftrag eingebracht hat, Arbeitsplätze gesichert.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I17D0
+
+trial E3I17D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Landtag dem kleinen Betrieb des ehemaligen\nZonenrandgebiets den Zuschuss bewilligte, hat der Direktor,\nder nach langwierigem Aushandeln des schwierigen\nVertrags den Auftrag eingebracht hat, Arbeitsplätze gesichert.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I17D0
+
+trial E4I17D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Landtag nach langwierigem Aushandeln des schwierigen\nVertrags dem kleinen Betrieb des ehemaligen\nZonenrandgebiets den Zuschuss bewilligte, hat der\nDirektor, der den Auftrag eingebracht hat, Arbeitsplätze gesichert.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I17D0
+
+trial E1I18D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Gefängnisdirektor den Hafturlaub genehmigte, hat der Wärter,\nder nach vorschriftsmäßigem Befragen des direkten\nVorgesetzten dem harmlosen Häftling des kleinen\nGefängnisses den Ausgang erlaubt hat, den Besuch ermöglicht.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I18D0
+
+trial E2I18D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Gefängnisdirektor nach vorschriftsmäßigem Befragen des direkten\nVorgesetzten den Hafturlaub genehmigte, hat der Wärter,\nder dem harmlosen Häftling des kleinen\nGefängnisses den Ausgang erlaubt hat, den Besuch ermöglicht.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I18D0
+
+trial E3I18D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Gefängnisdirektor dem harmlosen Häftling des kleinen\nGefängnisses den Hafturlaub genehmigte, hat der Wärter,\nder nach vorschriftsmäßigem Befragen des direkten\nVorgesetzten den Ausgang erlaubt hat, den Besuch ermöglicht.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I18D0
+
+trial E4I18D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Gefängnisdirektor nach vorschriftsmäßigem Befragen des direkten\nVorgesetzten dem harmlosen Häftling des kleinen\nGefängnisses den Hafturlaub genehmigte, hat der\nWärter, der den Ausgang erlaubt hat, den Besuch ermöglicht.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I18D0
+
+trial E1I20D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Geizhals den Schuppen abriss, hat der Nachbar,\nder ohne große Beachtung des kalten\nWetters dem frierenden Stadtstreicher des armen\nVororts den Sommermantel geschenkt hat, Unruhe gestiftet.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I20D0
+
+trial E2I20D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Geizhals ohne große Beachtung des kalten\nWetters den Schuppen abriss, hat der Nachbar,\nder dem frierenden Stadtstreicher des armen\nVororts den Sommermantel geschenkt hat, Unruhe gestiftet.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I20D0
+
+trial E3I20D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Geizhals dem frierenden Stadtstreicher des armen\nVororts den Schuppen abriss, hat der Nachbar,\nder ohne große Beachtung des kalten\nWetters den Sommermantel geschenkt hat, Unruhe gestiftet.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I20D0
+
+trial E4I20D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Geizhals ohne große Beachtung des kalten\nWetters dem frierenden Stadtstreicher des armen\nVororts den Schuppen abriss, hat der\nNachbar, der den Sommermantel geschenkt hat, Unruhe gestiftet.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I20D0
+
+trial E1I21D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Vater den Ratschlag gab, hat der Neffe,\nder nach nochmaligem Überdenken des schwierigen\nProblems dem reichen Onkel des entfernten\nVerwandten den Bittbrief geschickt hat, die Notlage beseitigt.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I21D0
+
+trial E2I21D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Vater nach nochmaligem Überdenken des schwierigen\nProblems den Ratschlag gab, hat der Neffe,\nder dem reichen Onkel des entfernten\nVerwandten den Bittbrief geschickt hat, die Notlage beseitigt.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I21D0
+
+trial E3I21D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Vater dem reichen Onkel des entfernten\nVerwandten den Ratschlag gab, hat der Neffe,\nder nach nochmaligem Überdenken des schwierigen\nProblems den Bittbrief geschickt hat, die Notlage beseitigt.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I21D0
+
+trial E4I21D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Vater nach nochmaligem Überdenken des schwierigen\nProblems dem reichen Onkel des entfernten\nVerwandten den Ratschlag gab, hat der\nNeffe, der den Bittbrief geschickt hat, die Notlage beseitigt.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I21D0
+
+trial E1I22D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Junge den Hilfsdienst versprach, hat der Teenager,\nder ohne langes Erwägen des möglichen\nTrinkgelds dem alten Rentner des baufälligen\nNachbarhauses den Koffer getragen hat, einen guten Eindruck gemacht.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I22D0
+
+trial E2I22D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Junge ohne langes Erwägen des möglichen\nTrinkgelds den Hilfsdienst versprach, hat der Teenager,\nder dem alten Rentner des baufälligen\nNachbarhauses den Koffer getragen hat, einen guten Eindruck gemacht.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I22D0
+
+trial E3I22D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Junge dem alten Rentner des baufälligen\nNachbarhauses den Hilfsdienst versprach, hat der Teenager,\nder ohne langes Erwägen des möglichen\nTrinkgelds den Koffer getragen hat, einen guten Eindruck gemacht.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I22D0
+
+trial E4I22D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Junge ohne langes Erwägen des möglichen\nTrinkgelds dem alten Rentner des baufälligen\nNachbarhauses den Hilfsdienst versprach, hat der\nTeenager, der den Koffer getragen hat, einen guten Eindruck gemacht.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I22D0
+
+trial E1I26D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Obgleich der Manager den Zweifel anmeldete, hat der Filialleiter,\nder nach genauer Überprüfung des detaillierten\nAngebots dem dynamischen Vertreter des kleinen\nUnternehmens den Auftrag vergeben hat, die Firma ruiniert.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I26D0
+
+trial E2I26D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Obgleich der Manager nach genauer Überprüfung des detaillierten\nAngebots den Zweifel anmeldete, hat der Filialleiter,\nder dem dynamischen Vertreter des kleinen\nUnternehmens den Auftrag vergeben hat, die Firma ruiniert.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I26D0
+
+trial E3I26D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Obgleich der Manager dem dynamischen Vertreter des kleinen\nUnternehmens den Zweifel anmeldete, hat der Filialleiter,\nder nach genauer Überprüfung des detaillierten\nAngebots den Auftrag vergeben hat, die Firma ruiniert.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I26D0
+
+trial E4I26D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Obgleich der Manager nach genauer Überprüfung des detaillierten\nAngebots dem dynamischen Vertreter des kleinen\nUnternehmens den Zweifel anmeldete, hat der\nFilialleiter, der den Auftrag vergeben hat, die Firma ruiniert.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I26D0
+
+trial E1I28D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Polizist den Durchsuchungsbefehl vorlegte, hat der Prokurist,\nder trotz sofortigen Einspruches des gewitzten\nAnwalts dem beharrlichen Fahnder des örtlichen\nFinanzamts den Aktenschrank aufgemacht hat, die Beweismittel übergeben.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I28D0
+
+trial E2I28D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Polizist trotz sofortigen Einspruches des gewitzten\nAnwalts den Durchsuchungsbefehl vorlegte, hat der Prokurist,\nder dem beharrlichen Fahnder des örtlichen\nFinanzamts den Aktenschrank aufgemacht hat, die Beweismittel übergeben.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I28D0
+
+trial E3I28D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Polizist dem beharrlichen Fahnder des örtlichen\nFinanzamts den Durchsuchungsbefehl vorlegte, hat der Prokurist,\nder trotz sofortigen Einspruches des gewitzten\nAnwalts den Aktenschrank aufgemacht hat, die Beweismittel übergeben.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I28D0
+
+trial E4I28D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Polizist trotz sofortigen Einspruches des gewitzten\nAnwalts dem beharrlichen Fahnder des örtlichen\nFinanzamts den Durchsuchungsbefehl vorlegte, hat der\nProkurist, der den Aktenschrank aufgemacht hat, die Beweismittel übergeben.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I28D0
+
+trial E1I29D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Pächter den Beistand leistete, hat der Vermieter,\nder zur sofortigen Behebung des offensichtlichen\nNotstands dem frierenden Bewohner des eingestürzten\nHochhauses den Schuppen aufgeschlossen hat, die Not gelindert.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I29D0
+
+trial E2I29D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Pächter zur sofortigen Behebung des offensichtlichen\nNotstands den Beistand leistete, hat der Vermieter,\nder dem frierenden Bewohner des eingestürzten\nHochhauses den Schuppen aufgeschlossen hat, die Not gelindert.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I29D0
+
+trial E3I29D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Pächter dem frierenden Bewohner des eingestürzten\nHochhauses den Beistand leistete, hat der Vermieter,\nder zur sofortigen Behebung des offensichtlichen\nNotstands den Schuppen aufgeschlossen hat, die Not gelindert.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I29D0
+
+trial E4I29D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Pächter zur sofortigen Behebung des offensichtlichen\nNotstands dem frierenden Bewohner des eingestürzten\nHochhauses den Beistand leistete, hat der\nVermieter, der den Schuppen aufgeschlossen hat, die Not gelindert.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I29D0
+
+trial E1I30D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Großvater den Aktienanteil verkaufte, hat der Enkel,\nder trotz erheblicher Bedenken des gewissenhaften\nSteuerberaters dem gierigen Angestellten des großen\nFinanzhauses den Anteilschein vorgelegt hat, das Vermögen gefährdet.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I30D0
+
+trial E2I30D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Großvater trotz erheblicher Bedenken des gewissenhaften\nSteuerberaters den Aktienanteil verkaufte, hat der Enkel,\nder dem gierigen Angestellten des großen\nFinanzhauses den Anteilschein vorgelegt hat, das Vermögen gefährdet.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I30D0
+
+trial E3I30D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Großvater dem gierigen Angestellten des großen\nFinanzhauses den Aktienanteil verkaufte, hat der Enkel,\nder trotz erheblicher Bedenken des gewissenhaften\nSteuerberaters den Anteilschein vorgelegt hat, das Vermögen gefährdet.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I30D0
+
+trial E4I30D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Großvater trotz erheblicher Bedenken des gewissenhaften\nSteuerberaters dem gierigen Angestellten des großen\nFinanzhauses den Aktienanteil verkaufte, hat der\nEnkel, der den Anteilschein vorgelegt hat, das Vermögen gefährdet.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I30D0
+
+trial E1I31D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Passant den Sachverhalt schilderte, hat der Autofahrer,\nder trotz anfänglichem Bestreiten des peinlichen\nVorfalls dem jungen Beamten des herbeigerufenen\nStreifenwagens den Ausweis vorgezeigt hat, eine Blutprobe abgegeben.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I31D0
+
+trial E2I31D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Passant trotz anfänglichem Bestreiten des peinlichen\nVorfalls den Sachverhalt schilderte, hat der Autofahrer,\nder dem jungen Beamten des herbeigerufenen\nStreifenwagens den Ausweis vorgezeigt hat, eine Blutprobe abgegeben.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I31D0
+
+trial E3I31D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Passant dem jungen Beamten des herbeigerufenen\nStreifenwagens den Sachverhalt schilderte, hat der Autofahrer,\nder trotz anfänglichem Bestreiten des peinlichen\nVorfalls den Ausweis vorgezeigt hat, eine Blutprobe abgegeben.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I31D0
+
+trial E4I31D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Passant trotz anfänglichem Bestreiten des peinlichen\nVorfalls dem jungen Beamten des herbeigerufenen\nStreifenwagens den Sachverhalt schilderte, hat der\nAutofahrer, der den Ausweis vorgezeigt hat, eine Blutprobe abgegeben.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I31D0
+
+trial E1I32D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Manager den Termin vorschrieb, hat der Mitarbeiter,\nder trotz heftiger Proteste des aufgebrachten\nBetriebsrats dem neuen Leiter des kleinen\nVertriebsbüros den Urlaub gestrichen hat, das Arbeitsklima vergiftet.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I32D0
+
+trial E2I32D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Manager trotz heftiger Proteste des aufgebrachten\nBetriebsrats den Termin vorschrieb, hat der Mitarbeiter,\nder dem neuen Leiter des kleinen\nVertriebsbüros den Urlaub gestrichen hat, das Arbeitsklima vergiftet.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I32D0
+
+trial E3I32D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Manager dem neuen Leiter des kleinen\nVertriebsbüros den Termin vorschrieb, hat der Mitarbeiter,\nder trotz heftiger Proteste des aufgebrachten\nBetriebsrats den Urlaub gestrichen hat, das Arbeitsklima vergiftet.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I32D0
+
+trial E4I32D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Manager trotz heftiger Proteste des aufgebrachten\nBetriebsrats dem neuen Leiter des kleinen\nVertriebsbüros den Termin vorschrieb, hat der\nMitarbeiter, der den Urlaub gestrichen hat, das Arbeitsklima vergiftet.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I32D0
+
+trial E1I41D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Sportler ist zum Gipfel aufgestiegen weil das Wetter gut war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I41D0
+
+trial E2I41D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Sportler soll zum Gipfel aufgestiegen sein weil das Wetter gut war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I41D0
+
+trial E3I41D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Sportler soll zum Gipfel aufsteigen weil das Wetter gut ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I41D0
+
+trial E4I41D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Sportler ist am frühen Morgen aufgestiegen weil das Wetter gut war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I41D0
+
+trial E5I41D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Sportler soll am frühen Morgen aufgestiegen sein weil das Wetter gut war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E5I41D0
+
+trial E6I41D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Sportler soll am frühen Morgen aufsteigen weil das Wetter gut ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E6I41D0
+
+trial E1I42D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Lehrer ist nach Hause zurückgekommen weil der Sohn krank war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I42D0
+
+trial E2I42D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Lehrer muss nach Hause zurückgekommen sein weil der Sohn krank war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I42D0
+
+trial E3I42D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Lehrer muss nach Hause zurückkommen weil der Sohn krank ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I42D0
+
+trial E4I42D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Lehrer ist am Montag zurückgekommen weil der Sohn krank war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I42D0
+
+trial E5I42D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Lehrer muss am Montag zurückgekommen sein weil der Sohn krank war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E5I42D0
+
+trial E6I42D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Lehrer muss am Montag zurückkommen weil der Sohn krank ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E6I42D0
+
+trial E1I43D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Vertreter ist im Hotel angekommen weil der Kunde schon dort war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I43D0
+
+trial E2I43D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Vertreter soll im Hotel angekommen sein weil der Kunde schon dort war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I43D0
+
+trial E3I43D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Vertreter soll im Hotel ankommen weil der Kunde schon dort ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I43D0
+
+trial E4I43D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Vertreter ist am Nachmittag angekommen weil der Kunde schon dort war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I43D0
+
+trial E5I43D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Vertreter soll am Nachmittag angekommen sein weil der Kunde schon dort war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E5I43D0
+
+trial E6I43D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Vertreter soll am Nachmittag ankommen weil der Kunde schon dort ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E6I43D0
+
+trial E1I44D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Manager ist mit dem Zug abgereist weil die Sitzung beendet war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I44D0
+
+trial E2I44D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Manager muss mit dem Zug abgereist sein weil die Sitzung beendet war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I44D0
+
+trial E3I44D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Manager muss mit dem Zug abreisen weil die Sitzung beendet ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I44D0
+
+trial E4I44D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Manager ist um zwei Uhr abgereist weil die Sitzung beendet war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I44D0
+
+trial E5I44D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Manager muss um zwei Uhr abgereist sein weil die Sitzung beendet war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E5I44D0
+
+trial E6I44D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Manager muss um zwei Uhr abreisen weil die Sitzung beendet ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E6I44D0
+
+trial E1I45D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Verbrecher ist durch ein Fenster geflüchtet weil die Gelegenheit gut war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I45D0
+
+trial E2I45D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Verbrecher muss durch ein Fenster geflüchtet sein weil die Gelegenheit gut war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I45D0
+
+trial E3I45D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Verbrecher muss durch ein Fenster flüchten weil die Gelegenheit gut ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I45D0
+
+trial E4I45D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Verbrecher ist in der Nacht geflüchtet weil die Gelegenheit gut war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I45D0
+
+trial E5I45D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Verbrecher muss in der Nacht geflüchtet sein weil die Gelegenheit gut war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E5I45D0
+
+trial E6I45D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Verbrecher muss in der Nacht flüchten weil die Gelegenheit gut ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E6I45D0
+
+trial E1I46D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Beamte ist aus dem Büro weggegangen weil die Arbeit beendet war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I46D0
+
+trial E2I46D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Beamte kann aus dem Büro weggegangen sein weil die Arbeit beendet war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I46D0
+
+trial E3I46D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Beamte kann aus dem Büro weggehen weil die Arbeit beendet ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I46D0
+
+trial E4I46D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Beamte ist um fünf Uhr abends weggegangen weil die Arbeit beendet war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I46D0
+
+trial E5I46D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Beamte kann um fünf Uhr abends weggegangen sein weil die Arbeit beendet war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E5I46D0
+
+trial E6I46D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Beamte kann um fünf Uhr abends weggehen weil die Arbeit beendet ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E6I46D0
+
+trial E1I47D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Vortrupp ist auf das Ziel vorgerückt weil der Feind geschwächt war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I47D0
+
+trial E2I47D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Vortrupp soll auf das Ziel vorgerückt sein weil der Feind geschwächt war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I47D0
+
+trial E3I47D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Vortrupp soll auf das Ziel vorrücken weil der Feind geschwächt ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I47D0
+
+trial E4I47D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Vortrupp ist in der Nacht vorgerückt weil der Feind geschwächt war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I47D0
+
+trial E5I47D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Vortrupp soll in der Nacht vorgerückt sein weil der Feind geschwächt war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E5I47D0
+
+trial E6I47D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Vortrupp soll in der Nacht vorrücken weil der Feind geschwächt ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E6I47D0
+
+trial E1I48D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Bericht ist in der Zeitung erschienen weil das Thema interessant war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I48D0
+
+trial E2I48D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Bericht soll in der Zeitung erschienen sein weil das Thema interessant war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I48D0
+
+trial E3I48D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Bericht soll in der Zeitung erscheinen weil das Thema interessant ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I48D0
+
+trial E4I48D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Bericht ist am Dienstag erschienen weil das Thema interessant war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I48D0
+
+trial E5I48D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Bericht soll am Dienstag erschienen sein weil das Thema interessant war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E5I48D0
+
+trial E6I48D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Bericht soll am Dienstag erscheinen weil das Thema interessant ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E6I48D0
+
+trial E1I49D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Sanitäter ist vor Angst erblasst weil der Unfall schlimm war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I49D0
+
+trial E2I49D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Sanitäter kann vor Angst erblasst sein weil der Unfall schlimm war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I49D0
+
+trial E3I49D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Sanitäter kann vor Angst erblassen weil der Unfall schlimm ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I49D0
+
+trial E4I49D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Sanitäter ist unerwartet schnell erblasst weil der Unfall schlimm war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I49D0
+
+trial E5I49D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Sanitäter kann unerwartet schnell erblasst sein weil der Unfall schlimm war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E5I49D0
+
+trial E6I49D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Sanitäter kann unerwartet schnell erblassen weil der Unfall schlimm ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E6I49D0
+
+trial E1I50D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Mann ist an der Krankheit verstorben weil der Arzt zu spät kam.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I50D0
+
+trial E2I50D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Mann kann an der Krankheit verstorben sein weil der Arzt zu spät kam.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I50D0
+
+trial E3I50D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Mann kann an der Krankheit versterben weil der Arzt zu spät kommt.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I50D0
+
+trial E4I50D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Mann ist um ein Uhr nachts verstorben weil der Arzt zu spät kam.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I50D0
+
+trial E5I50D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Mann kann um ein Uhr nachts verstorben sein weil der Arzt zu spät kam.
+  max_display_time = 600000
+  trial_type =       Reading
+end E5I50D0
+
+trial E6I50D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Mann kann um ein Uhr nachts versterben weil der Arzt zu spät kommt.
+  max_display_time = 600000
+  trial_type =       Reading
+end E6I50D0
+
+trial E1I51D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Junge ist vor Scham errötet weil das Gespräch peinlich war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I51D0
+
+trial E2I51D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Junge kann vor Scham errötet sein weil das Gespräch peinlich war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I51D0
+
+trial E3I51D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Junge kann vor Scham erröten weil das Gespräch peinlich ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I51D0
+
+trial E4I51D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Junge ist ganz langsam errötet weil das Gespräch peinlich war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I51D0
+
+trial E5I51D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Junge kann ganz langsam errötet sein weil das Gespräch peinlich war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E5I51D0
+
+trial E6I51D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Junge kann ganz langsam erröten weil das Gespräch peinlich ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E6I51D0
+
+trial E1I52D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Kaffee ist im Kühlschrank erkaltet weil das Rezept das so wollte.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I52D0
+
+trial E2I52D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Kaffee soll im Kühlschrank erkaltet sein weil das Rezept das so wollte.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I52D0
+
+trial E3I52D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Kaffee soll im Kühlschrank erkalten weil das Rezept das so will.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I52D0
+
+trial E4I52D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Kaffee ist besonders schnell erkaltet weil das Rezept das so wollte.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I52D0
+
+trial E5I52D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Kaffee soll besonders schnell erkaltet sein weil das Rezept das so wollte.
+  max_display_time = 600000
+  trial_type =       Reading
+end E5I52D0
+
+trial E6I52D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Kaffee soll besonders schnell erkalten weil das Rezept das so will.
+  max_display_time = 600000
+  trial_type =       Reading
+end E6I52D0
+
+trial E1I53D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Baum ist mit kräftiger Düngung gewachsen weil der Boden fruchtbar war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I53D0
+
+trial E2I53D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Baum kann mit kräftiger Düngung gewachsen sein weil der Boden fruchtbar war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I53D0
+
+trial E3I53D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Baum kann mit kräftiger Düngung wachsen weil der Boden fruchtbar ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I53D0
+
+trial E4I53D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Baum ist ungewöhnlich gut gewachsen weil der Boden fruchtbar war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I53D0
+
+trial E5I53D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Baum kann ungewöhnlich gut gewachsen sein weil der Boden fruchtbar war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E5I53D0
+
+trial E6I53D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Baum kann ungewöhnlich gut wachsen weil der Boden fruchtbar ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E6I53D0
+
+trial E1I54D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Soldat ist in den Geheimgang verschwunden weil der Krieg verloren war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I54D0
+
+trial E2I54D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Soldat muss in den Geheimgang verschwunden sein weil der Krieg verloren war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I54D0
+
+trial E3I54D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Soldat muss in den Geheimgang verschwinden weil der Krieg verloren ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I54D0
+
+trial E4I54D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Soldat ist am frühen Abend verschwunden weil der Krieg verloren war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I54D0
+
+trial E5I54D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Soldat muss am frühen Abend verschwunden sein weil der Krieg verloren war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E5I54D0
+
+trial E6I54D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Soldat muss am frühen Abend verschwinden weil der Krieg verloren ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E6I54D0
+
+trial E1I55D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Wagen ist wegen des Regens verrostet weil die Karosserie alt war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I55D0
+
+trial E2I55D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Wagen kann wegen des Regens verrostet sein weil die Karosserie alt war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I55D0
+
+trial E3I55D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Wagen kann wegen des Regens verrosten weil die Karosserie alt ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I55D0
+
+trial E4I55D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Wagen ist äußerst schnell verrostet weil die Karosserie alt war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I55D0
+
+trial E5I55D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Wagen kann äußerst schnell verrostet sein weil die Karosserie alt war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E5I55D0
+
+trial E6I55D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Wagen kann äußerst schnell verrosten weil die Karosserie alt ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E6I55D0
+
+trial E1I56D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Balken ist in der Feuchtigkeit vermodert weil das Dach undicht war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I56D0
+
+trial E2I56D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Balken muss in der Feuchtigkeit vermodert sein weil das Dach undicht war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I56D0
+
+trial E3I56D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Balken muss in der Feuchtigkeit vermodern weil das Dach undicht ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I56D0
+
+trial E4I56D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Balken ist ziemlich bald vermodert weil das Dach undicht war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I56D0
+
+trial E5I56D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Balken muss ziemlich bald vermodert sein weil das Dach undicht war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E5I56D0
+
+trial E6I56D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Balken muss ziemlich bald vermodern weil das Dach undicht ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E6I56D0
+
+trial E1I57D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Apfel ist bei falscher Lagerung verfault weil das Obst schon alt war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I57D0
+
+trial E2I57D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Apfel kann bei falscher Lagerung verfault sein weil das Obst schon alt war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I57D0
+
+trial E3I57D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Apfel kann bei falscher Lagerung verfaulen weil das Obst schon alt ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I57D0
+
+trial E4I57D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Apfel ist recht schnell verfault weil das Obst schon alt war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I57D0
+
+trial E5I57D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Apfel kann recht schnell verfault sein weil das Obst schon alt war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E5I57D0
+
+trial E6I57D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Apfel kann recht schnell verfaulen weil das Obst schon alt ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E6I57D0
+
+trial E1I58D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Kuchen ist ohne Kühlung verschimmelt weil die Zutaten verderblich waren.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I58D0
+
+trial E2I58D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Kuchen kann ohne Kühlung verschimmelt sein weil die Zutaten verderblich waren.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I58D0
+
+trial E3I58D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Kuchen kann ohne Kühlung verschimmeln weil die Zutaten verderblich sind.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I58D0
+
+trial E4I58D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Kuchen ist sehr rasch verschimmelt weil die Zutaten verderblich waren.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I58D0
+
+trial E5I58D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Kuchen kann sehr rasch verschimmelt sein weil die Zutaten verderblich waren.
+  max_display_time = 600000
+  trial_type =       Reading
+end E5I58D0
+
+trial E6I58D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Kuchen kann sehr rasch verschimmeln weil die Zutaten verderblich sind.
+  max_display_time = 600000
+  trial_type =       Reading
+end E6I58D0
+
+trial E1I59D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Strauch ist wegen der Trockenheit verwelkt weil das Grab verwahrlost war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I59D0
+
+trial E2I59D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Strauch soll wegen der Trockenheit verwelkt sein weil das Grab verwahrlost war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I59D0
+
+trial E3I59D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Strauch soll wegen der Trockenheit verwelken weil das Grab verwahrlost ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I59D0
+
+trial E4I59D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Strauch ist am Wochenende verwelkt weil das Grab verwahrlost war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I59D0
+
+trial E5I59D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Strauch soll am Wochenende verwelkt sein weil das Grab verwahrlost war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E5I59D0
+
+trial E6I59D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Strauch soll am Wochenende verwelken weil das Grab verwahrlost ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E6I59D0
+
+trial E1I60D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Strauß ist in der Hitze verblüht weil die Vase leer war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I60D0
+
+trial E2I60D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Strauß soll in der Hitze verblüht sein weil die Vase leer war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I60D0
+
+trial E3I60D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Strauß soll in der Hitze verblühen weil die Vase leer ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I60D0
+
+trial E4I60D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Strauß ist ungemein rasch verblüht weil die Vase leer war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I60D0
+
+trial E5I60D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Strauß soll ungemein rasch verblüht sein weil die Vase leer war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E5I60D0
+
+trial E6I60D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Strauß soll ungemein rasch verblühen weil die Vase leer ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E6I60D0
+
+trial E1I61D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Setzling ist bei gutem Wetter aufgekeimt weil der Garten gut gepflegt war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I61D0
+
+trial E2I61D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Setzling kann bei gutem Wetter aufgekeimt sein weil der Garten gut gepflegt war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I61D0
+
+trial E3I61D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Setzling kann bei gutem Wetter aufkeimen weil der Garten gut gepflegt ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I61D0
+
+trial E4I61D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Setzling ist in Kürze aufgekeimt weil der Garten gut gepflegt war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I61D0
+
+trial E5I61D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Setzling kann in Kürze aufgekeimt sein weil der Garten gut gepflegt war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E5I61D0
+
+trial E6I61D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Setzling kann in Kürze aufkeimen weil der Garten gut gepflegt ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E6I61D0
+
+trial E1I62D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Gewinn ist mit der Investition angewachsen weil die Konjunktur gut war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I62D0
+
+trial E2I62D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Gewinn soll mit der Investition angewachsen sein weil die Konjunktur gut war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I62D0
+
+trial E3I62D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Gewinn soll mit der Investition anwachsen weil die Konjunktur gut ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I62D0
+
+trial E4I62D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Gewinn ist sehr zügig angewachsen weil die Konjunktur gut war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I62D0
+
+trial E5I62D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Gewinn soll sehr zügig angewachsen sein weil die Konjunktur gut war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E5I62D0
+
+trial E6I62D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Gewinn soll sehr zügig anwachsen weil die Konjunktur gut ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E6I62D0
+
+trial E1I63D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Jagdhund ist aus dem Gehege ausgebrochen weil der Riegel zu schwach war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I63D0
+
+trial E2I63D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Jagdhund kann aus dem Gehege ausgebrochen sein weil der Riegel zu schwach war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I63D0
+
+trial E3I63D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Jagdhund kann aus dem Gehege ausbrechen weil der Riegel zu schwach ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I63D0
+
+trial E4I63D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Jagdhund ist am Wochenende ausgebrochen weil der Riegel zu schwach war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I63D0
+
+trial E5I63D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Jagdhund kann am Wochenende ausgebrochen sein weil der Riegel zu schwach war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E5I63D0
+
+trial E6I63D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Jagdhund kann am Wochenende ausbrechen weil der Riegel zu schwach ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E6I63D0
+
+trial E1I64D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Einwohner ist aus dem Krisengebiet geflohen weil die Lage gefährlich war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E1I64D0
+
+trial E2I64D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Einwohner muss aus dem Krisengebiet geflohen sein weil die Lage gefährlich war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E2I64D0
+
+trial E3I64D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Einwohner muss aus dem Krisengebiet fliehen weil die Lage gefährlich ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E3I64D0
+
+trial E4I64D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Einwohner ist am Mittwoch morgen geflohen weil die Lage gefährlich war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E4I64D0
+
+trial E5I64D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Einwohner muss am Mittwoch morgen geflohen sein weil die Lage gefährlich war.
+  max_display_time = 600000
+  trial_type =       Reading
+end E5I64D0
+
+trial E6I64D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Einwohner muss am Mittwoch morgen fliehen weil die Lage gefährlich ist.
+  max_display_time = 600000
+  trial_type =       Reading
+end E6I64D0
+
+trial F1I1D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Afrikaner seinen Asylantrag gestellt hatte, war der Richter nach\nlanger Untersuchung der komplizierten Sachlage zu dem Schluss gelangt, dass der\nAntrag unbegründet war und abgelehnt werden sollte.
+  max_display_time = 600000
+  trial_type =       Reading
+end F1I1D0
+
+trial F1I1D1
+  button =           blue
+  gc_rect =          (0 0 0 0)
+  inline =           |Hat der Richter eine komplizierte Sachlage untersucht?
+  max_display_time = 600000
+  trial_type =       Question
+end F1I1D1
+
+sequence SF1I1
+  F1I1D0
+  F1I1D1
+end SF1I1
+
+trial F2I1D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil die Umstrukturierung des Großkonzerns zu weitreichenden personellen\nKonsequenzen führen würde, hat der besorgte Betriebsrat die Vorschläge der\nGeschäftsleitung nach langer Diskussion schließlich abgelehnt.
+  max_display_time = 600000
+  trial_type =       Reading
+end F2I1D0
+
+trial F2I1D1
+  button =           blue
+  gc_rect =          (0 0 0 0)
+  inline =           |Hat der Betriebsrat die Vorschläge der Geschäftsleitung abgelehnt?
+  max_display_time = 600000
+  trial_type =       Question
+end F2I1D1
+
+sequence SF2I1
+  F2I1D0
+  F2I1D1
+end SF2I1
+
+trial F3I1D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Unfall im Chemielabor des Gymnasiums hat für viel Aufsehen gesorgt, da er\neinen Einsatz der Feuerwehr nach sich zog und großer Sachschaden entstand, der\nvon den betroffenen Schülern selbst getragen werden musste.
+  max_display_time = 600000
+  trial_type =       Reading
+end F3I1D0
+
+trial F3I1D1
+  button =           blue
+  gc_rect =          (0 0 0 0)
+  inline =           |Hat der Unfall großen Sachschaden verursacht?
+  max_display_time = 600000
+  trial_type =       Question
+end F3I1D1
+
+sequence SF3I1
+  F3I1D0
+  F3I1D1
+end SF3I1
+
+trial F4I1D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Nachrichtensprecher der Spätausgabe der Tagesschau las mit zittriger Stimme\ndie Vermisstenmeldung vor, nachdem er bemerkt hatte, dass der Vermisste ein\nentfernter Verwandter von ihm war.
+  max_display_time = 600000
+  trial_type =       Reading
+end F4I1D0
+
+trial F4I1D1
+  button =           blue
+  gc_rect =          (0 0 0 0)
+  inline =           |War der Vermisste ein Verwandter des Nachrichtensprechers?
+  max_display_time = 600000
+  trial_type =       Question
+end F4I1D1
+
+sequence SF4I1
+  F4I1D0
+  F4I1D1
+end SF4I1
+
+trial F5I1D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Bergsteiger beschloss, auf Grund des schönen Wetters nicht zum Basislager\nzurückzukehren, sondern stattdessen den gefährlichen Gipfel der Bergkette zu\nbesteigen, was er aber bald bereuen sollte.
+  max_display_time = 600000
+  trial_type =       Reading
+end F5I1D0
+
+trial F5I1D1
+  button =           blue
+  gc_rect =          (0 0 0 0)
+  inline =           |Hat der Bergsteiger seine Entscheidung bereut, nicht zum Basislager\nzurückzukehren?
+  max_display_time = 600000
+  trial_type =       Question
+end F5I1D1
+
+sequence SF5I1
+  F5I1D0
+  F5I1D1
+end SF5I1
+
+trial F6I1D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil er schon seit langer Zeit all seine Ersparnisse gehortet hatte, konnte der\nFreund meiner Tochter sich einen teuren Sportwagen einer Stuttgarter Nobelmarke\nleisten.
+  max_display_time = 600000
+  trial_type =       Reading
+end F6I1D0
+
+trial F6I1D1
+  button =           red
+  gc_rect =          (0 0 0 0)
+  inline =           |Konnte sich der Freund der Tochter nur einen Kleinwagen leisten?
+  max_display_time = 600000
+  trial_type =       Question
+end F6I1D1
+
+sequence SF6I1
+  F6I1D0
+  F6I1D1
+end SF6I1
+
+trial F7I1D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil die Umfrage dem Provinzpolitiker keine Chance bei den bevorstehenden\nKommunalwahlen vorhersagte, beschloss dieser, sich aus dem öffentlichen Leben\nzurückzuziehen und die Kandidatur einem jüngerem Kollegen zu überlassen.
+  max_display_time = 600000
+  trial_type =       Reading
+end F7I1D0
+
+trial F7I1D1
+  button =           red
+  gc_rect =          (0 0 0 0)
+  inline =           |Hat der Provinzpolitiker sich Chancen auf einen Wahlsieg ausgerechnet?
+  max_display_time = 600000
+  trial_type =       Question
+end F7I1D1
+
+sequence SF7I1
+  F7I1D0
+  F7I1D1
+end SF7I1
+
+trial F8I1D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Als der Verteidigungsminister des kleinen Alpenlands die Armee inspizierte und\nweitgehende Disziplinlosigkeit feststellte, beschloss er, den zuständigen General\nfristlos zu entlassen.
+  max_display_time = 600000
+  trial_type =       Reading
+end F8I1D0
+
+trial F8I1D1
+  button =           red
+  gc_rect =          (0 0 0 0)
+  inline =           |War der Verteidigungsminister mit der Truppeninspektion zufrieden?
+  max_display_time = 600000
+  trial_type =       Question
+end F8I1D1
+
+sequence SF8I1
+  F8I1D0
+  F8I1D1
+end SF8I1
+
+trial F9I1D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Buchhalter eine Vielzahl von finanziellen Ungereimtheiten entdeckt\nhatte, waren Manfred Meier und seine Kollegen von der Unbrauchbarkeit des neuen\nFinanzplans für die Abteilung überzeugt.
+  max_display_time = 600000
+  trial_type =       Reading
+end F9I1D0
+
+trial F9I1D1
+  button =           red
+  gc_rect =          (0 0 0 0)
+  inline =           |War der neue Finanzplan brauchbar?
+  max_display_time = 600000
+  trial_type =       Question
+end F9I1D1
+
+sequence SF9I1
+  F9I1D0
+  F9I1D1
+end SF9I1
+
+trial F10I1D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil ihm der Strand überhaupt nicht gefiel, das Hotel und das Essen äußerst\nmiserabel waren, und der Reiseveranstalter jegliche Serviceleistungen ablehnte,\nbeschloss Franz Neubauer, den billigen Reiseveranstalter zu verklagen.
+  max_display_time = 600000
+  trial_type =       Reading
+end F10I1D0
+
+trial F10I1D1
+  button =           red
+  gc_rect =          (0 0 0 0)
+  inline =           |War Franz Neubauer mit dem Reiseveranstalter zufrieden?
+  max_display_time = 600000
+  trial_type =       Question
+end F10I1D1
+
+sequence SF10I1
+  F10I1D0
+  F10I1D1
+end SF10I1
+
+trial F11I1D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem der Sportler erst gestern wieder einen wichtigen Wettkampf des\nLeichtathletikverbands gewonnen hatte, stand seiner Teilnahme an den olympischen\nSpielen nichts mehr im Wege.
+  max_display_time = 600000
+  trial_type =       Reading
+end F11I1D0
+
+trial F12I1D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Obwohl der Tierschützer sich schon seit Jahren streng vegetarisch ernährte,\nkonnte seinen alten Pudel nicht davon überzeugen, ebenfalls auf fleischlose Kost\numzustellen, was ihn sehr betrübte.
+  max_display_time = 600000
+  trial_type =       Reading
+end F12I1D0
+
+trial F13I1D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil er keinen großen Hunger verspürte, beschloss Martin Kunze, lediglich einen\nkleines Steak zum Mittagessen zu verspeisen, was ihm auch überaus gut bekam.
+  max_display_time = 600000
+  trial_type =       Reading
+end F13I1D0
+
+trial F14I1D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Durch gezieltes Abfeuern seines bewährten Gewehrs erlegte der greise Jäger im\numzäunten Gehege eine ganze Herde von gutgewachsenen Hirschen, was dem\nGutsbesitzer durchaus nicht ungelegen kam.
+  max_display_time = 600000
+  trial_type =       Reading
+end F14I1D0
+
+trial F15I1D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Nachdem sie schon lange mit einem kleinen grünen Polo durch die Gegend\ngefahren war, beschloss Katrin Helbig nun die Anschaffung eines roten Lastwagens,\nobwohl dieser ein kleines Vermögen kostete.
+  max_display_time = 600000
+  trial_type =       Reading
+end F15I1D0
+
+trial F16I1D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Durch gezieltes Renovieren des blaugestrichenen Bads konnte der Handwerker der\nWohnung des Pensionärs neuen Glanz verleihen.
+  max_display_time = 600000
+  trial_type =       Reading
+end F16I1D0
+
+trial F17I1D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Weil der Mitarbeiter der Zentralbank seinem Vorgesetzten Misswirtschaft\nanlastete, wurde er von seinen Kollegen aus dem Amt gejagt, obwohl er das nicht\nverdient hatte.
+  max_display_time = 600000
+  trial_type =       Reading
+end F17I1D0
+
+trial F18I1D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Das Schulkind hat heute wieder den Unterricht geschwänzt und sich stattdessen auf\ndem Jahrmarkt herumgetrieben, was den Eltern überhaupt nicht behagte.
+  max_display_time = 600000
+  trial_type =       Reading
+end F18I1D0
+
+trial F19I1D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der greise Patenonkel ist vor ein paar Jahren unerwartet verstorben, leider\njedoch ohne seinem Patenkind ein Vermögen zu hinterlassen.
+  max_display_time = 600000
+  trial_type =       Reading
+end F19I1D0
+
+trial F20I1D0
+  gc_rect =          (0 0 0 0)
+  inline =           |Der Wissenschaftler wird heute einen wichtigen Versuch durchführen, der ihn\nweltweit berühmt machen könnte, falls er erfolgreich verlaufen sollte.
+  max_display_time = 600000
+  trial_type =       Reading
+end F20I1D0
+

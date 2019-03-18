@@ -1,0 +1,45 @@
+\documentclass{article}
+
+\title{Florian antilocality study}
+\author{This analysis by Shravan}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+\section{Preprocessing}
+
+Load data:
+
+<<>>=
+data<-read.table("floriandata.txt",header=F)
+summary(data)
+
+## recode 1 for target expt, else 0
+data$targetexpt<-ifelse(grepl("^ProdComp",data$V1) & 
+         apply(data,1,
+               function(x) 
+                 grepl("^ProdComp",x[1])),1,0)
+
+data<-subset(data,targetexpt==1)
+
+summary(data)
+
+unique(data$V2)
+
+colnames(data)<-c("expt","roi","qtype","item_id","")
+
+fact
+
+
+
+
+
+
+
+
+
+@
+
+
+
+\end{document}

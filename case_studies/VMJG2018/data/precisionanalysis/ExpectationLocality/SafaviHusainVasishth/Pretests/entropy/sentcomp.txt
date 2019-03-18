@@ -1,0 +1,2765 @@
+Pre-test LatSq-list subj-ID item-ID cond verb
+1 1 A 1 a dashtan
+1 1 H 1 a dashtan
+1 1 H-CH 1 a dashtan
+1 1 K-V 1 a dashtan
+1 1 M 1 a dashtan
+1 1 R- 1 a dashtan
+1 1 R-G 1 a dashtan
+1 1 M-V 1 a kardan
+1 4 SM-M 1 b baravarde-kardan
+1 4 V 1 b baravarde-kardan
+1 4 A-GH 1 b kardan
+1 4 H 1 b kardan
+1 4 M 1 b kardan
+1 4 M2 1 b kardan
+1 4 R 1 b kardan
+1 3 M-A 1 c amade-kardan
+1 3 S-R 1 c dadan
+1 3 M-Z 1 c dorost-kardan
+1 3 B-N 1 c pokhtan
+1 3 N-KH 1 c pokhtan
+1 3 S-GH- 1 c pokhtan
+1 3 S-GH2 1 c pokhtan
+1 3 ZH-Z 1 c pokhtan
+1 2 D-KH 1 d amade-kardan
+1 2 M-CH 1 d dorost-kardan
+1 2 N 1 d pokhtan
+1 2 S 1 d pokhtan
+1 2 S-A- 1 d pokhtan
+1 2 S-A-E 1 d pokhtan
+1 2 SH-H 1 d pokhtan
+1 2 T-D 1 d pokhtan
+1 2 S-A-E 2 a sakhtan
+1 2 T-D 2 a sakhtan
+1 2 D-KH 2 a zadan
+1 2 M-CH 2 a zadan
+1 2 N 2 a zadan
+1 2 S 2 a zadan
+1 2 S-A- 2 a zadan
+1 2 SH-H 2 a zadan
+1 1 R- 2 b download-kardan
+1 1 H-CH 2 b kardan
+1 1 K-V 2 b kardan
+1 1 M 2 b kardan
+1 1 A 2 b zadan
+1 1 H 2 b zadan
+1 1 M-V 2 b zadan
+1 1 R-G 2 b zadan
+1 4 M2 2 c avardan
+1 4 A-GH 2 c kharidan
+1 4 H 2 c kharidan
+1 4 M 2 c kharidan
+1 4 N 2 c kharidan
+1 4 R 2 c kharidan
+1 4 SM-M 2 c kharidan
+1 4 V 2 c kharidan
+1 3 M-A 2 d avardan
+1 3 S-GH2 2 d ferestadan
+1 3 B-N 2 d kharidan
+1 3 M-Z 2 d kharidan
+1 3 N-KH 2 d kharidan
+1 3 S-GH- 2 d kharidan
+1 3 S-R 2 d kharidan
+1 3 ZH-Z 2 d kharidan
+1 3 M-A 3 a kardan
+1 3 M-Z 3 a kardan
+1 3 N-KH 3 a kardan
+1 3 S-GH- 3 a kardan
+1 3 S-GH2 3 a kardan
+1 3 S-R 3 a kardan
+1 3 ZH-Z 3 a kardan
+1 2 M-CH 3 b kardan
+1 2 N 3 b kardan
+1 2 S-A- 3 b kardan
+1 2 S-A-E 3 b kardan
+1 2 SH-H 3 b kardan
+1 2 D-KH 3 b khandan
+1 2 S 3 b khandan
+1 2 T-D 3 b khandan
+1 1 H 3 c dukhtan
+1 1 M-V 3 c dukhtan
+1 1 R-G 3 c dukhtan
+1 1 A 3 c kharidan
+1 1 H-CH 3 c kharidan
+1 1 K-V 3 c kharidan
+1 1 M 3 c kharidan
+1 1 R- 3 c kharidan
+1 4 M 3 d dukhtan
+1 4 M2 3 d dukhtan
+1 4 R 3 d dukhtan
+1 4 V 3 d dukhtan
+1 4 A-GH 3 d kharidan
+1 4 H 3 d kharidan
+1 4 N 3 d kharidan
+1 4 SM-M 3 d otuu-kardan
+1 4 A-GH 4 a dashtan
+1 4 H 4 a dashtan
+1 4 N 4 a dashtan
+1 4 M 4 a kardan
+1 4 M2 4 a kardan
+1 4 R 4 a kardan
+1 4 V 4 a kardan
+1 4 SM-M 4 a nemudan
+1 3 N-KH 4 b dashtan
+1 3 S-GH- 4 b dashtan
+1 3 M-A 4 b kardan
+1 3 M-Z 4 b kardan
+1 3 S-GH2 4 b kardan
+1 3 S-R 4 b kardan
+1 3 ZH-Z 4 b kardan
+1 3 B-N 4 b zadan
+1 2 T-D 4 c dariaft-kardan
+1 2 S 4 c gereftan
+1 2 S-A-E 4 c gereftan
+1 2 SH-H 4 c gereftan
+1 2 D-KH 4 c shenidan
+1 2 M-CH 4 c shenidan
+1 2 N 4 c shenidan
+1 2 S-A- 4 c shenidan
+1 1 M-V 4 d dariaft-kardan
+1 1 A 4 d gereftan
+1 1 H 4 d gereftan
+1 1 H-CH 4 d gereftan
+1 1 K-V 4 d gereftan
+1 1 M 4 d gereftan
+1 1 R- 4 d shenidan
+1 1 R-G 4 d shenidan
+1 1 M-V 5 a dariaft-kardan
+1 1 A 5 a dashtan
+1 1 H 5 a dashtan
+1 1 H-CH 5 a dashtan
+1 1 K-V 5 a dashtan
+1 1 M 5 a dashtan
+1 1 R- 5 a dashtan
+1 1 R-G 5 a dashtan
+1 4 A-GH 5 b kardan
+1 4 M 5 b kardan
+1 4 M2 5 b kardan
+1 4 N 5 b kardan
+1 4 R 5 b kardan
+1 4 SM-M 5 b kardan
+1 4 V 5 b khastan
+1 4 H 5 b talab-kardan
+1 3 N-KH 5 c danestan
+1 3 M-Z 5 c goftan
+1 3 ZH-Z 5 c goftan
+1 3 S-R 5 c naghl-kardan
+1 3 B-N 5 c tarif-kardan
+1 3 M-A 5 c tarif-kardan
+1 3 S-GH- 5 c tarif-kardan
+1 3 S-GH2 5 c tarif-kardan
+1 2 N 5 d dashtan
+1 2 S 5 d dashtan
+1 2 T-D 5 d kardan
+1 2 D-KH 5 d nemudan
+1 2 S-A- 5 d nemudan
+1 2 S-A-E 5 d nemudan
+1 2 M-CH 5 d neveshtan
+1 2 SH-H 5 d neveshtan
+1 2 D-KH 6 a dashtan
+1 2 M-CH 6 a kardan
+1 2 N 6 a kardan
+1 2 S 6 a kardan
+1 2 S-A- 6 a kardan
+1 2 S-A-E 6 a kardan
+1 2 SH-H 6 a kardan
+1 2 T-D 6 a kardan
+1 1 M 6 b dashtan
+1 1 R- 6 b dashtan
+1 1 A 6 b kardan
+1 1 K-V 6 b kardan
+1 1 M-V 6 b kardan
+1 1 R-G 6 b kardan
+1 1 H 6 b neveshtan
+1 1 H-CH 6 b neveshtan
+1 4 H 6 c dadan
+1 4 M 6 c dadan
+1 4 M2 6 c dadan
+1 4 R 6 c dadan
+1 4 V 6 c dadan
+1 4 A-GH 6 c pakhsh-kardan
+1 4 N 6 c pakhsh-kardan
+1 4 SM-M 6 c tahie-kardan
+1 3 S-GH- 6 d bazgu-kardan
+1 3 B-N 6 d erae-kardan
+1 3 M-A 6 d neveshtan
+1 3 M-Z 6 d neveshtan
+1 3 N-KH 6 d neveshtan
+1 3 S-R 6 d neveshtan
+1 3 ZH-Z 6 d pakhsh-kardan
+1 3 S-GH2 6 d tahie-kardan
+1 3 B-N 7 a dadan
+1 3 M-A 7 a dadan
+1 3 M-Z 7 a dashtan
+1 3 N-KH 7 a dashtan
+1 3 S-GH2 7 a dashtan
+1 3 S-GH- 7 a erae-kardan
+1 3 S-R 7 a erae-kardan
+1 3 ZH-Z 7 a kardan
+1 2 D-KH 7 b kardan
+1 2 M-CH 7 b kardan
+1 2 N 7 b kardan
+1 2 S-A-E 7 b kardan
+1 2 SH-H 7 b kardan
+1 2 T-D 7 b kardan
+1 2 S 7 b nemudan
+1 2 S-A- 7 b nemudan
+1 1 H 7 c bardasht-kardan
+1 1 K-V 7 c dashtan
+1 1 M 7 c dashtan
+1 1 R- 7 c dashtan
+1 1 H-CH 7 c erae-kardan
+1 1 A 7 c kardan
+1 1 M-V 7 c khandan
+1 1 R-G 7 c khandan
+1 4 SM-M 7 d anjam-dadan
+1 4 H 7 d erae-kardan
+1 4 A-GH 7 d estekhraj-kardan
+1 4 M 7 d kardan
+1 4 M2 7 d kardan
+1 4 R 7 d kardan
+1 4 V 7 d kardan
+1 4 N 7 d nemudan
+1 4 A-GH 8 a dashtan
+1 4 H 8 a dashtan
+1 4 M 8 a dashtan
+1 4 M2 8 a dashtan
+1 4 N 8 a dashtan
+1 4 R 8 a dashtan
+1 4 SM-M 8 a dashtan
+1 4 V 8 a dashtan
+1 3 B-N 8 b darkhast-kardan
+1 3 S-R 8 b darkhast-kardan
+1 3 M-A 8 b dashtan
+1 3 M-Z 8 b dashtan
+1 3 N-KH 8 b dashtan
+1 3 S-GH- 8 b dashtan
+1 3 S-GH2 8 b dashtan
+1 3 ZH-Z 8 b dashtan
+1 2 T-D 8 c baian-kardan
+1 2 S-A-E 8 c dashtan
+1 2 SH-H 8 c dashtan
+1 2 S 8 c khandan
+1 2 D-KH 8 c neveshtan
+1 2 M-CH 8 c sakhtan
+1 2 N 8 c sakhtan
+1 2 S-A- 8 c tarif-kardan
+1 1 M 8 d dashtan
+1 1 R-G 8 d dashtan
+1 1 A 8 d kardan
+1 1 H-CH 8 d kardan
+1 1 K-V 8 d kardan
+1 1 M-V 8 d kardan
+1 1 R- 8 d khastan
+1 1 H 8 d pas-gereftan
+1 1 H 9 a bardasht-kardan
+1 1 A 9 a bardashtan
+1 1 H-CH 9 a bardashtan
+1 1 M-V 9 a darkhast-kardan
+1 1 K-V 9 a dashtan
+1 1 M 9 a dashtan
+1 1 R- 9 a dashtan
+1 1 R-G 9 a dashtan
+1 4 H 9 b dariaft-kardan
+1 4 M 9 b gereftan
+1 4 M2 9 b gereftan
+1 4 R 9 b gereftan
+1 4 SM-M 9 b gereftan
+1 4 V 9 b gereftan
+1 4 A-GH 9 b kharidan
+1 4 N 9 b taghaza-kardan
+1 3 B-N 9 c dashtan
+1 3 M-A 9 c dashtan
+1 3 M-Z 9 c dashtan
+1 3 N-KH 9 c dashtan
+1 3 S-GH- 9 c dashtan
+1 3 S-GH2 9 c kardan
+1 3 S-R 9 c kardan
+1 3 ZH-Z 9 c kardan
+1 2 T-D 9 d ghabul-kardan
+1 2 SH-H 9 d irad-gereftan
+1 2 D-KH 9 d kardan
+1 2 M-CH 9 d kardan
+1 2 N 9 d kardan
+1 2 S 9 d kardan
+1 2 S-A-E 9 d kardan
+1 2 S-A- 9 d paziroftan
+1 2 D-KH 10 a dashtan
+1 2 M-CH 10 a dashtan
+1 2 S 10 a dashtan
+1 2 S-A- 10 a dashtan
+1 2 SH-H 10 a dashtan
+1 2 T-D 10 a dashtan
+1 2 N 10 a kardan
+1 2 S-A-E 10 a kardan
+1 1 M 10 b dashtan
+1 1 R- 10 b dashtan
+1 1 R-G 10 b dashtan
+1 1 H 10 b gereftan
+1 1 A 10 b kardan
+1 1 H-CH 10 b kardan
+1 1 K-V 10 b kardan
+1 1 M-V 10 b kardan
+1 4 A-GH 10 c gereftan
+1 4 H 10 c gereftan
+1 4 M 10 c gereftan
+1 4 M2 10 c gereftan
+1 4 R 10 c gereftan
+1 4 V 10 c gereftan
+1 4 N 10 c gharz-gereftan
+1 4 SM-M 10 c talab-dashtan
+1 3 B-N 10 d amanat-gereftan
+1 3 N-KH 10 d gereftan
+1 3 S-GH- 10 d gereftan
+1 3 S-GH2 10 d gereftan
+1 3 ZH-Z 10 d gereftan
+1 3 M-A 10 d gharz-gereftan
+1 3 S-R 10 d gharz-kardan
+1 3 M-Z 10 d talab-kardan
+1 3 B-N 11 a zadan
+1 3 M-A 11 a zadan
+1 3 M-Z 11 a zadan
+1 3 N-KH 11 a zadan
+1 3 S-GH- 11 a zadan
+1 3 S-GH2 11 a zadan
+1 3 S-R 11 a zadan
+1 3 ZH-Z 11 a zadan
+1 2 D-KH 11 b zadan
+1 2 M-CH 11 b zadan
+1 2 N 11 b zadan
+1 2 S 11 b zadan
+1 2 S-A- 11 b zadan
+1 2 S-A-E 11 b zadan
+1 2 SH-H 11 b zadan
+1 2 T-D 11 b zadan
+1 1 A 11 c avizan-kardan
+1 1 M 11 c budan
+1 1 R- 11 c dashtan
+1 1 R-G 11 c dashtan
+1 1 H-CH 11 c vasl-kardan
+1 1 H 11 c zadan
+1 1 K-V 11 c zadan
+1 1 M-V 11 c zadan
+1 4 H 11 d avizan-kardan
+1 4 SM-M 11 d motasel-kardan
+1 4 A-GH 11 d vasl-kardan
+1 4 M 11 d vasl-kardan
+1 4 M2 11 d vasl-kardan
+1 4 N 11 d vasl-kardan
+1 4 R 11 d vasl-kardan
+1 4 V 11 d zadan
+1 4 M 12 a kardan
+1 4 M2 12 a kardan
+1 4 R 12 a kardan
+1 4 V 12 a rava-kardan
+1 4 A-GH 12 a zadan
+1 4 H 12 a zadan
+1 4 N 12 a zadan
+1 4 SM-M 12 a zadan
+1 3 B-N 12 b zadan
+1 3 M-A 12 b zadan
+1 3 M-Z 12 b zadan
+1 3 N-KH 12 b zadan
+1 3 S-GH- 12 b zadan
+1 3 S-GH2 12 b zadan
+1 3 S-R 12 b zadan
+1 3 ZH-Z 12 b zadan
+1 2 D-KH 12 c goftan
+1 2 M-CH 12 c goftan
+1 2 N 12 c goftan
+1 2 S 12 c goftan
+1 2 S-A- 12 c goftan
+1 2 S-A-E 12 c goftan
+1 2 SH-H 12 c goftan
+1 2 T-D 12 c goftan
+1 1 A 12 d goftan
+1 1 H 12 d goftan
+1 1 H-CH 12 d goftan
+1 1 K-V 12 d goftan
+1 1 M 12 d goftan
+1 1 M-V 12 d goftan
+1 1 R- 12 d goftan
+1 1 R-G 12 d goftan
+1 1 R-G 13 a hedie-kardan
+1 1 M-V 13 a tahvil-dadan
+1 1 A 13 a zadan
+1 1 H 13 a zadan
+1 1 H-CH 13 a zadan
+1 1 K-V 13 a zadan
+1 1 M 13 a zadan
+1 1 R- 13 a zadan
+1 4 SM-M 13 b ehda-kardan
+1 4 N 13 b hedie-dadan
+1 4 H 13 b hedie-dadan
+1 4 A-GH 13 b zadan
+1 4 M 13 b zadan
+1 4 M2 13 b zadan
+1 4 R 13 b zadan
+1 4 V 13 b zadan
+1 3 S-GH2 13 c adres-dadan
+1 3 N-KH 13 c bakhshidan
+1 3 S-GH- 13 c forukhtan
+1 3 S-R 13 c forukhtan
+1 3 M-A 13 c hedie-dadan
+1 3 B-N 13 c moarefi-kardan
+1 3 M-Z 13 c neshan-dadan
+1 3 ZH-Z 13 c pul-dadan
+1 2 S 13 d bakhshidan
+1 2 N 13 d dadan
+1 2 SH-H 13 d hedie-dadan
+1 2 T-D 13 d hedie-dadan
+1 2 M-CH 13 d neshan-dadan
+1 2 S-A- 13 d neshan-dadan
+1 2 S-A-E 13 d neshan-dadan
+1 2 D-KH 13 d sepordan
+1 2 D-KH 14 a zadan
+1 2 M-CH 14 a zadan
+1 2 N 14 a zadan
+1 2 S 14 a zadan
+1 2 S-A- 14 a zadan
+1 2 S-A-E 14 a zadan
+1 2 SH-H 14 a zadan
+1 2 T-D 14 a zadan
+1 1 K-V 14 b avardan
+1 1 M 14 b avardan
+1 1 A 14 b dadan
+1 1 H-CH 14 b dadan
+1 1 M-V 14 b dadan
+1 1 R- 14 b dadan
+1 1 H 14 b kardan
+1 4 A-GH 14 c dadan
+1 4 H 14 c dadan
+1 4 M 14 c dadan
+1 4 N 14 c dadan
+1 4 SM-M 14 c dadan
+1 4 V 14 c dadan
+1 4 M2 14 c taghdim-kardan
+1 4 R 14 c taghdim-kardan
+1 3 B-N 14 d dadan
+1 3 M-Z 14 d dadan
+1 3 N-KH 14 d dadan
+1 3 S-GH- 14 d dadan
+1 3 S-GH2 14 d dadan
+1 3 S-R 14 d dadan
+1 3 ZH-Z 14 d dadan
+1 3 M-A 14 d hedie-kardan
+1 3 B-N 15 a zadan
+1 3 M-A 15 a zadan
+1 3 M-Z 15 a zadan
+1 3 N-KH 15 a zadan
+1 3 S-GH- 15 a zadan
+1 3 S-GH2 15 a zadan
+1 3 S-R 15 a zadan
+1 3 ZH-Z 15 a zadan
+1 2 N 15 b vared-kardan
+1 2 D-KH 15 b zadan
+1 2 M-CH 15 b zadan
+1 2 S 15 b zadan
+1 2 S-A- 15 b zadan
+1 2 S-A-E 15 b zadan
+1 2 SH-H 15 b zadan
+1 2 T-D 15 b zadan
+1 1 R-G 15 c nesbat-dadan
+1 1 A 15 c zadan
+1 1 H 15 c zadan
+1 1 H-CH 15 c zadan
+1 1 K-V 15 c zadan
+1 1 M 15 c zadan
+1 1 M-V 15 c zadan
+1 1 R- 15 c zadan
+1 4 N 15 d bakhshidan
+1 4 A-GH 15 d bargardandan
+1 4 M 15 d dadan
+1 4 M2 15 d dadan
+1 4 R 15 d dadan
+1 4 V 15 d dadan
+1 4 H 15 d ezafe-kardan
+1 4 SM-M 15 d hedie-dadan
+1 4 A-GH 16 a goftan
+1 4 SM-M 16 a gushzad-kardan
+1 4 H 16 a zadan
+1 4 M 16 a zadan
+1 4 M2 16 a zadan
+1 4 N 16 a zadan
+1 4 R 16 a zadan
+1 4 V 16 a zadan
+1 3 B-N 16 b goftan
+1 3 M-A 16 b goftan
+1 3 M-Z 16 b goftan
+1 3 S-GH- 16 b goftan
+1 3 S-R 16 b goftan
+1 3 N-KH 16 b zadan
+1 3 S-GH2 16 b zadan
+1 3 ZH-Z 16 b zadan
+1 2 N 16 c dadan
+1 2 S 16 c dadan
+1 2 T-D 16 c dadan
+1 2 S-A- 16 c hedie-dadan
+1 2 S-A-E 16 c hedie-dadan
+1 2 SH-H 16 c hedie-dadan
+1 2 D-KH 16 c hedie-kardan
+1 2 M-CH 16 c hedie-kardan
+1 1 A 16 d dadan
+1 1 H 16 d dadan
+1 1 K-V 16 d dadan
+1 1 R- 16 d dadan
+1 1 H-CH 16 d hedie-dadan
+1 1 M 16 d hedie-dadan
+1 1 M-V 16 d hedie-dadan
+1 1 R-G 16 d hedie-kardan
+1 1 A 17 a dadan
+1 1 H-CH 17 a dadan
+1 1 R-G 17 a dashtan
+1 1 H 17 a kardan
+1 1 K-V 17 a kardan
+1 1 M 17 a kardan
+1 1 M-V 17 a kardan
+1 1 R- 17 a kardan
+1 4 V 17 b gushzad-kardan
+1 4 A-GH 17 b kardan
+1 4 H 17 b kardan
+1 4 M 17 b kardan
+1 4 M2 17 b kardan
+1 4 N 17 b kardan
+1 4 R 17 b kardan
+1 4 SM-M 17 b kardan
+1 3 B-N 17 c amukhtan
+1 3 S-GH- 17 c amukhtan
+1 3 M-Z 17 c dadan
+1 3 N-KH 17 c dadan
+1 3 S-GH2 17 c dadan
+1 3 S-R 17 c dadan
+1 3 ZH-Z 17 c dadan
+1 3 M-A 17 c yad-dadan
+1 2 S 17 d amukhtan
+1 2 S-A- 17 d amukhtan
+1 2 T-D 17 d amukhtan
+1 2 D-KH 17 d dadan
+1 2 M-CH 17 d dadan
+1 2 N 17 d dadan
+1 2 SH-H 17 d dadan
+1 2 S-A-E 17 d yad-dadan
+1 2 D-KH 18 a kardan
+1 2 M-CH 18 a kardan
+1 2 N 18 a kardan
+1 2 S 18 a kardan
+1 2 S-A- 18 a kardan
+1 2 S-A-E 18 a kardan
+1 2 SH-H 18 a kardan
+1 2 T-D 18 a kardan
+1 1 K-V 18 b dadan
+1 1 A 18 b kardan
+1 1 H 18 b kardan
+1 1 H-CH 18 b kardan
+1 1 M 18 b kardan
+1 1 M-V 18 b kardan
+1 1 R- 18 b kardan
+1 1 R-G 18 b kardan
+1 4 M 18 c goftan
+1 4 M2 18 c goftan
+1 4 R 18 c goftan
+1 4 SM-M 18 c goftan
+1 4 V 18 c goftan
+1 4 A-GH 18 c gushzad-kardan
+1 4 H 18 c gushzad-kardan
+1 4 N 18 c yad-dadan
+1 3 S-GH- 18 d amukhtan
+1 3 ZH-Z 18 d goftan
+1 3 S-GH2 18 d gushzad-kardan
+1 3 N-KH 18 d montaghel-kardan
+1 3 M-A 18 d motezaker-shodan
+1 3 M-Z 18 d yad-dadan
+1 3 B-N 18 d yadavari-kardan
+1 3 S-R 18 d yadavari-kardan
+1 3 B-N 19 a dadan
+1 3 M-A 19 a dadan
+1 3 M-Z 19 a dadan
+1 3 N-KH 19 a dadan
+1 3 S-GH- 19 a dadan
+1 3 S-R 19 a dadan
+1 3 ZH-Z 19 a dadan
+1 3 S-GH2 19 a kardan
+1 2 D-KH 19 b dadan
+1 2 M-CH 19 b dadan
+1 2 N 19 b dadan
+1 2 S 19 b dadan
+1 2 S-A- 19 b dadan
+1 2 S-A-E 19 b dadan
+1 2 T-D 19 b dadan
+1 2 SH-H 19 b goftan
+1 1 H 19 c dadan
+1 1 K-V 19 c dadan
+1 1 A 19 c hedie-dadan
+1 1 H-CH 19 c hedie-dadan
+1 1 M 19 c hedie-dadan
+1 1 M-V 19 c hedie-dadan
+1 1 R- 19 c hedie-dadan
+1 1 R-G 19 c hedie-kardan
+1 4 M 19 d dadan
+1 4 M2 19 d dadan
+1 4 N 19 d dadan
+1 4 R 19 d dadan
+1 4 SM-M 19 d dadan
+1 4 V 19 d dadan
+1 4 A-GH 19 d hedie-kardan
+1 4 H 19 d hedie-kardan
+1 4 SM-M 20 a dadan
+1 4 A-GH 20 a kardan
+1 4 H 20 a kardan
+1 4 M 20 a kardan
+1 4 M2 20 a kardan
+1 4 N 20 a kardan
+1 4 R 20 a kardan
+1 4 V 20 a kardan
+1 3 B-N 20 b dadan
+1 3 M-Z 20 b dadan
+1 3 S-R 20 b goftan
+1 3 S-GH2 20 b hedie-dadan
+1 3 M-A 20 b kardan
+1 3 N-KH 20 b kardan
+1 3 ZH-Z 20 b kardan
+1 3 S-GH- 20 b moarefi-kardan
+1 2 D-KH 20 c dadan
+1 2 N 20 c dadan
+1 2 S 20 c dadan
+1 2 S-A-E 20 c dadan
+1 2 T-D 20 c dadan
+1 2 M-CH 20 c email-kardan
+1 2 SH-H 20 c erae-kardan
+1 2 S-A- 20 c moarefi-kardan
+1 1 M-V 20 d amanat-dadan
+1 1 A 20 d dadan
+1 1 H 20 d dadan
+1 1 H-CH 20 d dadan
+1 1 R- 20 d dadan
+1 1 R-G 20 d dadan
+1 1 K-V 20 d email-kardan
+1 1 M 20 d neshan-dadan
+1 1 A 21 a dadan
+1 1 H 21 a dadan
+1 1 H-CH 21 a dadan
+1 1 K-V 21 a dadan
+1 1 M 21 a dadan
+1 1 M-V 21 a dadan
+1 1 R- 21 a dadan
+1 1 R-G 21 a dadan
+1 4 H 21 b dadan
+1 4 M 21 b dadan
+1 4 M2 21 b dadan
+1 4 N 21 b dadan
+1 4 R 21 b dadan
+1 4 V 21 b dadan
+1 4 SM-M 21 b gushzad-kardan
+1 4 A-GH 21 b motezaker-shodan
+1 3 B-N 21 c dadan
+1 3 N-KH 21 c dadan
+1 3 S-GH- 21 c dadan
+1 3 S-GH2 21 c dadan
+1 3 S-R 21 c dadan
+1 3 ZH-Z 21 c dadan
+1 3 M-Z 21 c neshan-dadan
+1 3 M-A 21 c pishnehad-dadan
+1 2 D-KH 21 d dadan
+1 2 M-CH 21 d dadan
+1 2 N 21 d dadan
+1 2 S 21 d dadan
+1 2 S-A- 21 d dadan
+1 2 SH-H 21 d dadan
+1 2 T-D 21 d dadan
+1 2 S-A-E 21 d resandan
+1 2 S-A-E 22 a dadan
+1 2 SH-H 22 a dadan
+1 2 D-KH 22 a kardan
+1 2 M-CH 22 a kardan
+1 2 N 22 a kardan
+1 2 S 22 a kardan
+1 2 S-A- 22 a kardan
+1 2 T-D 22 a kardan
+1 1 A 22 b dadan
+1 1 H 22 b dadan
+1 1 H-CH 22 b dadan
+1 1 M 22 b dadan
+1 1 R-G 22 b dadan
+1 1 K-V 22 b kardan
+1 1 M-V 22 b kardan
+1 1 R- 22 b kardan
+1 4 A-GH 22 c dadan
+1 4 H 22 c dadan
+1 4 M 22 c dadan
+1 4 M2 22 c dadan
+1 4 N 22 c dadan
+1 4 R 22 c dadan
+1 4 SM-M 22 c dadan
+1 4 V 22 c dadan
+1 3 M-A 22 d amani-dadan
+1 3 S-GH2 22 d dadan
+1 3 S-R 22 d dadan
+1 3 ZH-Z 22 d dadan
+1 3 B-N 22 d sepordan
+1 3 M-Z 22 d sepordan
+1 3 N-KH 22 d sepordan
+1 3 S-GH- 22 d sepordan
+1 3 B-N 23 a dadan
+1 3 M-A 23 a dadan
+1 3 M-Z 23 a dadan
+1 3 N-KH 23 a dadan
+1 3 S-GH- 23 a dadan
+1 3 S-GH2 23 a dadan
+1 3 S-R 23 a dadan
+1 3 ZH-Z 23 a dadan
+1 2 D-KH 23 b dadan
+1 2 M-CH 23 b dadan
+1 2 N 23 b dadan
+1 2 S 23 b dadan
+1 2 S-A- 23 b dadan
+1 2 S-A-E 23 b dadan
+1 2 SH-H 23 b dadan
+1 2 T-D 23 b dadan
+1 1 A 23 c dadan
+1 1 H 23 c dadan
+1 1 H-CH 23 c dadan
+1 1 K-V 23 c dadan
+1 1 M 23 c dadan
+1 1 M-V 23 c dadan
+1 1 R- 23 c dadan
+1 1 R-G 23 c kardan
+1 4 A-GH 23 d dadan
+1 4 H 23 d dadan
+1 4 M 23 d dadan
+1 4 M2 23 d dadan
+1 4 N 23 d dadan
+1 4 R 23 d dadan
+1 4 SM-M 23 d dadan
+1 4 V 23 d dadan
+1 4 A-GH 24 a dadan
+1 4 H 24 a dadan
+1 4 M 24 a dadan
+1 4 M2 24 a dadan
+1 4 N 24 a dadan
+1 4 R 24 a dadan
+1 4 SM-M 24 a dadan
+1 4 V 24 a dadan
+1 3 B-N 24 b dadan
+1 3 M-A 24 b dadan
+1 3 M-Z 24 b dadan
+1 3 N-KH 24 b dadan
+1 3 S-GH- 24 b dadan
+1 3 S-GH2 24 b dadan
+1 3 S-R 24 b dadan
+1 3 ZH-Z 24 b dadan
+1 2 D-KH 24 c dadan
+1 2 M-CH 24 c dadan
+1 2 N 24 c dadan
+1 2 S 24 c dadan
+1 2 S-A-E 24 c dadan
+1 2 SH-H 24 c dadan
+1 2 S-A- 24 c dadan
+1 2 T-D 24 c dadan
+1 1 A 24 d dadan
+1 1 H 24 d dadan
+1 1 H-CH 24 d dadan
+1 1 K-V 24 d dadan
+1 1 M 24 d dadan
+1 1 M-V 24 d dadan
+1 1 R- 24 d dadan
+1 1 R-G 24 d dadan
+1 1 A 25 a goftan
+1 1 H 25 a goftan
+1 1 H-CH 25 a goftan
+1 1 K-V 25 a goftan
+1 1 M 25 a goftan
+1 1 M-V 25 a goftan
+1 1 R- 25 a goftan
+1 1 R-G 25 a goftan
+1 4 A-GH 25 b goftan
+1 4 H 25 b goftan
+1 4 M 25 b goftan
+1 4 M2 25 b goftan
+1 4 N 25 b goftan
+1 4 R 25 b goftan
+1 4 V 25 b goftan
+1 4 SM-M 25 b tahvil-dadan
+1 3 M-Z 25 c dadan
+1 3 N-KH 25 c dadan
+1 3 S-GH- 25 c dadan
+1 3 S-GH2 25 c dadan
+1 3 ZH-Z 25 c dadan
+1 3 B-N 25 c hedie-dadan
+1 3 S-R 25 c hedie-dadan
+1 3 M-A 25 c neshan-dadan
+1 2 D-KH 25 d dadan
+1 2 M-CH 25 d dadan
+1 2 N 25 d dadan
+1 2 S-A-E 25 d dadan
+1 2 SH-H 25 d dadan
+1 2 S 25 d hedie-dadan
+1 2 T-D 25 d hedie-dadan
+1 2 S-A- 25 d neshan-dadan
+1 2 D-KH 26 a dashtan
+1 2 S 26 a dashtan
+1 2 S-A- 26 a dashtan
+1 2 SH-H 26 a dashtan
+1 2 T-D 26 a dashtan
+1 2 N 26 a dashttan
+1 2 M-CH 26 a kardan
+1 2 S-A-E 26 a kardan
+1 1 H 26 b anjam-dadan
+1 1 A 26 b be-anjam-resandan
+1 1 H-CH 26 b be-anjam-resandan
+1 1 R-G 26 b be-dast-avardan
+1 1 K-V 26 b dashtan
+1 1 M 26 b dashtan
+1 1 R- 26 b kasb-kardan
+1 1 M-V 26 b neshan-dadan
+1 4 SM-M 26 c ejra-kardan
+1 4 A-GH 26 c khandan
+1 4 H 26 c khandan
+1 4 M 26 c khandan
+1 4 M2 26 c khandan
+1 4 N 26 c khandan
+1 4 R 26 c khandan
+1 4 V 26 c khandan
+1 3 S-GH2 26 d dadan
+1 3 B-N 26 d ejra-kardan
+1 3 M-Z 26 d ejra-kardan
+1 3 N-KH 26 d ejra-kardan
+1 3 S-R 26 d ejra-kardan
+1 3 ZH-Z 26 d gom-kardan
+1 3 M-A 26 d khandan
+1 3 S-GH- 26 d khandan
+1 3 M-A 27 a dashtan
+1 3 B-N 27 a kardan
+1 3 M-Z 27 a kardan
+1 3 N-KH 27 a kardan
+1 3 S-GH- 27 a kardan
+1 3 S-GH2 27 a kardan
+1 3 S-R 27 a kardan
+1 3 ZH-Z 27 a kardan
+1 2 D-KH 27 b kardan
+1 2 M-CH 27 b kardan
+1 2 N 27 b kardan
+1 2 S 27 b kardan
+1 2 S-A- 27 b kardan
+1 2 S-A-E 27 b kardan
+1 2 SH-H 27 b kardan
+1 2 T-D 27 b kardan
+1 1 A 27 c goftan
+1 1 H 27 c goftan
+1 1 H-CH 27 c goftan
+1 1 K-V 27 c goftan
+1 1 M 27 c goftan
+1 1 M-V 27 c goftan
+1 1 R- 27 c goftan
+1 1 R-G 27 c goftan
+1 4 A-GH 27 d goftan
+1 4 H 27 d goftan
+1 4 M 27 d goftan
+1 4 M2 27 d goftan
+1 4 N 27 d goftan
+1 4 R 27 d goftan
+1 4 SM-M 27 d goftan
+1 4 V 27 d goftan
+1 4 A-GH 28 a kardan
+1 4 H 28 a kardan
+1 4 M 28 a kardan
+1 4 M2 28 a kardan
+1 4 N 28 a kardan
+1 4 R 28 a kardan
+1 4 SM-M 28 a kardan
+1 4 V 28 a kardan
+1 3 M-A 28 b dadan
+1 3 S-GH2 28 b dar-mian-gozashtan
+1 3 S-GH- 28 b dashtan
+1 3 N-KH 28 b dashtan
+1 3 B-N 28 b kardan
+1 3 M-Z 28 b kardan
+1 3 S-R 28 b kardan
+1 3 ZH-Z 28 b kardan
+1 2 N 28 c kar-kardan
+1 2 S 28 c khandan
+1 2 S-A-E 28 c sakhtan
+1 2 T-D 28 c sorudan
+1 2 SH-H 28 c yad-dadan
+1 2 D-KH 28 c zadan
+1 2 M-CH 28 c zadan
+1 2 S-A- 28 c zadan
+1 1 A 28 d dar-mian-gozashtan
+1 1 H 28 d dar-mian-gozashtan
+1 1 H-CH 28 d dar-mian-gozashtan
+1 1 R-G 28 d dar-mian-gozashtan
+1 1 K-V 28 d hamnavazi-kardan
+1 1 M 28 d tamrin-kardan
+1 1 R- 28 d tamrin-kardan
+1 1 M-V 28 d zadan
+1 1 H 29 a dashtan
+1 1 K-V 29 a dashtan
+1 1 M 29 a dashtan
+1 1 R- 29 a dashtan
+1 1 R-G 29 a dashtan
+1 1 A 29 a zadan
+1 1 H-CH 29 a zadan
+1 1 M-V 29 a zadan
+1 4 R 29 b anjam-dadan
+1 4 M 29 b dadan
+1 4 M2 29 b dadan
+1 4 SM-M 29 b jur-kardan
+1 4 A-GH 29 b zadan
+1 4 H 29 b zadan
+1 4 N 29 b zadan
+1 4 V 29 b zadan
+1 3 B-N 29 c dashtan
+1 3 N-KH 29 c dashtan
+1 3 S-GH- 29 c dashtan
+1 3 S-GH2 29 c dashtan
+1 3 S-R 29 c dashtan
+1 3 M-A 29 c raftan
+1 3 M-Z 29 c raftan
+1 3 ZH-Z 29 c raftan
+1 2 N 29 d aghaz-kardan
+1 2 D-KH 29 d be-anjam-resandan
+1 2 M-CH 29 d raftan
+1 2 S 29 d raftan
+1 2 S-A- 29 d raftan
+1 2 S-A-E 29 d raftan
+1 2 SH-H 29 d raftan
+1 2 T-D 29 d raftan
+1 2 SH-H 30 a dashtan
+1 2 D-KH 30 a zadan
+1 2 M-CH 30 a zadan
+1 2 N 30 a zadan
+1 2 S 30 a zadan
+1 2 S-A- 30 a zadan
+1 2 S-A-E 30 a zadan
+1 2 T-D 30 a zadan
+1 1 H 30 b baian-kardan
+1 1 M-V 30 b baian-kardan
+1 1 M 30 b dashtan
+1 1 A 30 b zadan
+1 1 H-CH 30 b zadan
+1 1 K-V 30 b zadan
+1 1 R- 30 b zadan
+1 1 R-G 30 b zadan
+1 4 A-GH 30 c shenidan
+1 4 H 30 c shenidan
+1 4 M 30 c shenidan
+1 4 M2 30 c shenidan
+1 4 N 30 c shenidan
+1 4 R 30 c shenidan
+1 4 SM-M 30 c shenidan
+1 4 V 30 c shenidan
+1 3 M-Z 30 d bavar-kardan
+1 3 ZH-Z 30 d bavar-kardan
+1 3 S-GH2 30 d ghabul-kardan
+1 3 S-GH- 30 d paziroftan
+1 3 B-N 30 d shenidan
+1 3 M-A 30 d shenidan
+1 3 N-KH 30 d shenidan
+1 3 S-R 30 d shenidan
+1 3 M-A 31 a dashtan
+1 3 N-KH 31 a dashtan
+1 3 S-GH- 31 a dashtan
+1 3 S-GH2 31 a dashtan
+1 3 B-N 31 a kardan
+1 3 M-Z 31 a kardan
+1 3 S-R 31 a kardan
+1 3 ZH-Z 31 a kardan
+1 2 T-D 31 b dashtan
+1 2 D-KH 31 b kardan
+1 2 M-CH 31 b kardan
+1 2 N 31 b kardan
+1 2 S 31 b kardan
+1 2 S-A- 31 b kardan
+1 2 S-A-E 31 b kardan
+1 2 SH-H 31 b kardan
+1 1 H 31 c dadan
+1 1 K-V 31 c dashtan
+1 1 R- 31 c dashtan
+1 1 R-G 31 c dashtan
+1 1 M-V 31 c elam-kardam
+1 1 A 31 c goftan
+1 1 H-CH 31 c goftan
+1 1 M 31 c shenidan
+1 4 M 31 d dadan
+1 4 M2 31 d dadan
+1 4 R 31 d dadan
+1 4 V 31 d dadan
+1 4 A-GH 31 d goftan
+1 4 H 31 d montasher-kardan
+1 4 N 31 d pakhsh-kardan
+1 4 SM-M 31 d pakhsh-kardan
+1 4 A-GH 32 a dashtan
+1 4 H 32 a dashtan
+1 4 M 32 a dashtan
+1 4 M2 32 a dashtan
+1 4 N 32 a dashtan
+1 4 R 32 a dashtan
+1 4 SM-M 32 a dashtan
+1 4 V 32 a dashtan
+1 3 S-GH- 32 b baian-kardan
+1 3 S-GH2 32 b dar-mian-gozashtan
+1 3 M-A 32 b dashtan
+1 3 M-Z 32 b dashtan
+1 3 N-KH 32 b dashtan
+1 3 S-R 32 b dashtan
+1 3 ZH-Z 32 b goftan
+1 3 B-N 32 b tekrar-shodan
+1 2 D-KH 32 c danestan
+1 2 S-A- 32 c danestan
+1 2 M-CH 32 c goftan
+1 2 N 32 c goftan
+1 2 S 32 c goftan
+1 2 S-A-E 32 c goftan
+1 2 SH-H 32 c goftan
+1 2 T-D 32 c makhfi-kardan
+1 1 K-V 32 d fahmidan
+1 1 R- 32 d fahmidan
+1 1 A 32 d goftan
+1 1 H 32 d goftan
+1 1 H-CH 32 d goftan
+1 1 M 32 d goftan
+1 1 R-G 32 d khabar-dar-shodan
+1 1 M-V 32 d moshahede-kardan
+1 1 H 33 a dashtan
+1 1 K-V 33 a dashtan
+1 1 M 33 a dashtan
+1 1 R- 33 a dashtan
+1 1 R-G 33 a dashtan
+1 1 A 33 a kardan
+1 1 H-CH 33 a kardan
+1 1 M-V 33 a kardan
+1 4 N 33 b baian-kardan
+1 4 SM-M 33 b estedlal-kardan
+1 4 A-GH 33 b kardan
+1 4 H 33 b kardan
+1 4 M 33 b kardan
+1 4 M2 33 b kardan
+1 4 R 33 b kardan
+1 4 V 33 b kardan
+1 3 B-N 33 c dashtan
+1 3 M-A 33 c dashtan
+1 3 N-KH 33 c dashtan
+1 3 S-GH- 33 c dashtan
+1 3 ZH-Z 33 c juyidan
+1 3 M-Z 33 c peida-kardan
+1 3 S-GH2 33 c peida-kardan
+1 3 S-R 33 c peida-kardan
+1 2 N 33 d andishidan
+1 2 M-CH 33 d baian-kardan
+1 2 S-A-E 33 d fekr-kardan
+1 2 SH-H 33 d gereftan
+1 2 T-D 33 d onvan-kardan
+1 2 S 33 d peida-kardan
+1 2 S-A- 33 d peida-kardan
+1 2 D-KH 33 d pishnehad-kardan
+1 2 D-KH 34 a ghezavat-kardan
+1 2 S-A- 34 a ghezavat-kardan
+1 2 S-A-E 34 a ghezavat-kardan
+1 2 M-CH 34 a kardan
+1 2 N 34 a kardan
+1 2 S 34 a kardan
+1 2 SH-H 34 a kardan
+1 2 T-D 34 a kardan
+1 1 R-G 34 b dashtan
+1 1 H-CH 34 b kardan
+1 1 K-V 34 b kardan
+1 1 M 34 b kardan
+1 1 R- 34 b kardan
+1 1 A 34 b mortakeb-shodan
+1 1 M-V 34 b mortakeb-shodan
+1 1 H 34 b tekrar-kardan
+1 4 N 34 c baian-kardan
+1 4 SM-M 34 c baian-kardan
+1 4 A-GH 34 c goftan
+1 4 M 34 c goftan
+1 4 M2 34 c goftan
+1 4 R 34 c goftan
+1 4 V 34 c goftan
+1 4 H 34 c motevajeh-shodan
+1 3 N-KH 34 d danestan
+1 3 S-R 34 d danestan
+1 3 B-N 34 d fahmidan
+1 3 M-A 34 d fahmidan
+1 3 S-GH- 34 d goftan
+1 3 ZH-Z 34 d goftan
+1 3 S-GH2 34 d nadide-gereftan
+1 3 M-Z 34 d penhan-kardan
+1 3 M-A 35 a etekhaz-kardan
+1 3 B-N 35 a gereftan
+1 3 M-Z 35 a gereftan
+1 3 N-KH 35 a gereftan
+1 3 S-GH- 35 a gereftan
+1 3 S-GH2 35 a gereftan
+1 3 S-R 35 a gereftan
+1 3 ZH-Z 35 a gereftan
+1 2 N 35 b anjam-dadan
+1 2 M-CH 35 b gereftan
+1 2 S 35 b gereftan
+1 2 S-A- 35 b gereftan
+1 2 S-A-E 35 b gereftan
+1 2 SH-H 35 b gereftan
+1 2 T-D 35 b gereftan
+1 2 D-KH 35 b zadan
+1 1 R- 35 c fash-kardan
+1 1 K-V 35 c fahmidan
+1 1 A 35 c goftan
+1 1 H 35 c goftan
+1 1 H-CH 35 c goftan
+1 1 R-G 35 c goftan
+1 1 M-V 35 c onvan-kardan
+1 1 M 35 c penhan-kardan
+1 4 SM-M 35 d bazgu-kardan
+1 4 A-GH 35 d goftan
+1 4 H 35 d goftan
+1 4 M 35 d goftan
+1 4 M2 35 d goftan
+1 4 N 35 d goftan
+1 4 R 35 d goftan
+1 4 V 35 d goftan
+1 4 SM-M 36 a anjam-dadan
+1 4 A-GH 36 a kardan
+1 4 H 36 a kardan
+1 4 M 36 a kardan
+1 4 M2 36 a kardan
+1 4 N 36 a kardan
+1 4 R 36 a kardan
+1 4 V 36 a kardan
+1 3 S-R 36 b baian-kardan
+1 3 S-GH2 36 b dashtan
+1 3 S-GH- 36 b goftan
+1 3 B-N 36 b kardan
+1 3 M-A 36 b kardan
+1 3 M-Z 36 b kardan
+1 3 N-KH 36 b kardan
+1 3 ZH-Z 36 b kardan
+1 2 M-CH 36 c baian-kardan
+1 2 N 36 c dadan
+1 2 T-D 36 c eghrar-kardan
+1 2 S-A-E 36 c emza-kardan
+1 2 SH-H 36 c emza-kardan
+1 2 S-A- 36 c erae-kardan
+1 2 D-KH 36 c ghera'at-kardan
+1 2 S 36 c neveshtan
+1 1 A 36 d emza-kardan
+1 1 H 36 d emza-kardan
+1 1 H-CH 36 d emza-kardan
+1 1 K-V 36 d emza-kardan
+1 1 R-G 36 d emza-kardan
+1 1 M 36 d erae-kardan
+1 1 M-V 36 d ghera'at-kardan
+1 1 R- 36 d khandan
+2 1 A-A 1 a dashtan
+2 1 E-K 1 a dashtan
+2 1 F-A 1 a dashtan
+2 1 M-A 1 a dashtan
+2 1 M-KH 1 a dashtan
+2 1 R 1 a dashtan
+2 1 Z-A 1 a dashtan
+2 1 D-M 1 a kardan
+2 4 D-S 1 b dashtan
+2 4 H-S 1 b dashtan
+2 4 M-H 1 b dashtan
+2 4 O-M 1 b dashtan
+2 4 M-S 1 b kardan
+2 4 M-T 1 b kardan
+2 4 M-V 1 b kardan
+2 4 S-M 1 b kardan
+2 3 M-M- 1 c avardan
+2 3 D-J 1 c kardan
+2 3 Z-M 1 c kardan
+2 3 A-J 1 c pokhtan
+2 3 M-A 1 c pokhtan
+2 3 M-M-2 1 c pokhtan
+2 3 M-P 1 c pokhtan
+2 3 P-A 1 c pokhtan
+2 2 A-H 1 d amade-kardan
+2 2 J 1 d dorost-kardan
+2 2 N-B 1 d dorost-kardan
+2 2 A-R 1 d dorost-kardan
+2 2 M-M 1 d dorost-kardan
+2 2 F-E 1 d kharidan
+2 2 M-B 1 d kharidan
+2 2 R-R 1 d tahie-kardan
+2 2 J 2 a ferestadan
+2 2 A-R 2 a khandan
+2 2 R-R 2 a khandan
+2 2 A-H 2 a zadan
+2 2 F-E 2 a zadan
+2 2 M-B 2 a zadan
+2 2 M-M 2 a zadan
+2 2 N-B 2 a zadan
+2 1 E-K 2 b kardan
+2 1 Z-A 2 b peida-kardan
+2 1 R 2 b sakhtan
+2 1 A-A 2 b zadan
+2 1 D-M 2 b zadan
+2 1 F-A 2 b zadan
+2 1 M-A 2 b zadan
+2 1 M-KH 2 b zadan
+2 4 S-M 2 c avardan
+2 4 D-S 2 c kharidan
+2 4 H-S 2 c kharidan
+2 4 M-H 2 c kharidan
+2 4 M-S 2 c kharidan
+2 4 M-T 2 c kharidan
+2 4 M-V 2 c kharidan
+2 4 O-M 2 c kharidan
+2 3 A-J 2 d avardan
+2 3 P-A 2 d avardan
+2 3 Z-M 2 d avardan
+2 3 M-M- 2 d hedie-avardan
+2 3 M-A 2 d hedie-kardan
+2 3 D-J 2 d kharidan
+2 3 M-M-2 2 d kharidan
+2 3 M-P 2 d kharidan
+2 3 A-J 3 a kardan
+2 3 D-J 3 a kardan
+2 3 M-M- 3 a kardan
+2 3 M-M-2 3 a kardan
+2 3 Z-M 3 a kardan
+2 3 M-A 3 a khandan
+2 3 M-P 3 a khandan
+2 3 P-A 3 a khandan
+2 2 A-R 3 b kardan
+2 2 F-E 3 b kardan
+2 2 J 3 b kardan
+2 2 M-B 3 b kardan
+2 2 N-B 3 b kardan
+2 2 R-R 3 b kardan
+2 2 A-H 3 b khandan
+2 2 M-M 3 b khandan
+2 1 D-M 3 c dukhtan
+2 1 E-K 3 c dukhtan
+2 1 F-A 3 c dukhtan
+2 1 A-A 3 c kharidan
+2 1 M-A 3 c kharidan
+2 1 M-KH 3 c kharidan
+2 1 R 3 c kharidan
+2 1 Z-A 3 c kharidan
+2 4 D-S 3 d dukhtan
+2 4 H-S 3 d dukhtan
+2 4 M-H 3 d dukhtan
+2 4 M-T 3 d dukhtan
+2 4 M-V 3 d dukhtan
+2 4 S-M 3 d dukhtan
+2 4 O-M 3 d kharidan
+2 4 M-S 3 d soghati-avardan
+2 4 M-S 4 a dashtan
+2 4 M-V 4 a dashtan
+2 4 S-M 4 a dashtan
+2 4 D-S 4 a kardan
+2 4 H-S 4 a kardan
+2 4 M-H 4 a kardan
+2 4 M-T 4 a kardan
+2 4 O-M 4 a kardan
+2 3 A-J 4 b dashtan
+2 3 M-A 4 b dashtan
+2 3 M-M- 4 b dashtan
+2 3 M-M-2 4 b dashtan
+2 3 M-P 4 b dashtan
+2 3 Z-M 4 b dashtan
+2 3 D-J 4 b kardan
+2 3 P-A 4 b kardan
+2 2 M-B 4 c dariaft-kardan
+2 2 A-H 4 c gereftan
+2 2 A-R 4 c gereftan
+2 2 F-E 4 c gereftan
+2 2 J 4 c gereftan
+2 2 N-B 4 c gereftan
+2 2 M-M 4 c shenidan
+2 2 R-R 4 c shenidan
+2 1 R 4 d avardan
+2 1 M-A 4 d dariaft-kardan
+2 1 A-A 4 d gereftan
+2 1 D-M 4 d gereftan
+2 1 E-K 4 d gereftan
+2 1 F-A 4 d gereftan
+2 1 M-KH 4 d khastan
+2 1 Z-A 4 d shenidan
+2 1 A-A 5 a dashtan
+2 1 D-M 5 a dashtan
+2 1 E-K 5 a dashtan
+2 1 F-A 5 a dashtan
+2 1 M-A 5 a dashtan
+2 1 R 5 a dashtan
+2 1 M-KH 5 a kardan
+2 1 Z-A 5 a kardan
+2 4 H-S 5 b dashtan
+2 4 M-H 5 b dashtan
+2 4 M-S 5 b dashtan
+2 4 M-T 5 b dashtan
+2 4 M-V 5 b dashtan
+2 4 O-M 5 b dashtan
+2 4 S-M 5 b dashtan
+2 4 D-S 5 b kardan
+2 3 Z-M 5 c be-yad-avardan
+2 3 M-P 5 c goftan
+2 3 A-J 5 c shenidan
+2 3 D-J 5 c tarif-kardan
+2 3 M-A 5 c tarif-kardan
+2 3 M-M- 5 c tarif-kardan
+2 3 M-M-2 5 c tarif-kardan
+2 3 P-A 5 c tarif-kardan
+2 2 J 5 d goftan
+2 2 N-B 5 d neveshtan
+2 2 M-M 5 d porsidan
+2 2 A-R 5 d shenidan
+2 2 A-H 5 d tarif-kardan
+2 2 F-E 5 d tarif-kardan
+2 2 M-B 5 d tarif-kardan
+2 2 R-R 5 d tarif-kardan
+2 2 A-H 6 a dashtan
+2 2 M-B 6 a dashtan
+2 2 M-M 6 a dashtan
+2 2 R-R 6 a dashtan
+2 2 A-R 6 a kardan
+2 2 F-E 6 a kardan
+2 2 J 6 a kardan
+2 2 N-B 6 a kardan
+2 1 A-A 6 b dashtan
+2 1 D-M 6 b dashtan
+2 1 F-A 6 b dashtan
+2 1 M-A 6 b dashtan
+2 1 M-KH 6 b dashtan
+2 1 R 6 b dashtan
+2 1 E-K 6 b kardan
+2 1 Z-A 6 b kardan
+2 4 M-H 6 c bad-amadan
+2 4 M-V 6 c erae-kardan
+2 4 M-T 6 c neveshtan
+2 4 D-S 6 c tahie-kardan
+2 4 H-S 6 c tahie-kardan
+2 4 M-S 6 c tahie-kardan
+2 4 O-M 6 c tahie-kardan
+2 4 S-M 6 c tahie-kardan
+2 3 D-J 6 d dashtan
+2 3 M-P 6 d erae-kardan
+2 3 A-J 6 d pakhsh-kardan
+2 3 M-A 6 d tahie-kardan
+2 3 M-M- 6 d tahie-kardan
+2 3 M-M-2 6 d tahie-kardan
+2 3 P-A 6 d tahie-kardan
+2 3 Z-M 6 d tahie-kardan
+2 3 M-M- 7 a dadan
+2 3 A-J 7 a dashtan
+2 3 D-J 7 a dashtan
+2 3 P-A 7 a erae-kardan
+2 3 M-A 7 a kardan
+2 3 M-P 7 a kardan
+2 3 M-M-2 7 a neveshtan
+2 3 Z-M 7 a neveshtan
+2 2 M-M 7 b be-dast-avardan
+2 2 R-R 7 b erae-dadan
+2 2 A-H 7 b kardan
+2 2 A-R 7 b kardan
+2 2 F-E 7 b kardan
+2 2 J 7 b kardan
+2 2 N-B 7 b kardan
+2 2 M-B 7 b nemudan
+2 1 Z-A 7 c anjam-dadan
+2 1 A-A 7 c dashtan
+2 1 M-A 7 c erae-kardan
+2 1 D-M 7 c kardan
+2 1 M-KH 7 c kardan
+2 1 E-K 7 c khandan
+2 1 F-A 7 c khandan
+2 1 R 7 c khandan
+2 4 M-H 7 d enteghad-kardan
+2 4 D-S 7 d khandan
+2 4 M-S 7 d khandan
+2 4 M-T 7 d khandan
+2 4 M-V 7 d khandan
+2 4 O-M 7 d khandan
+2 4 H-S 7 d neveshtan
+2 4 S-M 7 d neveshtan
+2 4 D-S 8 a dashtan
+2 4 H-S 8 a dashtan
+2 4 M-H 8 a dashtan
+2 4 M-S 8 a dashtan
+2 4 M-T 8 a dashtan
+2 4 M-V 8 a dashtan
+2 4 O-M 8 a dashtan
+2 4 S-M 8 a dashtan
+2 3 A-J 8 b dashtan
+2 3 D-J 8 b dashtan
+2 3 M-A 8 b dashtan
+2 3 M-M- 8 b dashtan
+2 3 M-M-2 8 b dashtan
+2 3 M-P 8 b dashtan
+2 3 P-A 8 b dashtan
+2 3 Z-M 8 b dashtan
+2 2 F-E 8 c dashtan
+2 2 M-B 8 c dashtan
+2 2 N-B 8 c dashtan
+2 2 R-R 8 c dashtan
+2 2 A-H 8 c kardan
+2 2 A-R 8 c kardan
+2 2 J 8 c kardan
+2 2 M-M 8 c kardan
+2 1 A-A 8 d dashtan
+2 1 M-A 8 d dashtan
+2 1 M-KH 8 d dashtan
+2 1 R 8 d dashtan
+2 1 D-M 8 d naghl-kardan
+2 1 E-K 8 d naghl-kardan
+2 1 Z-A 8 d shenidan
+2 1 F-A 8 d tarif-kardan
+2 1 A-A 9 a dashtan
+2 1 D-M 9 a dashtan
+2 1 F-A 9 a dashtan
+2 1 M-A 9 a dashtan
+2 1 M-KH 9 a dashtan
+2 1 R 9 a kharidan
+2 1 E-K 9 a khastan
+2 1 Z-A 9 a khastan
+2 4 H-S 9 b dashtan
+2 4 M-H 9 b dashtan
+2 4 M-S 9 b dashtan
+2 4 M-V 9 b dashtan
+2 4 D-S 9 b kharidan
+2 4 M-T 9 b kharidan
+2 4 O-M 9 b kharidan
+2 4 S-M 9 b kharidan
+2 3 Z-M 9 c baian-kardan
+2 3 A-J 9 c dashtan
+2 3 D-J 9 c dashtan
+2 3 M-A 9 c dashtan
+2 3 M-P 9 c dashtan
+2 3 M-M-2 9 c kardan
+2 3 P-A 9 c kardan
+2 3 M-M- 9 c sabt-kardan
+2 2 F-E 9 d dashtan
+2 2 R-R 9 d dashtan
+2 2 A-R 9 d kardan
+2 2 J 9 d kardan
+2 2 M-B 9 d kardan
+2 2 M-M 9 d kardan
+2 2 N-B 9 d kardan
+2 2 A-H 9 d matrah-nemudan
+2 2 A-H 10 a dashtan
+2 2 F-E 10 a dashtan
+2 2 M-B 10 a dashtan
+2 2 M-M 10 a dashtan
+2 2 R-R 10 a dashtan
+2 2 A-R 10 a kardan
+2 2 J 10 a kardan
+2 2 N-B 10 a kardan
+2 1 A-A 10 b dashtan
+2 1 E-K 10 b dashtan
+2 1 M-KH 10 b dashtan
+2 1 R 10 b dashtan
+2 1 Z-A 10 b dashtan
+2 1 D-M 10 b kardan
+2 1 F-A 10 b kardan
+2 1 M-A 10 b zadan
+2 4 M-H 10 c gereftan
+2 4 M-T 10 c gereftan
+2 4 D-S 10 c gharz-gereftan
+2 4 O-M 10 c gharz-gereftan
+2 4 S-M 10 c gharz-gereftan
+2 4 H-S 10 c khastan
+2 4 M-V 10 c khastan
+2 4 M-S 10 c talab-dashtan
+2 3 A-J 10 d gereftan
+2 3 D-J 10 d gereftan
+2 3 M-A 10 d gereftan
+2 3 Z-M 10 d gharz-gereftan
+2 3 M-P 10 d gharz-kardan
+2 3 P-A 10 d gharz-kardan
+2 3 M-M- 10 d talab-dashtan
+2 3 M-M-2 10 d talab-dashtan
+2 3 A-J 11 a zadan
+2 3 D-J 11 a zadan
+2 3 M-A 11 a zadan
+2 3 M-M- 11 a zadan
+2 3 M-M-2 11 a zadan
+2 3 M-P 11 a zadan
+2 3 P-A 11 a zadan
+2 3 Z-M 11 a zadan
+2 2 A-H 11 b zadan
+2 2 A-R 11 b zadan
+2 2 F-E 11 b zadan
+2 2 J 11 b zadan
+2 2 M-B 11 b zadan
+2 2 M-M 11 b zadan
+2 2 N-B 11 b zadan
+2 2 R-R 11 b zadan
+2 1 A-A 11 c budan
+2 1 R 11 c budan
+2 1 M-A 11 c goftan
+2 1 D-M 11 c zadan
+2 1 E-K 11 c zadan
+2 1 F-A 11 c zadan
+2 1 M-KH 11 c zadan
+2 1 Z-A 11 c zadan
+2 4 M-H 11 d avikhtan
+2 4 M-T 11 d vasl-kardan
+2 4 D-S 11 d zadan
+2 4 H-S 11 d zadan
+2 4 M-S 11 d zadan
+2 4 M-V 11 d zadan
+2 4 O-M 11 d zadan
+2 4 S-M 11 d zadan
+2 4 D-S 12 a zadan
+2 4 H-S 12 a zadan
+2 4 M-H 12 a zadan
+2 4 M-S 12 a zadan
+2 4 M-T 12 a zadan
+2 4 M-V 12 a zadan
+2 4 O-M 12 a zadan
+2 4 S-M 12 a zadan
+2 3 D-J 12 b dashtan
+2 3 M-A 12 b vared-kardan
+2 3 P-A 12 b vared-kardan
+2 3 Z-M 12 b vared-kardan
+2 3 A-J 12 b zadan
+2 3 M-M- 12 b zadan
+2 3 M-M-2 12 b zadan
+2 3 M-P 12 b zadan
+2 2 A-H 12 c goftan
+2 2 A-R 12 c goftan
+2 2 F-E 12 c goftan
+2 2 J 12 c goftan
+2 2 M-B 12 c goftan
+2 2 M-M 12 c goftan
+2 2 N-B 12 c goftan
+2 2 R-R 12 c goftan
+2 1 A-A 12 d goftan
+2 1 D-M 12 d goftan
+2 1 E-K 12 d goftan
+2 1 F-A 12 d goftan
+2 1 M-KH 12 d goftan
+2 1 R 12 d goftan
+2 1 Z-A 12 d goftan
+2 1 M-A 12 d tahvil-dadan
+2 1 A-A 13 a zadan
+2 1 D-M 13 a zadan
+2 1 E-K 13 a zadan
+2 1 F-A 13 a zadan
+2 1 M-A 13 a zadan
+2 1 M-KH 13 a zadan
+2 1 R 13 a zadan
+2 1 Z-A 13 a zadan
+2 4 D-S 13 b zadan
+2 4 H-S 13 b zadan
+2 4 M-H 13 b zadan
+2 4 M-S 13 b zadan
+2 4 M-T 13 b zadan
+2 4 M-V 13 b zadan
+2 4 O-M 13 b zadan
+2 4 S-M 13 b zadan
+2 3 M-M- 13 c dadan
+2 3 A-J 13 c hedie-dadan
+2 3 D-J 13 c hedie-dadan
+2 3 M-A 13 c hedie-dadan
+2 3 M-M-2 13 c neshan-dadan
+2 3 M-P 13 c neshan-dadan
+2 3 P-A 13 c neshan-dadan
+2 3 Z-M 13 c neshan-dadan
+2 2 R-R 13 d bakhshidan
+2 2 J 13 d dadan
+2 2 N-B 13 d dadan
+2 2 F-E 13 d hedie-dadan
+2 2 A-H 13 d hedie-kardan
+2 2 M-B 13 d hedie-kardan
+2 2 A-R 13 d moarefi-kardan
+2 2 M-M 13 d pishnehad-dadan
+2 2 A-H 14 a zadan
+2 2 A-R 14 a zadan
+2 2 F-E 14 a zadan
+2 2 J 14 a zadan
+2 2 M-B 14 a zadan
+2 2 M-M 14 a zadan
+2 2 N-B 14 a zadan
+2 2 R-R 14 a zadan
+2 1 M-A 14 b avardan
+2 1 A-A 14 b zadan
+2 1 D-M 14 b zadan
+2 1 E-K 14 b zadan
+2 1 F-A 14 b zadan
+2 1 M-KH 14 b zadan
+2 1 R 14 b zadan
+2 1 Z-A 14 b zadan
+2 4 D-S 14 c dadan
+2 4 H-S 14 c dadan
+2 4 M-H 14 c dadan
+2 4 M-S 14 c dadan
+2 4 M-T 14 c dadan
+2 4 M-V 14 c dadan
+2 4 O-M 14 c dadan
+2 4 S-M 14 c dadan
+2 3 M-A 14 d amade-kardan
+2 3 A-J 14 d dadan
+2 3 D-J 14 d dadan
+2 3 M-M- 14 d dadan
+2 3 M-M-2 14 d dadan
+2 3 M-P 14 d dadan
+2 3 P-A 14 d dadan
+2 3 Z-M 14 d dadan
+2 3 M-P 15 a vared-kardan
+2 3 P-A 15 a vared-kardan
+2 3 A-J 15 a zadan
+2 3 D-J 15 a zadan
+2 3 M-A 15 a zadan
+2 3 M-M- 15 a zadan
+2 3 M-M-2 15 a zadan
+2 3 Z-M 15 a zadan
+2 2 M-M 15 b vared-kardan
+2 2 A-H 15 b zadan
+2 2 A-R 15 b zadan
+2 2 F-E 15 b zadan
+2 2 J 15 b zadan
+2 2 M-B 15 b zadan
+2 2 N-B 15 b zadan
+2 2 R-R 15 b zadan
+2 1 D-M 15 c avardan
+2 1 M-KH 15 c avardan
+2 1 Z-A 15 c avardan
+2 1 F-A 15 c bakhshidan
+2 1 M-A 15 c neshan-dadan
+2 1 R 15 c vared-shodan
+2 4 M-H 15 d aramesh-dadan
+2 4 D-S 15 d avardan
+2 4 H-S 15 d avardan
+2 4 M-S 15 d avardan
+2 4 M-T 15 d avardan
+2 4 M-V 15 d avardan
+2 4 O-M 15 d paian-dadan
+2 4 S-M 15 d paian-dadan
+2 4 S-M 16 a goftan
+2 4 D-S 16 a zadan
+2 4 H-S 16 a zadan
+2 4 M-H 16 a zadan
+2 4 M-S 16 a zadan
+2 4 M-T 16 a zadan
+2 4 M-V 16 a zadan
+2 4 O-M 16 a zadan
+2 3 A-J 16 b goftan
+2 3 M-A 16 b goftan
+2 3 D-J 16 b zadan
+2 3 M-M- 16 b zadan
+2 3 M-M-2 16 b zadan
+2 3 M-P 16 b zadan
+2 3 P-A 16 b zadan
+2 3 Z-M 16 b zadan
+2 2 A-H 16 c amanat-dadan
+2 2 M-M 16 c baian-kardan
+2 2 J 16 c dadan
+2 2 M-B 16 c dadan
+2 2 N-B 16 c dadan
+2 2 R-R 16 c dadan
+2 2 F-E 16 c gharz-dadan
+2 2 A-R 16 c hedie-dadan
+2 1 A-A 16 d dadan
+2 1 D-M 16 d dadan
+2 1 M-KH 16 d dadan
+2 1 R 16 d dadan
+2 1 Z-A 16 d dadan
+2 1 E-K 16 d hedie-dadan
+2 1 M-A 16 d kardan
+2 1 F-A 16 d moarefi-kardan
+2 1 A-A 17 a dadan
+2 1 D-M 17 a kardan
+2 1 E-K 17 a kardan
+2 1 F-A 17 a kardan
+2 1 M-A 17 a kardan
+2 1 M-KH 17 a kardan
+2 1 R 17 a kardan
+2 1 Z-A 17 a kardan
+2 4 D-S 17 b kardan
+2 4 H-S 17 b kardan
+2 4 M-H 17 b kardan
+2 4 M-S 17 b kardan
+2 4 M-T 17 b kardan
+2 4 M-V 17 b kardan
+2 4 O-M 17 b kardan
+2 4 S-M 17 b kardan
+2 3 A-J 17 c amukhtan
+2 3 M-M-2 17 c amukhtan
+2 3 M-P 17 c amukhtan
+2 3 Z-M 17 c amukhtan
+2 3 D-J 17 c dadan
+2 3 M-A 17 c dadan
+2 3 M-M- 17 c dadan
+2 3 P-A 17 c dadan
+2 2 A-H 17 d amukhtan
+2 2 M-M 17 d amukhtan
+2 2 A-R 17 d dadan
+2 2 F-E 17 d dadan
+2 2 J 17 d dadan
+2 2 M-B 17 d dadan
+2 2 N-B 17 d dadan
+2 2 R-R 17 d dadan
+2 2 A-H 18 a kardan
+2 2 A-R 18 a kardan
+2 2 F-E 18 a kardan
+2 2 J 18 a kardan
+2 2 M-B 18 a kardan
+2 2 M-M 18 a kardan
+2 2 N-B 18 a kardan
+2 2 R-R 18 a kardan
+2 1 M-A 18 b dadan
+2 1 A-A 18 b kardan
+2 1 D-M 18 b kardan
+2 1 E-K 18 b kardan
+2 1 F-A 18 b kardan
+2 1 M-KH 18 b kardan
+2 1 R 18 b kardan
+2 1 Z-A 18 b kardan
+2 4 O-M 18 c amukhtan
+2 4 D-S 18 c goftan
+2 4 H-S 18 c goftan
+2 4 M-T 18 c goftan
+2 4 M-S 18 c gushzad-kardan
+2 4 M-V 18 c gushzad-kardan
+2 4 M-H 18 c neshan-dadan
+2 4 S-M 18 c yad-avari-kardan
+2 3 D-J 18 d goftan
+2 3 M-M- 18 d goftan
+2 3 A-J 18 d gushzad-kardan
+2 3 M-A 18 d gushzad-kardan
+2 3 M-M-2 18 d gushzad-kardan
+2 3 Z-M 18 d gushzad-kardan
+2 3 M-P 18 d yad-dadan
+2 3 P-A 18 d yadavar-shodan
+2 3 A-J 19 a dadan
+2 3 D-J 19 a dadan
+2 3 M-A 19 a dadan
+2 3 M-M- 19 a dadan
+2 3 P-A 19 a dadan
+2 3 Z-M 19 a dadan
+2 3 M-M-2 19 a kardan
+2 3 M-P 19 a kardan
+2 2 J 19 b dadan
+2 2 M-B 19 b dadan
+2 2 M-M 19 b dadan
+2 2 R-R 19 b dashtan
+2 2 A-H 19 b erae-dadan
+2 2 A-R 19 b kardan
+2 2 F-E 19 b kardan
+2 2 N-B 19 b kardan
+2 1 A-A 19 c dadan
+2 1 F-A 19 c dadan
+2 1 M-KH 19 c dadan
+2 1 R 19 c dadan
+2 1 M-A 19 c erja-dadan
+2 1 D-M 19 c hedie-dadan
+2 1 Z-A 19 c hedie-dadan
+2 1 E-K 19 c neshan-dadan
+2 4 H-S 19 d dadan
+2 4 M-T 19 d dadan
+2 4 D-S 19 d hedie-dadan
+2 4 M-S 19 d hedie-dadan
+2 4 M-V 19 d hedie-dadan
+2 4 O-M 19 d hedie-dadan
+2 4 S-M 19 d hedie-dadan
+2 4 M-H 19 d kado-dadan
+2 4 M-T 20 a dadan
+2 4 S-M 20 a dadan
+2 4 D-S 20 a kardan
+2 4 H-S 20 a kardan
+2 4 M-H 20 a kardan
+2 4 M-S 20 a kardan
+2 4 O-M 20 a kardan
+2 4 M-V 20 a moarefi-kardan
+2 3 A-J 20 b dadan
+2 3 M-A 20 b dadan
+2 3 P-A 20 b erae-dadan
+2 3 D-J 20 b kardan
+2 3 M-M- 20 b kardan
+2 3 M-M-2 20 b kardan
+2 3 M-P 20 b kardan
+2 3 Z-M 20 b kardan
+2 2 A-H 20 c dadan
+2 2 A-R 20 c dadan
+2 2 F-E 20 c dadan
+2 2 J 20 c dadan
+2 2 M-B 20 c dadan
+2 2 M-M 20 c dadan
+2 2 N-B 20 c dadan
+2 2 R-R 20 c dadan
+2 1 D-M 20 d dadan
+2 1 E-K 20 d dadan
+2 1 F-A 20 d dadan
+2 1 M-A 20 d dadan
+2 1 R 20 d dadan
+2 1 Z-A 20 d dadan
+2 1 A-A 20 d neveshtan
+2 1 M-KH 20 d sepordan
+2 1 A-A 21 a dadan
+2 1 D-M 21 a dadan
+2 1 E-K 21 a dadan
+2 1 F-A 21 a dadan
+2 1 M-A 21 a dadan
+2 1 M-KH 21 a dadan
+2 1 R 21 a dadan
+2 1 Z-A 21 a dadan
+2 4 D-S 21 b dadan
+2 4 H-S 21 b dadan
+2 4 M-H 21 b dadan
+2 4 M-S 21 b dadan
+2 4 M-T 21 b dadan
+2 4 M-V 21 b dadan
+2 4 O-M 21 b dadan
+2 4 S-M 21 b dadan
+2 3 A-J 21 c dadan
+2 3 M-A 21 c dadan
+2 3 M-M- 21 c dadan
+2 3 M-M-2 21 c dadan
+2 3 M-P 21 c dadan
+2 3 P-A 21 c dadan
+2 3 Z-M 21 c khorandan
+2 3 D-J 21 c tosie-kardan
+2 2 F-E 21 d dadan
+2 2 J 21 d dadan
+2 2 M-M 21 d dadan
+2 2 N-B 21 d dadan
+2 2 A-H 21 d tajviz-kardan
+2 2 A-R 21 d tajviz-kardan
+2 2 M-B 21 d tajviz-kardan
+2 2 R-R 21 d tajviz-kardan
+2 2 A-H 22 a dadan
+2 2 J 22 a dadan
+2 2 M-M 22 a dadan
+2 2 M-B 22 a dashtan
+2 2 R-R 22 a dashtan
+2 2 A-R 22 a kardan
+2 2 F-E 22 a kardan
+2 2 N-B 22 a kardan
+2 1 A-A 22 b dadan
+2 1 M-A 22 b dadan
+2 1 D-M 22 b kardan
+2 1 E-K 22 b kardan
+2 1 F-A 22 b kardan
+2 1 M-KH 22 b kardan
+2 1 R 22 b kardan
+2 1 Z-A 22 b kardan
+2 4 D-S 22 c dadan
+2 4 H-S 22 c dadan
+2 4 M-H 22 c dadan
+2 4 M-T 22 c dadan
+2 4 M-V 22 c dadan
+2 4 O-M 22 c dadan
+2 4 S-M 22 c dadan
+2 4 M-S 22 c sepordan
+2 3 A-J 22 d dadan
+2 3 D-J 22 d dadan
+2 3 M-A 22 d dadan
+2 3 M-M-2 22 d dadan
+2 3 P-A 22 d dadan
+2 3 M-M- 22 d sepordan
+2 3 M-P 22 d sepordan
+2 3 Z-M 22 d sepordan
+2 3 A-J 23 a dadan
+2 3 D-J 23 a dadan
+2 3 M-A 23 a dadan
+2 3 M-M- 23 a dadan
+2 3 M-M-2 23 a dadan
+2 3 M-P 23 a dadan
+2 3 P-A 23 a dadan
+2 3 Z-M 23 a dadan
+2 2 A-H 23 b dadan
+2 2 A-R 23 b dadan
+2 2 F-E 23 b dadan
+2 2 J 23 b dadan
+2 2 M-B 23 b dadan
+2 2 M-M 23 b dadan
+2 2 N-B 23 b dadan
+2 2 R-R 23 b dadan
+2 1 A-A 23 c dadan
+2 1 D-M 23 c dadan
+2 1 E-K 23 c dadan
+2 1 F-A 23 c dadan
+2 1 M-KH 23 c dadan
+2 1 R 23 c dadan
+2 1 Z-A 23 c dadan
+2 1 M-A 23 c neshan-dadan
+2 4 D-S 23 d dadan
+2 4 H-S 23 d dadan
+2 4 M-H 23 d dadan
+2 4 M-S 23 d dadan
+2 4 M-T 23 d dadan
+2 4 M-V 23 d dadan
+2 4 O-M 23 d dadan
+2 4 S-M 23 d dadan
+2 4 D-S 24 a dadan
+2 4 H-S 24 a dadan
+2 4 M-H 24 a dadan
+2 4 M-S 24 a dadan
+2 4 M-T 24 a dadan
+2 4 M-V 24 a dadan
+2 4 O-M 24 a dadan
+2 4 S-M 24 a dadan
+2 3 A-J 24 b dadan
+2 3 D-J 24 b dadan
+2 3 M-A 24 b dadan
+2 3 M-M- 24 b dadan
+2 3 M-M-2 24 b dadan
+2 3 M-P 24 b dadan
+2 3 P-A 24 b dadan
+2 3 Z-M 24 b dadan
+2 2 A-H 24 c dadan
+2 2 F-E 24 c dadan
+2 2 J 24 c dadan
+2 2 M-B 24 c dadan
+2 2 M-M 24 c dadan
+2 2 N-B 24 c dadan
+2 2 R-R 24 c dadan
+2 2 A-R 24 c goftan
+2 1 A-A 24 d dadan
+2 1 D-M 24 d dadan
+2 1 M-KH 24 d dadan
+2 1 R 24 d dadan
+2 1 Z-A 24 d dadan
+2 1 M-A 24 d goftan
+2 1 F-A 24 d hedie-dadan
+2 1 E-K 24 d hedie-kardan
+2 1 M-A 25 a dashtan
+2 1 A-A 25 a goftan
+2 1 D-M 25 a goftan
+2 1 E-K 25 a goftan
+2 1 F-A 25 a goftan
+2 1 M-KH 25 a goftan
+2 1 R 25 a goftan
+2 1 Z-A 25 a goftan
+2 4 D-S 25 b goftan
+2 4 H-S 25 b goftan
+2 4 M-H 25 b goftan
+2 4 M-T 25 b goftan
+2 4 M-V 25 b goftan
+2 4 O-M 25 b goftan
+2 4 S-M 25 b goftan
+2 4 M-S 25 b yad-dadan
+2 3 P-A 25 c dadan
+2 3 A-J 25 c hedie-dadan
+2 3 M-M-2 25 c hedie-dadan
+2 3 M-P 25 c hedie-dadan
+2 3 Z-M 25 c hedie-dadan
+2 3 M-M- 25 c hedie-kardan
+2 3 D-J 25 c neshan-dadan
+2 3 M-A 25 c neshan-dadan
+2 2 M-M 25 d bakhshidan
+2 2 J 25 d dadan
+2 2 M-B 25 d dadan
+2 2 N-B 25 d dadan
+2 2 A-R 25 d hedie-dadan
+2 2 F-E 25 d hedie-dadan
+2 2 R-R 25 d hedie-dadan
+2 2 A-H 25 d hedie-kardan
+2 2 A-H 26 a dashtan
+2 2 A-R 26 a dashtan
+2 2 F-E 26 a dashtan
+2 2 M-B 26 a dashtan
+2 2 M-M 26 a dashtan
+2 2 N-B 26 a dashtan
+2 2 R-R 26 a dashtan
+2 2 J 26 a kardan
+2 1 A-A 26 b dashtan
+2 1 D-M 26 b dashtan
+2 1 E-K 26 b dashtan
+2 1 F-A 26 b dashtan
+2 1 R 26 b dashtan
+2 1 M-A 26 b kar-kardan
+2 1 M-KH 26 b kardan
+2 1 Z-A 26 b kardan
+2 4 M-S 26 c ejra-kardan
+2 4 M-V 26 c ejra-kardan
+2 4 S-M 26 c ejra-kardan
+2 4 D-S 26 c khandan
+2 4 H-S 26 c khandan
+2 4 M-T 26 c khandan
+2 4 O-M 26 c khandan
+2 4 M-H 26 c peida-kardan
+2 3 A-J 26 d khandan
+2 3 M-P 26 d khandan
+2 3 P-A 26 d khandan
+2 3 D-J 26 d neveshtan
+2 3 M-A 26 d neveshtan
+2 3 M-M- 26 d neveshtan
+2 3 M-M-2 26 d neveshtan
+2 3 Z-M 26 d neveshtan
+2 3 A-J 27 a kardan
+2 3 D-J 27 a kardan
+2 3 M-A 27 a kardan
+2 3 M-M- 27 a kardan
+2 3 M-M-2 27 a kardan
+2 3 M-P 27 a kardan
+2 3 P-A 27 a kardan
+2 3 Z-M 27 a kardan
+2 2 M-B 27 b eradat-dashtan
+2 2 A-H 27 b kardan
+2 2 A-R 27 b kardan
+2 2 F-E 27 b kardan
+2 2 M-M 27 b kardan
+2 2 N-B 27 b kardan
+2 2 R-R 27 b kardan
+2 2 J 27 b pishnehad-kardan
+2 1 A-A 27 c goftan
+2 1 D-M 27 c goftan
+2 1 E-K 27 c goftan
+2 1 F-A 27 c goftan
+2 1 M-A 27 c goftan
+2 1 M-KH 27 c goftan
+2 1 R 27 c goftan
+2 1 Z-A 27 c goftan
+2 4 M-V 27 d dadan
+2 4 D-S 27 d goftan
+2 4 H-S 27 d goftan
+2 4 M-H 27 d goftan
+2 4 M-T 27 d goftan
+2 4 O-M 27 d goftan
+2 4 M-S 27 d nesar-kardan
+2 4 S-M 27 d nesar-kardan
+2 4 M-V 28 a dashtan
+2 4 D-S 28 a kardan
+2 4 H-S 28 a kardan
+2 4 M-H 28 a kardan
+2 4 M-S 28 a kardan
+2 4 M-T 28 a kardan
+2 4 O-M 28 a kardan
+2 4 S-M 28 a kardan
+2 3 A-J 28 b dashtan
+2 3 D-J 28 b dashtan
+2 3 M-A 28 b dashtan
+2 3 M-M- 28 b dashtan
+2 3 M-M-2 28 b kardan
+2 3 M-P 28 b kardan
+2 3 P-A 28 b kardan
+2 3 Z-M 28 b kardan
+2 2 F-E 28 c ejra-kardan
+2 2 J 28 c kar-kardan
+2 2 N-B 28 c sakhtan
+2 2 A-H 28 c zadan
+2 2 A-R 28 c zadan
+2 2 M-B 28 c zadan
+2 2 M-M 28 c zadan
+2 2 R-R 28 c zadan
+2 1 A-A 28 d khandan
+2 1 D-M 28 d khandan
+2 1 E-K 28 d tamrin-kardan
+2 1 F-A 28 d tamrin-kardan
+2 1 Z-A 28 d tamrin-kardan
+2 1 M-KH 28 d zadan
+2 1 R 28 d zadan
+2 1 M-A 28 d zemzeme-kardan
+2 1 A-A 29 a dashtan
+2 1 M-A 29 a dashtan
+2 1 M-KH 29 a dashtan
+2 1 R 29 a dashtan
+2 1 D-M 29 a zadan
+2 1 E-K 29 a zadan
+2 1 F-A 29 a zadan
+2 1 Z-A 29 a zadan
+2 4 M-H 29 b dashtan
+2 4 M-T 29 b dashtan
+2 4 S-M 29 b dashtan
+2 4 D-S 29 b zadan
+2 4 H-S 29 b zadan
+2 4 M-S 29 b zadan
+2 4 M-V 29 b zadan
+2 4 O-M 29 b zadan
+2 3 M-M- 29 c aghaz-kardan
+2 3 Z-M 29 c dashtan
+2 3 D-J 29 c kardan
+2 3 A-J 29 c raftan
+2 3 M-A 29 c raftan
+2 3 M-M-2 29 c raftan
+2 3 M-P 29 c raftan
+2 3 P-A 29 c raftan
+2 2 F-E 29 d dashtan
+2 2 M-B 29 d dashtan
+2 2 M-M 29 d dashtan
+2 2 N-B 29 d dashtan
+2 2 R-R 29 d dashtan
+2 2 A-R 29 d raftan
+2 2 A-H 29 d tartib-dadan
+2 2 J 29 d tartib-dadan
+2 2 R-R 30 a dashtan
+2 2 A-H 30 a zadan
+2 2 A-R 30 a zadan
+2 2 F-E 30 a zadan
+2 2 J 30 a zadan
+2 2 M-B 30 a zadan
+2 2 M-M 30 a zadan
+2 2 N-B 30 a zadan
+2 1 A-A 30 b dashtan
+2 1 E-K 30 b dashtan
+2 1 F-A 30 b dashtan
+2 1 M-A 30 b dashtan
+2 1 M-KH 30 b dashtan
+2 1 D-M 30 b zadan
+2 1 R 30 b zadan
+2 1 Z-A 30 b zadan
+2 4 H-S 30 c sakhtan
+2 4 D-S 30 c shenidan
+2 4 M-H 30 c shenidan
+2 4 M-S 30 c shenidan
+2 4 M-T 30 c shenidan
+2 4 M-V 30 c shenidan
+2 4 O-M 30 c shenidan
+2 4 S-M 30 c shenidan
+2 3 D-J 30 d danestan
+2 3 A-J 30 d shenidan
+2 3 M-A 30 d shenidan
+2 3 M-M- 30 d shenidan
+2 3 M-M-2 30 d shenidan
+2 3 M-P 30 d shenidan
+2 3 P-A 30 d shenidan
+2 3 Z-M 30 d shenidan
+2 3 M-A 31 a dashtan
+2 3 A-J 31 a kardan
+2 3 D-J 31 a kardan
+2 3 M-M- 31 a kardan
+2 3 M-M-2 31 a kardan
+2 3 M-P 31 a kardan
+2 3 P-A 31 a kardan
+2 3 Z-M 31 a kardan
+2 2 F-E 31 b dashtan
+2 2 A-H 31 b kardan
+2 2 A-R 31 b kardan
+2 2 J 31 b kardan
+2 2 M-B 31 b kardan
+2 2 M-M 31 b kardan
+2 2 N-B 31 b kardan
+2 2 R-R 31 b kardan
+2 1 A-A 31 c dadan
+2 1 E-K 31 c dadan
+2 1 D-M 31 c dashtan
+2 1 F-A 31 c dashtan
+2 1 Z-A 31 c dashtan
+2 1 M-KH 31 c goftan
+2 1 R 31 c neveshtan
+2 1 M-A 31 c shenidan
+2 4 D-S 31 d avardan
+2 4 M-S 31 d dadan
+2 4 M-T 31 d dashtan
+2 4 O-M 31 d dashtan
+2 4 S-M 31 d dashtan
+2 4 H-S 31 d gereftan
+2 4 M-H 31 d goftan
+2 4 M-V 31 d shenidan
+2 4 D-S 32 a dashtan
+2 4 H-S 32 a dashtan
+2 4 M-H 32 a dashtan
+2 4 M-T 32 a dashtan
+2 4 M-V 32 a dashtan
+2 4 O-M 32 a dashtan
+2 4 S-M 32 a dashtan
+2 4 M-S 32 a peida-kardan
+2 3 M-M-2 32 b bazgu-kardan
+2 3 A-J 32 b dashtan
+2 3 D-J 32 b dashtan
+2 3 M-A 32 b dashtan
+2 3 M-M- 32 b dashtan
+2 3 M-P 32 b dashtan
+2 3 P-A 32 b dashtan
+2 3 Z-M 32 b peida-kardan
+2 2 A-R 32 c fahmidan
+2 2 A-H 32 c goftan
+2 2 J 32 c goftan
+2 2 M-B 32 c goftan
+2 2 M-M 32 c goftan
+2 2 N-B 32 c goftan
+2 2 R-R 32 c goftan
+2 2 F-E 32 c porsidan
+2 1 E-K 32 d danestan
+2 1 F-A 32 d danestan
+2 1 M-KH 32 d danestan
+2 1 M-A 32 d fash-kardan
+2 1 A-A 32 d goftan
+2 1 D-M 32 d goftan
+2 1 Z-A 32 d goftan
+2 1 R 32 d tarif-kardan
+2 1 D-M 33 a dadan
+2 1 A-A 33 a dashtan
+2 1 F-A 33 a dashtan
+2 1 M-KH 33 a dashtan
+2 1 R 33 a dashtan
+2 1 Z-A 33 a dashtan
+2 1 M-A 33 a goftan
+2 1 E-K 33 a kardan
+2 4 H-S 33 b dashtan
+2 4 M-S 33 b dashtan
+2 4 M-T 33 b dashtan
+2 4 D-S 33 b erae-dadan
+2 4 M-H 33 b kardan
+2 4 M-V 33 b kardan
+2 4 O-M 33 b kardan
+2 4 S-M 33 b kardan
+2 3 M-A 33 c andishidan
+2 3 M-M-2 33 c andishidan
+2 3 M-M- 33 c dashtan
+2 3 M-P 33 c dashtan
+2 3 Z-M 33 c dashtan
+2 3 A-J 33 c peida-kardan
+2 3 D-J 33 c peida-kardan
+2 3 P-A 33 c peida-kardan
+2 2 A-H 33 d dashtan
+2 2 A-R 33 d dashtan
+2 2 M-M 33 d dashtan
+2 2 N-B 33 d dashtan
+2 2 R-R 33 d dashtan
+2 2 F-E 33 d kardan
+2 2 J 33 d kardan
+2 2 M-B 33 d kardan
+2 2 A-H 34 a kardan
+2 2 A-R 34 a kardan
+2 2 J 34 a kardan
+2 2 M-B 34 a kardan
+2 2 N-B 34 a kardan
+2 2 R-R 34 a kardan
+2 2 F-E 34 a mortakeb-shodan
+2 2 M-M 34 a mortakeb-shodan
+2 1 F-A 34 b ghezavat-kardan
+2 1 A-A 34 b kardan
+2 1 D-M 34 b kardan
+2 1 E-K 34 b kardan
+2 1 M-A 34 b kardan
+2 1 M-KH 34 b kardan
+2 1 R 34 b kardan
+2 1 Z-A 34 b kardan
+2 4 H-S 34 c goftan
+2 4 M-T 34 c goftan
+2 4 M-V 34 c goftan
+2 4 S-M 34 c goftan
+2 4 M-S 34 c kashf-kardan
+2 4 D-S 34 c matrah-kardan
+2 4 O-M 34 c onvan-kardan
+2 4 M-H 34 c penhan-kardan
+2 3 M-P 34 d be-yad-dashtan
+2 3 A-J 34 d goftan
+2 3 D-J 34 d goftan
+2 3 M-A 34 d goftan
+2 3 M-M-2 34 d goftan
+2 3 P-A 34 d goftan
+2 3 Z-M 34 d goftan
+2 3 M-M- 34 d tarif-kardan
+2 3 A-J 35 a gereftan
+2 3 D-J 35 a gereftan
+2 3 M-A 35 a gereftan
+2 3 M-M- 35 a gereftan
+2 3 M-M-2 35 a gereftan
+2 3 M-P 35 a gereftan
+2 3 P-A 35 a gereftan
+2 3 Z-M 35 a gereftan
+2 2 R-R 35 b dashtan
+2 2 A-H 35 b gereftan
+2 2 A-R 35 b gereftan
+2 2 F-E 35 b gereftan
+2 2 J 35 b gereftan
+2 2 M-B 35 b gereftan
+2 2 M-M 35 b gereftan
+2 2 N-B 35 b gereftan
+2 1 R 35 c baian-kardan
+2 1 A-A 35 c goftan
+2 1 D-M 35 c goftan
+2 1 E-K 35 c goftan
+2 1 F-A 35 c goftan
+2 1 M-A 35 c goftan
+2 1 M-KH 35 c goftan
+2 1 Z-A 35 c goftan
+2 4 M-H 35 d danestan
+2 4 M-V 35 d danestan
+2 4 H-S 35 d fahmidan
+2 4 M-T 35 d goftan
+2 4 M-S 35 d kashf-kardan
+2 4 D-S 35 d matrah-kardan
+2 4 O-M 35 d motevajeh-shodan
+2 4 S-M 35 d shenidan
+2 4 M-S 36 a erae-kardan
+2 4 D-S 36 a kardan
+2 4 H-S 36 a kardan
+2 4 M-H 36 a kardan
+2 4 M-T 36 a kardan
+2 4 M-V 36 a kardan
+2 4 O-M 36 a kardan
+2 4 S-M 36 a kardan
+2 3 M-P 36 b baian-kardan
+2 3 Z-M 36 b baian-kardan
+2 3 A-J 36 b kardan
+2 3 D-J 36 b kardan
+2 3 M-A 36 b kardan
+2 3 M-M- 36 b kardan
+2 3 M-M-2 36 b kardan
+2 3 P-A 36 b kardan
+2 2 N-B 36 c dadan
+2 2 R-R 36 c dadan
+2 2 A-H 36 c emza-kardan
+2 2 F-E 36 c erae-kardan
+2 2 M-B 36 c ghera'at-kardan
+2 2 J 36 c khandan
+2 2 M-M 36 c khandan
+2 2 A-R 36 c tanzim-kardan
+2 1 M-KH 36 d baian-kardan
+2 1 Z-A 36 d emza-kardan
+2 1 A-A 36 d erae-kardan
+2 1 E-K 36 d erae-kardan
+2 1 M-A 36 d ghera'at-kardan
+2 1 R 36 d ghera'at-kardan
+2 1 F-A 36 d khandan
+2 1 D-M 36 d takmil-kardan
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     

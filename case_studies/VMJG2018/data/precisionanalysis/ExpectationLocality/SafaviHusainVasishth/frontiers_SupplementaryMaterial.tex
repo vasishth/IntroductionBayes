@@ -1,0 +1,114 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This is just an example/guide for you to refer to when producing your supplementary material for your Frontiers article.                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Version 2.0 Generated 2014/01/08 %%%
+%%% You will need to have the following packages installed: datetime, fmtcount, etoolbox, fcprefix, which are normally inlcuded in WinEdt. %%%
+%%% In http://www.ctan.org/ you can find the packages and how to install them, if necessary. %%%
+
+\documentclass{frontiers_suppmat} % for all articles
+
+
+\usepackage{url}
+
+
+% Leave a blank line between paragraphs in stead of using \\
+
+
+\def\articleType{Supplementary Material}
+\def\keyFont{\fontsize{8}{11}\helveticabold }
+\def\firstAuthorLast{Frontiers} 
+\def\Authors{First Author\,$^{1,*}$, Co-Author\,$^{2}$ and Co-Author\,$^2$}
+% Affiliations should be keyed to the author's name with superscript numbers and be listed as follows: Laboratory, Institute, Department, Organization, City, State abbreviation (USA, Canada, Australia), and Country (without detailed address information such as city zip codes or street names).
+% If one of the authors has a change of address, list the new address below the correspondence details using a superscript symbol and use the same symbol to indicate the author in the author list.
+\def\Address{$^{1}$Laboratory X, Institute X, Department X, Organization X, City X , State XX (only USA, Canada and Australia), Country X \\
+$^{2}$Laboratory X, Institute X, Department X, Organization X, City X , State XX (only USA, Canada and Australia), Country X  }
+% The Corresponding Author should be marked with an asterisk
+% Provide the exact contact address (this time including street name and city zip code) and email of the corresponding author
+\def\corrAuthor{corresponding Author}
+\def\corrAddress{Laboratory X, Institute X, Department X, Organization X, Street X, City X , State XX (only USA, Canada and Australia), Zip Code, X Country X}
+\def\corrEmail{email@uni.edu}
+
+% \color{FrontiersColor} Is the color used in the Journal name, in the title, and the names of the sections.
+
+
+\begin{document}
+\onecolumn
+\firstpage{1}
+
+\title[Supplementary Material]{{\helveticaitalic{Supplementary Material}}:\\ \helvetica{ Article Title}}
+\author[\firstAuthorLast ]{\Authors}
+\address{}
+\correspondance{}
+\extraAuth{}% If there are more than 1 corresponding author, comment this line and uncomment the next one.
+%\extraAuth{corresponding Author2 \\ Laboratory X2, Institute X2, Department X2, Organization X2, Street X2, City X2 , State XX2 (only USA, Canada and Australia), Zip Code2, X2 Country X2, email2@uni2.edu}
+\topic{}% If your article is part of a Research Topic, please indicate here which.
+
+\maketitle
+
+
+\section{Supplementary Data}
+
+%
+Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text. Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text. Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text.Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text.
+
+Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text. Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text. Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text.Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text.
+
+
+\section{Supplementary Tables and Figures}
+
+Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text. Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text. Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text.Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text.
+
+Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text. Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text. Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text.Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text.
+
+\begin{table}[!t]
+\textbf{\refstepcounter{table}\label{Tab:01} Supplementary Table \arabic{table}.}{ Enter the caption for your table here.  Repeat as  necessary for each of your tables }
+
+\processtable{ }
+{\begin{tabular}{lllll}\toprule
+ & Abstract max. legth (incl. spaces) & Figures or tables & Manuscript max. length & Final PDF length\\\midrule
+Clinical Case Study & & & &\\
+Clinical Trial & & & &\\
+Hypothesis and Theory & & & &\\
+Methods & 2000 characters  & 15 & 12000 words & 12 pages\\
+Original Research & & & &\\
+Review & & & &\\
+Technology Report & & & &\\
+Focused Review & 2000 characters & 5 & 5000 words & 5 pages\\
+CPC &  1250 characters& 6 & 2500 words & 4 pages\\
+Perspective & 1250 characters & 2 & 3000 words & 3 pages\\
+Mini Review & & & &\\
+Classification & 1250 characters & 10 & 2000 words & 12 pages\\
+Editorial & none & none & 1000 words & 1 page \\
+Book review & & & &\\
+Frontiers Commentary & none & 1 & 1000 words & 1 page\\
+General Commentary & & & &\\
+Field Grand Challenge & & & &\\
+Opinion & none & 1 & 2000 words & 2 pages\\
+Specialty Grand Challenge& & & &\\\botrule
+\end{tabular}}{}
+\end{table}
+
+%%% There is no need for adding the file termination, as long as you indicate where the file is saved. In the examples below the files (logo1.jpg and logo2.eps) are in the Frontiers LaTeX folder
+%%% If using *.tif files convert them to .jpg or .png
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=15cm]{logo1}% This is a *.jpg file
+\end{center}
+\textbf{\refstepcounter{figure}\label{fig:01} Supplementary Figure \arabic{figure}.}{ Enter the caption for your figure here.  Repeat as  necessary for each of your figures }
+\end{figure}
+
+%\begin{figure}
+%\begin{center}
+%\includegraphics[width=3.5cm]{logo2}% This is an *.eps file
+%\end{center}
+% \textbf{\refstepcounter{figure}\label{fig:02} Figure \arabic{figure}.}{ Enter the caption for your figure here.  Repeat as  necessary for each of your figures }
+%\end{figure}
+
+
+%\bibliographystyle{frontiersinSCNS&ENG} % for Science and Engineering articles
+%\bibliographystyle{frontiersinHLTH&FPHY} % for Health and Physics articles
+%\bibliography{test}
+
+\end{document}

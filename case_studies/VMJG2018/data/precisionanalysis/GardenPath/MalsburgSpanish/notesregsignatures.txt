@@ -1,0 +1,43 @@
+> I meant that we should be looking at regression signatures not just
+> from 8 but also 9.
+
+Here you have three data.frames.
+
+fer8 contains the target fixations of the first regressions from region 8.
+fer9 and fer10 contain the same but for regressions from region 9 and 10.
+
+To get an idea of what's going on:
+
+load("first_regressive_fixations_from_r8_r9_r10.Rda")
+
+fe <- fer8
+barplot(tapply(fe$rid, list(fe$cond, fe$rid), length),
+       beside=T, leg=T, args.legend = list(x = "topleft"))
+
+fe <- fer9
+barplot(tapply(fe$rid, list(fe$cond, fe$rid), length),
+       beside=T, leg=T, args.legend = list(x = "topleft"))
+
+fe <- fer10
+barplot(tapply(fe$rid, list(fe$cond, fe$rid), length),
+       beside=T, leg=T, args.legend = list(x = "topleft"))
+
+I'm not sure about how to do the inferential statistics.  For region 2
+we could do this:
+
+ fe <- fer8
+ fe$target.is.2 <- fe$rid==2
+ lmer(target.is.2 ~ cond + (1|subj) + (1|item), fe, fam=binomial())
+
+But this doesn't answer our question (Are regression targets shifted
+to region 2 and 6 in condition a vs. b and c?), because this way we
+get a significant diff even if there are simply more regressions to
+*all* targets in condition a.  So we have to model not absolute
+occurrences of a target but the proportion of regressions to region 2
+compared to regions 1 and 3--7.  I don't have a good idea how this can
+be done using a mixed model.
+
+Note that Meseguer et al. analyzed only regressions starting on 9
+because on 8 there weren't many.  Mitchell et al. looked at
+regressions from the critical word and the following region separately
+if I recall correctly.

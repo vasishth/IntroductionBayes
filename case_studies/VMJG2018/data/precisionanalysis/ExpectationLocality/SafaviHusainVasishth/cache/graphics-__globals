@@ -1,0 +1,32 @@
+unnamed-chunk-1	library
+sentcomp	[<-	&	<	==	~	$	$<-	as.character	as.data.frame	binomial	c	cbind	colnames	colnames<-	cond	data.frame	decov	dim	factor	for	glmer	if	ifelse	item	letters	library	load	matrix	mean	paste	Pre.test	quantile	rbind	read.table	rep	return	round	save	stan_glmer	student_t	subset	T	tapply	target	with
+sce1table	
+sce2table	
+exp1analysis	&	<	==	~	$	$<-	as.character	as.numeric	binomial	c	cond	decov	factor	glmer	if	ifelse	lmer	load	mean	normal	pos	read.table	resp	roi	round	rt	save	stan_glmer	stan_lmer	student_t	subset	summary_stan_model	T	tapply	with
+unnamed-chunk-2	&	<	==	~	$	$<-	as.character	as.numeric	binomial	c	cond	decov	factor	if	ifelse	lmer	load	mean	normal	paste	pos	rbind	read.table	resp	roi	round	rt	save	stan_glmer	stan_lmer	student_t	subset	summary_stan_model	T	tapply	with
+plotexpt1	!=	.	[<-	==	~	$	$<-	aes	c	cast	colnames	colnames<-	cond	data.frame	ddply	droplevels	element_text	factor	geom_errorbar	geom_line	geom_point	ggplot	ifelse	item	labs	length	letters	M	mean	melt	merge	pos	Predictability	rep	roi	rt	sd	SE	sqrt	subj	subset	sum	summarize	tapply	theme	theme_bw	transform	xlab	ylab
+plotexpt2	!=	.	[<-	==	~	$	$<-	aes	c	cast	colnames	colnames<-	cond	data.frame	ddply	droplevels	element_text	factor	geom_errorbar	geom_line	geom_point	ggplot	ifelse	item	labs	length	letters	M	mean	melt	merge	pos	Predictability	rep	roi	rt	sd	SE	sqrt	subj	subset	sum	summarize	tapply	theme	theme_bw	transform	xlab	ylab
+unnamed-chunk-3	==	$	$<-	aes	c	dist	droplevels	Expectation	geom_errorbar	geom_line	geom_point	ggplot	ggtitle	labs	M	M.id.w.orig	region.id	scale_x_continuous	SE	subset	theme_bw
+unnamed-chunk-4	!=	[<-	&	==	~	$	$<-	c	decov	factor	FPRT	if	ifelse	lmer	load	normal	position	read.table	RPD	save	stan_lmer	subset	summary_stan_model	T
+plotsET1	!=	.	[[	[<-	&	==	~	$	$<-	aes	as.data.frame	c	cast	ceiling	colnames	colnames<-	cond	data.frame	ddply	droplevels	element_text	factor	for	FPRT	geom_errorbar	geom_line	geom_point	ggplot	grid.layout	grid.newpage	id	if	ifelse	is.null	labs	length	letters	library	list	M	matrix	mean	melt	merge	na.omit	ncol	nrow	position	Predictability	print	pushViewport	rep	RPD	sd	SE	seq	sqrt	subject	subset	summarize	tapply	theme	theme_bw	transform	viewport	which	xlab	ylab
+exptET2analysis	!=	[<-	&	==	~	$	$<-	c	colnames	colnames<-	data.frame	decov	factor	FPRT	if	ifelse	letters	load	na.omit	normal	position	read.table	rep	RPD	save	stan_lmer	subset	summary_stan_model	T
+unnamed-chunk-5	~	binomial	cond	decov	if	load	mean	read.table	resp	round	save	stan_glmer	student_t	summary_stan_model	tapply	with
+unnamed-chunk-6	~	binomial	cond	decov	if	load	mean	read.table	resp	round	save	stan_glmer	student_t	summary_stan_model	tapply	with
+unnamed-chunk-7	.	[<-	==	~	$	$<-	aes	c	cast	colnames	colnames<-	cond	data.frame	ddply	element_text	factor	FPRT	geom_errorbar	geom_line	geom_point	ggplot	id	ifelse	labs	length	M	M.id.w.orig	mean	melt	multiplot	position	Predictability	RPD	sd	SE	sqrt	subject	subset	summarize	tapply	theme	theme_bw	transform	xlab	ylab
+unnamed-chunk-8	[<-	$	$<-	aes	as.character	as.data.frame	as.numeric	c	colnames	colnames<-	comparison	element_text	estimate	experiment	factor	geom_errorbar	geom_hline	geom_point	ggplot	labs	lower	multiplot	position_dodge	rbind	theme	theme_bw	upper	ylim
+loadlibraries	library
+exp2analysis	&	<	==	~	$	$<-	as.character	as.numeric	binomial	c	cond	decov	factor	if	ifelse	lmer	load	mean	normal	paste	pos	rbind	read.table	resp	roi	round	rt	save	stan_glmer	stan_lmer	student_t	subset	summary_stan_model	T	tapply	with
+byregionplotexcluded	==	$	$<-	aes	c	dist	droplevels	Expectation	geom_errorbar	geom_line	geom_point	ggplot	ggtitle	labs	M	M.id.w.orig	region.id	scale_x_continuous	SE	subset	theme_bw
+exp3analysis	!=	[<-	&	==	~	$	$<-	c	decov	factor	FPRT	if	ifelse	lmer	load	normal	position	read.table	RPD	save	stan_lmer	subset	summary_stan_model	T
+exp3questionresponseanalysis	~	binomial	cond	decov	if	load	mean	read.table	resp	round	save	stan_glmer	student_t	summary_stan_model	tapply	with
+exp4questionresponseanalysis	~	binomial	cond	decov	if	load	mean	read.table	resp	round	save	stan_glmer	student_t	summary_stan_model	tapply	with
+plotexp4	.	[<-	==	~	$	$<-	aes	c	cast	colnames	colnames<-	cond	data.frame	ddply	element_text	factor	FPRT	geom_errorbar	geom_line	geom_point	ggplot	id	ifelse	labs	length	M	M.id.w.orig	mean	melt	multiplot	position	Predictability	RPD	sd	SE	sqrt	subject	subset	summarize	tapply	theme	theme_bw	transform	xlab	ylab
+summarizeresults	[<-	$	$<-	aes	as.character	as.data.frame	as.numeric	c	colnames	colnames<-	comparison	element_text	estimate	experiment	factor	geom_errorbar	geom_hline	geom_point	ggplot	labs	lower	multiplot	position_dodge	rbind	theme	theme_bw	upper	ylim
+entropycode	.	[[	[<-	&	==	$	$<-	aes	as.character	as.data.frame	as.numeric	c	ceiling	colnames	colnames<-	count	data.frame	ddply	ent	entropy	factor	for	geom_bar	geom_errorbar	ggplot	ggtitle	grid.layout	grid.newpage	if	is.null	item.ID	lapply	length	library	list	log2	matrix	mean	merge	ncol	nrow	paste	position_dodge	Pre.test	print	pushViewport	read.table	rep	scale_y_continuous	sd	se	seq	sqrt	subset	summarize	T	tapply	theme_bw	unique	V1	verb	viewport	which	with	xlab	ylab
+entropyplot	entp1	entp2	multiplot
+entropydiffse1e2	==	~	$	$<-	cond	data.frame	decov	exp1.frame	exp2.frame	factor	if	ifelse	load	rbind	save	stan_lmer	student_t	subset	summary_stan_model
+entropyrtanalysis	&	<	==	~	$	$<-	c	decov	exp1.frame	exp2.frame	F	factor	if	ifelse	library	lmer	load	merge	read.table	roi	rt	save	scale	stan_lmer	student_t	subset	summary_stan_model	T
+grammaticalitysentcomp	~	as.character	as.numeric	binomial	cond	decov	exp	gram	if	load	mean	read.table	round	save	stan_glmer	student_t	summary_stan_model	tapply	with
+probexpectationweakening	[<-	&	==	~	$	$<-	as.character	binomial	c	cond	data.frame	decov	dim	factor	for	if	ifelse	item	letters	load	paste	Pre.test	read.table	rep	save	stan_glmer	student_t	subset	summary_stan_model	T
+probexpectationweakeninge1	[<-	&	==	~	$	$<-	as.character	binomial	c	cond	data.frame	decov	dim	factor	for	if	ifelse	item	letters	load	paste	Pre.test	read.table	rep	save	stan_glmer	student_t	subset	summary_stan_model	T
+probexpectationweakeninge2	~	as.character	as.numeric	binomial	decov	exp	if	load	read.table	round	save	stan_glmer	student_t	summary_stan_model

@@ -1,0 +1,55 @@
+tid: trial id
+wid: word id
+word: the word
+fstart: start time of the fixation
+fstop: end time of the fixation
+x, y: coordinates of the fixation in pixels
+p: pupil size (in area unit)
+subj: subject
+expt: experiment
+item: item
+cond: condition
+acc: accuracy of the response to the comprehension question
+RCR: cornea reflex threshold
+RP: pupil threshold
+dur: duration of the fixation
+rid: region id, same regions as in Meseguer et al.
+nw: number of words in sentence
+rid2: region id, same as Meseguer et al. except that the last word
+constitures a region of its own (10)
+
+cond a: garden-path condition
+cond b: preferred structure is correct
+cond c: non-ambiguous
+
+fe: fixation data, new columns are:
+ cr is the id of the critical word
+ pr is the pupil size after some correction procedures (removed
+variance stemming from changes of cornea reflex and pupil threshold
+during the experiment, see
+https://141.89.100.178/labwiki/PupilloMetry).  Use this instead of p.
+ nw is number of words
+ sess is the session
+
+fe.em.rid: emed version of fixation data.  I used regions á la
+Meseguer et al instead of words.
+fe.em.rid2: emed version of fixation data.  I used regions á la
+Meseguer et al + last word region (10).
+fe.em.wid: emed version of fixation data, this time with words instead
+of regions.
+
+tinfos: trial attributes
+ pr is the pupil size at the beginning of the trial
+ # no of fixations in the trial
+
+sinfos: subject attributes
+ cvis: lenses, glasses?
+ alc: alcohol in the last 24 h
+ hsleep: hours of sleep last night
+ nt: number of trials (including practice and fillers)
+ p: pupil size on average
+ pcu: working memory score
+ acc.wm: accuracy in the distractor task in the wm test
+
+As far as I can see, pupil size is not correlated with anything.
+Didn't try a lot of things, but this would be fairly disappointing.
