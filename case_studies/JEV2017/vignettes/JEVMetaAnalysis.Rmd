@@ -1,0 +1,818 @@
+---
+title: "Code to accompany Jäger, Engelmann, Vasishth: *Similarity-based interference in sentence comprehension: Literature review and Bayesian meta-analysis*, Journal of Memory and Language, 2017"
+author: "Shravan Vasishth and Lena Jäger"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r echo=FALSE, include=FALSE}
+options(replace.assign=TRUE,show.signif.stars=FALSE)
+options(replace.assign=TRUE,width=75)
+
+library(rstan)
+library(parallel)
+rstan_options(auto_write = TRUE)
+options(mc.cores = parallel::detectCores())
+library(dplyr)
+library(rjags)
+library(ggplot2)
+library(xtable)
+
+knitr::opts_chunk$set(echo = TRUE)
+
+## creates funnel plot:
+source("../R/funnelplot.R")
+source("../R/prettyfunnelplot.R")
+## creates panel-like plots:
+source("../R/multiplot.R")
+## plots target parameter:
+source("../R/plotparameter.R")
+## fits JAGS model:
+source("../R/fitmodel.R")
+## computes the posterior credible intervals,
+## used for plotting and summarizing in table:
+source("../R/GetCrI.R")
+## plots posteriors of all studies:
+source("../R/plotposteriors.R")
+## summary of posterior parameters, with convergence stats:
+source("../R/mysummary.R")
+## summarizes posterior credible int for 
+## table in paper:
+source("../R/summarize.R")
+## needed for Stan code results:
+source("../R/magnifytext.R")
+source("../R/plotresults.R")
+```
+
+If you have any questions regarding this document, please contact Shravan Vasishth (vasishth@uni-potsdam.de).
+
+# Random-effects meta-analysis
+
+- $y_i$ be the observed effect in milliseconds in the $i$-th study. 
+- $\theta$ is the true (unknown) effect, to be estimated by the model. 
+- $\sigma_{i}^2$ is the true variance of the sampling distribution; each $\sigma_i$ is estimated from the standard error available from the study $i$. 
+- The variance parameter $\tau^2$ represents between-study variance.
+
+We can construct a hierarchical model as follows:
+
+\begin{equation}
+\begin{split}
+y_i \mid \theta_i, \sigma_i^2 \sim & N(\theta_i, \sigma_i^2) \quad i=1,\dots, n\\
+\theta_i\mid \theta,\tau^2 \sim & N(\theta, \tau^2), \\
+\theta \sim & N(0,100^2),\\
+ \tau \sim & N(0,100^2)T(0,) \\
+\end{split}
+\end{equation}
+
+# Load data
+
+```{r loaddata}
+dat<-read.csv("../data/MetaAnalysisData.csv",header=TRUE,sep=";")
+
+## reorder by increasing y:
+dat<-dat[with(dat,order(Effect)),]
+
+unique(dat$Cue)
+# Retrieval cue that is manipulated:
+## gend: gender (masculin vs feminin)
+## num: number (singular vs plural)
+## subj: subject (being a subject or not)
+## anim: animacy (animate vs inanimate)
+## ccom: c-comand (being a c-commander or not of the reflexive)
+## sem: semantic cue (matching or mismatching the semantic requirements of a verb with respect to its subject)
+
+unique(dat$DepType) 
+# Dependency Type:
+## agreement: subject-verb number agreement dependency
+## nonagreement: subject-verb non-agreement dependency
+## refl: reflexive-antecedent dependency
+## reci: reciprocal-antecedent dependency
+
+unique(dat$IntType) 
+# Interference type:
+## pro: proactive interference
+## retro: retroactive interference
+
+# Contrast coding of the covariates
+
+# Interference type: sum contrasts
+dat$proretro<-ifelse(dat$IntType=="pro",0.5,-0.5)
+
+## Distractor prominence: sliding contrasts
+dat$contrOR2<-ifelse(dat$Prominence2=="subj_OR_topic",0.5,
+                     ifelse(dat$Prominence2=="other",-0.5,0))
+dat$contrAND2<-ifelse(dat$Prominence2=="subj_AND_topic",0.5,
+                      ifelse(dat$Prominence2=="subj_OR_topic",
+                             -0.5,0))
+
+MatchDat<-subset(dat,TargetType=="Match")
+MismatchDat<-subset(dat,TargetType=="Mismatch")
+
+
+## will do separate analyses on these subsets of data:
+MatchNonAgrmt<-subset(dat,DepType=="nonagreement" & TargetType=="Match")
+nMatchNonAgrmt<-dim(MatchNonAgrmt)[1] #12 studies
+
+MatchAgrmt<-subset(dat,DepType=="agreement" & TargetType=="Match")
+nMatchAgrmt <- dim(MatchAgrmt)[1] # 18 studies
+
+MismatchAgrmt<-subset(dat,DepType=="agreement" & TargetType=="Mismatch")
+nMismatchAgrmt<-dim(MismatchAgrmt)[1] # 13 studies
+
+MatchReflReci<-subset(dat,DepType%in%c("refl","reci") & TargetType=="Match")
+MismatchReflReci<-subset(dat,DepType%in%c("refl","reci") & TargetType=="Mismatch")
+nMatchReflReci<-dim(MatchReflReci)[1] #21 studies
+nMismatchReflReci<-dim(MismatchReflReci)[1] # 13 studies
+```
+
+
+# Model 1: Modeling the interference effect without covariates in Target-Match and Target-Mismatch
+
+This analysis is not reported in the paper (except as an aside).
+
+```{r}
+## define model:
+cat("
+model
+    {
+    for( i in 1:n)
+    {
+    p[i] <- 1/s[i]^2
+    y[i] ~ dnorm(thetai[i],p[i])
+    thetai[i] ~ dnorm(theta,prec)
+    }
+    ## priors for theta: 
+    ## theta lies between (-1.96*100,1.96*100):
+    theta ~ dnorm(0,1/100^2)
+    
+    ## Prior 1:
+    #    prec ~ dgamma(0.001,0.001)
+    #    tau.sq <- 1/prec
+    #    tau <- pow(tau.sq,0.5)
+    ## Prior 2:
+    #tau ~ dunif(0,200) 
+    #tau.sq <- tau*tau
+    #prec<-1/(tau.sq)
+    ## Prior 3: truncated normal
+       tau ~ dnorm(0,1/10000)T(0,)
+        tau.sq <- tau*tau
+        prec<-1/(tau.sq)
+    ## Prior 4: truncated t-distribution
+    #    tau ~ dt(0,25,2)I(0,)
+    #    tau.sq <- tau*tau
+    #    prec<-1/(tau.sq)
+    }",
+     file="../vignettes/JAGSModels/RandomEffectsMetaAnalysisM1.jag" )
+```
+
+
+```{r}
+Matchdat <- list(y = MatchDat$Effect,
+            s = MatchDat$SE,
+            n = dim(MatchDat)[1])
+Mismatchdat <- list(y = MismatchDat$Effect,
+            s = MismatchDat$SE,
+            n = dim(MismatchDat)[1])
+```
+
+
+## Analysis 1a: Target-Match Analysis
+```{r}
+res<-fitmodel(Matchdat)
+mysummary(res,rows = 1:2)
+estimate_match<-summary(res)$statistics[2,1]
+se_match<-summary(res)$statistics[2,2]
+resFull<-res
+(TMCrI<-summarize(d=res,rows=1:2))
+```
+
+### Sensitivity/influential value analysis:
+Check whether the Pearlmutter (1999) results are unduly influential.
+If we remove Pearlmutter et al (1999), Exp. 1 and  Exp. 3, singular verbs, the posterior is a bit shifted to the right:
+
+```{r}
+MatchNoPearl<-subset(MatchDat, Publication != "PearlmutterEtAl99E3sing" & Publication != "PearlmutterEtAl99E1")
+
+MatchNoPearldat <- list(y = MatchNoPearl$Effect,
+            s = MatchNoPearl$SE,
+            n = dim(MatchNoPearl)[1])
+resNoPearl<-fitmodel(MatchNoPearldat)
+mysummary(resNoPearl,rows = 1:2)
+summarize(d=resNoPearl,rows=1:2)
+```
+
+Plot with and without Pearlmutter studies:
+```{r,fig.width=8,fig.height=8}
+multiplot(plotparameter(resFull,title="Interference effect \n (Target-Match, Full data)",col=2),
+plotparameter(resNoPearl,title="Interference effect \n (Target-Match, W/o Pearlmutter)",col=2),
+cols=2)
+
+## for composite plot:
+TMatchParam<-plotparameter(resFull,col=2)
+```
+
+```{r fig.width=8,fig.height=12}
+CrI<-getCrI(res)
+
+plotposteriors(d=MatchDat,CrI=CrI,start=3,title="Target-Match")
+```
+
+## Analysis 1b: Target-Mismatch
+```{r TargetMismatchAnalysisPlot}
+res<-fitmodel(Mismatchdat)
+mysummary(res,rows = 1:2)
+estimate_mismatch<-summary(res)$statistics[2,1]
+se_mismatch<-summary(res)$statistics[2,2]
+(TMisCrI<-summarize(d=res,rows = 1:2))
+```
+
+### Sensitivity/influential values analysis
+If we remove Jäger et al. (2015), Exp. 1 and Pearlmutter et al. (1999), Exp. 1 (the only two experiments who report significant inhibition), we see stronger evidence for a facilitatory effect: 
+
+```{r}
+## Remove Jaeger et al. (2015), Exp 1 and Pearlmutter et al. (1999), Exp. 1:
+MismatchNoJaegerPearl <- subset(MismatchDat, Publication != "JaegerEtAl15E1" & Publication != "PearlmutterEtAl99E1") 
+
+MismatchNoJaegerPearldat<-list(y = MismatchNoJaegerPearl$Effect,
+            s = MismatchNoJaegerPearl$SE,
+            n = dim(MismatchNoJaegerPearl)[1])
+resNoJaegerPearl<-fitmodel(MismatchNoJaegerPearldat)
+mysummary(resNoJaegerPearl,rows = 1:2)
+summarize(resNoJaegerPearl,rows=1:2)
+```
+
+However, the facilitation in target-mismatch is entirely driven by Wagers et al (2009), Experiments 2, 4 and 5:
+```{r}
+MismatchNoWagers<-subset(MismatchDat, Publication!="WagersEtAl09E2" & Publication!= "WagersEtAl09E4" & Publication!="WagersEtAl09E5")
+MismatchNoWagersdat<-list(y = MismatchNoWagers$Effect,
+            s = MismatchNoWagers$SE,
+            n = dim(MismatchNoWagers)[1])
+resNoWagers<-fitmodel(MismatchNoWagersdat)
+mysummary(resNoWagers,rows = 1:2)
+summarize(resNoWagers,rows=1:2)
+```
+
+
+```{r fig.width=8,fig.height=10}
+TMismatchPlot<-plotparameter(res,col=2,title="Interference effect \n (Target-Mismatch")
+TMismatchPlot
+CrI<-getCrI(res)
+# start refers to the row we want to plot the CrIs for:
+plotposteriors(d=MismatchDat,CrI=CrI,start=3,title="Target-Mismatch")
+```
+
+
+# Meta-regressions
+
+## Modeling interference by taking into account the effect of distractor prominence (sliding contrasts) and Interference Type (pro/retroactive) in Target-Match and Target-Mismatch configurations
+
+### Target-match
+
+```{r}
+cat("
+model
+    {
+    for( i in 1:n)
+    {
+    p[i] <- 1/s[i]^2
+    y[i] ~ dnorm(thetai[i]+betaOR2*contrOR2[i]+
+                 betaAND2*contrAND2[i]+betaPR*proretro[i],p[i])
+    thetai[i] ~ dnorm(theta,prec)
+    }
+    ## prior for theta: 
+    ## theta lies between (-1.96*100,1.96*100):
+    theta ~ dnorm(0,1/100^2)
+
+    ## prior for beta:
+    betaAND2 ~ dnorm(0,1/100^2)
+    betaOR2 ~ dnorm(0,1/100^2)
+    betaPR ~  dnorm(0,1/100^2)
+
+    ## Prior 1:
+    #    prec ~ dgamma(0.001,0.001)
+    #    tau.sq <- 1/prec
+    #    tau <- pow(tau.sq,0.5)
+    ## Prior 2:
+    #tau ~ dunif(0,200) 
+    #tau.sq <- tau*tau
+    #prec<-1/(tau.sq)
+    ## Prior 3: truncated normal
+       tau ~ dnorm(0,1/10000)T(0,)
+       tau.sq <- tau*tau
+       prec<-1/(tau.sq)
+    ## Prior 4: truncated t-distribution
+    #    tau ~ dt(0,25,2)I(0,)
+    #    tau.sq <- tau*tau
+    #    prec<-1/(tau.sq)
+    }",
+     file="../vignettes/JAGSModels/RandomEffectsMetaRegressionAnalysisPromslidingPR.jag" )
+```
+
+```{r}
+datMatchPromslidingPR<-list(y=MatchDat$Effect,
+                     s=MatchDat$SE,
+                     n=dim(MatchDat)[1],
+                     contrOR2=MatchDat$contrOR2,
+                     contrAND2=MatchDat$contrAND2,
+                     proretro=MatchDat$proretro)
+
+res<-fitmodel(d=datMatchPromslidingPR,
+              m="../vignettes/JAGSModels/RandomEffectsMetaRegressionAnalysisPromslidingPR.jag",
+              track=c("tau","theta","thetai","betaAND2","betaOR2","betaPR"))
+mysummary(res,rows=1:5)
+(resMPromSlid<-summarize(res,rows = 1:5))
+```
+
+
+```{r}
+TMAndOr<-plotparameter(res,col=1,title="Target-Match:\n Prominence (AND vs OR)")
+TMOrOther<-plotparameter(res,col=2,title="Target-Match:\n Prominence (OR vs other)")
+TMproretro<-plotparameter(res,col=3,title="Target-Match:\n  (proretro)")
+TMTheta<-plotparameter(res,col=5,title="Target-Match:\n  Interference effect (theta)")
+```
+
+```{r fig.width=8,fig.height=12}
+CrI<-getCrI(res)
+plotposteriors(d=MatchDat,CrI=CrI,start=6,title="Target-Match")
+```
+
+
+#### Sensitivity/influential value analysis:
+
+Note that Pearlmutter paper might be influential in driving the posterior distribution. We therefore  remove Pearlmutter et al. (1999), Exp. 1 and Exp. 3 (singular verbs), and fit the same model again. 
+
+```{r}
+MatchNoPearl<-subset(MatchDat, Publication != "PearlmutterEtAl99E3sing" & Publication != "PearlmutterEtAl99E1")
+MatchNoPearldat <- list(y = MatchNoPearl$Effect,
+            s = MatchNoPearl$SE,
+            n = dim(MatchNoPearl)[1],
+            contrOR2=MatchNoPearl$contrOR2,
+            contrAND2=MatchNoPearl$contrAND2,
+            proretro=MatchNoPearl$proretro)
+
+resNoPearl<-fitmodel(d=MatchNoPearldat,
+              m="../vignettes/JAGSModels/RandomEffectsMetaRegressionAnalysisPromslidingPR.jag",
+              track=c("tau","theta","thetai","betaAND2","betaOR2","betaPR"))
+mysummary(resNoPearl,rows = 1:5)
+(resMPromSlid_NoPearl<-summarize(d=resNoPearl,rows=1:5))
+```
+
+Plot with and without Pearlmutter studies:
+```{r,fig.width=8,fig.height=8}
+multiplot(plotparameter(res,title="Interference effect \n (Target-Match, Full data)",col=2),
+plotparameter(resNoPearl,title="Interference effect \n (Target-Match, W/o Pearlmutter)",col=2),
+cols=2)
+```
+
+Removing the Pearlmutter experiments does not have much of an impact on the posterior. 
+
+
+## Target-mismatch
+```{r}
+datMismatchPromslidingPR<-list(y=MismatchDat$Effect,
+                     s=MismatchDat$SE,
+                     n=dim(MismatchDat)[1],
+                     contrOR2=MismatchDat$contrOR2,
+                     contrAND2=MismatchDat$contrAND2,
+                     proretro=MismatchDat$proretro)
+
+res<-fitmodel(d=datMismatchPromslidingPR,
+              m="../vignettes/JAGSModels/RandomEffectsMetaRegressionAnalysisPromslidingPR.jag",
+              track=c("tau","theta","thetai","betaAND2","betaOR2","betaPR"))
+mysummary(res,rows=1:5)
+(resMPromSlidPR<-summarize(res,rows = 1:5))
+```
+
+
+```{r fig.width=8,fig.height=10}
+TMMAndOr<-plotparameter(res,col=1,title="Target-Mismatch:\n Prominence (AND vs OR)")
+TMMOrOther<-plotparameter(res,col=2,title="Target-Mismatch:\n Prominence (OR vs other)")
+TMMproretro<-plotparameter(res,col=3,title="Target-Mismatch:\n (proretro)")
+TMMTheta<-plotparameter(res,col=5,title="Target-Mismatch:\n  Interference Effect (theta)")
+
+multiplot(TMTheta,TMMTheta,
+          TMproretro,TMMproretro,
+          TMOrOther,TMMOrOther,
+          TMAndOr,TMMAndOr,
+          cols=2)
+```
+
+```{r fig.width=8,fig.height=12}
+CrI<-getCrI(res)
+plotposteriors(d=MismatchDat,CrI=CrI,start=6,title="Target-Mismatch")
+```
+
+
+
+### Sensitivity/influential values analysis
+
+If we remove Jäger et al. (2015), Exp. 1 and Pearlmutter et al. (1999), Exp. 1, there isn't a dramatic change in the posterior, but we see somewhat stronger evidence for facilitatory interference:
+
+```{r}
+MismatchNoJaegerPearl<-subset(MismatchDat, Publication != "JaegerEtAl15E1" & Publication != "PearlmutterEtAl99E1")
+MismatchNoJaegerPearldat<-list(y = MismatchNoJaegerPearl$Effect,
+            s = MismatchNoJaegerPearl$SE,
+            n = dim(MismatchNoJaegerPearl)[1],
+            contrOR2=MismatchNoJaegerPearl$contrOR2,
+            contrAND2=MismatchNoJaegerPearl$contrAND2,
+            proretro=MismatchNoJaegerPearl$proretro)
+resNoJaegerPearl<-fitmodel(d=MismatchNoJaegerPearldat,
+              m="../vignettes/JAGSModels/RandomEffectsMetaRegressionAnalysisPromslidingPR.jag",
+              track=c("tau","theta","thetai","betaAND2","betaOR2","betaPR"))
+mysummary(resNoJaegerPearl,rows=1:5)
+(resMPromSlidPR_NoJaegerPearl<-summarize(resNoJaegerPearl,rows = 1:5))
+```
+
+However, the facilitation in Target-Mismatch is driven entirely by Experiments 2, 4, and 5 reported by  Wagers et al. (2009). Without these two studies, the effect is centered around 0.
+
+```{r}
+MismatchNoWagersAgrmt<-subset(MismatchDat,  Publication!="WagersEtAl09E2" & Publication!= "WagersEtAl09E4" & Publication!="WagersEtAl09E5")
+MismatchNoWagersdat<-list(y = MismatchNoWagers$Effect,
+            s = MismatchNoWagers$SE,
+            n = dim(MismatchNoWagers)[1],
+            contrOR2=MismatchNoWagers$contrOR2,
+            contrAND2=MismatchNoWagers$contrAND2,
+            proretro=MismatchNoWagers$proretro)
+resNoWagers<-fitmodel(MismatchNoWagersdat,
+              m="../vignettes/JAGSModels/RandomEffectsMetaRegressionAnalysisPromslidingPR.jag",
+              track=c("tau","theta","thetai","betaAND2","betaOR2","betaPR"))
+(mysummary(resNoWagers,rows = 1:5))
+(summarize(resNoWagers,rows=1:5))
+```
+
+
+
+Check what happens if we also remove the experiments published by Lago et al (2015) in addition to the Wagers et al (2009) experiments. Without the Wagers et al (2009) and the Lago et al (2015) data, the mean of the posterior turns out to be positive. 
+
+```{r}
+MismatchNoWagersNoLago<-subset(MismatchDat, Publication!="WagersEtAl09E2" & Publication!= "WagersEtAl09E4" &  Publication!= "WagersEtAl09E5" &  Publication!= "WagersEtAl09E3sing" & Publication!= "WagersEtAl09E3plu" & Publication != "LagoEtAl15E1" & Publication!="LagoEtAl15E2" & Publication != "LagoEtAl15E3a" & Publication != "LagoEtAl15E3b")
+MismatchNoWagersNoLagodat<-list(y = MismatchNoWagersNoLago$Effect,
+            s = MismatchNoWagersNoLago$SE,
+            n = dim(MismatchNoWagersNoLago)[1],
+            contrOR2=MismatchNoWagersNoLago$contrOR2,
+            contrAND2=MismatchNoWagersNoLago$contrAND2,
+            proretro=MismatchNoWagersNoLago$proretro)
+resNoWagersNoLago<-fitmodel(MismatchNoWagersNoLagodat,
+              m="../vignettes/JAGSModels/RandomEffectsMetaRegressionAnalysisPromslidingPR.jag",
+              track=c("tau","theta","thetai","betaAND2","betaOR2","betaPR"))
+(mysummary(resNoWagersNoLago,rows = 1:5))
+(summarize(resNoWagersNoLago,rows=1:5))
+```
+
+
+
+
+## By-dependeny type meta-regressions: Modeling the interference effect with Interference Type (pro/retroactive) as predictor for each dependency type separately. 
+
+Distractor prominence is not included in the models because not enough data is available to fit models with two covariates. 
+
+One could fit one giant meta-regression looking at the main effects of dependency type and pro/retroactive interference, and interactions. But there really isn't enough data to do this.
+We can therefore do subgroup analyses: fit separate models for nonagreement, agreement, and reflexive/reciprocal dependencies 
+and investigate whether pro/retro interference effects differ within each subtype.
+
+## Define general meta-regression model
+
+We define the following model for the meta-regressions.
+
+
+```{r}
+## define model for meta-regression analysis with Interference Type as predictor (without distractor prominence): Thompson and Sharp model.
+## pred is the proretro predictor:
+cat("
+model
+    {
+    for(i in 1:n)
+    {
+    p[i] <- 1/s[i]^2
+    y[i] ~ dnorm(thetai[i]+ beta * pred[i],p[i])
+    thetai[i] ~ dnorm(theta,prec)
+    }
+    ## prior for theta: 
+    ## theta lies between (-1.96*100,1.96*100):
+    theta ~ dnorm(0,1/100^2)
+
+    ## prior for beta:
+    beta ~ dnorm(0,1/100^2)
+
+    ## Prior 1:
+    #    prec ~ dgamma(0.001,0.001)
+    #    tau.sq <- 1/prec
+    #    tau <- pow(tau.sq,0.5)
+    ## Prior 2:
+    #tau ~ dunif(0,200) 
+    #tau.sq <- tau*tau
+    #prec<-1/(tau.sq)
+    ## Prior 3: truncated normal
+       tau ~ dnorm(0,1/10000)T(0,)
+        tau.sq <- tau*tau
+        prec<-1/(tau.sq)
+    ## Prior 4: truncated t-distribution
+    #    tau ~ dt(0,25,2)I(0,)
+    #    tau.sq <- tau*tau
+    #    prec<-1/(tau.sq)
+    }",
+     file="../vignettes/JAGSModels/RandomEffectsMetaRegressionAnalysispred.jag" )
+```
+
+
+### Non-agreement argument-verb dependencies (only Target-Match data available): modeling interference with interference type as predictor
+
+This is essentially all the Van Dyke data:
+
+```{r}
+datMatchNonAgrmt<-list(y=MatchNonAgrmt$Effect,
+                       s=MatchNonAgrmt$SE,
+                       n=dim(MatchNonAgrmt)[1],
+                       pred=MatchNonAgrmt$proretro)
+
+res<-fitmodel(d=datMatchNonAgrmt,
+              m="../vignettes/JAGSModels/RandomEffectsMetaRegressionAnalysispred.jag",
+         track=c("theta","thetai","beta","tau"))
+res<-fitmodel(d=datMatchNonAgrmt,
+              m="../vignettes/JAGSModels/RandomEffectsMetaRegressionAnalysispred.jag",
+         track=c("theta","thetai","beta","tau"))
+res<-fitmodel(d=datMatchPromslidingPR,
+              m="../vignettes/JAGSModels/RandomEffectsMetaRegressionAnalysisPromslidingPR.jag",
+              track=c("tau","theta","thetai","betaAND2","betaOR2","betaPR"))
+mysummary(res,rows=1:5)
+(resMPromSlid<-summarize(res,rows = 1:5))
+
+mysummary(res,rows=1:3) 
+(resMNonAgrmt<-summarize(res,rows=1:3))
+```
+
+```{r fig.width=8,fig.height=10}
+NonAgrmtMatchproretro<-plotparameter(res,col=1,title="Target-Match (non-agr Argument-verb):\n proretro")
+NonAgrmtMatchTheta<-plotparameter(res,col=3,title="Target-Match (non-agr Argument-verb):\n theta")
+```
+
+
+### Subject-verb agreement, Target-Match configurations: modeling interference with interference type as predictor
+
+```{r}
+datMatchAgrmt<-list(y=MatchAgrmt$Effect,
+                       s=MatchAgrmt$SE,
+                       n=dim(MatchAgrmt)[1],
+                       pred=MatchAgrmt$proretro)
+
+res<-fitmodel(d=datMatchAgrmt,
+              m="../vignettes/JAGSModels/RandomEffectsMetaRegressionAnalysispred.jag",
+         track=c("theta","thetai","beta","tau"),adapt=40000,iter=80000)
+mysummary(res,rows=1:3) 
+(resMatchAgrmt<-summarize(d=res,rows=1:3))
+```
+
+```{r fig.width=8,fig.height=10}
+TMAgrmtproretro<-plotparameter(res,col=1,title="Target-Match Agrmt:\n proretro")
+TMAgrmtTheta<-plotparameter(res,col=3,title="Target-Match Agrmt:\n theta")
+```
+
+
+#### Influential values analysis:
+Only Franck et al 2015, Exp1 RC and Pearlmutter et al. 1999, Exp 3 report inhibitory interference for subject-verb agreement in target-match configurations. All other studies that report significant results found facilitation. The effect reported by Franck is extremely large (much larger than in any other experiment). Check the impact of Franck et al 2015, Exp1 RC on the posterior distribution. Without this data point, the posterior is just a bit more shifted to the left.
+
+
+```{r}
+# Remove Franck et al (2015)
+MatchNoFranckAgrmt<-subset(MatchAgrmt, Publication != "FranckEtAl15E1RC")
+MatchNoFranckAgrmtdat<-list(y = MatchNoFranckAgrmt$Effect,
+            s=MatchNoFranckAgrmt$SE,
+            n=dim(MatchNoFranckAgrmt)[1],
+            pred=MatchNoFranckAgrmt$proretro)
+resNoFranckAgrmt<-fitmodel(MatchNoFranckAgrmtdat,
+              m="../vignettes/JAGSModels/RandomEffectsMetaRegressionAnalysispred.jag",
+         track=c("theta","thetai","beta","tau"),adapt=40000,iter=80000)
+
+(summary_NoFranckAgrmt<-summarize(resNoFranckAgrmt,rows=1:3))
+theta_match_Agrmt_noFranck <- round(summary_NoFranckAgrmt$mean[3],1)
+theta_match_Agrmt_noFranck_p <- round(summary_NoFranckAgrmt[[4]][3],2)
+```
+
+
+
+### Subject-verb agreement, Target-Mismatch configurations: modeling interference with interference type as predictor
+
+```{r}
+datMismatchAgrmt<-list(y=MismatchAgrmt$Effect,
+                       s=MismatchAgrmt$SE,
+                       n=dim(MismatchAgrmt)[1],
+                       pred=MismatchAgrmt$proretro)
+
+res<-fitmodel(d=datMismatchAgrmt,
+              m="../vignettes/JAGSModels/RandomEffectsMetaRegressionAnalysispred.jag",
+         track=c("theta","thetai","beta","tau"),adapt=40000,iter=80000)
+mysummary(res,rows=1:3) 
+(resMismatchAgrmt<-summarize(d=res,rows=1:3))
+```
+
+```{r fig.width=8,fig.height=10}
+TMMAgrmtproretro<-plotparameter(res,col=1,title="Target-Mismatch Agrmt:\n proretro")
+TMMAgrmtTheta<-plotparameter(res,col=3,title="Target-Mismatch Agrmt:\n theta")
+```
+
+```{r fig.width=10,fig.height=12}
+CrI<-getCrI(res)
+plotposteriors(d=MismatchAgrmt,CrI=CrI,start=4,title="Target-Mismatch (Agrmt)")
+```
+
+#### Influential values analysis:
+The large facilitatory interferencce effect in Target-Mismatch in subj-verb agreement may be driven by the experiments in Wagers et al (2009) and Lago et al (2015). First, check the influence of the Wagers et al (2009) experiments:
+
+```{r}
+#Check influence of the Wagers et al (2009) experiments:
+MismatchNoWagersAgrmt<-subset(MismatchAgrmt, Publication!="WagersEtAl09E2" & Publication!= "WagersEtAl09E4" &  Publication!= "WagersEtAl09E5" &  Publication!= "WagersEtAl09E3sing" & Publication!= "WagersEtAl09E3plu")
+
+MismatchNoWagersAgrmtdat<-list(y = MismatchNoWagersAgrmt$Effect,
+            s=MismatchNoWagersAgrmt$SE,
+            n=dim(MismatchNoWagersAgrmt)[1],
+            pred=MismatchNoWagersAgrmt$proretro)
+resNoWagersAgrmt<-fitmodel(MismatchNoWagersAgrmtdat,
+              m="../vignettes/JAGSModels/RandomEffectsMetaRegressionAnalysispred.jag",
+         track=c("theta","thetai","beta","tau"),adapt=40000,iter=80000)
+
+(summary_NoWagersAgrmt<-summarize(resNoWagersAgrmt,rows=1:3))
+theta_mismatch_Agrmt_noWagers <- round(summary_NoWagersAgrmt$mean[3],1)
+theta_mismatch_Agrmt_noWagers_p <- round(summary_NoWagersAgrmt[[4]][3],2)
+```
+
+Second, check the influence of the Wagers et al (2009) experiments together with the Lago et al (2015):
+
+```{r}
+#Check influence of the Wagers et al (2009) and Lago et al (2015) experiments:
+MismatchNoWagersNoLagoAgrmt<-subset(MismatchAgrmt, Publication!="WagersEtAl09E2" & Publication!= "WagersEtAl09E4" &  Publication!= "WagersEtAl09E5" &  Publication!= "WagersEtAl09E3sing" & Publication!= "WagersEtAl09E3plu" & Publication != "LagoEtAl15E1" & Publication!="LagoEtAl15E2" & Publication != "LagoEtAl15E3a" & Publication != "LagoEtAl15E3b")
+
+MismatchNoWagersNoLagoAgrmtdat<-list(y = MismatchNoWagersNoLagoAgrmt$Effect,
+            s=MismatchNoWagersNoLagoAgrmt$SE,
+            n=dim(MismatchNoWagersNoLagoAgrmt)[1],
+            pred=MismatchNoWagersNoLagoAgrmt$proretro)
+resNoWagersNoLagoAgrmt<-fitmodel(MismatchNoWagersNoLagoAgrmtdat,
+              m="../vignettes/JAGSModels/RandomEffectsMetaRegressionAnalysispred.jag",
+         track=c("theta","thetai","beta","tau"),adapt=40000,iter=80000)
+
+(summary_NoWagersNoLagoAgrmt<-summarize(resNoWagersNoLagoAgrmt,rows=1:3))
+theta_mismatch_Agrmt_noWagersNoLago <- round(summary_NoWagersNoLagoAgrmt$mean[3],1)
+theta_mismatch_Agrmt_noWagersNoLago_p <- round(summary_NoWagersNoLagoAgrmt[[4]][3],2)
+```
+
+The facilitatory effect disappears (the posterior is centered around 0) when removing the Wagers et al (2009) and the Lago et al (2015) data. However, this new estimate is actually not very informative as not many data points are left in the analysis. Therefore, this analysis is not reported in the paper.
+
+
+
+
+
+### Reciprocal/reflexive-antecedent dependencies, Target-Match configurations: modeling interference with interference type as predictor
+
+```{r}
+datMatchReci<-list(y=MatchReflReci$Effect,
+                       s=MatchReflReci$SE,
+                       n=dim(MatchReflReci)[1],
+                       pred=MatchReflReci$proretro)
+
+res<-fitmodel(d=datMatchReci,
+              m="../vignettes/JAGSModels/RandomEffectsMetaRegressionAnalysispred.jag",
+         track=c("theta","thetai","beta","tau"),adapt=40000,iter=80000)
+mysummary(res,rows=1:3) 
+(resMatchReci<-summarize(d=res,rows=1:3))
+```
+
+```{r fig.width=8,fig.height=10}
+TMReciproretro<-plotparameter(res,col=1,title="Target-Match Refl:\n proretro")
+TMReciTheta<-plotparameter(res,col=3,title="Target-Match Refl:\n theta")
+```
+
+### Reciprocal/reflexive-antecedent dependencies, Target-Mismatch configurations: modeling interference with interference type as predictor
+
+```{r}
+datMismatchReci<-list(y=MismatchReflReci$Effect,
+                       s=MismatchReflReci$SE,
+                       n=dim(MismatchReflReci)[1],
+                       pred=MismatchReflReci$proretro)
+
+res<-fitmodel(d=datMismatchReci,
+              m="../vignettes/JAGSModels/RandomEffectsMetaRegressionAnalysispred.jag",
+         track=c("theta","thetai","beta","tau"),adapt=40000,iter=80000)
+mysummary(res,rows=1:3) 
+(resMismatchReci<-summarize(res,rows=1:3))
+```
+
+```{r fig.width=8,fig.height=10}
+TMMReciproretro<-plotparameter(res,col=1,title="Target-Mismatch Refl/Reci:\n proretro")
+TMMReciTheta<-plotparameter(res,col=3,title="Target-Mismatch Refl:\n theta")
+```
+
+```{r fig.width=10,fig.height=12}
+CrI<-getCrI(res)
+plotposteriors(d=MismatchReflReci,CrI=CrI,start=4,title="Target-Mismatch (Refl/Reci)")
+```
+
+
+#### Influential values analysis:
+Is the inhibition in target-mismatch configurations in reflexives/reciprocals driven by the Chinese data from Jäger et al (2015) which is the only study that reports statistically significant inhibition and has an unusually large sample size?
+
+```{r}
+MismatchNoJaegerRefl<-subset(MismatchReflReci, Publication != "JaegerEtAl15E1")
+
+MismatchNoJaegerRefldat<-list(y = MismatchNoJaegerRefl$Effect,
+            s=MismatchNoJaegerRefl$SE,
+            n=dim(MismatchNoJaegerRefl)[1],
+            pred=MismatchNoJaegerRefl$proretro)
+resNoJaegerRefl<-fitmodel(MismatchNoJaegerRefldat,
+              m="../vignettes/JAGSModels/RandomEffectsMetaRegressionAnalysispred.jag",
+         track=c("theta","thetai","beta","tau"),adapt=40000,iter=80000)
+
+(summary_resNoJaegerRefl<-summarize(resNoJaegerRefl,rows=1:3))
+theta_mismatch_Refl_noJaeger <- round(summary_resNoJaegerRefl$mean[3],1)
+theta_mismatch_Refl_noJaeger_p <- round(summary_resNoJaegerRefl[[4]][3],2)
+```
+
+
+#### Plot posteriors 
+```{r fig.width=12,fig.height=14}
+multiplot(NonAgrmtMatchTheta,
+          NonAgrmtMatchproretro,
+          TMAgrmtTheta,
+          TMAgrmtproretro,
+          TMMAgrmtTheta,
+          TMMAgrmtproretro,
+          TMReciTheta,
+          TMReciproretro,
+          TMMReciTheta,
+          TMMReciproretro,
+          cols=2)
+```
+
+# Some basic Stan checks
+
+Here, we are just checking whether Stan gives similar results for some of the basic models. We recover approximately the same parameters using Stan.
+
+## Match data
+
+```{r,fig.width=8,fig.height=8}
+fit <- stan(file='StanModels/rema2.stan', data=Matchdat,
+            iter=2000, chains=4, seed=987654321,
+            control = list(adapt_delta = 0.8))
+
+paramnames<-c("mu","tau")
+#print(fit,pars=paramnames)
+
+params<-extract(fit,pars=paramnames)
+
+stan_plot(fit,pars=paramnames)+geom_vline(xintercept = 0)+
+  labs(title="Target match studies")
+
+paramnames<-c("mu")
+stan_hist(fit,pars=paramnames)+geom_vline(xintercept = 0)+
+  labs(title="Overall interference effect (Target match)")
+```
+
+## Mismatch data
+
+```{r,fig.width=8,fig.height=8}
+output <- stanc("StanModels/rema2.stan")
+
+fit <- stan(file='StanModels/rema2.stan', data=Mismatchdat,
+            iter=2000, chains=4, seed=987654321,
+            control = list(adapt_delta = 0.8))
+
+paramnames<-c("mu","tau","theta")
+#print(fit,pars=paramnames)
+
+params<-extract(fit,pars=paramnames)
+
+stan_plot(fit,pars=paramnames)+geom_vline(xintercept = 0)+
+  labs(title="Target mismatch")
+
+stan_hist(fit,pars=paramnames)
+
+paramnames<-c("mu")
+stan_hist(fit,pars=paramnames)+geom_vline(xintercept = 0)+
+  labs(title="Overall interference effect (Target mismatch)")
+```
+
+
+
+## Non-agreement 
+
+```{r,fig.width=8,fig.height=8}
+MatchNonAgrmt <- list(y = MatchNonAgrmt$Effect,
+                 s = MatchNonAgrmt$SE,
+                 n = dim(MatchNonAgrmt)[1])
+
+
+fit <- stan(file='StanModels/rema2.stan', data=MatchNonAgrmt,
+            iter=2000, chains=4, seed=987654321,
+            control = list(adapt_delta = 0.99))
+
+paramnames<-c("mu","theta")
+print(fit,pars=paramnames)
+
+params<-extract(fit,pars=paramnames)
+
+stan_plot(fit,pars=paramnames)+geom_vline(xintercept = 0)+
+  labs(title="Interference studies (Van Dyke and colleagues)",size=20)
+```
+

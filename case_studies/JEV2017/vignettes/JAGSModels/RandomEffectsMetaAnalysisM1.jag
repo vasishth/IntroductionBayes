@@ -1,0 +1,30 @@
+
+model
+    {
+    for( i in 1:n)
+    {
+    p[i] <- 1/s[i]^2
+    y[i] ~ dnorm(thetai[i],p[i])
+    thetai[i] ~ dnorm(theta,prec)
+    }
+    ## priors for theta: 
+    ## theta lies between (-1.96*100,1.96*100):
+    theta ~ dnorm(0,1/100^2)
+    
+    ## Prior 1:
+    #    prec ~ dgamma(0.001,0.001)
+    #    tau.sq <- 1/prec
+    #    tau <- pow(tau.sq,0.5)
+    ## Prior 2:
+    #tau ~ dunif(0,200) 
+    #tau.sq <- tau*tau
+    #prec<-1/(tau.sq)
+    ## Prior 3: truncated normal
+       tau ~ dnorm(0,1/10000)T(0,)
+        tau.sq <- tau*tau
+        prec<-1/(tau.sq)
+    ## Prior 4: truncated t-distribution
+    #    tau ~ dt(0,25,2)I(0,)
+    #    tau.sq <- tau*tau
+    #    prec<-1/(tau.sq)
+    }

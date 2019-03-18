@@ -1,0 +1,9 @@
+Package: MetaAnalysisJEV
+Title: Bayesian Random Effects Meta-Analysis in Jaeger et al, JML, 2016.
+Version: 0.0.0.9000
+Authors@R: person("Shravan", "Vasishth", email = "vasishth.shravan@gmail.com", role = c("aut", "cre"))
+Description: Provides all the code and data used in the meta-analysis.
+Depends: R (>= 3.3.2)
+License: MIT License
+Encoding: UTF-8
+LazyData: true
