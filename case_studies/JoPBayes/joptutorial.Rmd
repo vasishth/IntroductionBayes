@@ -1,0 +1,414 @@
+---
+title: "Bayesian data analysis in the phonetic sciences: A tutorial introduction
+"
+author: "Shravan Vasishth"
+date: "7/1/2018"
+output: html_document
+---
+
+This file provides the main code snippets in the paper. Start by loading the relevant libraries.
+
+```{r setup}
+knitr::opts_chunk$set(echo = TRUE)
+set.seed(123)
+
+library(knitr)
+library(ggplot2)
+library(xtable)
+library(dplyr)
+library(tibble)
+library(magrittr)
+library(lme4)
+library(brms)
+
+library(rstan)
+rstan_options(auto_write=TRUE)
+options(mc.cores=parallel::detectCores())
+
+library(loo)
+
+library(bayesplot)
+library(stringr)
+```
+
+# Load data
+
+
+Load Mandarin data:
+
+```{r loaddataM}
+rawdatM <- read.delim("data/songyuan.txt", stringsAsFactors = F)
+## voiceless stops -1, voiced stops +1:
+datM <- rawdatM %>% 
+        mutate(voice = ifelse(TargetConsonant %in% 
+                      c("t", "k"),-1,+1),
+               genderc = if_else(gender == "f",.5,-.5),
+               VOT = round(msVOT,0),
+               i = as.integer(as.factor(paste0(gender,subject))),
+               j = as.integer(as.factor(WorldBet))) %>%
+               mutate(subject = paste0(str_to_upper(gender),str_pad(i,2,pad="0"))) %>%
+                 select(i, j, subject, item=WorldBet, genderfact= gender, gender = genderc, VOT, vduration=msVowel,voice) %>% arrange(i,j) 
+
+datM_stops <- filter(datM, voice == -1)
+```
+
+Load English data:
+
+```{r loaddataE}
+rawdatE <- read.delim("data/english.txt", stringsAsFactors = F)
+## voiceless stops -1, voiced stops +1:
+datE <- rawdatE %>% 
+        mutate(voice = ifelse(TargetConsonant %in% 
+                      c("kh", "kjh", "kwh", "th", "twh"),-1,+1),
+               genderc = if_else(gender == "f",.5,-.5),
+               VOT = round(msVOT,0),
+               i = as.integer(as.factor(paste0(gender,subject))),
+               j = as.integer(as.factor(WorldBet))) %>%
+               mutate(subject = paste0(str_to_upper(gender),str_pad(i,2,pad="0"))) %>%
+                 select(i, j, subject, item=WorldBet,genderfact= gender, gender = genderc, VOT, vduration=msVowel,voice) %>% arrange(i,j) 
+
+datE_stops <- filter(datE, voice == -1)
+```
+
+# Visualize priors
+
+It is generally a good idea to visualize the priors in order to get a sense of whether these are reasonable.
+
+```{r definepriors,include=FALSE,include=FALSE,warning=FALSE,message=FALSE}
+priors_beta0 <- c(0,200)
+priors_beta1 <- c(0,50)
+priors_sigma_e <- c(0,100)
+priors_sigma_u <- c(0,100)
+priors_sigma_w <- c(0,100)
+
+## code for visualizing lkj priors:
+fake_data <- list(x = rnorm(30,0,1),N = 30, R = 2) 
+
+stancode <- "
+data {
+  int<lower=0> N; 
+  real x[N]; 
+  int R;
+  }
+parameters {
+  real mu;
+  real<lower=0> sigma;
+}
+model {
+  x ~ normal(mu,sigma);  
+}
+generated quantities {
+  corr_matrix[R] LKJ05;
+  corr_matrix[R] LKJ1;
+  corr_matrix[R] LKJ2;
+  corr_matrix[R] LKJ4;
+  LKJ05 = lkj_corr_rng(R,.5);
+  LKJ1 = lkj_corr_rng(R,1);
+  LKJ2 = lkj_corr_rng(R,2);
+  LKJ4 = lkj_corr_rng(R,4);
+}
+"
+
+fitfake <- stan(model_code = stancode, pars = c("LKJ05","LKJ1","LKJ2","LKJ4"),
+                data = fake_data, chains = 4, 
+                iter = 2000)
+
+corrs<-extract(fitfake,pars=c("LKJ05[1,2]","LKJ1[1,2]","LKJ2[1,2]","LKJ4[1,2]"))
+```
+
+```{r visualizepriors}
+op<-par(mfrow=c(2,3),pty="s")
+par(oma = rep(0, 4), mar = c(2.7, 2.7, 0.1, 0.1), mgp = c(1.7, 0.4, 0))
+b<-seq(-priors_beta0[2]*2,priors_beta0[2]*2,by=0.01)
+plot(b,dnorm(b,mean=priors_beta0[1],sd=priors_beta0[2]),type="l",ylab="density", 
+     xlab=expression(beta[0]),ylim=c(0, 0.0082))
+plot(b,dnorm(b,mean=priors_beta1[1],sd=priors_beta1[2]),type="l",ylab="density",
+     xlab=expression(beta[1]),ylim=c(0, 0.0082))
+sig<-seq(0,priors_sigma_e[2]*3,by=0.01)
+plot(sig,dnorm(sig,mean=priors_sigma_e[1],sd=priors_sigma_e[2]),type="l",ylab="density",
+     xlab=expression(sigma[e]))
+plot(sig,dnorm(sig,mean=priors_sigma_u[1],sd=priors_sigma_u[2]),type="l",ylab="density",
+     xlab=expression(sigma[u[0]]))
+plot(sig,dnorm(sig,mean=priors_sigma_u[1],sd=priors_sigma_u[2]),type="l",ylab="density",
+     xlab=expression(sigma[w[0,1]]))
+plot(density(corrs[[3]],bw=0.15),ylab="density",xlab=expression(rho[w]),xlim=c(-1,1),main="")
+```
+
+# Fit Mandarin data using brms
+
+```{r fitMandarindata,cache=TRUE,warning=FALSE,message=FALSE}
+priors <- c(set_prior("normal(0, 200)", class = "Intercept"),
+                      set_prior("normal(0, 50)", class = "b", 
+                                coef = "gender"),
+                      set_prior("normal(0, 100)", class = "sd"),
+                      set_prior("normal(0, 100)", class = "sigma"),
+                      set_prior("lkj(2)", class = "cor"))
+
+
+## Mandarin:
+m1M <- brm(formula = VOT ~ gender + (1 | subject) + (gender | item),
+           data = datM_stops, family = gaussian(), prior = priors,
+           iter = 2000, chains = 4, control = list(adapt_delta = 0.99))
+
+## English:
+m1E <- brm(formula = VOT ~ gender + (1 | subject) + (gender | item),
+           data = datE_stops, family = gaussian(), prior = priors,
+           iter = 2000, chains = 4, control = list(adapt_delta = 0.99))
+```
+
+Summarize the model fit:
+
+```{r summaryMandarindata}
+summary(m1M)
+```
+
+```{r stanplotMandarindata}
+stanplot(m1M, pars = c("^b","sd","sigma"), type="hist")
+
+## correlation:
+stanplot(m1M, pars = c("cor"), type="hist")
+
+```
+
+## Example of Bayes factor calculation:
+
+```{r bayesfactorexample,cache=TRUE,warning=FALSE,message=FALSE}
+priors_N20  <- c(set_prior("normal(0, 200)", class = "Intercept"),
+              set_prior("normal(0,20)", class = "b", coef="gender"),
+              set_prior("normal(0, 100)", class = "sd"),
+              set_prior("normal(0, 100)", class = "sigma"),
+              set_prior("lkj(2)", class = "cor"))
+
+
+m1M_N20 <- brm(formula = VOT  ~ 1 + gender + (1 | subject)+(1 +gender| item),
+            data = datM_stops,  
+            family = gaussian(),
+            prior = priors_N20,
+            save_all_pars = TRUE,
+            iter = 10000,
+            warmup = 2000,
+            chains = 4,
+            control = list(adapt_delta = 0.99))
+
+priors_N20_0  <- c(set_prior("normal(0, 200)", class = "Intercept"),
+              #set_prior("normal(0,20)", class = "b", coef="gender"),
+              set_prior("normal(0, 100)", class = "sd"),
+              set_prior("normal(0, 100)", class = "sigma"),
+              set_prior("lkj(2)", class = "cor"))
+
+m0M_N20 <- brm(formula = VOT  ~ 1 + (1 | subject)+(1 +gender| item),
+            data = datM_stops,  
+            family = gaussian(),
+            prior = priors_N20_0,
+            save_all_pars = TRUE,
+            iter = 10000,
+            warmup = 2000,
+            chains = 4,
+            control = list(adapt_delta = 0.99))
+
+(BF10M_N20 <- bayes_factor(m1M_N20, m0M_N20))
+```
+
+# Posterior predictive check example
+
+```{r posteriorpredictivecheck}
+pp_check(m1M, nsamples = 100)+
+  theme(text = element_text(size=16),legend.text=element_text(size=16))
+```
+
+# Model comparison using LOO
+
+```{r loo,cache=TRUE,include=FALSE,warning=FALSE,message=FALSE}
+priors <- c(set_prior("normal(0, 200)", class = "Intercept"),
+                      set_prior("normal(0, 50)", class = "b", 
+                                coef = "gender"),
+                      set_prior("normal(0, 100)", class = "sd"),
+                      set_prior("normal(0, 100)", class = "sigma"),
+                      set_prior("lkj(2)", class = "cor"))
+
+m1M <- brm(formula = VOT  ~ gender + (1 | subject) + (gender | item),
+            data = datM_stops, 
+            family = gaussian(), prior = priors,
+            iter = 2000, chains = 4,
+            control = list(adapt_delta = 0.99))
+
+m0M <- update(m1M, formula = ~ .-gender)
+```
+
+```{r loomodelcomparison}
+loom1m0<-loo(m1M,m0M)
+
+difflooic <- loom1m0$ic_diffs__
+m1loo <- loom1m0$m1M
+m0loo <- loom1m0$m0M
+
+loo(m1M, m0M)
+```
+
+# Measurement error model (Mandarin)
+
+```{r measurementerror}
+datMvoiced <- datM %>% 
+              filter(voice==1) %>% 
+              group_by(subject) %>%
+              summarize(meanvdur= mean(vduration),sdvdur= sd(vduration), sevdur= sd(vduration)/sqrt(length(vduration))) %>%
+               # mutate(cmeanvdur = scale(meanvdur, scale=FALSE)) 
+              # %>%
+              mutate(c_meanvdur = scale(meanvdur,scale=FALSE), cmeanvdur = scale(meanvdur), sestdvdur=sevdur/sdvdur)
+
+
+meansM <- datM_stops %>%  group_by(subject) %>%
+              summarize(meanVOT= mean(VOT), seVOT = sd(VOT)/sqrt(length(VOT))) %>% right_join(datMvoiced, by="subject") 
+
+priors_cauchy <- c(set_prior("normal(0, 200)", class = "Intercept"),
+            set_prior("cauchy(0,5)", class = "b", 
+                      coef = "mec_meanvdursevdur"),
+            set_prior("normal(0, 20)", class = "sdme"),
+            set_prior("normal(0, 20)", class = "sd"))
+```
+
+```{r fitmemodel,cache=TRUE,warning=FALSE,message=FALSE}
+m2M_error <- brm(formula = meanVOT | se(seVOT)  ~ me(c_meanvdur, sevdur) + 
+            (1 | subject),
+            data = meansM, family = gaussian(), prior = priors_cauchy,
+            iter = 2000, chains = 4,
+            control = list(adapt_delta = 0.999,
+                          max_treedepth=15))
+```
+
+```{r}
+print(m2M_error)
+```
+
+```{r meplotstanplot}
+stanplot(m2M_error,pars=c("^b","sd"), type="hist")
+```
+
+# Some extensions using rstan
+
+For canned models like the linear mixed models shown above, brms is great. However, if you are serious about learning Bayesian data analysis, eventually you will have to get your hands dirty with some Stan coding.  An example follows.
+
+## Measurement error on the independent variable only
+ 
+Suppose we want to use measurement error only on the vowel durations *computed by subject*, but we want to keep the independent variable (VOT) unaggregated, i.e., we retain the repeated measurements from subjects. Defining such a model in Stan is easy and transparent.  
+
+This model can apparently be fit in brms too, but I (Shravan Vasishth) find this presentation below much more transparent as a modeler. I see the transparency as an advantage of Stan. Of course, a big downside of this is the start-up cost of learning Stan coding, but this is worth the effort, in my opinion.
+ 
+First, we set up the Mandarin data, as an example: 
+ 
+```{r}
+datM$subject<-as.integer(as.factor(datM$subject))
+datMvoiced<-subset(datM,voice==1)
+
+## create a subject vector:
+subj<-sort(unique(datMvoiced$subject))
+
+## compute subject means and SEs for vowel duration:
+means<-ses<-rep(NA,length(subj))
+K<-length(subj)
+for(k in 1:20){
+  #print(subj[i])
+  dat_temp<-subset(datMvoiced,subject==k)
+  n<-dim(dat_temp)[1]
+  means[k]<-mean(dat_temp$vduration)
+  ses[k]<-sd(dat_temp$vduration)/sqrt(n)
+}
+
+subj_vduration<-data.frame(subject=subj,
+                           meanvdur=means,se=ses)
+
+## needed for brms:
+subj_vduration2<-subj_vduration
+## divide centered means by std deviation to normalize the centered means:
+subj_vduration2$cmeanvdur<-(subj_vduration$meanvdur-mean(subj_vduration$meanvdur))/sd(subj_vduration$meanvdur)
+## standardize standard error:
+subj_vduration2$sestd<-subj_vduration$se/sd(subj_vduration$meanvdur)
+
+## need merged data frame for brms:
+Mdatmerged<-merge(subset(datM,voice==-1),
+                  subj_vduration2,
+                  by.x=c("subject"),
+                  by.y=c("subject"))
+
+head(Mdatmerged)
+
+Mdat2.stan<-list(subj=as.integer(factor(Mdatmerged$subject)),
+                item=as.integer(factor(Mdatmerged$item)),
+                gend=Mdatmerged$gender,
+                meanvdur=subj_vduration2$cmeanvdur,
+                se=subj_vduration2$sestd,
+                J=length(unique(Mdatmerged$subj)),
+                K=length(unique(Mdatmerged$item)),
+                N=dim(Mdatmerged)[1],
+                y=Mdatmerged$VOT)
+```
+
+The Stan model below now fits a measurement error model, *on unaggregated VOT data* but aggregated estimates of centered and normalized mean vowel duration along with their measurement error (standardized standard error).
+
+```{r message=FALSE,warning=FALSE,cache=TRUE}
+m2Mmeaserrstan <- stan(file = "MeasErrVarInt.stan", 
+                data = Mdat2.stan,
+                control = list(adapt_delta = 0.999,max_treedepth=12))
+
+```
+
+The model looks like this:
+
+        data {
+        int<lower = 1> N;                  //number of data points
+        vector[N] y;                       //dep variable vot
+        int<lower = 1> J;                  //number of subjects
+        int<lower = 1> K;                  //number of items
+        vector[J] meanvdur;                // noisy centered mean vdur  
+        vector<lower = 0>[J] se;             // se mean vdur 
+        int<lower = 1, upper = J> subj[N];   //subject id
+        int<lower = 1, upper = K> item[N];   //item id
+        }
+        
+        parameters {
+        vector[2] beta;              //fixed intercept and slopes
+        vector[J] true_mvdur; // true unknown value mvdur
+        vector[J] u;                 //subject intercepts
+        vector[K] w;                 //item intercepts
+        real<lower=0> sigma_e;       //error sd
+        real<lower=0> sigma_u;       //subj sd
+        real<lower=0> sigma_w;       //item sd
+        }
+        
+        model {
+        vector[N] mu;
+        //priors
+        true_mvdur ~ normal(0, 200);         
+        meanvdur ~ normal(true_mvdur, se); // measurement model
+        beta[1] ~ normal(0, 200);
+        beta[2] ~ normal(0, 5);
+        sigma_e ~ normal(0, 20);
+        sigma_u ~ normal(0, 20);
+        sigma_w ~ normal(0, 20);
+        u ~ normal(0, sigma_u);    //subj random effects
+        w ~ normal(0, sigma_w);    //item random effects
+        // likelihood
+        mu = beta[1] + u[subj] + w[item] + beta[2] * true_mvdur[subj];
+        y ~ normal(mu, sigma_e);
+        }
+
+
+The results can be displayed/summarized in different ways:
+
+```{r}
+summary(m2Mmeaserrstan,pars=c("beta[1]","beta[2]","sigma_e","sigma_u","sigma_w"))$summary
+
+rstan::plot(m2Mmeaserrstan,pars=c("beta[1]","beta[2]","sigma_e","sigma_u","sigma_w"),type="hist")
+```
+
+It is now possible to fit a brms model that is similar to this one, but I have not tested the brms code.
+
+What is important to learn here is the Stan code allows us to express exactly how we believe the data were generated.
+
+# Session information
+
+Here are the packages I used to fit the models.
+
+```{r}
+sessionInfo()
+```
