@@ -254,12 +254,11 @@ This is the critical t-value on the \textbf{left}-hand side of the t-distributio
 The corresponding value on the right-hand side is:
 
 \begin{verbatim}
-qt(0.975,df=n-1)
+qt(0.975,df=n-1,lower.tail=FALSE)
 \end{verbatim}
 
 Their absolute values are of course identical (the distribution is symmetric).
 
-R syntax you should know: 
 
 Given iid data y:
 
@@ -281,7 +280,6 @@ Given data in long form, with the dependent variable written as y and the condit
 t.test(y ~ cond,,paired=TRUE)
 \end{verbatim}
 
-\textbf{You should know when to aggregate data to meet the one sample (=paired) t-test's assumptions.}
 
 \section{Type I, II error, power}
 
@@ -317,6 +315,7 @@ Gelman and Carlin also call this the exaggeration ratio, which is perhaps more d
 {\centering \includegraphics{figures/fig-demotypeM-1} 
 }
 
+\end{document}
 
 \section{Linear models}
 
