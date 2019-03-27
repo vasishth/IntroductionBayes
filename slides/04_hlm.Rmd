@@ -300,7 +300,7 @@ hist(diff,
 We can incorporate this assumption into the model by adding adjustments to the $\beta$ parameter:
 
 \begin{equation}
-y_{kj} \sim LogNormal(\alpha + u_{0j} + w_{0k} + (\beta + u_{1j} + w_{1k}  * so_{kj},\sigma) 
+y_{kj} \sim LogNormal(\alpha + u_{0j} + w_{0k} + (\beta + u_{1j} + w_{1k}  )* so_{kj},\sigma) 
 \end{equation}
 
 where 
