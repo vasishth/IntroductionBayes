@@ -1,14 +1,26 @@
 ---
 title: "01 Foundations"
 author: "Shravan Vasishth"
-date: "25-29 March 2019"
+date: "SMLP 2019"
 output:
   beamer_presentation:
-    theme: "CambridgeUS"
-    colortheme: "dolphin"
+    theme: "Boadilla"
+    colortheme: "dove"
     fonttheme: "structurebold"
 header-includes:
    - \usepackage{esint}
+   - \usepackage{mathtools}
+   - \makeatletter
+   - \newcommand{\explain}[2]{\underset{\mathclap{\overset{\uparrow}{#2}}}{#1}}
+   - \newcommand{\explainup}[2]{\overset{\mathclap{\underset{\downarrow}{#2}}}{#1}}
+   - \makeatother
+citation_package: biblatex
+biblatexoptions: 
+  - "backend=biber, style=apa"
+bibliography:  bayes.bib
+link-citations: yes
+---
+
 ---
 
 ```{r setup, include=FALSE}
@@ -25,7 +37,7 @@ The way we will conduct data analysis is as follows.
   - Simulate parameters to get *samples from posterior distributions* of parameters using some *Markov Chain Monte Carlo (MCMC) sampling algorithm*.
   - Evaluate whether model makes sense, using *model convergence* diagnostics, 
   fake-data simulation, *prior predictive* and *posterior predictive* checks, and (if you want to claim a discovery) calibrating true and false discovery rates.
-  - Summarize *posterior distributions* of parameter samples and make your scientific decision.
+  - Summarize *posterior distributions* of parameter samples and carry out your scientific conclusion.
 
 
 
@@ -294,24 +306,11 @@ We conventionally write $\Phi (x)$ for the CDF:
 \quad \textrm{where}~y=(x-\mu)/\sigma
 \end{equation}
 
-# Normal distribution
-
-If $Z$ is a standard normal random variable (SNRV) then
-
-\begin{equation}
-p\{ Z\leq -x\} = P\{Z>x\}, \quad -\infty < x < \infty
-\end{equation}
-
-Since $Z=((X-\mu)/\sigma)$ is an SNRV whenever $X$ is normally distributed with parameters $\mu$ and $\sigma^2$, then the CDF of $X$ can be expressed as:
-
-\begin{equation}
-F_X(a) = P\{ X\leq a \} = P\left( \frac{X - \mu}{\sigma} \leq \frac{a - \mu}{\sigma}\right) = \Phi\left( \frac{a - \mu}{\sigma} \right)
-\end{equation}
 
 # Normal distribution
 
 The standardized version of a normal
-random variable X is used to compute specific probabilities relating to X (it is also easier to compute probabilities from different CDFs so that the two computations are comparable).
+random variable X is used to compute specific probabilities relating to X .
 
 ```
 dnorm(x, mean = 0, sd = 1, log = FALSE)
@@ -366,315 +365,13 @@ The associated $\mathsf{R}$ functions are dt, pt, qt, and rt, which give the PDF
 
 We will just write:
 
-$X\sim t(\mu,\sigma^2,r)$, where $r$ is the degrees of freedom $(n-1)$, where $n$ is sample size.
+$X\sim t(\mu,\sigma,r)$, where $r$ is the degrees of freedom $(n-1)$, where $n$ is sample size.
 
 # Jointly distributed random variables
-## Discrete case
-
-Consider two discrete random variables $X$ and $Y$ with PMFs $f_{X}$ and $f_{Y}$ that are supported on the sample spaces $S_{X}$ and $S_{Y}$, respectively. Let $S_{X,Y}$ denote the set of all possible observed \textbf{pairs} $(x,y)$, called the \textbf{joint support set} of $X$ and $Y$. Then the \textbf{joint probability mass function} of $X$ and $Y$ is the function $f_{X,Y}$ defined by
-
-\begin{equation}
-f_{X,Y}(x,y)=\mathbb{P}(X=x,\, Y=y),\quad \mbox{for }(x,y)\in S_{X,Y}.\label{eq-joint-pmf}
-\end{equation}
-
-Every joint PMF satisfies
-
-\begin{equation}
-f_{X,Y}(x,y)>0\mbox{ for all }(x,y)\in S_{X,Y},
-\end{equation}
-
-and
-
-\begin{equation}
-\sum_{(x,y)\in S_{X,Y}}f_{X,Y}(x,y)=1.
-\end{equation}
-
-# Jointly distributed random variables
-## Discrete case
-
-It is customary to extend the function $f_{X,Y}$ to be defined on all of $\mathbb{R}^{2}$ by setting $f_{X,Y}(x,y)=0$ for $(x,y)\not\in S_{X,Y}$. 
-
-The PMFs $f_{X}$ and $f_{Y}$ are called the \textbf{marginal PMFs} of $X$ and $Y$, respectively. If we are given only the joint PMF then we may recover each of the marginal PMFs by using the Theorem of Total Probability: observe
-\begin{eqnarray}
-f_{X}(x) & = & \mathbb{P}(X=x),\\
- & = & \sum_{y\in S_{Y}}\mathbb{P}(X=x,\, Y=y),\\
- & = & \sum_{y\in S_{Y}}f_{X,Y}(x,y).
-\end{eqnarray}
-
-# Jointly distributed random variables
-## Discrete case
-
-By interchanging the roles of $X$ and $Y$ it is clear that 
-\begin{equation}
-f_{Y}(y)=\sum_{x\in S_{X}}f_{X,Y}(x,y).\label{eq-marginal-pmf}
-\end{equation}
-Given the joint PMF we may recover the marginal PMFs, but the converse is not true. Even if we have \textbf{both} marginal distributions they are not sufficient to determine the joint PMF; more information is needed.
-
-Associated with the joint PMF is the \textbf{joint cumulative distribution function} $F_{X,Y}$ defined by
-\[
-F_{X,Y}(x,y)=\mathbb{P}(X\leq x,\, Y\leq y),\quad \mbox{for }(x,y)\in\mathbb{R}^{2}.
-\]
-
-# Jointly distributed random variables
-## Discrete case
-
-\textbf{Example}:
-
-Roll a fair die twice. Let $X$ be the face shown on the first roll, and let $Y$ be the face shown on the second roll. For this example, it suffices to define
-
-\[
-f_{X,Y}(x,y)=\frac{1}{36},\quad x=1,\ldots,6,\ y=1,\ldots,6.
-\]
-
-The marginal PMFs are given by $f_{X}(x)=1/6$, $x=1,2,\ldots,6$, and $f_{Y}(y)=1/6$, $y=1,2,\ldots,6$, since
-
-\[
-f_{X}(x)=\sum_{y=1}^{6}\frac{1}{36}=\frac{1}{6},\quad x=1,\ldots,6,
-\]
-
-and the same computation with the letters switched works for $Y$.
-
-# Jointly distributed random variables
-## Continuous case
-
-For random variables $X$ and $y$, the \textbf{joint cumulative pdf} is
-
-\begin{equation}
-F(a,b) = P(X\leq a, Y\leq b) \quad -\infty  < a,b<\infty
-\end{equation}
-
-The \textbf{marginal distributions} of $F_X$ and $F_Y$ are the CDFs of each of the associated RVs:
-
-\begin{enumerate}
-	\item The CDF of $X$:
-
-	\begin{equation}
-	F_X(a) = P(X\leq a) = F_X(a,\infty)	
-	\end{equation}
-
-	\item The CDF of $Y$:
-
-	\begin{equation}
-	F_Y(b) = P(Y\leq b) = F_Y(b,\infty)	
-	\end{equation}
-	
-\end{enumerate}
-
-# Jointly distributed random variables
-## Continuous case
-
-\begin{definition}\label{def:jointcont}
-\textbf{Jointly continuous}: Two RVs $X$ and $Y$ are jointly continuous if there exists a function $f(x,y)$ defined for all real $x$ and $y$, such that for every set $C$:
-
-\begin{equation} \label{jointpdf}
-P((X,Y)\in C) =
-\iintop_{(x,y)\in C} f(x,y)\, dx\,dy 	
-\end{equation}
-
-
-$f(x,y)$ is the \textbf{joint PDF} of $X$ and $Y$.
-
-	
-\end{definition}
-
-
-# Jointly distributed random variables
-## Continuous case
-
-Every joint PDF satisfies
-\begin{equation}
-f(x,y)\geq 0\mbox{ for all }(x,y)\in S_{X,Y},
-\end{equation}
-and
-\begin{equation}
-\iintop_{S_{X,Y}}f(x,y)\,\mathrm{d} x\,\mathrm{d} y=1.
-\end{equation}
-
-
-# Jointly distributed random variables
-## Continuous case
-
-
-For any sets of real numbers $A$ and $B$, and if $C=\{(x,y): x\in A, y\in B  \}$, it follows from equation~\ref{jointpdf} that
-
-\begin{equation} 
-P((X\in A,Y\in B)\in C) = \int_B \int_{A} f(x,y)\, dx\,dy 	
-\end{equation}
-
-# Jointly distributed random variables
-## Continuous case
-
-Note that
-
-\begin{equation}
-F(a,b) = P(X\in (-\infty,a]),Y\in (-\infty,b]))	= \int_{-\infty}^b \int_{-\infty}^a f(x,y)\, dx\,dy 	
-\end{equation}
-
-Differentiating, we get the joint pdf:
-
-\begin{equation}
-f(x,y) = \frac{\partial^2}{\partial x\partial x} F(x,y)	
-\end{equation}
-
-# Jointly distributed random variables
-## Marginal probability distribution functions
-
-If X and Y are jointly continuous, they are individually continuous, and their PDFs are:
-
-\begin{equation}
-\begin{split}
-P(X\in A) = & P(X\in A, Y\in (-\infty,\infty))	\\
-= & \int_A \int_{-\infty}^{\infty} f(x,y)\,dy\, dx\\
-= & \int_A f_X(x)\, dx
-\end{split}	
-\end{equation}
-
-\noindent
-where
-
-\begin{equation}
-f_X(x) = \int_{-\infty}^{\infty} f(x,y)\, dy	 \hbox{ and } f_Y(y) =  \int_{-\infty}^{\infty} f(x,y)\, dx		
-\end{equation}
-
-# Jointly distributed random variables
-## Independent random variables
-
-Random variables $X$ and $Y$ are independent iff, for any two sets of real numbers $A$ and $B$:
-
-\begin{equation}
-P(X\in A, Y\in B)	= P(X\in A)P(Y\in B)
-\end{equation}
-
-In the jointly continuous case:
-
-\begin{equation}
-f(x,y) = f_X(x)f_Y(y) \quad \hbox{for all } x,y	
-\end{equation} 
-
-# Conditional distributions
-## Discrete case
-
-Recall that the conditional probability of $B$ given $A$, denoted $\mathbb{P}(B\mid A)$, is defined by
-
-\begin{equation}
-\mathbb{P}(B\mid A)=\frac{\mathbb{P}(A\cap B)}{\mathbb{P}(A)},\quad \mbox{if }\mathbb{P}(A)>0.
-\end{equation}
-
-# Conditional distributions
-## Discrete case
-
-
-If $X$ and $Y$ are discrete random variables, then we can define the conditional PMF of $X$ given that $Y=y$ as follows:
-
-
-\begin{equation}
-\begin{split}
-p_{X\mid Y}(x\mid y) =& P(X=x\mid Y=y)\\
-                     =& \frac{P(X=x, Y=y)}{P(Y=y)}\\
-                     =& \frac{p(x,y)}{p_Y(y)}
-\end{split}	
-\end{equation}
-
-\noindent
-for all values of $y$ where $p_Y(y)=P(Y=y)>0$.
-
-# Discrete case
-
-The \textbf{conditional cumulative distribution function} of $X$ given $Y=y$ is defined, for all $y$ such that $p_Y(y)>0$, as follows:
-
-\begin{equation}
-\begin{split}
-F_{X\mid Y}	=& P(X\leq x\mid Y=y)\\
-            =& \underset{a\leq x}{\overset{}{\sum}} p_{X\mid Y}(a\mid y)
-\end{split}	
-\end{equation}
-
-If $X$ and $Y$ are independent then
-
-\begin{equation}
-p_{X\mid Y}(x\mid y) = P(X=x)=p_X(x)	
-\end{equation}
-
-# Continuous case
-
-If $X$ and $Y$ have a joint probability density function $f(x, y)$, then the conditional probability density function of $X$ given that $Y = y$ is defined, for all values of $y$ such that $f_Y(y) > 0$,by
-
-\begin{equation}
-f_{X\mid Y}(x\mid y) = \frac{f(x,y)}{f_Y(y)}	
-\end{equation}
-
-
-# Covariance and correlation
-
-There are two very special cases of joint expectation: the \textbf{covariance} and the \textbf{correlation}. These are measures which help us quantify the dependence between $X$ and $Y$. 
-\begin{definition}
-The \textbf{covariance} of $X$ and $Y$ is
-\begin{equation}
-\mbox{Cov}(X,Y)=\mathbb{E}(X-\mathbb{E} X)(Y-\mathbb{E} Y).
-\end{equation}
-\end{definition}
-
-Shortcut formula for covariance:
-
-
-\begin{equation}
-\mbox{Cov}(X,Y)=\mathbb{E}(XY)-(\mathbb{E} X)(\mathbb{E} Y).
-\end{equation}
-
-# Covariance and correlation
-
-\textbf{The Pearson product moment correlation} between $X$ and $Y$ is the covariance between $X$ and $Y$ rescaled to fall in the interval $[-1,1]$. It is formally defined by 
-\begin{equation}
-\mbox{Corr}(X,Y)=\frac{\mbox{Cov}(X,Y)}{\sigma_{X}\sigma_{Y}}.
-\end{equation}
-
-# Multivariate normal distributions
-
-This is a very important distribution that we will need in linear mixed models.
-
-Recall that in the univariate normal distribution:
-
-\begin{equation}
-f(x) = \frac{1}{\sqrt{2\pi \sigma^2}} \exp\{ - \frac{(\frac{(x-\mu)}{\sigma})^2}{2}\}   \quad -\infty < x < \infty
-\end{equation}
-
-# Multivariate normal distributions
-
-We can write the power of the exponential as:
-
-\begin{equation}
-(\frac{(x-\mu)}{\sigma})^2 = (x-\mu)(x-\mu)(\sigma^2)^{-1} = (x-\mu)(\sigma^2)^{-1}(x-\mu) = Q
-\end{equation}
-
-Generalizing this to the multivariate case: 
-
-\begin{equation}
-Q= (x-\mu)' \Sigma ^{-1} (x-\mu)	
-\end{equation}
-
-# Multivariate normal distributions
-
-So, for the multivariate case:
-
-\begin{equation}
-f(x) = \frac{1}{\sqrt{2\pi det \Sigma }} e\{ - Q/2\}	 \quad -\infty < x_i < \infty, i=1,\dots,n
-\end{equation}
-
-
-Properties of the multivariate normal (MVN) X:
-
-\begin{itemize}
-	\item Linear combinations of X are normal distributions.
-	\item All subset's of X's components have a normal distribution.
-	\item Zero covariance implies independent distributions.
-	\item Conditional distributions are normal.
-\end{itemize}
-
-# Multivariate normal distributions
 
 \textbf{Visualizing bivariate distributions}
 
-First, a visual of two uncorrelated RVs:
+First, a visual of two uncorrelated normal RVs:
 
 ```{r,fig.cap="\\label{fig:bivaruncorr}Visualization of two uncorrelated random variables.", fig.height=3.5}
 library(MASS)
@@ -686,7 +383,7 @@ persp(bivn.kde,phi=10,theta=0,shade=0.2,border=NA,
 ```
 
 
-# Multivariate normal distributions
+#Biivariate normal distributions
 
 And here is an example of a positively correlated case: 
 
@@ -698,7 +395,7 @@ persp(bivn.kde,phi=10,theta=0,shade=0.2,border=NA,
 ```
 
 
-# Multivariate normal distributions
+# Bivariate normal distributions
 
 And here is an example with a negative correlation:
 
@@ -710,7 +407,7 @@ persp(bivn.kde,phi=10,theta=0,shade=0.2,border=NA,
       main="Simulated bivariate normal density")
 ```
 
-# Multivariate normal distributions
+# Bivariate normal distributions
 
 \textbf{Visualizing conditional distributions}
 
@@ -752,62 +449,13 @@ for values of $\theta$ within a given domain. Here, $f(X_1=x_1,X_2=x_2,\dots,X_n
 
 \end{definition}
 
-So, the method of maximum likelihood consists of maximizing the likelihood function with respect to $\theta$. The value of $\theta$ that maximizes the likelihood function is the \textbf{MLE} (maximum likelihood estimate) of $\theta$.
+So, the method of maximum likelihood consists of finding the maximum point in the likelihood function with respect to $\theta$. 
 
-# Finding maximum likelihood estimates for different distributions
-## Example 1: Binomial
+The value of $\theta$ that maximizes the likelihood function is the \textbf{MLE} (maximum likelihood estimate) of $\theta$.
 
-\begin{equation}
-L(\theta) = {n \choose x} \theta^x (1-\theta)^{n-x} 
-\end{equation}
+# Finding maximum likelihood estimates 
 
-Log likelihood:
-
-\begin{equation}
-\ell (\theta) = \log {n \choose x} + x \log \theta + (n-x)  \log (1-\theta)
-\end{equation}
-
-# Finding maximum likelihood estimates for different distributions
-
-Differentiating:
-
-\begin{equation}
-\ell ' (\theta) = \frac{x}{\theta} - \frac{n-x}{1-\theta} = 0 
-\end{equation}
-
-Thus:
-
-\begin{equation}
-\hat \theta = \frac{x}{n} 
-\end{equation}
-
-# Finding maximum likelihood estimates for different distributions
-## Example 2: Normal
-
-Let $X_1,\dots,X_n$ constitute a random variable of size $n$ from a normal population with mean $\mu$ and variance $\sigma^2$, find joint maximum likelihood estimates of these two parameters.
-
-# Finding maximum likelihood estimates for different distributions
-
-\begin{eqnarray}
-L(\mu; \sigma^2) & = \prod N(x_i; \mu, \sigma)  \\
-                 & = (\frac{1}{2 \pi\sigma^2 })^{n/2} \exp (-\frac{1}{2\sigma^2} \sum (x_i - \mu)^2)\\ 
-\end{eqnarray}
-
-Taking logs and differentiating with respect to $\mu$ and $\sigma^2$, we get:
-
-\begin{equation}
-  \hat \mu = \frac{1}{n}\sum x_i = \bar{x}  
-\end{equation}
-
-and
-
-\begin{equation}
-  \hat \sigma ^2 = \frac{1}{n}\sum (x_i-\bar{x})^2
-\end{equation}
-
-# Visualizing likelihood and maximum log likelihood for normal
-
-For simplicity consider the case where $N(\mu=0,\sigma^2=1)$.
+For simplicity consider the case where $X\sim N(\mu=0,\sigma=1)$.
 
 ```{r,logliknormal,fig.cap="\\label{fig:maxlik}Maximum likelihood and log likelihood."}
 op<-par(mfrow=c(1,2),pty="s")
@@ -821,3 +469,20 @@ plot(function(x) dnorm(x,log=T), -3, 3,
 abline(h=log(0.4))
 ```
 
+# Finding maximum likelihood estimates 
+## Practical implication
+
+Suppose you sample 10 data points:
+
+```{r}
+x<-rnorm(10)
+```
+
+The sample mean gives you the MLE of $\mu$, and the sample variance gives you the MLE of $\sigma^2$:
+
+```{r echo=TRUE}
+mean(x)
+var(x)
+```
+
+Because the samples will randomly vary from one experiment to another, this does not mean the the above sample means and variances reflect the true $\mu$ and $\sigma^2$!
