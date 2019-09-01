@@ -67,7 +67,7 @@ library(dplyr)
 \newpage
 
 
-```{r child = '03LinearModelingorig.Rmd'}
+```{r child = '03LinearModeling.Rmd'}
 ```
 
 \newpage
