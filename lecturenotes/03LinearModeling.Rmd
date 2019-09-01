@@ -390,7 +390,7 @@ The term \texttt{warmup} refers to the number of iterations from the start of sa
 The term 
 \texttt{chains} refers to the number of independent runs for sampling (by default four).
 \item
-The term \texttt{control} refers to some optional control parameters for the sampler, such as \texttt{adapt\_delta}. Briefly, increasing ```adapt_delta``` tells the sampler to take smaller steps when moving in the parameter space; it slows down sampling but that is a price one should be willing to pay if one is having convergence warnings. 
+The term \texttt{control} refers to some optional control parameters for the sampler, such as \texttt{adapt\_delta}. Briefly, increasing \texttt{adapt\_delta} tells the sampler to take smaller steps when moving in the parameter space; it slows down sampling but that is a price one should be willing to pay if one is having convergence warnings. 
 
 \end{enumerate}
 
