@@ -1,11 +1,11 @@
 ---
 title: "04 Hierarchical linear modeling"
 author: "Shravan Vasishth and Bruno Nicenboim"
-date: "25-29 March 2019"
+date: "SMLP 2019"
 output:
   beamer_presentation:
-    theme: "CambridgeUS"
-    colortheme: "dolphin"
+    theme: "Boadilla"
+    colortheme: "dove"
     fonttheme: "structurebold"
 header-includes:
    - \usepackage{esint}
@@ -20,6 +20,8 @@ biblatexoptions:
 bibliography:  bayes.bib
 link-citations: yes
 ---
+
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
