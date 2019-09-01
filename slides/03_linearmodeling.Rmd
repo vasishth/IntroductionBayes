@@ -1,11 +1,11 @@
 ---
 title: "03 Linear modeling"
 author: "Shravan Vasishth and Bruno Nicenboim"
-date: "25-29 March 2019"
+date: "SMLP 2019"
 output:
   beamer_presentation:
-    theme: "CambridgeUS"
-    colortheme: "dolphin"
+    theme: "Boadilla"
+    colortheme: "dove"
     fonttheme: "structurebold"
 header-includes:
    - \usepackage{esint}
@@ -14,8 +14,12 @@ header-includes:
    - \newcommand{\explain}[2]{\underset{\mathclap{\overset{\uparrow}{#2}}}{#1}}
    - \newcommand{\explainup}[2]{\overset{\mathclap{\underset{\downarrow}{#2}}}{#1}}
    - \makeatother
+citation_package: biblatex
+biblatexoptions: 
+  - "backend=biber, style=apa"
+bibliography:  bayes.bib
+link-citations: yes
 ---
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
@@ -252,13 +256,14 @@ library(brms)
 Then we generate the data:
 
 ```{r echo=TRUE,warning=FALSE,message=FALSE,results="hide",cache=TRUE}
-## generate 100 data sets
+## generate 100 data-points 
 dat<-list(N=100)
 
 ## fit model:
 m1priorpred<-stan(model_code=priorpred,
                   data=dat,
                   chains = 4, 
+                  warmup = 1000,
                 iter = 2000)
 ```
 
@@ -268,7 +273,8 @@ m1priorpred<-stan(model_code=priorpred,
 ```{r echo=TRUE,fig.height=3}
 ## extract and plot one of the data-sets:
 y_sim<-extract(m1priorpred,pars="y_sim")
-hist(y_sim$y_sim[,1],
+dim(y_sim)
+hist(y_sim$y_sim[1,],
      main="Prior predictive distribution",
      xlab="y_sim",freq=FALSE)
 ```
