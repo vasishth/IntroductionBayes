@@ -1,0 +1,1149 @@
+# Hierarchical linear modeling 
+
+## Example 1: Reading time differences in subject vs object relatives in English
+
+We begin with a classic question from the psycholinguistics literature: are subject relatives easier to process than object relatives? The data come from Experiment 1 in a paper by @grodner.
+
+### Scientific question: Is there a subject relative advantage in reading?
+
+In two important papers, @gibson00 and @grodner suggest that object relative clause sentences are more difficult to process than subject relative clause sentences because the distance between the relative clause verb *sent* and the head noun phrase of the relative clause, *reporter*, is longer in object vs subject relatives. Examples are shown below.
+
+(1a) The *reporter* who the photographer *sent* to the editor was hoping for a good story. (object gap)
+
+(1b) The *reporter* who *sent* the photographer to the editor was hoping for a good story. (subject gap)
+
+The underlying explanation has to do with memory processes: shorter linguistic dependencies are easier to process due to either reduced interference or decay, or both. For implemented computational models that spell this point out, see @lewisvasishth:cogsci05 and @EngelmannJaegerVasishthSubmitted2018.
+
+In the Grodner and Gibson data, the dependent measure is reading time at the relative clause verb, in milliseconds. We are expecting longer reading times in object gap sentences compared to subject gap.
+
+### Load data and reformat
+
+```{r open_grodneretal}
+library(dplyr)
+gg05e1 <- read.table("data/GrodnerGibson2005E1.csv",sep=",", header=T)
+gge1 <- gg05e1 %>% filter(item != 0)
+
+gge1 <- gge1 %>% mutate(word_positionnew = ifelse(item != 15 & 
+                                                    word_position > 10, 
+                                                  word_position-1, 
+                                                  word_position)) 
+#there is a mistake in the coding of word position,
+#all items but 15 have regions 10 and higher coded
+#as words 11 and higher
+
+## get data from relative clause verb:
+gge1crit <- subset(gge1, ( condition == "objgap" & word_position == 6 ) |
+            ( condition == "subjgap" & word_position == 4 ))
+```
+
+```{r eval=FALSE,echo=FALSE}
+aggregated<-with(gge1crit,
+               tapply(rawRT,IND=list(condition,subject),mean))
+
+dat<-t(aggregated)
+write.table(dat,file="rcdata.txt")
+```
+
+### Experiment design
+
+Two important properties of these data are worth noticing. 
+
+#### Latin-square design
+
+First, the design is the classic repeated measure Latin square set-up. To see what this means, 
+first look at the number of subjects and items, and the number of rows in the data frame:
+
+```{r}
+length(unique(gge1crit$subject))
+length(unique(gge1crit$item))
+dim(gge1crit)[1]
+```
+
+There are 42 subjects and 16 items. There are $42\times 16 = 672$ rows in the data frame. Notice also that each subject sees exactly eight object gap and eight subject gap sentences:
+
+```{r}
+head(xtabs(~subject+condition,gge1crit),n=4)
+```
+
+The researchers created 16 sets of subject and object relatives; one set is the pair of sentences shown in (1a) and (1b) above. In the data frame, both these two items have the same id 1, but no one subject will see both sentences in any one set. For example, item 1 is seen by subject 1 in the object gap condition (1a) and item 1 is seen by subject 2 in the subject gap condition (1b):
+
+```{r}
+subset(gge1crit,item==1)[1:2,]
+```
+
+
+\begin{table}[!htbp]
+\caption{The Latin-square design in repeated measures experiments.}
+\begin{center}
+\begin{tabular}{ccc}
+item id & group 1 & group 2\\
+1       & objgap       & subjgap \\
+2       & subjgap       & objgap \\
+3       & objgap       & subjgap \\
+4       & subjgap       & objgap \\
+\vdots  & \vdots  & \vdots \\
+16      & subjgap       & objgap \\
+\end{tabular}
+\end{center}
+\label{tab:latinsq}
+\end{table}
+
+This is called a Latin-square design because of the following layout. See Table \ref{tab:latinsq}.
+Each subject is randomly assigned to Group 1 or 2, and one should have an even number of subjects in order to have a balanced data-set. Hence the 42 subjects in the Grodner and Gibson data: 21 in each group.
+
+A useful way to ensure that you have balanced assignments of subjects to each group is to randomize the order of incoming participants in advance, such that pairs of subjects are assigned to group 1 and 2. Let order1 be such that the first subject gets group 1 and the second gets group 2, and order 2 that the first subject gets group 2 and the second group 1. Then just generate a random ordering to ensure that each pair of subjects lands in a balanced way across groups:
+
+```{r}
+sample(rep(c("order1","order2"),11))
+```
+
+Latin square designs are used in psychology and linguistics (and other areas) because they are optimal in several ways.
+
+Soon we will need to generate a fake data-frame with a repeated measures Latin square design. We can do this using R as follows [source: @VasishthMertzenJaegerGelman2018]: 
+
+```{r}
+library(MASS)
+nitem <- 16
+nsubj <- 42
+## prepare data frame for two condition in a latin square design:
+g1<-data.frame(item=1:nitem,
+                 cond=rep(c("objgap","subjgap"),nitem/2))
+g2<-data.frame(item=1:nitem,
+                 cond=rep(c("objgap","subjgap"),nitem/2))
+
+## assemble data frame in long format:
+gp1<-g1[rep(seq_len(nrow(g1)),
+              nsubj/2),]
+gp2<-g2[rep(seq_len(nrow(g2)),
+              nsubj/2),]
+
+fakedat<-rbind(gp1,gp2)
+## sanity check:
+dim(fakedat)
+## add subjects:
+fakedat$subj<-rep(1:nsubj,each=nitem)
+fakedat<-fakedat[,c(3,1,2)]  
+fakedat$so<-ifelse(fakedat$cond=="objgap",1,-1)
+```
+
+For example, subject 1 sees the following conditions and items:
+
+```{r}
+head(fakedat,n=16)
+```
+
+We will need this code later for fake data simulation.
+
+#### Fully crossed subjects and items
+
+In the data, because of the Latin square design, each subject sees exactly one item in one of the two conditions:
+
+```{r}
+xtabs(~subject+item,gge1crit)
+```
+
+If there were some zeros in the above matrix, we would have an imbalance, and this would then be  *partially crossed*. This kind of imbalance arises in data-sets due to missing data, where missingness can happen due to different reasons. E.g., in eyetracking, subjects sometimes skip the critical word entirely, or there is tracking loss; these events lead to a 0 ms reading time being recorded, and this could be treated as missing data (marked as NA). We return to this point in an advanced course on Bayesian modeling, to be offered at some later date.
+
+### The implied generative model
+
+The above design implies a particular statistical model that takes us beyond the linear model.
+
+To remind you, a simple linear model of the above data would be:
+
+\begin{equation}
+y = \alpha + \beta * x + \varepsilon \hbox{ where } \varepsilon \sim Normal(0,\sigma)
+\end{equation}
+
+Here, object gaps are coded +1, subject gaps -1. See @SchadEtAlcontrasts for an explanation of contrast coding.
+
+```{r}
+gge1crit$so<-ifelse(gge1crit$condition=="objgap",1,-1)
+```
+
+As figure \ref{fig:ggrtdistrn} shows, a Normal likelihood doesn't seem well motivated, so we will use the log-normal.
+
+```{r fig.cap="\\label{fig:ggrtdistrn}Distribution of reading times in the Grodner and Gibson Experiment 1 data, at the critical region."}
+plot(density(gge1crit$rawRT),main="Grodner and Gibson Expt 1",xlab="RTs (ms)")
+```
+
+#### Between subject variability in mean reading time
+
+The simple linear model above would ignore the fact that we have 
+repeated measures from multiple subjects---the iid assumption is violated.
+Also, different subjects that may have different mean reading times ($\alpha$ differ for each subject) and different object gap processing costs ($\beta$ differs for each subject). Some subjects will be slower and some faster, and some may suffer more with object gaps because of lower working memory capacity, lower attention, etc. (of course, we are speculating here, we have no measurements of these individual difference variables).  See Figure \ref{fig:subjint} for a visualization of between subject variability in mean reading times.
+
+```{r fig.cap="\\label{fig:subjint}Between subject variability in mean reading times."}
+hist(with(gge1crit,tapply(rawRT,subject,mean)),
+     main="Between subject variability",
+     xlab="mean RTs",freq=FALSE)
+```
+
+In the linear model, we can express the assumption that the grand mean intercept $\alpha$ needs an adjustment by subject, where subjects are indexed from $j=1,\dots,J$:
+
+\begin{equation}
+y_j = \alpha + u_{0j} + \beta * x_j + \varepsilon_j 
+\end{equation}
+
+where we now have two sources of variance:
+
+- within subject variance, $\varepsilon_j \sim Normal(0,\sigma)$ 
+- between subject variance in mean reading times, $u_{0j} \sim Normal(0,\sigma_{u0})$ 
+
+In Bayes, the adjustment $u_{0j}$ is a parameter. This is not the case in the frequentist paradigm [@lme4new].
+
+#### Between item variability in mean reading time
+
+We also see that items also differ, some would be read faster and some slower:
+
+```{r fig.cap="\\label{fig:itemint}Between item variability in mean reading times."}
+hist(with(gge1crit,tapply(rawRT,item,mean)),
+     main="Between item variability",
+     xlab="mean RTs",freq=FALSE)
+```
+
+
+For items ranging from $k=1,\dots,K$, we can add this assumption to the model:
+
+\begin{equation}
+y_{kj} = \alpha + u_{0j} + w_{0k} + \beta * x_{kj} + \varepsilon_{kj}
+\end{equation}
+
+where there are now three variance components:
+
+- $\varepsilon_{kj} \sim Normal(0,\sigma)$
+- $u_{0j} \sim Normal(0,\sigma_{u0})$
+- between item variability in mean reading time, $w_{0k} \sim Normal(0,\sigma_{w0})$
+
+This model is called a *varying intercepts model* with crossed varying intercepts for subjects and for items.
+
+#### Between subject and between item variability in objgap cost
+
+The object gap cost can also vary by subject and by item. See Figure \ref{fig:subjitemslope}. 
+
+```{r fig.cap="\\label{fig:subjitemslope}Between subject and item variability in object gap vs subject gap reading times."}
+op<-par(mfrow=c(1,2),pty="s")
+meanssubj<-with(gge1crit,
+                tapply(rawRT,IND=list(subject,condition),mean))
+diff<-meanssubj[,2]-meanssubj[,1]
+
+hist(diff,
+     main="Between subject variability",xlab="mean objgap cost",freq=FALSE)
+
+meansitem<-with(gge1crit,tapply(rawRT,IND=list(item,condition),mean))
+diff<-meansitem[,2]-meansitem[,1]
+
+hist(diff,
+     main="Between item variability",xlab="mean objgap cost",freq=FALSE)
+```
+
+We can incorporate this assumption into the model by adding adjustments to the $\beta$ parameter:
+
+\begin{equation}
+y_{kj} = \alpha + u_{0j} + w_{0k} + (\beta + u_{1j} + w_{1k}) * x_{kj} + \varepsilon_{kj}
+\end{equation}
+
+where 
+
+  - $\varepsilon_{kj} \sim Normal(0,\sigma)$ 
+  - $u_{0j} \sim Normal(0,\sigma_{u0})$
+  - $u_{1j} \sim Normal(0,\sigma_{u1})$
+  - $w_{0k} \sim Normal(0,\sigma_{w0})$
+  - $w_{1k} \sim Normal(0,\sigma_{w1})$
+
+This is called the *varying intercepts and slopes* model with *no correlation* between the intercepts and slopes.
+
+### The maximal model \label{maximal}
+
+There is one detail still missing in the model: the adjustments to the intercept and slope are correlated for subjects, and also for items. In other words, we have a bivariate distribution for the subject and item random effects:
+
+\begin{equation}
+y_{kj} = \alpha + u_{0j} + w_{0k} + (\beta + u_{1j} + w_{1k}) * x_{kj} + \varepsilon_{kj}
+\end{equation}
+
+where $\varepsilon_{kj} \sim Normal(0,\sigma)$ and 
+
+\begin{equation}\label{eq:covmat2}
+\Sigma _u
+=
+\begin{pmatrix}
+\sigma _{u0}^2  & \rho _{u}\sigma _{u0}\sigma _{u1}\\
+\rho _{u}\sigma _{u0}\sigma _{u1}    & \sigma _{u1}^2\\
+\end{pmatrix}
+\quad 
+\Sigma _w
+=
+\begin{pmatrix}
+\sigma _{w0}^2  & \rho _{w}\sigma _{w0}\sigma _{w1}\\
+\rho _{w}\sigma _{w0}\sigma _{w1}    & \sigma _{w1}^2\\
+\end{pmatrix}
+\end{equation}
+
+\begin{equation}\label{eq:jointpriordist2}
+\begin{pmatrix}
+  u_0 \\ 
+  u_1 \\
+\end{pmatrix}
+\sim 
+\mathcal{N} \left(
+\begin{pmatrix}
+  0 \\
+  0 \\
+\end{pmatrix},
+\Sigma_{u}
+\right),
+\quad
+\begin{pmatrix}
+  w_0 \\ 
+  w_1 \\
+\end{pmatrix}
+\sim 
+\mathcal{N}\left(
+\begin{pmatrix}
+  0 \\
+  0 \\
+\end{pmatrix},
+\Sigma_{w}
+\right)
+\end{equation}
+
+This is a varying intercepts and slopes model with fully specified  variance-covariance matrices for the subject and item random effects. It is sometimes called the **maximal model** [@barr2013].
+
+### Implementing the model
+
+The above model is simple to implement in the Bayesian framework.
+
+#### Specify and visualize priors
+
+We define some priors first:
+
+\begin{enumerate}
+\item $\alpha \sim Normal(0,10)$
+\item $\beta \sim Normal(0,1)$
+\item Residual standard deviation: $\sigma \sim Normal_{+}(0,1)$
+\item All other standard deviations: $\sigma \sim Normal_{+}(0,1)$
+\item Correlation matrix: $\rho \sim LKJ(2)$. 
+\end{enumerate}
+
+The LKJ prior needs some explanation.
+
+#### The LKJ prior on the correlation matrix
+
+In this model, we assume that the vector 
+$\mathbf{u}=\langle u_0, u_1 \rangle$
+comes from a bivariate normal distribution with a variance-covariance
+matrix $\boldsymbol{\Sigma_u}$. This matrix has the variances of the adjustment to the intercept and to the
+slope respectively along the diagonal, and the covariance on the off-diagonals. 
+
+Recall that the covariance $Cov(X,Y)$ between two variables $X$ and $Y$ is
+defined as the product of their correlation $\rho$ and their standard
+deviations $\sigma_X$ and $\sigma_Y$, such that, $Cov(X,Y) = \rho
+\sigma_X \sigma_Y$.
+
+\begin{equation}
+\boldsymbol{\Sigma_u} = 
+{\begin{pmatrix} 
+\sigma_{u_0}^2 & \rho_u \sigma_{u_0} \sigma_{u_1} \\ 
+\rho_u \sigma_{u_0} \sigma_{u_1} & \sigma_{u_1}^2
+\end{pmatrix}}
+\end{equation}
+
+The covariance matrix can be decomposed into a vector of standard deviations and a correlation matrix. The correlation matrix looks like this:
+
+\begin{equation}
+{\begin{pmatrix} 
+1 & \rho_u  \\ 
+\rho_u  & 1
+\end{pmatrix}}
+\end{equation}
+
+In Stan, we write a matrix that has 0's on the off-diagonals as:
+
+\begin{equation}
+diag\_matrix(\sigma_{u_0},\sigma_{u_1}) = 
+\begin{pmatrix} 
+\sigma_{u_0} & 0 \\ 
+0  & \sigma_{u_1}
+\end{pmatrix}
+\end{equation}
+
+This means that we can decompose the covariance matrix into three parts:
+
+\begin{equation}
+\begin{aligned}
+\boldsymbol{\Sigma_u} &= diag\_matrix(\sigma_{u_0},\sigma_{u_1}) \cdot \boldsymbol{\rho_u} \cdot diag\_matrix(\sigma_{u_0},\sigma_{u_1})\\
+&=
+{\begin{pmatrix} 
+\sigma_{u_0} & 0 \\ 
+0  & \sigma_{u_1}
+\end{pmatrix}}
+{\begin{pmatrix} 
+1 & \rho_u  \\ 
+\rho_u  & 1
+\end{pmatrix}}
+{\begin{pmatrix} 
+\sigma_{u_0} & 0 \\ 
+0  & \sigma_{u_1}
+\end{pmatrix}}
+\end{aligned}
+\end{equation}
+
+So we need priors for the $\sigma_u$s and for $\rho_u$:
+
+The basic idea of the  LKJ prior is that its parameter
+(usually called *eta*, $\eta$, here it has value $2$) increases, the prior increasingly concentrates around
+the unit correlation matrix (i.e., favors smaller correlation: ones in the
+diagonals and values close to zero in the lower and upper triangles). At $\eta
+= 1$, the LKJ correlation distribution is uninformative (similar to
+$Beta(1,1)$), at $\eta < 1$, it favors extreme correlations  (similar to
+$Beta(a<1,b<1)$).
+
+
+#### Visualize the priors
+
+As always, it is a good idea to visualize these priors. See Figure \ref{fig:priorsgg}.
+
+```{r results="hide"}
+priors_alpha <- c(0,10)
+priors_beta <- c(0,1)
+priors_sigma_e <- c(0,1)
+priors_sigma_u <- c(0,1)
+priors_sigma_w <- c(0,1)
+
+## code for visualizing lkj priors:
+fake_data <- list(x = rnorm(30,0,1),
+                  N = 30, R = 2) 
+
+stancode <- "
+data {
+  int<lower=0> N; 
+  real x[N]; 
+  int R;
+  }
+parameters {
+  real mu;
+  real<lower=0> sigma;
+}
+model {
+  x ~ normal(mu,sigma);  
+}
+generated quantities {
+  corr_matrix[R] LKJ05;
+  corr_matrix[R] LKJ1;
+  corr_matrix[R] LKJ2;
+  corr_matrix[R] LKJ4;
+  LKJ05 = lkj_corr_rng(R,.5);
+  LKJ1 = lkj_corr_rng(R,1);
+  LKJ2 = lkj_corr_rng(R,2);
+  LKJ4 = lkj_corr_rng(R,4);
+}
+"
+
+fitfake <- stan(model_code = stancode, pars = c("LKJ05","LKJ1","LKJ2","LKJ4"),
+                data = fake_data, chains = 4, 
+                iter = 2000)
+
+corrs<-extract(fitfake,pars=c("LKJ05[1,2]","LKJ1[1,2]","LKJ2[1,2]","LKJ4[1,2]"))
+```
+
+```{r visualizepriors, fig.cap="\\label{fig:priorsgg}Priors for the Godner and Gibson data."}
+op<-par(mfrow=c(2,3),pty="s")
+par(oma = rep(0, 4), 
+    mar = c(2.7, 2.7, 0.1, 0.1), 
+    mgp = c(1.7, 0.4, 0))
+b<-seq(-priors_alpha[2]*2,
+       priors_alpha[2]*2,by=0.01)
+plot(b,dnorm(b,mean=priors_beta[1],
+             sd=priors_beta[2]),
+     type="l",ylab="density", 
+     xlab=expression(alpha),ylim=c(0, 0.5))
+plot(b,dnorm(b,mean=priors_beta[1],
+             sd=priors_beta[2]),
+     type="l",ylab="density",
+     xlab=expression(beta),ylim=c(0, 0.5))
+sig<-seq(0,priors_sigma_e[2]*3,by=0.01)
+plot(sig,dnorm(sig,mean=priors_sigma_e[1],
+               sd=priors_sigma_e[2]),type="l",ylab="density",
+     xlab=expression(sigma[e]))
+plot(sig,dnorm(sig,mean=priors_sigma_u[1],
+               sd=priors_sigma_u[2]),type="l",ylab="density",
+     xlab=expression(sigma[u[0]]))
+plot(sig,dnorm(sig,mean=priors_sigma_u[1],
+               sd=priors_sigma_u[2]),type="l",ylab="density",
+     xlab=expression(sigma[w[0,1]]))
+plot(density(corrs[[3]],bw=0.15),
+     ylab="density",xlab=expression(rho),
+     xlim=c(-1,1),main="")
+```
+
+We will return later to the question of whether these priors are appropriate and reasonable (short answer: no).
+
+### Fit the model using brms
+
+```{r results="hide"}
+priors <- c(set_prior("normal(0, 10)", class = "Intercept"),
+                      set_prior("normal(0, 1)", class = "b", 
+                                coef = "so"),
+                      set_prior("normal(0, 1)", class = "sd"),
+                      set_prior("normal(0, 1)", class = "sigma"),
+                      set_prior("lkj(2)", class = "cor"))
+
+m_gg<-brm(rawRT~so + (1+so|subject) + (1+so|item),gge1crit,family=lognormal(),
+    prior=priors)
+```
+
+```{r}
+summary(m_gg)
+```
+
+```{r fig.cap="\\label{fig:ggpost}Posterior distributions of parameters in the Grodner and Gibson data."}
+stanplot(m_gg,type="hist")
+```
+
+Figure \ref{fig:ggpost} shows the posterior distributions of the parameters on the log ms scale (for the coefficients and standard deviations). Notice that
+
+\begin{itemize}
+\item The object relative takes longer to read than the subject relative, as predicted. We know this because the parameter b\_so is positive.
+\item The largest sources of variance are the subject intercepts, slopes, and the residual standard deviation. Look at the sd\_subject parameters, and sigma.
+\item The by-item variance components are relatively small. Look at the sd\_item parameters.
+\item The correlations have very wide uncertainty---the prior is dominating in determining the posteriors as there isn't that much data to obtain accurate estimates of these parameters. Look at the cor parameters.
+\end{itemize}
+
+### Examine by subject random effects visually
+
+First, extract the posterior samples of the parameters that we will need to compute individual differences.
+
+```{r}
+library(bayesplot)
+postgg<-posterior_samples(m_gg)
+## extract variances:
+alpha<-postgg$b_Intercept
+beta<-postgg$b_so
+cor<-posterior_samples(m_gg,"^cor")
+sd<-posterior_samples(m_gg,"^sd")
+sigma<-posterior_samples(m_gg,"sigma")
+
+## item random effects won't be used below
+item_re<-posterior_samples(m_gg,"^r_item")
+subj_re<-posterior_samples(m_gg,"^r_subj")
+```
+
+
+#### By subject intercept adjustments
+
+Figure \ref{fig:ggsubjint} shows the adjustments to the intercept ($\alpha$) by subject. This is on the log scale. Here, we are looking at the parameters $u_0$ in the model, which are assumed to be generated from $Normal(0,\sigma_{u0})$. The between subject variability is being captured here by this subject level parameter.
+
+```{r fig.cap="\\label{fig:ggsubjint}Variability in subject intercept adjustments in the Grodner and Gibson data."}
+subjint<-subj_re[,1:42]
+colnames(subjint)<-c(paste("u0,",1:42,sep=""))
+intmns <- colMeans(subjint)
+subjint<-subjint[,order(intmns)]
+mcmc_areas(subjint)
+```
+
+#### By subject slope adjustments
+
+Figure \ref{fig:ggsubjslope} shows the by-subject adjustments to the OR processing cost effect ($\beta$). Here, the assumption is that these adjustments are $u_1 \sim Normal(0,\sigma_{u_1})$.
+
+```{r fig.cap="\\label{fig:ggsubjslope}Variability in subject slope adjustments in the Grodner and Gibson data."}
+subjslope<-subj_re[,(1:42)+42]
+colnames(subjslope)<-c(paste("u1,",1:42,sep=""))
+slopemns <- colMeans(subjslope)
+subjslope<-subjslope[,order(slopemns)]
+mcmc_areas(subjslope)
+```
+
+The correlation between $u_0$ and $u_1$ is represented by the correlation parameter $\rho_u$.
+
+```{r fig.cap="\\label{fig:ggpostcorr}Posterior distributions of subject varying intercept and slope correlation parameter in the Grodner and Gibson data."}
+stanplot(m_gg,type="hist",
+         pars="cor_subject__Intercept__so")
+```
+
+
+### Examine mean and individual differences on the raw ms scale \label{rawscale}
+
+It is useful to see the effects on the raw ms scale. The log ms scale is difficult to interpret. 
+
+
+#### Mean difference
+
+In psychology and linguistics, undue emphasis is paid on reporting the overall mean effect. Figure \ref{fig:ggmeandiff} shows this---there seems to be a clear OR processing cost effect.
+
+```{r}
+meandiff<- exp(alpha + beta) - exp(alpha - beta)
+mean(meandiff)
+round(quantile(meandiff,prob=c(0.025,0.975)),0)
+```
+
+Plot the histogram of the object relative processing cost in ms:
+
+```{r fig.cap="\\label{fig:ggmeandiff}Mean OR processing cost effect in the Grodner and Gibson data."}
+hist(meandiff,freq=FALSE,
+     main="Mean OR vs SR processing cost",
+     xlab=expression(exp(alpha + beta)- exp(alpha - beta)))
+```
+
+#### Individual effects of OR processing cost
+
+However, only three out of 42 subjects show clear evidence for OR processing cost. 
+See Figure \ref{fig:ggsubjeffect}.
+
+```{r fig.cap="\\label{fig:ggsubjeffect}Variability in subject OR processing cost effect in the Grodner and Gibson data."}
+subjdiff<-matrix(rep(NA,42*4000),nrow=42)
+for(i in 1:42){
+subjdiff[i,]<-exp(alpha + subj_re[,i]  + (beta+subj_re[,i+42])) - 
+  exp(alpha + subj_re[,i] - 
+        (beta+subj_re[,i+42]))
+}
+
+subjdiff<-t(subjdiff)
+
+subjdiff<-as.data.frame(subjdiff)
+colnames(subjdiff)<-paste("s",c(1:42),sep="")
+mns <- colMeans(subjdiff)
+subjdiff<-subjdiff[,order(mns)]
+mcmc_areas(subjdiff)
+```
+
+This illustrates a point that @blastland2014norm make: ``The average is an abstraction. The reality is variation.'' Any theory of sentence processing would have to be able to reproduce the pattern of individual differences observed, with only a few participants showing an OR processing cost and the majority showing equivocal conclusions. The average effect doesn't represent the behavior of many individuals in this sample.
+
+### To make discovery claims, calibrate the true and false discovery rate \label{tdr}
+
+Suppose that, based on these data and this model, we want to claim that there is a mean OR processing cost in English. In order to make a discovery claim, we need to understand the **true discovery rate** of this effect. In the frequentist world, this would be the *statistical power*, the probability of detecting an effect if there is in fact one.
+
+First, we write a function to generate fake data:
+
+```{r}
+library(MASS)
+gen_fake_lnorm <- function(nitem=16,nsubj=42,
+alpha=NULL,beta=NULL,
+                        Sigma_u=NULL,Sigma_w=NULL,sigma_e=NULL){
+  ## prepare data frame for two condition in a latin square design:
+g1<-data.frame(item=1:nitem,
+                 cond=rep(c("objgap","subjgap"),nitem/2))
+g2<-data.frame(item=1:nitem,
+                 cond=rep(c("objgap","subjgap"),nitem/2))
+
+## assemble data frame in long format:
+gp1<-g1[rep(seq_len(nrow(g1)),
+              nsubj/2),]
+gp2<-g2[rep(seq_len(nrow(g2)),
+              nsubj/2),]
+
+fakedat<-rbind(gp1,gp2)
+
+## add subjects:
+fakedat$subj<-rep(1:nsubj,each=nitem)
+fakedat<-fakedat[,c(3,1,2)]  
+fakedat$so<-ifelse(fakedat$cond=="objgap",1,-1)
+
+## subject random effects:
+  u<-mvrnorm(n=length(unique(fakedat$subj)),
+             mu=c(0,0),Sigma=Sigma_u)
+  ## item random effects
+  w<-mvrnorm(n=length(unique(fakedat$item)),
+             mu=c(0,0),Sigma=Sigma_w)
+  ## generate data row by row:
+  N<-dim(fakedat)[1]
+  rt<-rep(NA,N)
+  for(i in 1:N){
+    rt[i] <- rlnorm(1,alpha +
+                      u[fakedat[i,]$subj,1] +
+                      w[fakedat[i,]$item,1] +
+                      (beta+u[fakedat[i,]$subj,2]+
+                         w[fakedat[i,]$item,2])*fakedat$so[i],
+                   sigma_e)}
+  fakedat$rt<-rt
+  fakedat$subj<-factor(fakedat$subj); fakedat$item<-factor(fakedat$item)
+  fakedat}
+```
+
+Next, we extract the parameter means from the Bayesian model, and assemble the variance covariance matrices for the subject and item random effects.
+ 
+```{r} 
+sds<-colMeans(sd)
+cors<-colMeans(cor)
+sig<-mean(sigma$sigma)
+Sigma_u<-diag(sds[3:4]^2)
+Sigma_u[1,2]<-Sigma_u[2,1]<-cors[2]*sds[3]*sds[4]
+Sigma_w<-diag(sds[1:2]^2)
+Sigma_w[1,2]<-Sigma_w[2,1]<-cors[1]*sds[1]*sds[2]
+```
+
+Then, we run 50 simulations, computing the 95% credible interval of the OR processing cost effect.
+Because this is a very time-consuming calculation, we are going to use previously computed values.
+
+```{r eval=FALSE}
+nsim<-50
+betaquants<-matrix(rep(NA,nsim*2),ncol =2)
+betameans<-matrix(rep(NA,nsim),ncol =2)
+
+for(i in 1:nsim){
+gg_fake<-gen_fake_lnorm(alpha=mean(alpha),
+                        beta=mean(beta),
+               Sigma_u=Sigma_u,Sigma_w=Sigma_w,
+               sigma_e=sig)
+
+m_gg_fake<-brm(rt~so + (1+so|subj) + (1+so|item),gg_fake,family=lognormal(),
+    prior=priors,
+    control = list(adapt_delta = 0.99,max_treedepth=15))
+betapost<-posterior_samples(m_gg_fake)$b_so
+betaquants[i,]<-quantile(betapost,prob=c(0.025,0.975))
+betameans[i]<-mean(betapost)
+}
+save(betameans,
+     file="data/truediscoverymeans.Rda")
+save(betaquants,
+     file="data/truediscoveryquants.Rda")
+```
+
+This simulation gives us an estimate of the proportion of times we would be able to detect an effect with 16 items and 42 subjects, assuming that the Grodner and Gibson data reflect a real difference between the two relative clause types. 
+
+Assuming that we are willing to declare an effect just in case 0 is not included in the 95% credible interval of the effect, 
+the above simulation shows that we would detect the effect in only half of the repeated experiments. 
+
+\begin{verbatim}
+> length(which(betaquants[,1]>0))/50
+[1] 0.5
+\end{verbatim}
+
+Thus, the true discovery rate is quite low. One would want the true discovery rate to be at least 80%. 
+
+We can also investigate the false discovery rate---the proportion of times we would declare that we found an effect, when there is none. In frequentist statistics, this is called Type I error. The only change needed in the above simulation is to set $\beta$ to 0, to reflect the assumption that there is no effect.
+
+### Posterior predictive checks
+
+Figure \ref{fig:ggpostpred} shows that we have reasonable coverage over the observed data.
+
+```{r fig.cap="\\label{fig:ggpostpred}Posterior predictive check for the Grodner and Gibson data."}
+pp_check(m_gg, nsamples = 100)+
+  theme(text = element_text(size=16),
+        legend.text=element_text(size=16))
+```
+
+## Example 2: Question-response accuracies (Logistic regression)
+
+The @grodner data also has question-response accuracies: 1 if the response to a question following the sentence was correct, 0 otherwise. We show only the relevant columns below:
+
+```{r}
+head(gge1crit[,c(1,2,3,8,11)])
+```
+
+One could aggregate the accuracy by item, and then just fit a hierarchical linear model:
+
+```{r}
+meanp<-with(gge1crit,tapply(qcorrect,
+                     IND=list(condition,subject),
+                     mean))
+q_df<-data.frame(subj=rep(c(1:42),2),
+           so=rep(c(1,-1),each=42),
+           p=c(meanp[1,],meanp[2,]))
+
+head(q_df)
+```
+
+```{r}
+mqlmer<-lmer(p~so+(1|subj),q_df)
+summary(mqlmer)
+```
+
+Figure \ref{fig:resid} shows that the residuals don't really look particularly normal: the model assumption that $\varepsilon \sim Normal(0,\sigma)$ is difficult to defend.
+
+```{r fig.cap="\\label{fig:resid}Residuals of the aggregated accuracy model for the question responses in the Grodner and Gibson data."}
+library(car)
+qqPlot(resid(mqlmer))
+```
+
+Furthermore, think about the generative process; a 0,1 response is best seen as generated by a Bernoulli distribution with probability of success $p$: $\hbox{response} \sim Bernoulli(p)$.
+
+One can therefore model each 0,1 response as being generated from a Bernoulli distribution, which is just a Binomial with a single trial. Thus, what is of interest is the probability of correct responses in subject vs object relatives:
+
+```{r}
+round(100*with(gge1crit,
+               tapply(qcorrect,condition,mean)))
+```
+
+We will transform the probability $p$ of a correct response to a log-odds:
+
+\begin{equation}
+\log \frac{p}{1-p}
+\end{equation}
+
+and assume that the log-odds of a correct response is affected by the relative clause type:
+
+\begin{equation}
+\log \frac{p}{1-p} = \alpha + \beta * so 
+\end{equation}
+
+This model is called a *logistic* regression because it uses the logistic or logit function to transform $p$ to log odds space. Notice that there is no residual term in this model. 
+
+We can fit the above model easily using brms:
+
+```{r results="hide"}
+m_gg_q1<-brm(qcorrect~so,gge1crit,family=bernoulli(link="logit"))
+summary(m_gg_q1)
+```
+
+Obviously, because the question-response data are also repeated measures, we must use a hierarchical linear model, with varying intercepts and slopes for subject and item, as in Example 1:
+
+```{r results="hide"}
+m_gg_q2<-brm(qcorrect~so+(1+so|subject) + (1+so|item),
+             gge1crit,family=bernoulli(link="logit"))
+summary(m_gg_q2)
+```
+
+This model is not especially good because many of the response accuracies are at ceiling. However, in principle this kind of model is appropriate for binary responses.
+
+### Convert posteriors back to probability space
+
+What is theoretically important is the posterior distribution of the difference between object and subject relative response accuracy. That is on the probability scale.
+We can go from log-odds space to probability space by solving this equation for $p$. 
+
+
+Using simple algebra, we can go from:
+
+\begin{equation}
+\log \frac{p}{1-p} = \alpha + \beta * so = \mu
+\end{equation}
+
+to:
+
+\begin{equation}
+p = \exp(\mu)/(1+\exp(\mu))
+\end{equation}
+
+For object gap sentences, the factor $so$ is coded as 1, so we have $\mu=\alpha+\beta$. For subject gap sentences, $so$ is coded as -1, so we have $\mu=\alpha-\beta$. Therefore, we just need to plug in the expression for $\mu$ for object and subject relatives.
+
+We can now straightforwardly plot the posterior distribution of the difference between object and subject relatives. See Figure \ref{fig:ggprob}. We see that there isn't any important difference between the two relative clause types. 
+
+```{r fig.cap="\\label{fig:ggprob}The difference in question-response accuracies between object and subject relatives."}
+postq<-posterior_samples(m_gg_q2)
+alpha<-postq$b_Intercept
+beta<-postq$b_so
+mu_or<-alpha+beta
+probor<-exp(mu_or)/(1+exp(mu_or))
+mu_sr<-alpha-beta
+probsr<-exp(mu_sr)/(1+exp(mu_sr))
+
+hist(probor-probsr,freq=FALSE)
+abline(v=0,lwd=2)
+```
+
+## Shrinkage in hierarchical linear models
+
+Recall that the posterior mean is a compromise between the prior mean $m$ and the sample mean $\bar{x}$, weighted by the precision of the prior and the data.
+
+\begin{equation}
+m \frac{w_1}{w_1+w_2} + \bar{x} \frac{w_2}{w_1+w_2}
+\end{equation}
+
+Here:
+
+  - $w_1$ is the precision (1/variance) of the prior distribution
+  - $w_2$ is the precision of the data
+
+This fact has a practical consequence for us.
+
+The simple varying intercepts model we are considering in the lecture notes (Example 1 in the lecture notes on hierarchical models) is:
+
+$y_{jk} \sim Normal(\beta_0 + \beta_1\times so_{jk} + u_{0j},\sigma)$
+
+where $j$ indexes subject id's, $k$ indexes item, and  $u_{0j} \sim Normal(0,\sigma_{u0})$. The predictor so is coded as -1/+1, as in the lecture notes.
+
+In the Bayesian framework, each of the $u_{0j}$ is a parameter. When there is too little data to estimate a subject j's parameter, then the posterior is determined by the prior $Normal(0,\sigma_{u0})$ and the parameter $u_{0j}$ shrinks to 0. When there is a lot of data from subject j, then the parameter $u_{0j}$ gets closer and closer to the maximum likelihood estimate for that subject. This phenomenon is called shrinkage or partial pooling. We illustrate this next.
+
+
+First we load the data from our running example, the Grodner and Gibson experiment 1 data.
+
+```{r}
+library(dplyr)
+gg05e1 <- read.table("data/GrodnerGibson2005E1.csv",sep=",", header=TRUE)
+gge1 <- gg05e1 %>% filter(item != 0)
+
+gge1 <- gge1 %>% mutate(word_positionnew = ifelse(item != 15 & word_position > 10,
+                                                  word_position-1, word_position)) 
+#there is a mistake in the coding of word position,
+#all items but 15 have regions 10 and higher coded
+#as words 11 and higher
+
+## get data from relative clause verb:
+gge1crit <- subset(gge1, ( condition == "objgap" & word_position == 6 ) |
+            ( condition == "subjgap" & word_position == 4 ))
+gge1crit<-gge1crit[,c(1,2,3,6)]
+gge1crit$so<-ifelse(gge1crit$condition=="objgap",1,-1)
+
+dat<- gge1crit
+```
+
+### Visualizing the data by subject
+
+The figure below shows that participants don't all show the same difference between object and subject relatives.
+
+```{r fig.cap="Relative clause effect by subject."}
+library(ggplot2)
+
+xlab <- "Condition (SR=-1 or OR=1)"
+ylab <- "Reading time (log ms)"
+
+ggplot(dat) + 
+  aes(x = so, y = log(rawRT)) + 
+  stat_smooth(method = "lm", se = FALSE) +
+  geom_point(shape=1,position="jitter") +
+  facet_wrap("subject") +
+  labs(x = xlab, y = ylab) + scale_x_continuous(breaks = c(-1,1))
+```
+
+```{r fig.cap="Relative clause effect by item."}
+ggplot(dat) + 
+  aes(x = so, y = log(rawRT)) + 
+  stat_smooth(method = "lm", se = FALSE) +
+  geom_point(position="jitter") +
+  facet_wrap("item") +
+  labs(x = xlab, y = ylab) + scale_x_continuous(breaks = c(-1,1))
+```
+
+### Complete pooling model
+
+We could fit a single linear model for all subjects (this was a homework assignment):
+
+```{r fig.cap="The complete pooling model (the simple linear model)."}
+m<-lm(log(rawRT)~so,dat)
+
+plot(jitter(dat$so,.5),
+        log(dat$rawRT),axes=FALSE,
+        xlab="Condition",ylab="rt (log ms)")
+axis(1,at=c(-1,1),labels=c("SR","OR"))
+axis(2)
+abline(m,lwd=3,col="red")
+```
+
+### The no-pooling model
+
+We could fit a **separate** linear model for each subject:
+
+```{r}
+library(lme4)
+(nopoolingLM<-lmList(log(rawRT)~so|subject,dat))
+```
+
+Compare the no-pooling estimates of the intercepts and slopes with the complete pooling estimates:
+
+```{r fig.cap="No pooling model's estimates for each subject (also shown is the complete pooling estimate, in red)."}
+## extract intercepts and slopes by subject:
+coefs<-coef(nopoolingLM)
+intercepts<-coefs[1]
+colnames(intercepts)<-"intercept"
+slopes<-coefs[2]
+
+plot(jitter(dat$so,.5),
+        log(dat$rawRT),axes=FALSE,
+        xlab="Condition",ylab="rt (log ms)")
+axis(1,at=c(-1,1),labels=c("SR","OR"))
+axis(2)
+subjects<-1:42
+for(i in subjects){
+   abline(intercepts$intercept[i],slopes$so[i])
+   }
+abline(lm(rawRT~so,dat),lwd=3,col="red")
+```
+
+### Hierarchical models: partial pooling
+
+#### Varying intercepts by subject
+
+First, consider the varying intercepts model. We will now visualize this model and compare it graphically to the no pooling and complete pooling models.
+
+```{r fig.cap="Partial pooling by subject (also shown is the complete pooling estimate, in red)."}
+m1<-lmer(log(rawRT)~so+(1|subject),dat)
+## estimates of intercept and slope
+b0<-fixef(m1)[1]
+b1<-fixef(m1)[2]
+
+## intercept adjustments by subject
+u0<-ranef(m1)
+plot(jitter(dat$so,.5),
+        log(dat$rawRT),axes=FALSE,
+        xlab="Condition",ylab="rt (log ms)")
+axis(1,at=c(-1,1),labels=c("SR","OR"))
+axis(2)
+subjects<-1:42
+for(i in subjects){
+   abline(b0+u0$subject[i,],b1)
+   }
+abline(lm(log(rawRT)~so,dat),lwd=3,col="red")
+```
+
+
+#### Varying intercepts and slopes by subject (the maximal model)
+
+```{r fig.cap="The partial pooling model with adjustments to intercepts and slopes by subject."} 
+m2<-lmer(log(rawRT)~so+(1+so|subject),dat)
+## estimates of fixed effects intercept and slope
+b0<-fixef(m2)[1]
+b1<-fixef(m2)[2]
+
+## intercept adjustments by subject
+u0<-ranef(m2)$subject[,1]
+## slope adjustments by subject
+u1<-ranef(m2)$subject[,2]
+
+plot(jitter(dat$so,.5),
+        log(dat$rawRT),axes=FALSE,
+        xlab="Condition",ylab="rt (log ms)")
+axis(1,at=c(-1,1),labels=c("SR","OR"))
+axis(2)
+for(i in subjects){
+   abline(b0+u0[i],b1+u1[i])
+   }
+abline(lm(log(rawRT)~so,dat),lwd=3,col="red")
+```
+
+### The practical implications of shrinkage or partial pooling
+
+#### Regularization 1: Extreme behavior of individual subjects is shrunk towards the grand mean
+
+Compare both the no pooling and partial pooling estimates for subjects 28, 36, 37. These subjects show the most extreme effects of relative clause type:
+
+```{r}
+coef(nopoolingLM)[2][28,]
+coef(nopoolingLM)[2][36,]
+coef(nopoolingLM)[2][37,]
+```
+
+```{r}
+op<-par(mfrow=c(1,3),pty="s")
+coefs<-coef(nopoolingLM)
+intercepts<-coefs[1]
+colnames(intercepts)<-"intercept"
+slopes<-coefs[2]
+
+plot(jitter(dat$so,.5),
+        log(dat$rawRT),axes=FALSE,
+        xlab="Condition",ylab="rt (log ms)",
+        main="Subject 28's estimates")
+axis(1,at=c(-1,1),labels=c("SR","OR"))
+axis(2)
+## no pooling estimate:
+abline(intercepts$intercept[28],slopes$so[28])
+## partial pooling:
+abline(b0+u0[28],b1+u1[28],lty=2)
+## complete pooling:
+abline(lm(log(rawRT)~so,dat),lwd=3,col="red")
+
+plot(jitter(dat$so,.5),
+        log(dat$rawRT),axes=FALSE,
+        xlab="Condition",ylab="rt (log ms)",
+        main="Subject 36's estimates")
+axis(1,at=c(-1,1),labels=c("SR","OR"))
+axis(2)
+## no pooling estimate:
+abline(intercepts$intercept[36],slopes$so[36])
+## partial pooling:
+abline(b0+u0[36],b1+u1[36],lty=2)
+## complete pooling:
+abline(lm(log(rawRT)~so,dat),lwd=3,col="red")
+
+plot(jitter(dat$so,.5),
+        log(dat$rawRT),axes=FALSE,
+        xlab="Condition",ylab="rt (log ms)",
+        main="Subject 37's estimates")
+axis(1,at=c(-1,1),labels=c("SR","OR"))
+axis(2)
+## no pooling estimate:
+abline(intercepts$intercept[37],slopes$so[37])
+## partial pooling:
+abline(b0+u0[37],b1+u1[37],lty=2)
+## complete pooling:
+abline(lm(log(rawRT)~so,dat),lwd=3,col="red")
+```
+
+In the no-pooling analysis, subject 3 shows the biggest negative slope, which goes against the hypothesis that object relatives are harder to process than subject relatives. Compare the no-pooling estimate for this subject with the partial pooling or shrunk estimates from the hierarchical model:
+
+```{r}
+plot(jitter(dat$so,.5),
+        log(dat$rawRT),axes=FALSE,
+        xlab="Condition",ylab="rt (log ms)",
+        main="Subject 3's estimates")
+axis(1,at=c(-1,1),labels=c("SR","OR"))
+axis(2)
+## no pooling estimate:
+abline(intercepts$intercept[3],slopes$so[3])
+## partial pooling:
+abline(b0+u0[3],b1+u1[3],lty=2)
+## complete pooling:
+abline(lm(log(rawRT)~so,dat),lwd=3,col="red")
+```
+
+#### Regularization 2: When data from a subject are sparse, the estimates for a subject shrinks to the grand mean
+
+First save the original estimates of the intercept and slope for subject 37:
+
+```{r}
+intercept37orig<-intercepts$intercept[37]
+slope37orig<-slopes$so[37]
+```
+
+Then delete about half the data from this subject:
+
+```{r}
+set.seed(4321)
+## choose some data randomly to remove:
+rand<-rbinom(1,n=16,prob=0.5)
+
+dat[which(dat$subject==37),]$rawRT
+dat$deletedRT<-dat$rawRT
+dat[which(dat$subject==37),]$deletedRT<-ifelse(rand,NA,dat[which(dat$subject==37),]$rawRT)
+```
+
+Now fit the hierarchical model and extract the estimates by subject:
+
+```{r}
+b0orig<-fixef(m2)[1]
+b1orig<-fixef(m2)[2]
+## intercept adjustments by subject
+u0orig<-ranef(m2)$subject[,1]
+## slope adjustments by subject
+u1orig<-ranef(m2)$subject[,2]
+
+
+m3<-lmer(log(deletedRT)~so+(1+so|subject),dat)
+
+b0<-fixef(m3)[1]
+b1<-fixef(m3)[2]
+## intercept adjustments by subject
+u0<-ranef(m3)$subject[,1]
+## slope adjustments by subject
+u1<-ranef(m3)$subject[,2]
+
+## No pooling estimates for deleted data
+nopoolingLMdeleted<-lmList(log(deletedRT)~so|subject,dat)
+coefs<-coef(nopoolingLMdeleted)
+intercepts<-coefs[1]
+colnames(intercepts)<-"intercept"
+slopes<-coefs[2]
+
+
+plot(jitter(dat$so,.5),
+        log(dat$rawRT),axes=FALSE,
+        xlab="Condition",ylab="rt (log ms)",
+        main="Subject 37's estimates \n Missing data")
+axis(1,at=c(-1,1),labels=c("SR","OR"))
+axis(2)
+## no pooling estimate from deleted data:
+abline(intercepts$intercept[37],slopes$so[37])
+abline(intercept37orig,slope37orig,col="green")
+## partial pooling deleted data:
+abline(b0+u0[37],b1+u1[37],lty=2)
+## partial pooling original data:
+abline(b0orig+u0orig[37],b1orig+u1orig[37],lty=2,lwd=3)
+## complete pooling:
+abline(lm(log(rawRT)~so,dat),lwd=3,col="red")
+```
+
+What we see here is that the estimates from the hierarchical model are barely affected by the missingness, but the estimates from the no-pooling model are heavily affected.
+
+### Summary 
+
+  - When an individual subject's data has sparse measurements, the hierarchical model "shrinks" the subject's estimates to the grand mean (complete pooling model) estimates. **This is because the subject's adjustments to intercept and slope shrink towards 0, which is the prior mean.**
+  - When the subject provides sufficient data, the estimates for the adjustment to the intercept and slope for that subject are closer to the individual subject's means (the sample mean for that subject). 
+

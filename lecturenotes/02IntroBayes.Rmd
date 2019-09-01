@@ -1,0 +1,999 @@
+# Introduction to Bayesian data analysis \label{introbayes}
+
+## Introduction
+
+Recall Bayes' rule:
+
+
+When A and B are observable events, 
+we can state the rule as follows:
+
+\begin{equation}
+p(A\mid B) = \frac{p(B\mid A) p(A)}{p(B)}
+\end{equation}
+
+Note that $p(\cdot)$ is the probability of an event.
+
+When looking at probability distributions, we will encounter the rule in the following form. Let $y$ be a vector of data.
+
+\begin{equation}
+f(\theta\mid y) = \frac{f(y\mid \theta) f(\theta)}{f(y)}
+\end{equation}
+
+Here, $f(\cdot)$ is a probability density, not the probability of a single event.
+$f(y)$ is called a ``normalizing constant'' (recall [the earlier discussion in the Foundations chapter](#sec:normalization)), which makes the left-hand side a probability distribution. 
+Without the normalizing constant, we have the relationship:
+
+\begin{equation}
+f(\theta\mid y) \propto f(y\mid \theta) f(\theta)
+\end{equation}
+
+Note that the likelihood is proportional to $f(y \mid \theta)$, and that's why we can refer to $f(y \mid \theta)$ as the likelihood in the following Bayesian incantation:
+
+\begin{equation}
+\hbox{Posterior} \propto \hbox{Likelihood}\times \hbox{Prior}
+\end{equation}
+
+Our central goal is going to be to derive the posterior distribution and then summarize its properties (mean, median, 95% confidence intervals, etc.). 
+
+Usually, we don't need the normalizing constant to understand the properties of the posterior distribution. That's why Bayes' theorem is often stated in terms of the proportionality shown above. 
+
+Two examples will clarify how we can use Bayes' rule to obtain the posterior. Both examples involve so-called conjugate priors, which are defined as follows:
+
+\begin{definition}
+Given the likelihood $f(x\mid \theta)$, if the prior $f(\theta)$ results in a posterior $f(\theta\mid x)$ that has the same form as $f(\theta)$, then we call $f(\theta)$ a conjugate prior.
+\end{definition}
+
+
+## Example 1: Binomial Likelihood, Beta prior, Beta posterior 
+
+This is a contrived example, just meant to  provide us with a smooth entry into Bayesian data analysis. Suppose that an individual with aphasia answered 46 out of 100 questions correctly in a particular sentence comprehension task. The research question is, what is the probability that their average response is greater than 0.5, i.e., above chance.
+
+The likelihood function will tell us $P(\hbox{data}\mid \theta)$:
+
+```{r}
+dbinom(46, 100, 0.5)
+```
+
+Note that 
+
+\begin{equation}
+P(\hbox{data}\mid \theta) \propto \theta^{46} (1-\theta)^{54}
+\end{equation}
+
+So, to get the posterior, we just need to work out a prior distribution $f(\theta)$. 
+
+\begin{equation}
+f(\theta\mid \hbox{data}) \propto f(\hbox{data}\mid \theta) f(\theta)
+\end{equation}
+
+For the prior, we need a distribution that can represent our uncertainty about the probabiliy $\theta$ of success. The Beta distribution is commonly used as prior for proportions. We say that the Beta distribution is conjugate to the binomial density; i.e., the two densities have similar functional forms.
+
+The pdf is
+
+
+\begin{equation*}
+f(x)=  \left\{   
+\begin{array}{l l}
+       \frac{1}{B(a,b)} x^{a - 1} (1-x)^{b-1}  & \quad \textrm{if } 0< x < 1\\
+       0 & \quad \textrm{otherwise}\\
+\end{array} \right.
+\end{equation*}
+
+\noindent
+where
+
+\begin{equation*}
+B(a,b) = \int_0^1 x^{a-1}(1-x)^{b-1}\, dx
+\end{equation*}
+
+
+In R, we write $X\sim\mathsf{beta}(\mathtt{shape1}=\alpha,\,\mathtt{shape2}=\beta)$. The associated $\mathsf{R}$ function is $\mathtt{dbeta(x, shape1, shape2)}$. 
+
+The mean and variance are
+
+\begin{equation} 
+E[X]=\frac{a}{a+b}\mbox{ and }Var(X)=\frac{ab}{\left(a+b\right)^{2}\left(a+b+1\right)}.
+\end{equation}
+
+The Beta distribution's parameters a and b can be interpreted as (our beliefs about) prior successes and failures, and are called \textbf{hyperparameters}. Once we choose values for a and b, we can plot the Beta pdf. Here, we show the Beta pdf for three sets of values of a,b:
+
+```{r,betas,fig.cap="\\label{fig:betaeg}Examples of the beta distribution with different parameter values."}
+plot(function(x) 
+  dbeta(x,shape1=1,shape2=1), 0,1,
+      main = "Beta density",
+              ylab="density",xlab="X",ylim=c(0,3))
+
+text(.5,1.1,"a=1,b=1")
+
+plot(function(x) 
+  dbeta(x,shape1=3,shape2=3),0,1,add=T)
+text(.5,1.6,"a=3,b=3")
+
+
+plot(function(x) 
+  dbeta(x,shape1=6,shape2=6),0,1,add=T)
+text(.5,2.6,"a=6,b=6")
+```
+
+As Figure \ref{fig:betaeg} shows, as the a,b values are increased, the spread decreases.
+
+If we don't have much prior information, we could use a=b=1; this gives us a uniform prior; this is called an uninformative prior or non-informative prior (although having no prior knowledge is, strictly speaking, not uninformative). If we have a lot of prior knowledge and/or a strong belief that $\theta$ has a particular value, we can use a larger a,b to reflect our greater certainty about the parameter. Notice that the larger our parameters a and b, the narrower the spread of the distribution; this makes sense because a larger sample size (a greater number of successes a, and a greater number of failures b) will lead to more precise estimates.
+
+The central point is that the Beta distribution can be used to define the prior distribution of $\theta$.
+
+Just for the sake of illustration, let's take four different beta priors, each reflecting increasing certainty. 
+
+\begin{enumerate}
+\item 
+Beta(a=2,b=2)
+\item
+Beta(a=3,b=3)
+\item 
+Beta(a=6,b=6)
+\item
+Beta(a=21,b=21)
+\end{enumerate}
+
+Each reflects a belief that $\theta=0.5$, with varying degrees of (un)certainty. Now we just need to plug in the likelihood and the prior:
+
+\begin{equation}
+f(\theta\mid \hbox{data}) \propto f(\hbox{data}\mid \theta) f(\theta)
+\end{equation}
+
+The four corresponding posterior distributios would be:
+
+\begin{equation}
+f(\theta\mid \hbox{data}) \propto [\theta^{46} (1-\theta)^{54}] [\theta^{2-1}(1-\theta)^{2-1}] = \theta^{48-1} (1-\theta)^{56-1}
+\end{equation}
+
+\begin{equation}
+f(\theta\mid \hbox{data}) \propto [\theta^{46} (1-\theta)^{54}] [\theta^{3-1}(1-\theta)^{3-1}] = \theta^{49-1} (1-\theta)^{57-1}
+\end{equation}
+
+\begin{equation}
+f(\theta\mid \hbox{data}) \propto [\theta^{46} (1-\theta)^{54}] [\theta^{6-1}(1-\theta)^{6-1}] = \theta^{52-1} (1-\theta)^{60-1}
+\end{equation}
+
+\begin{equation}
+f(\theta\mid \hbox{data}) \propto [\theta^{46} (1-\theta)^{54}] [\theta^{21-1}(1-\theta)^{21-1}] = \theta^{67-1} (1-\theta)^{75-1}
+\end{equation}
+
+We can now visualize each of these triplets of priors, likelihoods and posteriors. Note that I use the beta to model the likelihood because this allows me to visualize all three (prior, lik., posterior) in the same plot. The likelihood function is actually as shown in Figure \ref{fig:binomplot}:
+
+```{r,binomlik,fig.cap="\\label{fig:binomplot}Binomial likelihood function."}
+theta=seq(0,1,by=0.01)
+
+plot(theta,dbinom(x=46,size=100,prob=theta),
+     type="l",main="Likelihood")
+```
+
+We can represent the likelihood in terms of the Beta as well, as shown in Figure \ref{fig:betaforbinom}:
+
+```{r,binomasbeta,fig.cap="\\label{fig:betaforbinom}Using the beta distribution to represent a binomial."}
+plot(function(x) 
+  dbeta(x,shape1=46,shape2=54),0,1,
+              ylab="",xlab="X")
+```
+
+
+## Example 2: Poisson Likelihood, Gamma prior, Gamma posterior
+
+
+This is also a contrived example. Suppose we are modeling the number of times that a 
+speaker says the word ``the'' per day.
+
+The number of times $x$ that the word is uttered in one day can be modeled by a Poisson distribution:
+
+\begin{equation}
+f(x\mid \theta) = \frac{\exp(-\theta) \theta^x}{x!}
+\end{equation}
+
+where the rate $\theta$ is unknown, and the numbers of utterances of the target word on each day are independent given $\theta$.
+
+We are told that the prior mean of $\theta$ is 100 and prior variance for $\theta$  is 225. This information could be based on the results of previous studies on the topic.
+
+In order to visualize the prior, we first fit a Gamma density prior for $\theta$ based on the above information. 
+
+Note that we know that for a Gamma density with parameters a, b, the mean is  $\frac{a}{b}$ and the variance is
+$\frac{a}{b^2}$.
+Since we are given values for the mean and variance, we can solve for a,b, which gives us the Gamma density. 
+
+If $\frac{a}{b}=100$ and $\frac{a}{b^2}=225$, it follows that
+$a=100\times b=225\times b^2$ or $100=225\times b$, i.e., 
+$b=\frac{100}{225}$.
+
+This means that $a=\frac{100\times100}{225}=\frac{10000}{225}$.
+Therefore, the Gamma distribution for the prior is as shown below (also see Figure \ref{fig1}):
+
+\begin{equation}
+\theta \sim Gamma(\frac{10000}{225},\frac{100}{225})
+\end{equation}
+
+```{r,fig.cap="\\label{fig1}The Gamma prior for the parameter theta."}
+x<-0:200
+plot(x,dgamma(x,10000/225,100/225),type="l",lty=1,
+     main="Gamma prior",ylab="density",
+     cex.lab=2,cex.main=2,cex.axis=2)
+```
+
+
+A distribution for a prior is \textbf{conjugate} if, multiplied by the likelihood, it yields a posterior that has the distribution of the same family as the prior. 
+
+It turns out that the Gamma distribution is a conjugate prior for the Poisson distribution.
+For the Gamma distribution to be a conjugate prior for the Poisson, the posterior needs to have the general form of a Gamma distribution. We derive this conjugacy result below. The proof just involves very simple algebra.
+
+Given that 
+
+\begin{equation}
+\hbox{Posterior} \propto \hbox{Prior} \times \hbox{Likelihood}
+\end{equation}
+
+and given that the likelihood is:
+
+\begin{equation}
+\begin{split}
+L(\mathbf{x}\mid \theta) =& \prod_{i=1}^n \frac{\exp(-\theta) \theta^{x_i}}{x_i!}\\
+          =& \frac{\exp(-n\theta) \theta^{\sum_i^{n} x_i}}{\prod_{i=1}^n x_i!}\\
+\end{split}          
+\end{equation}
+
+
+we can compute the posterior as follows:
+
+\begin{equation}
+\hbox{Posterior} = \left[\frac{\exp(-n\theta) \theta^{\sum_i^{n} x_i}}{\prod_{i=1}^n x_i!} \right]
+\left[\frac{b^a \theta^{a-1}\exp(-b\theta)}{\Gamma(a)}\right]
+\end{equation}
+
+We can disregard the terms $x!,\Gamma(a), b^a$,  which do not involve $\theta$, we have
+
+\begin{equation}
+\begin{split}
+\hbox{Posterior} \propto &  \exp(-n\theta)  \theta^{\sum_i^{n} x_i} \theta^{a-1}\exp(-b\theta)\\
+=& \theta^{a-1+\sum_i^{n} x_i} \exp(-\theta (b+n))
+\end{split}
+\end{equation}
+
+We can now figure out the parameters of the posterior distribution, and show that it will be a Gamma distribution.
+
+First, note that the Gamma distribution in general is $Gamma(a,b) \propto \theta^{a-1} \exp(-\theta b)$. So it's enough to state the above as a Gamma distribution with some parameters a*, b*.
+
+If we equate $a^{*}-1=a-1+\sum_i^{n} x_i$ and $b^{*} = b+n$, we can rewrite the above as:
+
+\begin{equation}
+\theta^{a^{*}-1} \exp(-\theta b^{*})
+\end{equation}
+
+This means that $a^{*}=a+\sum_i^{n} x_i$ and $b^{*}=b+n$.
+We can find a constant $k$ such that the above is a proper probability density function, i.e.:
+
+\begin{equation}
+\int_{-\infty}^{\infty} k \theta^{a^{*}-1} \exp(-\theta b^{*})=1
+\end{equation}
+
+Thus, the posterior has the form of  a Gamma distribution with parameters 
+$a^{*}=a+\sum_i^{n} x_i, b^{*}=b+n$. Hence the Gamma distribution is a conjugate prior for the Poisson.
+
+### Concrete example given data
+
+Suppose we know that the number of ``the'' utterances is $115, 97, 79, 131$. We can derive the posterior distribution as follows.
+
+The prior is Gamma(a=10000/225,b=100/225). The data are as given; this means that $\sum_i^{n} x_i = 422$ and sample size $n=4$.
+It follows that the posterior is 
+
+\begin{equation}
+\begin{split}
+Gamma(a^{*}= a+\sum_i^{n} x_i, b^{*}=b+n) =& 
+Gamma(10000/225+422,4+100/225)\\
+=& Gamma(466.44,4.44)\\
+\end{split}
+\end{equation}
+
+The mean and variance of this distribution can be computed using the fact that the mean is $\frac{a*}{b*}=466.44/4.44=104.95$ and the variance is $\frac{a*}{b*^{2}}=466.44/4.44^2=23.66$.
+
+
+```{r}
+### load data:
+data<-c(115,97,79,131)
+
+a.star<-function(a,data){
+  return(a+sum(data))
+}
+
+b.star<-function(b,n){
+  return(b+n)
+}
+
+new.a<-a.star(10000/225,data)
+new.b<-b.star(100/225,length(data))
+
+### post. mean
+(post.mean<-new.a/new.b) 
+### post. var:
+(post.var<-new.a/(new.b^2)) 
+```
+
+Now suppose you get one new data point:
+
+```{r}
+new.data<-c(200)
+```
+
+We can compute the parameters of the posterior Gamma distributions using the function we wrote above:
+
+```{r}
+new.a.2<-a.star(new.a,new.data)
+new.b.2<-b.star(new.b,length(new.data))
+
+### new mean
+(new.post.mean<-new.a.2/new.b.2)
+### new var:
+(new.post.var<-new.a.2/(new.b.2^2))
+```
+
+Thus, new data can be used with the previous posterior distribution as prior, to compute the new posterior.
+
+### The posterior is a weighted mean of prior and likelihood
+
+Here we come to a very important insight. We can express the posterior mean as a weighted sum of the prior mean and the maximum likelihood estimate of $\theta$.
+
+The posterior mean is:
+
+\begin{equation}
+\frac{a*}{b*}=\frac{a + \sum x_i }{n+b}
+\end{equation}
+
+This can be rewritten as
+
+\begin{equation}
+\frac{a*}{b*}=\frac{a + n \bar{x}}{n+b}
+\end{equation}
+
+Dividing both the numerator and denominator by b:
+
+\begin{equation}
+\frac{a*}{b*}=\frac{(a + n \bar{x})/b }{(n+b)/b} = \frac{a/b + n\bar{x}/b}{1+n/b}
+\end{equation}
+
+Since $a/b$ is the mean $m$ of the prior, we can rewrite this as:
+
+\begin{equation}
+\frac{a/b + n\bar{x}/b}{1+n/b}= \frac{m + \frac{n}{b}\bar{x}}{1+
+\frac{n}{b}}
+\end{equation}
+
+We can rewrite this as:
+
+\begin{equation}
+\frac{m + \frac{n}{b}\bar{x}}
+{1+\frac{n}{b}} = \frac{m\times 1}{1+\frac{n}{b}} + \frac{\frac{n}{b}\bar{x}}{1+\frac{n}{b}}
+\end{equation}
+
+This is a weighted average: setting $w_1=1$ and 
+$w_2=\frac{n}{b}$, we can write the above as:
+
+\begin{equation}
+m \frac{w_1}{w_1+w_2} + \bar{x} \frac{w_2}{w_1+w_2}
+\end{equation}
+
+A $n$ approaches infinity, the weight on the prior mean $m$ will tend towards 0, making the posterior mean approach the maximum likelihood estimate of the sample.
+
+In general, in a Bayesian analysis, as sample size increases, the likelihood will dominate in determining the posterior mean.
+
+Regarding variance, since the variance of the posterior is:
+
+\begin{equation}
+\frac{a*}{b*^2}=\frac{(a + n \bar{x})}{(n+b)^2} 
+\end{equation}
+
+as $n$ approaches infinity, the posterior variance will approach zero: more data will reduce variance (uncertainty). 
+
+## Summary: conjugate form analyses
+ 
+ We saw two examples where we can do the computations to derive the posterior using simple algebra. There are several other such simple cases. However, in realistic data analysis settings, we cannot specify the posterior distribution as a particular density. We can only specify the priors and the likelihood. 
+ 
+ For such cases, we need to use MCMC sampling techniques so that we can sample from the posterior distributions of the parameters.
+ 
+We will discuss two approaches for sampling:
+
+  - Gibbs sampling using inversion sampling
+  - Hamiltonian Monte Carlo
+ 
+But before we do that, we introduce some basic ideas about Monte Carlo sampling and Markov chain processes.
+
+## MCMC sampling
+ 
+### Monte Carlo integration
+
+The term Monte Carlo integration sounds fancy, but basically this amounts to sampling from a distribution f(x), and computing summaries like the mean. Formally, we calculate E(f(X)) by drawing samples $\{X_1,\dots,X_n\}$ and then approximating:
+
+\begin{equation}
+E(f(X))\approx \frac{1}{n}\sum f(X)
+\end{equation}
+
+For example: 
+
+```{r}
+x<-rnorm(1000,mean=0,sd=1)
+mean(x)
+```
+
+We can increase sample size to as large as we want.
+
+We can also compute quantities like $P(X<1.96)$ by sampling:
+
+```{r}
+mean((x<1.96))
+## theoretical value:
+pnorm(1.96)
+```
+
+So, we can compute summary statistics using simulation. However, if we only know up to proportionality the form of the distribution to sample from, how do we get these samples to summarize from? Monte Carlo Markov Chain (MCMC) methods provide that capability: they allow you to sample from distributions you only know up to proportionality.
+
+### Markov chain sampling
+
+We have been doing non-Markov chain sampling when we started this course. Taking independent samples is an example of non-Markov chain sampling:
+
+```{r}
+indep.samp<-rnorm(500,mean=0,sd=1)
+head(indep.samp)
+```
+
+The vector of values sampled here are statistically independent. 
+
+```{r indepsamp}
+plot(1:500,indep.samp,type="l")
+```
+
+
+
+If the current value influences the next one, we have a Markov chain.
+Here is a simple Markov chain: the i-th draw is dependent on the i-1 th draw:
+
+```{r markovchainexample}
+nsim<-500
+x<-rep(NA,nsim)
+y<-rep(NA,nsim)
+x[1]<-rnorm(1) ## initialize x
+for(i in 2:nsim){
+## draw i-th value based on i-1-th value:  
+y[i]<-rnorm(1,mean=x[i-1],sd=1)
+x[i]<-y[i]
+}
+plot(1:nsim,y,type="l")
+```
+
+### What is convergence in a Markov chain? An illustration using discrete Markov chains
+
+A discrete Markov chain defines probabilistic movement from one state to the next. Suppose we have 6 states; a **transition matrix** can define the probabilities:
+
+```{r}
+## Set up transition matrix:
+T<-matrix(rep(0,36),nrow=6)
+diag(T)<-0.5
+offdiags<-c(rep(0.25,4),0.5)
+for(i in 2:6){
+T[i,i-1]<-offdiags[i-1]
+}
+offdiags2<-c(0.5,rep(0.25,4))
+for(i in 1:5){
+T[i,i+1]<-offdiags2[i]
+}
+T
+```
+
+Note that the rows sum to 1, i.e., the probability mass is distributed over all possible transitions from any one location:
+
+```{r}
+rowSums(T)
+```
+
+We can represent a current location as a probability vector: e.g., in state one, the transition probabilities for possible moves are:
+
+```{r}
+T[1,]
+```
+
+We can also simulate a random walk based on T:
+
+```{r randomwalk}
+nsim<-500
+s<-rep(0,nsim)
+## initialize:
+s[1]<-3
+for(i in 2:nsim){
+  s[i]<-sample(1:6,size=1,prob=T[s[i-1],])
+}
+
+plot(1:nsim,s,type="l")
+```
+
+
+Note that the above random walk is non-deterministic: if we rerun the above code multiple times, we will get different patterns of movement.
+
+This Markov chain converges to a particular distribution of probabilities of visiting states 1 to 6. We can see the convergence happen by examining the proportions of visits to each state after blocks of steps that increase by 500 steps:
+
+```{r convergence}
+nsim<-50000
+s<-rep(0,nsim)
+## initialize:
+s[1]<-3
+for(i in 2:nsim){
+  s[i]<-sample(1:6,size=1,prob=T[s[i-1],])
+}
+
+
+blocks<-seq(500,50000,by=500)
+n<-length(blocks)
+## store transition probs over increasing blocks:
+store.probs<-matrix(rep(rep(0,6),n),ncol=6)
+## compute relative frequencies over increasing blocks:
+for(i in 1:n){
+  store.probs[i,]<-table(s[1:blocks[i]])/blocks[i]
+}
+
+## convergence for state 1:
+for(j in 1:6){
+if(j==1){  
+plot(1:n,store.probs[,j],type="l",lty=j,xlab="block",
+     ylab="probability")
+} else {
+  lines(1:n,store.probs[,j],type="l",lty=j)
+}
+}
+```
+
+Each of the rows of the store.probs matrix is a probability mass function, which defines the probability distribution for the 6 states:
+
+```{r}
+store.probs[1,]
+```
+
+This distribution is settling down to a particular set of values; that's what we mean by convergence. This particular set of values is:
+
+```{r}
+(w<-store.probs[n,])
+```
+
+w is called a \textbf{stationary} distribution. 
+If $wT=w$, then 
+then $w$ is the stationary distribution of the Markov chain. The R command ```%*%``` stands for matrix multiplication.
+
+```{r}
+round(w%*%T,digits=2)
+round(w,digits=2)
+```
+
+This discrete example gives us an intuition for what will happen in continuous distributions: we will devise a Markov chain such that the chain will converge to the distribution we are interested in sampling from.
+
+
+### Monte Carlo sampling
+
+Suppose we have a posterior that has the form of a Beta distribution. We can sample from the posterior distribution easily:
+
+```{r}
+x<-rbeta(5000,1498,1519)
+```
+
+Once we have these samples, we can compute any kind of useful summary, e.g., the posterior probability p (given the data) that $p>0.5$:
+
+```{r}
+table(x>0.5)[2]/ sum(table(x>0.5))
+```
+
+Or we can compute an interval over which we are 95\% sure that the true parameter value lies:
+
+```{r}
+##lower bound:
+quantile(x,0.025)
+## upper bound:
+quantile(x,0.975)
+```
+
+Since we can integrate the Beta distribution analytically, we could have done the same thing with the ```qbeta``` function (or simply using calculus):
+
+```{r}
+(lower<-qbeta(0.025,shape1=1498,shape2=1519))
+(upper<-qbeta(0.975,shape1=1498,shape2=1519))
+```
+
+Using calculus (well, we are still using R; I just mean that one could do this by hand, by solving the integral):
+
+```{r}
+integrate(function(x) dbeta(x,shape1=1498,shape2=1519),
+          lower=lower,upper=upper)
+```
+
+However---and here we finally get to the crucial point---integration of posterior densities is often impossible (e.g., because they may have many dimensions). In those situations we use sampling methods called Markov chain Monte Carlo, or MCMC, methods.
+
+First, let's look at a relatively simple method of sampling: the inversion method.
+ 
+### The inversion method for sampling
+ 
+ This method works when we know the closed form of the pdf we want to simulate from and can derive the inverse of that function.
+
+Steps:
+
+
+\begin{enumerate}
+\item Sample one number $u$ from $Unif(0,1)$. Let $u=F(z)=\int_L^z f(x)\, dx $ (here, $L$ is the lower bound of the pdf f).
+\item Then $z=F^{-1}(u)$ is a draw from $f(x)$.
+\end{enumerate}
+
+#### Example 1: Samples from Standard Normal
+
+Take a sample from the Uniform(0,1):
+
+```{r}
+u<-runif(1,min=0,max=1)
+```
+
+Let f(x) be a Normal density---we want to sample from this density. The inverse of the CDF in R is qnorm. It takes as input a probability and returns a quantile. 
+
+```{r}
+qnorm(u)
+```
+
+If we do this repeatedly, we will get samples from the Normal distribution (here, the standard normal).
+
+```{r}
+nsim<-10000
+samples<-rep(NA,nsim)
+for(i in 1:nsim){
+  u <- runif(1,min=0,max=1)
+  samples[i]<-qnorm(u)
+}
+hist(samples,freq=FALSE,main="Standard Normal")
+```
+
+#### Example 2: Samples from Exponential or Gamma
+
+Now try this with the exponential with rate 1:
+
+```{r}
+nsim<-10000
+samples<-rep(NA,nsim)
+for(i in 1:nsim){
+  u <- runif(1,min=0,max=1)
+  samples[i]<-qexp(u)
+}
+hist(samples,freq=FALSE,main="Exponential")
+```
+
+Or the Gamma with rate and shape 1:
+
+```{r}
+nsim<-10000
+samples<-rep(NA,nsim)
+for(i in 1:nsim){
+  u <- runif(1,min=0,max=1)
+  samples[i]<-qgamma(u,rate=1,shape=1)
+}
+hist(samples,freq=FALSE,main="Gamma")
+```
+
+
+#### Example 3: Samples from an arbitrarily defined distribution
+
+Let $f(x) = \frac{1}{40} (2x + 3)$, with $0<x<5$. Now, we can't just use the family of q functions in R, because this density is not defined in R.
+
+We have to draw a number from the uniform distribution and then solve for z, which amounts to finding the inverse function:
+
+\begin{equation}
+u = \int_0^z \frac{1}{40} (2x + 3)
+\end{equation}
+
+```{r}
+u<-runif(1000,min=0,max=1) 
+
+z<-(1/2) * (-3 + sqrt(160*u +9))
+```
+
+This method can't be used if we can't find the inverse, and it can't be used with multivariate distributions.
+
+If the inverse can't be computed, we can use the rejection method.
+
+### The rejection method
+
+If the inverse $F^{-1}(u)$ can't be computed, we sample from $f(x)$ as follows:
+
+\begin{enumerate}
+\item 
+Sample a value $z$ from a distribution $g(z)$ from which sampling is easy, and for which 
+
+\begin{equation}
+m g(z) > f(z) \quad m \hbox{ a constant}
+\end{equation}
+
+$m g(z)$ is called an envelope function because it envelops $f(z)$.
+
+
+\item 
+Compute the ratio
+
+\begin{equation}
+R = \frac{f(z)}{mg(z)}
+\end{equation}
+
+\item Sample $u\sim Unif(0,1)$.
+\item If $R>u$, then $z$ is treated as a draw from $f(x)$. Otherwise return to step 1. 
+\end{enumerate}
+
+
+To take an example from @Lynch2007, consider f(x) to be: 
+$f(x) = \frac{1}{40} (2x + 3)$, with $0<x<5$. The maximum height of $f(x)$ is $0.325$ (why? Try evaluating the function at x=5). So we need an envelope function that exceeds $0.325$. The uniform density $Unif(0,5)$ has maximum height 0.2 (why is that?), so if we multiply it by 2 we have maximum height $0.4$, which is greater than $0.325$.
+
+In the first step, we sample a number x from a uniform distribution Unif(0,5). This serves to locate a point on the x-axis between 0 and 5 (the domain of $x$). The next step involves locating a point in the y direction once the x coordinate is fixed. If we draw a number u from Unif(0,1), then 
+$m g(x) u =2*0.2 u$ is a number between $0$ and $2*0.2$.  If this number is less than f(x), that means that the y value falls within f(x), so we accept it, else reject.
+Checking whether $m g(x) u$ is less than $f(x)$ is the same as checking whether 
+
+\begin{equation}
+R=f(x)/mg(z) > u
+\end{equation}
+
+```{r}
+#R program for rejection method of sampling 
+## From Lynch book, adapted by SV.
+count<-0
+k<-1 
+accepted<-rep(NA,1000) 
+rejected<-rep(NA,1000)
+while(k<1001)
+{
+z<-runif(1,min=0,max=5) 
+r<-((1/40)*(2*z+3))/(2*.2)
+if(r>runif(1,min=0,max=1)) {
+  accepted[k]<-z
+  k<-k+1} else {
+    rejected[k]<-z
+  }
+count<-count+1
+}
+```
+
+```{r rejectionsampling}
+hist(accepted,freq=F,
+     main="Example of rejection sampling")
+
+fn<-function(x){
+  (1/40)*(2*x+3)
+}
+
+x<-seq(0,5,by=0.01)
+
+lines(x,fn(x))
+```
+
+Here is the acceptance rate:
+
+```{r}
+## acceptance rate:
+table(is.na(rejected))[2]/
+  sum(table(is.na(rejected)))
+```
+
+Question: If you increase $m$, will acceptance rate increase or decrease? Stop here and come up with an answer before you read further. 
+
+Rejection sampling can be used with multivariate distributions. 
+
+Some limitations of rejection sampling: finding an envelope function may be difficult; the acceptance rate would be low if the constant m is set too high and/or if the envelope function is too high relative to f(x), making the algorithm inefficient.   
+
+### Gibbs sampling
+
+Gibbs sampling is a very commonly used method in Bayesian statistics. Here is how it works.
+
+Let $\Theta$ be a vector of parameter values, let length of $\Theta$ be $k$. Let $j$ index the $j$-th iteration.
+
+Algorithm:
+
+\begin{enumerate}
+\item Assign some starting values to $\Theta$:
+
+$\Theta^{j=0} \leftarrow S$
+
+\item 
+Update the iteration index by 1: $j \leftarrow j + 1$
+\item 
+\begin{enumerate}
+\item[1.] Sample $\theta_1^j \mid \theta_2^{j-1}\dots \theta_k^{j-1}$.
+\item[2.] Sample $\theta_2^j \mid \theta_1^{j}\theta_3^{j-1}\dots \theta_k^{j-1}$.
+
+\vdots
+
+\item[k.] Sample $\theta_k^{j} \mid \theta_1^{j}\dots \theta_{k-1}^{j}$.
+\end{enumerate}
+\item
+Return to step 1.
+\end{enumerate}
+
+The idea is simple. Repeat the following many times: for a vector of parameters, $\theta_1,\dots, \theta_k$, (1) take one sample from the conditional distribution of the first parameter given the values of the other parameters that were fixed in the previous iteration, (2) take one sample from the conditional distribution of the second parameter given the value of the first parameter from the current iteration, and the values of the third parameter onwards that were fixed in the previous iteration, and so on till you sample a value for the k-th parameter.
+
+#### Example: A simple bivariate distribution
+
+Assume that our bivariate (joint) density is:
+
+\begin{equation}
+f(x,y)= \frac{1}{28}(2x + 3y + 2)
+\end{equation}
+
+Using the methods discussed in the Foundations chapter, it is possible to analytically work out the conditional distributions from the joint distribution. Just take my word for it here, we don't need to do these derivations ourselves.
+
+\begin{equation}
+f(x\mid y)=  \frac{f(x,y)}{f(y)}= \frac{(2x + 3y + 2)}{6y+8}
+\end{equation}
+
+\begin{equation}
+f(y\mid x)=  \frac{f(x,y)}{f(x)}= \frac{(2x + 3y + 2)}{4y+10}
+\end{equation}
+
+The Gibbs sampler algorithm is: 
+
+\begin{enumerate}
+\item
+Set starting values for the two parameters $x=-5, y=-5$. Set j=0.
+\item
+Sample $x^{j+1}$ from $f(x\mid y)$ using inversion sampling. You need to work out the inverse of $f(x\mid y)$ and $f(y\mid x)$ first.
+To do this, for $f(x\mid u)$, we have 
+find $z_1$:
+
+\begin{equation}
+u = \int_0^{z_1} \frac{(2x + 3y + 2)}{6y+8}\, dx
+\end{equation}
+
+And for $f(y\mid x)$, we have to find $z_2$:
+
+\begin{equation}
+u = \int_0^{z_2} \frac{(2x + 3y + 2)}{4y+10} \, dy
+\end{equation}
+
+It doesn't matter if you can't solve this integral; the solution is given in the code below.
+\end{enumerate}
+
+```{r}
+#R program for Gibbs sampling using inversion method 
+## program by Scott Lynch, modified by SV:
+x<-rep(NA,2000)
+y<-rep(NA,2000) 
+x[1]<- -5
+y[1]<- -5
+
+for(i in 2:2000)
+{ #sample from x | y 
+  u<-runif(1,min=0, max=1) 
+  x[i]<-sqrt(u*(6*y[i-1]+8)+(1.5*y[i-1]+1)*(1.5*y[i-1]+1))-
+    (1.5*y[i-1]+1) 
+  #sample from y | x
+u<-runif(1,min=0,max=1) 
+y[i]<-sqrt((2*u*(4*x[i]+10))/3 +((2*x[i]+2)/3)*((2*x[i]+2)/3))- 
+    ((2*x[i]+2)/3)
+}
+```
+
+You can run this code to visualize the simulated posterior distribution. See Figure \ref{fig:posteriorbivariateexample}.
+
+```{r fig.cap="\\label{fig:posteriorbivariateexample}Example of posterior distribution of a bivariate distribution."}
+library(MASS)
+bivar.kde<-kde2d(x,y)
+persp(bivar.kde,phi=10,theta=90,shade=0,border=NA,
+      main="Simulated bivariate density using Gibbs sampling")
+```
+
+
+A central insight here is that knowledge of the conditional distributions is enough to simulate from the joint distribution, provided such a joint distribution exists. 
+
+This section provided a short introduction to MCMC sampling, just to give a flavor for the way it works. For more details, read @Lynch2007 and @lambert2018student. We now turn to the sampling method used in Stan.
+
+## Hamiltonian Monte Carlo {#hmc}
+
+Instead of Gibbs sampling, Stan uses this more efficient sampling approach. HMC works well for the high-dimensional models we will fit (hierarchical models).
+Gibbs sampling faces difficulties with some of the complex hierarchical models we will be fitting later. HMC will always succeed for these complex models.
+
+One limitation of HMC (which Gibbs sampling does not have) is that HMC only works with continuous parameters (not discrete parameters).
+
+For our purposes, it is enough to know what sampling using MCMC is, and that HMC gives us posterior samples efficiently.
+A good reference explaining HMC is @neal2011mcmc. However, this paper is technically very demanding. More intuitively accessible introductions are available via Michael Betancourt's home page: https://betanalpha.github.io/. In particular, this video is helpful:
+https://youtu.be/jUSZboSq1zg.  Another good resource is this visualization: https://chi-feng.github.io/mcmc-demo/app.html 
+(this last one doesn't work well on my Firefox browser).
+
+### HMC demonstration 
+
+The HMC algorithm takes as input the log density and the gradient of the log density. In Stan, these will be computed internally; the user doesn't need to do any computations.
+
+For example, suppose the log density is $f(\theta) = - \frac{\theta^2}{2}$.
+Its gradient is $f'(\theta) = -\theta$. Setting this gradient to 0, and solving for $\theta$, we know that the maximum is at 0. We know it's a maximum because the second derivative, $f''(\theta) = -1$, is negative. See Figure \ref{fig:logdensityexample}.  
+
+This is the machinery we learnt in the foundations chapter (recall how we found MLEs in particular).
+
+```{r fig.cap="\\label{fig:logdensityexample}Example log density."}
+theta<-seq(-4,4,by=0.001)
+plot(theta,-theta^2/2,type="l",main="Log density")
+```
+
+We first write down the Radford Neal algorithm for HMC; e and L are tuning parameters and can be ignored for now. The code is from [Jarad Niemi](https://github.com/jarad/)'s github repository. 
+
+```{r}
+## Radford Neal algorithm:
+HMC_neal <- function(U, grad_U, e, L, current_theta) {
+theta = current_theta
+omega = rnorm(length(theta),0,1)
+current_omega = omega
+omega = omega - e * grad_U(theta) / 2
+for (i in 1:L) {
+theta = theta + e * omega
+if (i!=L) omega = omega - e * grad_U(theta)
+}
+omega = omega - e * grad_U(theta) / 2
+omega = -omega
+current_U = U(current_theta)
+current_K = sum(current_omega^2)/2
+proposed_U = U(theta)
+proposed_K = sum(omega^2)/2
+if (runif(1) < exp(current_U-proposed_U+current_K-proposed_K))
+{
+return(theta)
+}
+else {
+return(current_theta)
+}
+}
+
+HMC <- function(n_reps, log_density, grad_log_density, tuning, initial) {
+theta = rep(0, n_reps)
+theta[1] = initial$theta
+for (i in 2:n_reps) theta[i] = HMC_neal(U = function(x) -log_density(x),
+grad_U = function(x) -grad_log_density(x),
+e = tuning$e,
+L = tuning$L,
+theta[i-1])
+theta
+}
+```
+
+Then, we use the HMC function above to take 2000 samples from the posterior. 
+We drop the first few (typically, the first half) samples, which are called warm-ups. The reason we drop them is that the initial samples may not yet be sampling from the posterior.
+
+
+```{r}
+theta <- HMC(n_reps=2000, 
+             log_density=function(x) -x^2/2, 
+             grad_log_density=function(x) -x, 
+             tuning=list(e=1,L=1),
+             initial=list(theta=0))
+```
+
+Figure \ref{fig:hmcsamples0} shows a **trace plot**, the trajectory of the samples over 2000 iterations. This is called a **chain**. When the sampler is correctly sampling from the posterior, we see a characteristic ``fat hairy caterpillar'' shape, and we say that the sampler has **converged**. You will see later what a failed convergence looks like.
+
+
+```{r fig.cap="\\label{fig:hmcsamples0}An example of a trace plot."}
+plot(theta,type="l",main="Trace plot of posterior samples")
+```
+
+When we fit Bayesian models, we will always run four parallel chains. This is to make sure that even if we start with four different initial values chosen randomly, the chains all end up sampling from the same distribution. When this happens, we see that the chains overlap visually, and we say that the chains are **mixing**. \label{mixing}
+
+Figure \ref{fig:hmcsamples} shows the posterior distribution of $\theta$. We are not discarding samples here because the sampler converges quickly in this simple example.
+
+
+```{r fig.cap="\\label{fig:hmcsamples}Sampling from the posterior using HMC. The red curve shows the true distribution, Normal(0,1)."}
+hist(theta, freq=F, 100,
+     
+     main="Posterior distribution of the parameter.",
+     xlab=expression(theta))
+curve(dnorm, add=TRUE, col='red', lwd=2)
+```
+
+In the modeling we do in the following pages, the Stan software will do the sampling for us. 
+
+\newpage 
+
+## Further readings
+
+Some good books introducing Bayesian data analysis methods are the following:
+
+  - McElreath, R. (2015). Statistical Rethinking. Texts in Statistical Science.
+This book is currently the best textbook in existence, and assumes no calculus or linear algebra knowledge.
+
+  - Kruschke, J. (2014). Doing Bayesian data analysis: A tutorial with R, JAGS, and Stan. Academic Press. This book is specifically designed for a psychology audience. I have only read parts of it and I find it very useful as a reference.
+
+  - Lynch, S. M. (2007). Introduction to applied Bayesian statistics and estimation for social scientists. Springer Science & Business Media. This book assumes knowledge of calculus and linear algebra. It gives a classical, statistician's introduction to Bayes. I highly recommend this book to people who know some (undergraduate math level) calculus and linear algebra.
+

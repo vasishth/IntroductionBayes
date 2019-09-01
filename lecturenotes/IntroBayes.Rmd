@@ -1,0 +1,83 @@
+---
+title: "Bayesian Data Analysis: An introduction using brms and rstan"
+subtitle: "Lecture notes for the Statistical Methods for Linguistics and Psychology summer school, University of Potsdam, Germany"
+author: "Shravan Vasishth"
+date: "`r Sys.Date()`"
+header-includes:
+   - \usepackage{todonotes}
+   - \usepackage{tcolorbox}
+   - \usepackage{exercise}
+   - \usepackage{enumerate}
+   - \usepackage{amsmath}
+   - \usepackage{amssymb}
+   - \usepackage{mathptmx}
+   - \usepackage{amsthm}
+   - \usepackage{esint}
+   - \usepackage{xfrac}
+   - \newtheorem{definition}{Definition}
+   - \newtheorem{proposition}{Proposition}
+   - \newtheorem{theorem}{Theorem}
+   - \usepackage{mathtools}
+   - \makeatletter
+   - \newcommand{\explain}[2]{\underset{\mathclap{\overset{\uparrow}{#2}}}{#1}}
+   - \newcommand{\explainup}[2]{\overset{\mathclap{\underset{\downarrow}{#2}}}{#1}}
+   - \makeatother
+fontsize: 12pt
+output:
+  pdf_document: 
+    fig_caption: yes
+    keep_tex: true
+    latex_engine: pdflatex
+    toc: true
+    number_sections: true
+    toc_depth: 6
+citation_package: biblatex
+biblatexoptions: 
+  - "backend=biber, style=apa"
+bibliography:  bayes.bib
+link-citations: yes
+fig_height: 4
+---
+\fontsize{12}{18}\selectfont
+
+```{r setup, include=FALSE,cache=FALSE}
+knitr::opts_chunk$set(tidy = FALSE,cache=TRUE, autodep=TRUE,tidy.opts=list(width.cutoff=59))
+options(htmltools.dir.version = FALSE)
+options(scipen=999, digits=3)
+library(ggplot2)
+library(brms)
+library(rstan)
+library(lme4)
+options(mc.cores = parallel::detectCores())
+theme_set(theme_classic()) 
+library(dplyr)
+```
+
+\newpage
+
+```{r child = '01Foundations.Rmd'}
+```
+
+\newpage
+
+
+```{r child = '02IntroBayes.Rmd'}
+```
+
+\newpage
+
+
+```{r child = '03LinearModelingorig.Rmd'}
+```
+
+\newpage
+
+```{r child = '04HierarchicalLinearModeling.Rmd'}
+```
+
+\newpage
+
+
+
+
+# References
