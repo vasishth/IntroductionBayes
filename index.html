@@ -41,16 +41,20 @@
 
 <br>
 
-  <h4>Instructors</h4>
+  <h4>Instructor</h4>
 
-  <a href="http://www.ling.uni-potsdam.de/~vasishth/">Shravan Vasishth</a>, <a href="https://annlaurin.github.io/">Anna Laurinavichyute</a>. <br><br>
+  <a href="http://www.ling.uni-potsdam.de/~vasishth/">Shravan Vasishth</a> 
+
+  <h4>Teaching Assistants</h4>
+
+  <a href="https://annlaurin.github.io/">Anna Laurinavichyute</a>, <a href="http://www.ling.uni-potsdam.de/~paape/">Dr. Dario Paape</a>. <br><br>
 
 
   <h4>Dates and location</h4>
 
  Taught at <a href="https://vasishth.github.io/smlp2019/">SMLP 2019</a>.<br>
 
- Sept 9-13, 2019. Haus 6, Griebnitzsee campus, University of Potsdam.
+ Sept 9-13, 2019. Haus 6, room S24, Griebnitzsee campus, University of Potsdam.
 
 <br><br>
 
@@ -62,7 +66,7 @@
  
 <h4>Prerequisites</h4>
 
-We assume familiarity with R. Participants will benefit most if they have previously fit linear models and linear mixed models (using lme4) in R, in any scientific domain. No knowledge of calculus or linear algebra is assumed, but basic school level mathematics knowledge is assumed (this will be quickly revisited in class). 
+We assume familiarity with R. Participants will benefit most if they have previously fit linear models and linear mixed models (using lme4) in R, in any scientific domain. No knowledge of calculus or linear algebra is assumed (but will be helpful to know), but basic school level mathematics knowledge is assumed (this will be quickly revisited in class). 
 
 <br><br>
 
@@ -78,7 +82,7 @@ You should also install the R package <a href="https://github.com/stan-dev/rstan
 
 <h4>Outcomes</h4>
 
-After completing this course, the participant will have become familiar with the foundations of Bayesian inference using Stan (RStan and brms), and will be able to fit a range of multiple regression models and hierarchical models, for normally distributed data, and for lognormal, Poisson, multinomial, and Binomially distributed data. They will know how to calibrate their models using prior and posterior predictive checks; they will be able to establish true and false discovery rates to validate discovery claims, and to carry out model comparison using Bayes factors and k-fold cross validation. 
+After completing this course, the participant will have become familiar with the foundations of Bayesian inference using Stan (RStan and brms), and will be able to fit a range of multiple regression models and hierarchical models, for normally distributed data, and for lognormal and Binomially distributed data. They will know how to calibrate their models using prior and posterior predictive checks; they will be able to establish true and false discovery rates to validate discovery claims. If there is time, we will discuss how to carry out model comparison using Bayes factors and k-fold cross validation. 
 
 <br><br>
 
@@ -91,14 +95,12 @@ Solutions to exercises are not publicly available; they will only be provided to
 
 <strong>lecture notes:</strong> 
 
-To be provided.
+Download from 
+<a href="https://github.com/vasishth/IntroductionBayes">here</a>.
 
 <strong>slides and exercises:</strong> 
 
 <ol>
- <li><a href="slides/00_FrequentistReview.pdf">Frequentist NHST review</a>
- </li> 
-<li><a href="slides/00_IntroLectureBayesCourse.pdf">00 Comparison: Frequentist vs Bayesian methods</a></li>
 <li><a href="slides/01_foundations.pdf">01 Foundations</a></li>
 <ol>
 <li><a href="exercises/01_Exercises.pdf">01 Exercises</a></li>  
@@ -150,33 +152,30 @@ Depending on the class, I may go faster or slower, so I may not adhere to this e
  Probability theory and Bayes' rule, Probability distributions, Understanding and eliciting priors, Analytical Bayes: Beta-Binomial, Poisson-Gamma, Normal-Normal
 </li>
  
-<li><strong>Tuesday: Computational Bayes</strong><br>
+<li><strong>Tuesday: Linear models</strong><br>
 
  
-Generating prior predictive distributions using RStan and R, Fake-data simulation for model evaluation, Sampling methods: Inverse sampling, Gibbs sampling, Random Walk Metropolis, Hamiltonian Monte Carlo
+Basic theory of linear modeling. Generating prior predictive distributions using RStan and R, Fake-data simulation for model evaluation, Sampling methods will be skipped in class but please read the lecture notes later which cover: Inverse sampling, Gibbs sampling, Random Walk Metropolis, Hamiltonian Monte Carlo.
 </li>
 
  
-<li><strong>Wednesday: Bayesian Modeling with Stan and brms</strong><br>
+<li><strong>Wednesday: Hierarchical linear models</strong><br>
 
  
-Introduction to Stan syntax, Introduction to brms, Linear models using RStan and brms, fake-data generation, true and false discovery rate
+HLMs using RStan and brms, fake-data generation, true and false discovery rate, logistics mixed effects models, individual differences, shrinkage.
 
 </li>
  
 
-<li><strong>Thursday: Regression modeling using Stan and brms</strong><br>
+<li><strong>Thursday: HLMs continued, exercises</strong><br>
 
- 
-Generalized linear models, Model evaluation and calibration, Hierarchical linear models, Fake-data generation for hierarchical data, Posterior predictive checks,
-
+Here we will get some hands-on experience with real life problems.
 </li>
 
 
-<li><strong>Friday: Model evaluation and comparison</strong> <br>
+<li><strong>Friday: keynote lectures</strong> <br>
 
-Model comparison using Bayes factor, 
-Some instructive case studies and examples of models</li>
+Please see the SMLP schedule.</li>
 
 
 </ol>
