@@ -1,11 +1,11 @@
 ---
 title: "05 Model comparison and hypothesis testing"
 author: "Shravan Vasishth"
-date: "25-29 March 2019"
+date: '```r format(Sys.Date(), "%B %d, %Y")```'
 output:
   beamer_presentation:
-    theme: "CambridgeUS"
-    colortheme: "dolphin"
+    theme: "Boadilla"
+    colortheme: "dove"
     fonttheme: "structurebold"
 header-includes:
    - \usepackage{esint}
@@ -24,6 +24,7 @@ link-citations: yes
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 library(brms)
+library(rstan)
 ```
 
 # Introduction
@@ -36,7 +37,7 @@ P(\theta\mid D, M_1) = \frac{P(D\mid \theta, M_1) P(\theta\mid M_1)}{P(D\mid M_1
 
 # Introduction
 
-$P(D\mid M_1)$ is the likelihood, and is a single number that tells you the likelihood of the observed data D given the model $M_1$ (and only in the discrete case, it tells you the probability of the observed data D given the model). 
+$P(D\mid M_1)$ is the likelihood, and is a single number that tells you the likelihood of the observed data D given the model $M_1$. 
 
 # Introduction
 
@@ -48,10 +49,18 @@ The higher likelihood is telling us that the underlying model is more likely to 
 
 # Introduction
 
+Assume for simplicity that $\sigma=1$.
+
 ```{r echo=TRUE}
+## sample 100 iid data points:
 x<-rnorm(100)
-sum(dnorm(x,mean=0,sd=1,log=TRUE))
-sum(dnorm(x,mean=10,sd=1,log=TRUE))
+## compute log likelihood under mu=0
+(loglikmu0<-sum(dnorm(x,mean=0,sd=1,log=TRUE)))
+## compute log likelihood under mu=10
+(loglikmu10<-sum(dnorm(x,mean=10,sd=1,log=TRUE)))
+## the likelihood ratio is a difference of logliks 
+## on the log scale:
+loglikmu0-loglikmu10
 ```
 
 # Introduction
@@ -62,7 +71,7 @@ One way to compare two models $M_1$ and $M_2$ is to use the Bayes factor:
 BF_{12} = \frac{P(D\mid M_1)}{P(D\mid M_2)}
 \end{equation}
 
-In essence, the Bayes factor is a likelihood ratio. (If you have studied frequentist linear modeling, you would have encountered the likelihood ratio test, otherwise known as the ANOVA.)
+The Bayes factor is similar to the frequentist likelihood ratio test (or ANOVA), with the difference that in the Bayes factor, the likelihood is integrated over the parameter space, not maximized (shown below). 
 
 # Introduction
 
@@ -87,7 +96,7 @@ The likelihood under $M_1$ is:
 
 We already know how to compute this:
 
-```{r}
+```{r echo=TRUE}
 (probDataM1<-dbinom(9,p=0.5,size=10))
 ```
 
@@ -125,7 +134,8 @@ In our discrete example, this evaluates to:
 
 ```{r echo=TRUE}
 res<-(1/3)* (choose(10,9)* (0)^9 * (1-0)^1) + (1/3)* 
-  (choose(10,9)* (0.5)^9 * (1-0.5)^1) + (1/3)* (choose(10,9)* (1)^9 * (1-1)^1)
+  (choose(10,9)* (0.5)^9 * (1-0.5)^1) + 
+  (1/3)* (choose(10,9)* (1)^9 * (1-1)^1)
 res
 ```
 
@@ -216,7 +226,7 @@ P(D\mid M_2) =& \int_0^1 P(D\mid \theta, M_2)\, d\theta\\
 # Introduction
 ## Continuous example
 
-So, when Model 1 assumes that the $\theta$ parameter is 0.5, and Model 2 has a vague prior $Beta(1,1)$on the $\theta$ parameter, 
+So, when Model 1 assumes that the $\theta$ parameter is 0.5, and Model 2 has a vague prior $Beta(1,1)$ on the $\theta$ parameter, 
 our Bayes factor will be:
 
 \begin{equation}
@@ -399,19 +409,19 @@ t.test(d)
 
 We will now compute the Bayes factor, using the Savage-Dickey method. This will allow us to test the null against the alternative hypothesis. 
 
-# Savage-Dickey Density ratio
-## Example 1
+# Savage-Dickey Density ratio: Example 1
 
 Prepare data:
 ```{r echo=TRUE}
-d <- d / sd(d)        # standardize the paired difference of scores
-ndata <- length(d)  # number of subjects
-
-data <- list(x=d, ndata=ndata)  # to be passed on to Stan
+#standardize the paired difference of scores
+d <- d / sd(d)      
+#number of subjects
+ndata <- length(d)  
+# to be passed on to Stan
+data <- list(x=d, ndata=ndata)
 ```
 
-# Savage-Dickey Density ratio
-## Example 1
+# Savage-Dickey Density ratio: Example 1
 
 We will now compute, using Stan, the Bayes Factor for the two hypotheses $H_0: \delta=0$ and $H_1: \delta \neq 0$. 
 
@@ -422,8 +432,11 @@ The model is:
   - $\mu \leftarrow \delta \sigma$
   - $x_i \sim Normal(\mu,\sigma^2)$
 
-# Savage-Dickey Density ratio
-## Example 1
+# Savage-Dickey Density ratio: Example 1 
+
+(see accompanying R code with these slides)
+
+\tiny
 
 ```{r echo=TRUE}
 model_example1 <- "
@@ -432,42 +445,38 @@ data {
   vector[ndata] x;
 }
 parameters {
-  real sigmatmp;
+  real<lower=0> sigma;
   real delta;
 } 
 transformed parameters {
   real mu;
-  real<lower=0> sigma;
-  sigma = fabs(sigmatmp);
   mu = delta * sigma;
 }
 model {
-  sigmatmp ~ cauchy(0, 1);
+  sigma ~ cauchy(0, 1);
   delta ~ cauchy(0, 1);
   x ~ normal(mu, sigma);
 }"
 ```
 
-# Savage-Dickey Density ratio
-## Example 1
+# Savage-Dickey Density ratio: Example 1
 
-
-```{r echo=TRUE,message=FALSE,results="hide"}
-library(rstan)
+```{r echo=TRUE,message=FALSE,results="hide",cache=TRUE}
 # Parameters to be monitored
 parameters <- c("delta")
 
 samples <- stan(model_code=model_example1,   
                 data=data, 
                 iter=20000, 
-                chains=4)
+                chains=4,
+                control=list(adapt_delta=0.99,
+                                      max_treedepth=15))
 
 # Collect posterior samples across all chains:
 delta.posterior <- extract(samples,pars=parameters)$delta 
 ```
 
-# Savage-Dickey Density ratio
-## Example 1
+# Savage-Dickey Density ratio: Example 1
 
 ```{r echo=TRUE,fig.height=3}
 hist(delta.posterior,freq=FALSE,xlim=c(-3,3))
@@ -475,8 +484,7 @@ x<-seq(-3,3,by=0.01)
 lines(x,dcauchy(x))
 ```
 
-# Savage-Dickey Density ratio
-## Example 1
+# Savage-Dickey Density ratio: Example 1
 
 ```{r echo=TRUE}
 #BFs based on logspline fit
@@ -487,18 +495,19 @@ fit.posterior <- logspline(delta.posterior)
 x0 <- qlogspline(0.025,fit.posterior)
 x1 <- qlogspline(0.975,fit.posterior)
 
-posterior <- dlogspline(0, fit.posterior) # this gives the pdf at point delta = 0
-prior     <- dcauchy(0)          # height of order-restricted prior at delta = 0
+# this gives the pdf at point delta = 0
+posterior <- dlogspline(0, fit.posterior) 
+# height of order-restricted prior at delta = 0
+prior     <- dcauchy(0)          
 (BF01      <- posterior/prior)
 ```
 
-# Savage-Dickey Density ratio
-## Example 1
+# Savage-Dickey Density ratio: Example 1
 
 
 The odds of  $H_0$  being true compared to $H_1$ are $`r round(BF01,digits=0)`:1$.
 
-```{r echo=FALSE,fig.height=3,fig.cap="\\label{fig:bfplotsavagedickey}Shown are the prior and posterior densities on delta. The null hypothesis was that delta is 0, and we see that delta=0 has a value 6 times larger under the posterior compared to the prior. This means that the evidence for the null hypothesis that delta=0 is 6 times more than the alternative."}
+```{r echo=FALSE,fig.height=3,fig.cap="\\label{fig:bfplotsavagedickey}Shown are the prior and posterior densities on delta. The null hypothesis was that delta is 0, and we see that delta=0 has a value 6 times larger under the posterior compared to the prior. **This means that the evidence for the null hypothesis that delta=0 is 6 times more than the alternative**."}
 #============ Plot Prior and Posterior  ===========================
 par(cex.main = 1.5, mar = c(5, 6, 4, 5) + 0.1, mgp = c(3.5, 1, 0), cex.lab = 1.5,
     font.lab = 2, cex.axis = 1.3, bty = "n", las=1)
@@ -527,8 +536,148 @@ axis(2)
 points(0, dcauchy(0), pch=19, cex=2)
 ```
 
+# Savage-Dickey Density ratio: Example 2
+
+We will now compute, using Stan, the Bayes Factor for the two hypotheses $H_0: \delta=0$ and $H_1: \delta \sim Cauchy(0,1)_{I(-\infty,0)}$. 
+
+The Bayesian model is:
+
+  - $\delta \sim Cauchy(0,1)_{I(-\infty,0)}$
+  - $\sigma \sim Cauchy(0,1)_{I(0,\infty)}$
+  - $\mu \leftarrow \delta\sigma$
+  - $x_i \sim Normal(\mu,\sigma)$
+
+```{r echo=TRUE}
+## You could define initial values, but we
+## will let Stan do this:
+#myinits <- list(
+#  list(delta=-abs(rnorm(1,0,1)), deltaprior=-abs(rnorm(1,0,1)), sigmatmp=.1),
+#  list(delta=-abs(rnorm(1,0,1)), deltaprior=-abs(rnorm(1,0,1)), sigmatmp=.2),
+#  list(delta=-abs(rnorm(1,0,1)), deltaprior=-abs(rnorm(1,0,1)), sigmatmp=.3))
+```
+
+# Savage-Dickey Density ratio: Example 2
+
+\tiny
+```{r echo=TRUE}
+# Parameters to be monitored
+parameters <- c("delta")
+
+model_example2 <- "
+// One-Sample Comparison of Means
+data { 
+  int<lower=0> ndata;
+  vector[ndata] x;
+}
+parameters {
+  real<lower=0> sigma;
+  real<upper=0> delta;
+} 
+transformed parameters {
+  real mu;
+  mu = delta * sigma;
+}
+model {
+  // delta and sigma Come From (Half) Cauchy Distributions
+  sigma ~ cauchy(0, 1);
+  delta ~ cauchy(0, 1);
+  // Data
+  x ~ normal(mu, sigma);
+}"
+```
+
+# Savage-Dickey Density ratio: Example 2
+
+
+```{r echo=TRUE,message=FALSE,results="hide",cache=TRUE}
+## samples from model:
+samples <- stan(model_code=model_example2,   
+                data=data, 
+                #init=myinits,
+                pars=parameters,
+                iter=30000, 
+                chains=4,
+                control = list(adapt_delta = 0.99,
+                               max_treedepth=15))
+
+# Collect posterior samples across all chains:
+delta.posterior <- extract(samples)$delta
+```
+
+# Savage-Dickey Density ratio: Example 2
+
+
+```{r fig,height=3}
+hist(delta.posterior,freq=FALSE,
+     xlim=c(-3,0),main="Posterior distribution \n and prior (line)")
+x<-seq(-3,0,by=0.001)
+lines(x,dcauchy(x))
+```
+
+# Savage-Dickey Density ratio: Example 2
+
+Now we compute the Bayes Factor, comparing the two hypotheses.
+
+```{r echo=TRUE}
+fit.posterior <- logspline(delta.posterior,ubound=0) 
+# 95% confidence interval:
+x0 <- qlogspline(0.025,fit.posterior)
+x1 <- qlogspline(0.975,fit.posterior)
+
+# this gives the pdf at point delta = 0
+posterior <- dlogspline(0, fit.posterior) 
+# height of order--restricted prior at delta = 0
+prior     <- 2*dcauchy(0)       
+(BF01      <- posterior/prior)
+```
+
+# Savage-Dickey Density ratio: Example 2
+
+
+According to this analysis, the null hypothesis $H_0: \delta=0$ being true is 
+$`r round(BF01,digits=0)`$ 
+times more likely than $H_1: \delta \sim Cauchy(0,1)_{I(-\infty,0)}$.
+
+```{r fig.height=3,fig.cap="\\label{fig:posterior}The prior and posterior densities."}
+#============ Plot Prior and Posterior  ===========================
+par(cex.main = 1.5, 
+    mar = c(5, 6, 4, 5) + 0.1, 
+    mgp = c(3.5, 1, 0), cex.lab = 1.5,
+    font.lab = 2, cex.axis = 1.3, bty = "n", las=1)
+xlow  <- -3
+xhigh <- 0
+yhigh <- 12
+Nbreaks <- 80
+y       <- hist(delta.posterior, Nbreaks, plot=F)
+plot(c(y$breaks, max(y$breaks)), c(0,y$density,0), type="S", lwd=2, lty=2,
+     xlim=c(xlow,xhigh), ylim=c(0,yhigh), xlab=" ", ylab="Density", axes=F) 
+axis(1, at = c(-3,-2,-1,0), lab=c("-3","-2","-1","0"))
+axis(2)
+mtext(expression(delta), side=1, line = 2.8, cex=2)
+#now bring in log spline density estimation:
+par(new=T)
+plot(fit.posterior, ylim=c(0,yhigh), 
+     xlim=c(xlow,xhigh), lty=1, lwd=1, axes=F)
+points(0, dlogspline(0, fit.posterior),pch=19, cex=2)
+# plot the prior:
+par(new=T)
+plot ( function( x ) 2*dcauchy( x, 0, 1 ), xlow, xhigh, ylim=c(0,yhigh),
+       xlim=c(xlow,xhigh), lwd=2, lty=1, ylab=" ", xlab = " ", axes=F) 
+axis(1, at = c(-3,-2,-1,0), lab=c("-3","-2","-1","0"))
+axis(2)
+points(0, 2*dcauchy(0), pch=19, cex=2)
+```
+
 
 # Two methods for computing Bayes factors with brms
+
+brms provides two approaches:
+
+- hypothesis function
+- bayes_factor
+
+# Two methods for computing Bayes factors with brms
+## Set up data
 
 First, set up data as a data-frame:
 
@@ -544,22 +693,23 @@ dat<-data.frame(y,cond,subject)
 ```
 
 # Two methods for computing Bayes factors with brms
+## Examine data frame
 
 ```{r}
 head(dat)
 ```
 
 # Two methods for computing Bayes factors with brms
-
-Set priors:
+## Set priors:
 
 ```{r echo=TRUE}
+## null hypothesis model's prior:
 priors0 <- c(set_prior("cauchy(0, 1)", class = "Intercept"),
                       set_prior("cauchy(0, 1)", 
                                 class = "sd"),
                       set_prior("cauchy(0, 1)", 
                                 class = "sigma"))
-
+## alt hypothesis model's prior:
 priors <- c(set_prior("cauchy(0, 1)", class = "Intercept"),
                       set_prior("cauchy(0, 1)", 
                                 class = "b"),
@@ -570,23 +720,22 @@ priors <- c(set_prior("cauchy(0, 1)", class = "Intercept"),
 ```
 
 # Two methods for computing Bayes factors with brms
+## Using Savage-Dickey method (the hypothesis function in brms)
 
-**Using Savage-Dickey method (the hypothesis function in brms)**:
-
-```{r echo=TRUE,warning=FALSE,message=FALSE,results="asis",cache=TRUE}
+```{r echo=TRUE,warning=FALSE,message=FALSE,include=FALSE,results="asis",cache=TRUE}
 m_full <- brm(y ~ cond + (1|subject), 
               data = dat, 
               prior = priors, 
               sample_prior = TRUE, 
               iter = 10000,
-        control=list(adapt_delta=0.99))
+        control=list(adapt_delta=0.99,
+                     max_treedepth=15))
 
 #summary(m_full)
 ```
 
 # Two methods for computing Bayes factors with brms
-
-**Using Savage-Dickey method (the hypothesis function in brms)**:
+## Using Savage-Dickey method (the hypothesis function in brms)
 
 ```{r echo=TRUE}
 # H0: No effect of cond
@@ -597,9 +746,10 @@ BF_brms_m$hypothesis$Evid.Ratio
 ```
 
 # Two methods for computing Bayes factors with brms
+## Sensitivity analysis (use standard normal priors instead of Cauchy)
 
-
-```{r sensitivityanalysis,echo=TRUE,eval=FALSE}
+```{r sensitivityanalysis,echo=TRUE,eval=FALSE,cache=TRUE}
+## Normal prior for alternative (for sensitivity analysis)
 normalpriors <- c(set_prior("normal(0, 1)", class = "Intercept"),
                       set_prior("normal(0, 1)", 
                                 class = "b"),
@@ -629,11 +779,10 @@ BF_brms_m$hypothesis$Evid.Ratio
 ```
 
 # Two methods for computing Bayes factors with brms
+## Using the bayes_factor function in brms
 
-
-**Using the bayes_factor function in brms**:
-
-```{r echo=TRUE,message=FALSE,warning=FALSE,results="asis",cache=TRUE,include=FALSE}
+```{r echo=TRUE,message=FALSE,warning=FALSE,results="asis",cache=TRUE}
+## null model
 m0<-brm(y~1+(1|subject),
         dat,prior=priors0,
         warmup=1000,
@@ -641,6 +790,7 @@ m0<-brm(y~1+(1|subject),
         save_all_pars = TRUE,
         control=list(adapt_delta=0.99))
 
+## alt model
 m1<-brm(y~cond+(1|subject),
         dat,prior=priors,
         warmup=1000,
@@ -650,9 +800,7 @@ m1<-brm(y~cond+(1|subject),
 ```
 
 # Two methods for computing Bayes factors with brms
-
-
-**Using the bayes_factor function in brms**:
+## Using the bayes_factor function in brms
 
 
 ```{r echo=TRUE,message=FALSE,warning=FALSE,results="asis"}
@@ -660,6 +808,7 @@ bayes_factor(m0,m1)$bf
 ```
 
 # Two methods for computing Bayes factors with brms
+## Using the bayes_factor function in brms
 
 
 Notice that if you flip the order of the models in the function, the evidence is for the first model:
@@ -668,148 +817,11 @@ Notice that if you flip the order of the models in the function, the evidence is
 bayes_factor(m1,m0)$bf
 ```
 
-# Bayes factor using Stan
-## Example 2
-
-We will now compute, using Stan, the Bayes Factor for the two hypotheses $H_0: \delta=0$ and $H_1: \delta \sim Cauchy(0,1)_{I(-\infty,0)}$. 
-
-The Bayesian model is:
-
-  - $\delta \sim Cauchy(0,1)_{I(-\infty,0)}$
-  - $\sigma \sim Cauchy(0,1)_{I(0,\infty)}$
-  - $\mu \leftarrow \delta\sigma$
-  - $x_i \sim Normal(\mu,\sigma^2)$
-
-```{r}
-## You could define initial values, but we
-## will let Stan do this:
-#myinits <- list(
-#  list(delta=-abs(rnorm(1,0,1)), deltaprior=-abs(rnorm(1,0,1)), sigmatmp=.1),
-#  list(delta=-abs(rnorm(1,0,1)), deltaprior=-abs(rnorm(1,0,1)), sigmatmp=.2),
-#  list(delta=-abs(rnorm(1,0,1)), deltaprior=-abs(rnorm(1,0,1)), sigmatmp=.3))
-```
-
-# Bayes factor using Stan
-## Example 2
-
-
-```{r echo=FALSE}
-# Parameters to be monitored
-parameters <- c("delta")
-
-model_example2 <- "
-// One-Sample Comparison of Means
-data { 
-  int<lower=0> ndata;
-  vector[ndata] x;
-}
-parameters {
-  real sigmatmp;
-  real<upper=0> delta;
-} 
-transformed parameters {
-  real<lower=0> sigma;
-  real mu;
-  sigma = fabs(sigmatmp);
-  mu = delta * sigma;
-}
-model {
-  // Delta and sigma Come From (Half) Cauchy Distributions
-  sigmatmp ~ cauchy(0, 1);
-  delta ~ cauchy(0, 1);
-  // Data
-  x ~ normal(mu, sigma);
-}"
-```
-
-# Bayes factor using Stan
-## Example 2
-
-
-```{r echo=TRUE,message=FALSE,results="hide"}
-## samples from model:
-samples <- stan(model_code=model_example2,   
-                data=data, 
-                #init=myinits,
-                pars=parameters,
-                iter=30000, 
-                chains=4,
-                control = list(adapt_delta = 0.99,max_treedepth=15))
-
-# Collect posterior samples across all chains:
-delta.posterior <- extract(samples)$delta
-```
-
-# Bayes factor using Stan
-## Example 2
-
-
-```{r fig,height=3}
-hist(delta.posterior,freq=FALSE,
-     xlim=c(-3,0),main="Posterior distribution \n and prior (line)")
-x<-seq(-3,0,by=0.001)
-lines(x,dcauchy(x))
-```
-
-# Bayes factor using Stan
-## Example 2
-
-Now we compute the Bayes Factor, comparing the two hypotheses.
-
-```{r echo=TRUE}
-fit.posterior <- logspline(delta.posterior)
-
-fit.posterior <- logspline(delta.posterior,ubound=0) # NB. note the bound
-
-# 95% confidence interval:
-x0 <- qlogspline(0.025,fit.posterior)
-x1 <- qlogspline(0.975,fit.posterior)
-
-posterior <- dlogspline(0, fit.posterior) # this gives the pdf at point delta = 0
-prior     <- 2*dcauchy(0)       # height of order--restricted prior at delta = 0
-(BF01      <- posterior/prior)
-```
-
-# Bayes factor using Stan
-## Example 2
-
-
-According to this analysis, the null hypothesis $H_0: \delta=0$ being true is 
-$`r round(BF01,digits=0)`$ 
-times more likely than $H_1: \delta \sim Cauchy(0,1)_{I(-\infty,0)}$.
-
-```{r fig.height=3,fig.cap="\\label{fig:posterior}The prior and posterior densities."}
-#============ Plot Prior and Posterior  ===========================
-par(cex.main = 1.5, mar = c(5, 6, 4, 5) + 0.1, mgp = c(3.5, 1, 0), cex.lab = 1.5,
-    font.lab = 2, cex.axis = 1.3, bty = "n", las=1)
-xlow  <- -3
-xhigh <- 0
-yhigh <- 12
-Nbreaks <- 80
-y       <- hist(delta.posterior, Nbreaks, plot=F)
-plot(c(y$breaks, max(y$breaks)), c(0,y$density,0), type="S", lwd=2, lty=2,
-     xlim=c(xlow,xhigh), ylim=c(0,yhigh), xlab=" ", ylab="Density", axes=F) 
-axis(1, at = c(-3,-2,-1,0), lab=c("-3","-2","-1","0"))
-axis(2)
-mtext(expression(delta), side=1, line = 2.8, cex=2)
-#now bring in log spline density estimation:
-par(new=T)
-plot(fit.posterior, ylim=c(0,yhigh), xlim=c(xlow,xhigh), lty=1, lwd=1, axes=F)
-points(0, dlogspline(0, fit.posterior),pch=19, cex=2)
-# plot the prior:
-par(new=T)
-plot ( function( x ) 2*dcauchy( x, 0, 1 ), xlow, xhigh, ylim=c(0,yhigh),
-       xlim=c(xlow,xhigh), lwd=2, lty=1, ylab=" ", xlab = " ", axes=F) 
-axis(1, at = c(-3,-2,-1,0), lab=c("-3","-2","-1","0"))
-axis(2)
-points(0, 2*dcauchy(0), pch=19, cex=2)
-```
 
 # Class Exercise 1
 
-Refit examples 1 and 2 with a different prior for $\sigma$. Does the Bayes Factor change in either case?
-
-What happens when the prior for $\delta$ is changed to a suitable normal distribution?
+Refit examples 1 and 2 with a different prior for $\sigma$ than the ones used. Does the Bayes Factor change when the priors are changed?
+In the two examples, how does the Bayes factor change when the prior for $\delta$ is changed to a Normal(0,0.5)?
 
 # Class Exercise 2
 
@@ -817,151 +829,6 @@ Estimate the Bayes factor for the hypotheses:
 $H_0: \delta=0$, and 
 $H_1: \delta \sim 
 Cauchy(0,1)_{I(0,\infty)}$.
-
-# Example 3
-
-Here is an example of a two-sample test.
-
-The data:
-
-```{r echo=TRUE}
-x <- c(70,80,79,83,77,75,84,78,75,75,78,82,74,81,72,70,75,72,76,77)
-y <- c(56,80,63,62,67,71,68,76,79,67,76,74,67,70,62,65,72,72,69,71)
-
-n1 <- length(x)
-n2 <- length(y)
-
-# Rescale
-y <- y - mean(x)
-y <- y / sd(x)
-x <- (x - mean(x)) / sd(x); 
-
-data <- list(x=x, y=y, 
-             n1=n1, n2=n2) 
-```
-
-# Example 3
-
-We could do an unpaired two-sample t-test:
-
-```{r}
-t.test(x,y)
-```
-
-We see strong evidence against the null hypothesis.
-
-# Example 3
-
-The Stan model:
-
-```{r echo=TRUE}
-model_example3 <- "
-// Two-sample Comparison of Means
-data { 
-  int<lower=1> n1;
-  int<lower=1> n2;
-  vector[n1] x;
-  vector[n2] y;
-}
-parameters {
-  real mu;
-  real sigmatmp;
-  real delta;
-} 
-transformed parameters {
-  real<lower=0> sigma;
-  real alpha;
-  sigma = fabs(sigmatmp);
-  alpha = delta * sigma;
-}
-model {
-  // Delta, mu, and sigma Come From (Half) Cauchy Distribution
-  mu ~ cauchy(0, 1);
-  sigmatmp ~ cauchy(0, 1);
-  delta ~ cauchy(0, 1);
-  // Data
-  x ~ normal(mu + alpha / 2, sigma);
-  y ~ normal(mu - alpha / 2, sigma);
-}"
-```
-
-# Example 3
-
-```{r echo=TRUE,message=FALSE,results="hide"}
-# Parameters to be monitored
-parameters <- c("delta")
-
-# The following command calls Stan with specific options.
-# For a detailed description type "?rstan".
-samples <- stan(model_code=model_example3,   
-                data=data, 
-                iter=20000, 
-                chains=4)
-
-# Collect posterior samples across all chains:
-delta.posterior <- extract(samples,pars=parameters)$delta  
-```
-
-# Example 3
-
-
-```{r fig.height=3}
-hist(delta.posterior,freq=FALSE)
-```
-
-# Example 3
-
-
-```{r echo=TRUE}
-#============ BFs based on logspline fit ===========================
-library(polspline) # this package can be installed from within R
-fit.posterior <- logspline(delta.posterior)
-
-# 95% confidence interval:
-x0 <- qlogspline(0.025,fit.posterior)
-x1 <- qlogspline(0.975,fit.posterior)
-
-posterior <- dlogspline(0, fit.posterior) # this gives the pdf at point delta = 0
-prior     <- dcauchy(0)         # height of  prior at delta = 0
-(BF01 <- posterior/prior)
-```
-
-# Example 3
-
-The odds in favor of the alternative are $`r round(1/BF01,digits=0)`:1$.
- (The @WagenmakersLee2013book book has a higher number, in the 400s.)
-
-# Example 3 
- 
-```{r fig.height=3}
-#============ Plot Prior and Posterior  ===========================
-par(cex.main = 1.5, mar = c(5, 6, 4, 5) + 0.1, mgp = c(3.5, 1, 0), cex.lab = 1.5,
-    font.lab = 2, cex.axis = 1.3, bty = "n", las=1)
-xlow  <- -3
-xhigh <- 3
-yhigh <- 2
-Nbreaks <- 80
-y       <- hist(delta.posterior, Nbreaks, plot=F)
-plot(c(y$breaks, max(y$breaks)), c(0,y$density,0), type="S", lwd=2, lty=2,
-     xlim=c(xlow,xhigh), ylim=c(0,yhigh), xlab=" ", ylab="Density", axes=F) 
-axis(1, at = c(-4,-3,-2,-1,0,1,2,3,4), lab=c("-4","-3","-2","-1","0",
-                                             "1", "2", "3", "4"))
-axis(2)
-mtext(expression(delta), side=1, line = 2.8, cex=2)
-#now bring in log spline density estimation:
-par(new=T)
-plot(fit.posterior, ylim=c(0,yhigh), xlim=c(xlow,xhigh), lty=1, lwd=1, axes=F)
-points(0, dlogspline(0, fit.posterior),pch=19, cex=2)
-# plot the prior:
-par(new=T)
-plot ( function( x ) dcauchy( x, 0, 1 ), xlow, xhigh, ylim=c(0,yhigh),
-       xlim=c(xlow,xhigh), lwd=2, lty=1, ylab=" ", xlab = " ", axes=F) 
-axis(1, at = c(-4,-3,-2,-1,0,1,2,3,4), lab=c("-4","-3","-2","-1","0",
-                                             "1", "2", "3", "4"))
-axis(2)
-points(0, dcauchy(0), pch=19, cex=2)
-```
-
 
 
 # References
