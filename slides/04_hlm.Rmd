@@ -1,7 +1,7 @@
 ---
 title: "04 Hierarchical linear modeling"
 author: "Shravan Vasishth and Bruno Nicenboim"
-date: "SMLP 2019"
+date: '```r format(Sys.Date(), "%B %d, %Y")```'
 output:
   beamer_presentation:
     theme: "Boadilla"
