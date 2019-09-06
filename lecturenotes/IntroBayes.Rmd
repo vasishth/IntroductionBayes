@@ -4,6 +4,7 @@ subtitle: "Lecture notes for the Statistical Methods for Linguistics and Psychol
 author: "Shravan Vasishth"
 date: "`r Sys.Date()`"
 header-includes:
+   - \usepackage{framed}
    - \usepackage{todonotes}
    - \usepackage{tcolorbox}
    - \usepackage{exercise}
@@ -77,6 +78,10 @@ library(dplyr)
 
 \newpage
 
+```{r child = '05ModelComparisonSelection.Rmd'}
+```
+
+\newpage
 
 
 
