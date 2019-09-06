@@ -151,44 +151,45 @@ f(y_1,\dots,y_n)= \int f(y_1)\cdot f(y_2)\cdots f(y_n) f(\Theta) \, d\Theta
 
 In essence, we integrate out the parameters. Here is one way to do it in R:
 
-  - Take one sample from each of the prior distributions
-  - Generate data using those samples
-  - Repeat until you have a substantial amount of data
-  - Plot the prior predictive density of the generated data
+  - Take one sample from each of the priors
+  - Generate *nobs* data points using those samples
+
+This would give us a matrix containing nsim * nobs generated data. 
+We can then plot the prior predictive densities generated.
+
 
 # Prior predictive checks
 
-```{r eval=FALSE,echo=TRUE}
-nsim<-1000000
-y<-rep(NA,nsim)
+```{r echo=TRUE}
+library(extraDistr) ## needed for half-normal distribution
+## number of simulations
+nsim<-1000
+## number of observations generated each time:
+nobs<-100
+y<-matrix(rep(NA,nsim*nobs),ncol = nobs)
 mu<-rnorm(nsim,mean=0,sd=2000)
-sigma<-abs(rnorm(nsim,mean=0,sd=500))
+## truncated normal, cut off at 0:
+sigma<-rtnorm(nsim,mean=0,sd=500,a=0)
 
 for(i in 1:nsim){
-y[i]<-rnorm(1,mean=mu[i],sd=sigma[i])
+y[i,]<-rnorm(nobs,mean=mu[i],sd=sigma[i])
 }
-
-hist(y)
 ```
 
 # Prior predictive checks
 
-```{r cache=TRUE,fig.height=3,fig.cap="\\label{fig:m1priorpred}First attempt at prior predictive distribution of the data, model m1."}
-nsim<-1000000
-y<-rep(NA,nsim)
-mu<-rnorm(nsim,mean=0,sd=2000)
-sigma<-abs(rnorm(nsim,mean=0,sd=500))
-
-for(i in 1:nsim){
-y[i]<-rnorm(1,mean=mu[i],sd=sigma[i])
+```{r}
+op<-par(mfrow=c(2,2),pty="s")
+random_sample<-sample(1:nsim,4)
+for(i in random_sample){
+hist(y[i,],main="",freq=FALSE)
 }
-
-hist(y)
 ```
+
 
 # Prior predictive checks
 
-We can try to redefine the prior for $\mu$  to have only positive values, and then check again (Figure \ref{fig:m1priorpred2}). We still get some negative values, but that is because we are assuming that 
+We can try to redefine the prior for $\mu$  to have only positive values, and then check again. We still get some negative values, but that is because we are assuming that 
 
 $y \sim Normal(\mu,\sigma)$
 
@@ -196,20 +197,23 @@ which will have negative values for small $\mu$ and large $\sigma$.
 
 # Prior predictive checks
 
-```{r fig.height=3,warning=FALSE,cache=TRUE,fig.cap="\\label{fig:m1priorpred2}Second attempt at prior predictive distribution of the data, model m1."}
-nsim<-1000000
-y<-rep(NA,nsim)
-mu<-abs(rnorm(nsim,mean=0,sd=2000))
-sigma<-abs(rnorm(nsim,mean=0,sd=500))
-
+```{r echo=TRUE}
+y<-matrix(rep(NA,nsim*nobs),ncol = nobs)
+mu<-rtnorm(nsim,mean=0,sd=2000,a=0)
 for(i in 1:nsim){
-y[i]<-rnorm(1,mean=mu[i],sd=sigma[i])
+y[i,]<-rnorm(nobs,mean=mu[i],sd=sigma[i])
 }
-
-hist(y)
 ```
 
-This prior predictive distribution in Figure \ref{fig:m1priorpred2} looks reasonable for now. 
+# Prior predictive checks
+
+```{r}
+op<-par(mfrow=c(2,2),pty="s")
+random_sample<-sample(1:nsim,4)
+for(i in random_sample){
+hist(y[i,],main="",freq=FALSE)
+}
+```
 
 # Prior predictive checks
 
@@ -244,7 +248,7 @@ generated quantities {
 
 Load RStan and brms.
 
-```{r echo=FALSE,include=FALSE}
+```{r echo=TRUE,message=FALSE}
 ## load rstan
 library(rstan)
 options(mc.cores = parallel::detectCores())
@@ -270,10 +274,15 @@ m1priorpred<-stan(model_code=priorpred,
 # Prior predictive checks
 
 
-```{r echo=TRUE,fig.height=3}
+```{r echo=TRUE}
 ## extract and plot one of the data-sets:
 y_sim<-extract(m1priorpred,pars="y_sim")
-dim(y_sim)
+str(y_sim)
+```
+
+# Prior predictive checks
+
+```{r echo=TRUE,fig.height=3}
 hist(y_sim$y_sim[1,],
      main="Prior predictive distribution",
      xlab="y_sim",freq=FALSE)
