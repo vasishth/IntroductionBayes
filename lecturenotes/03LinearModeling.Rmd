@@ -136,27 +136,37 @@ Formally, we want to know the density $f(\cdot)$ of data points $y_1,\dots,n$, g
 f(y_1,\dots,y_n)= \int f(y_1)\cdot f(y_2)\cdots f(y_n) f(\Theta) \, d\Theta 
 \end{equation}
 
-In essence, we integrate out the parameters. Here is one way to do it in R:
+In essence, we integrate out the parameters. Here is one way to do it in R. For the following for *nsim* iterations:
 
   - Take one sample from each of the priors
-  - Generate data using those samples
-  - Repeat until you have a substantial amount of data
-  - Plot the prior predictive density
+  - Generate *nobs* data points using those samples
+
+This would give us a matrix containing nsim * nobs generated data. 
+We can then plot the prior predictive densities generated.
 
 ```{r cache=TRUE,fig.cap="\\label{fig:m1priorpred}First attempt at prior predictive distribution of the data, model m1."}
-nsim<-1000000
-y<-rep(NA,nsim)
+library(extraDistr) ## needed for half-normal distribution
+## number of simulations
+nsim<-1000
+## number of observations generated each time:
+nobs<-100
+y<-matrix(rep(NA,nsim*nobs),ncol = nobs)
 mu<-rnorm(nsim,mean=0,sd=2000)
-sigma<-abs(rnorm(nsim,mean=0,sd=500))
+## truncated normal, cut off at 0:
+sigma<-rtnorm(nsim,mean=0,sd=500,a=0)
 
 for(i in 1:nsim){
-y[i]<-rnorm(1,mean=mu[i],sd=sigma[i])
+y[i,]<-rnorm(nobs,mean=mu[i],sd=sigma[i])
 }
 
-hist(y)
+op<-par(mfrow=c(3,5),pty="s")
+random_sample<-sample(1:nsim,15)
+for(i in random_sample){
+hist(y[i,],main="",freq=FALSE)
+}
 ```
 
-This prior predictive distribution in Figure \ref{fig:m1priorpred} shows that the prior for $\mu$ is not realistic: how can button press time have negative values?
+The prior predictive distributions in Figure \ref{fig:m1priorpred} show that the prior for $\mu$ is not realistic: how can button press time have negative values?
 
 We can try to redefine the prior for $\mu$  to have only positive values, and then check again (Figure \ref{fig:m1priorpred2}). We still get some negative values, but that is because we are assuming that 
 
@@ -165,23 +175,28 @@ $y \sim Normal(\mu,\sigma)$
 which will have negative values for small $\mu$ and large $\sigma$. 
 
 ```{r warning=FALSE,cache=TRUE,fig.cap="\\label{fig:m1priorpred2}Second attempt at prior predictive distribution of the data, model m1."}
-nsim<-1000000
-y<-rep(NA,nsim)
-mu<-abs(rnorm(nsim,mean=0,sd=2000))
-sigma<-abs(rnorm(nsim,mean=0,sd=500))
+y<-matrix(rep(NA,nsim*nobs),ncol = nobs)
+## positive values only:
+mu<-rtnorm(nsim,mean=0,sd=2000)
+## truncated normal, cut off at 0:
+sigma<-rtnorm(nsim,mean=0,sd=500,a=0)
 
 for(i in 1:nsim){
-y[i]<-rnorm(1,mean=mu[i],sd=sigma[i])
+y[i,]<-rnorm(nobs,mean=mu[i],sd=sigma[i])
 }
 
-hist(y)
+op<-par(mfrow=c(3,5),pty="s")
+random_sample<-sample(1:nsim,15)
+for(i in random_sample){
+hist(y[i,],main="",freq=FALSE)
+}
 ```
 
-This prior predictive distribution in Figure \ref{fig:m1priorpred2} looks reasonable for now. 
+This prior predictive distribution in Figure \ref{fig:m1priorpred2} is good enough for now; we will improve on this later. 
 
 #### Generating prior predictive data using Stan
 
-Incidentally, we can generate a prior predictive distribution using Stan as follows.
+Incidentally, we can also generate a prior predictive distribution using Stan as follows.
 
 First, we define a Stan model that defines the priors and defines how the data are to be generated. The details of the code below will be explained in class. Documentation on Stan is available at mc-stan.org.
 
@@ -190,7 +205,7 @@ priorpred<-"data {
   int N;
 }
 parameters {
-real<lower=0> mu;
+real<lower=0> mu; //enforce positive mu
 real<lower=0> sigma;
 }
 model {
@@ -226,24 +241,17 @@ m1priorpred<-stan(model_code=priorpred,
 
 ## extract and plot one of the data-sets:
 y_sim<-extract(m1priorpred,pars="y_sim")
-dim(y_sim)
-hist(y_sim$y_sim[1,],
-     main="Prior predictive distribution",
-     xlab="y_sim",freq=FALSE)
-##compare with real data:
-#y_fake<-rnorm(100,mean=1543,sd=1291)
-#hist(y_fake,col="red",add=TRUE,freq=FALSE)
-## compare with mean:
-#mn<-rep(NA,100)
-#for(i in 1:100){
-#mn[i]<-mean(y_sim$y_sim[,i])
-#}
-#hist(mn)
-#abline(v=1550)
+str(y_sim)
+
+op<-par(mfrow=c(3,5),pty="s")
+random_sample<-sample(1:nsim,15)
+for(i in random_sample){
+hist(y_sim$y_sim[i,],main="",freq=FALSE,xlab="y_sim")
+}
 ```
 
 
-Having satisfied outselves that the priors mostly make sense, we now fit the model to fake data. The goal here is to ensure that the model recovers the true underlying parameters.
+Now that we have a sense of what these priors give us, we now fit the model to fake data. The goal here is to ensure that the model recovers the true underlying parameters.
 
 ###  Fake-data simulation and modeling
 
