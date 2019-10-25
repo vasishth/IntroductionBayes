@@ -655,6 +655,7 @@ It is useful to see the effects on the raw ms scale. The log ms scale is difficu
 ## Mean difference
 
 ```{r}
+exp(mean(alpha)+mean(beta))-exp(mean(alpha)-mean(beta))
 meandiff<- exp(alpha + beta) - exp(alpha - beta)
 mean(meandiff)
 round(quantile(meandiff,prob=c(0.025,0.975)),0)
@@ -733,7 +734,7 @@ alpha=NULL,beta=NULL,
 g1<-data.frame(item=1:nitem,
                  cond=rep(c("objgap","subjgap"),nitem/2))
 g2<-data.frame(item=1:nitem,
-                 cond=rep(c("objgap","subjgap"),nitem/2))
+                 cond=rep(c("subjgap","objgap"),nitem/2))
 
 ## assemble data frame in long format:
 gp1<-g1[rep(seq_len(nrow(g1)),
@@ -801,19 +802,24 @@ betameans<-matrix(rep(NA,nsim),ncol =2)
 
 
 ```{r eval=FALSE,echo=TRUE}
+nsim<-100
+tval<-rep(NA,nsim)
 for(i in 1:nsim){
 gg_fake<-gen_fake_lnorm(alpha=mean(alpha),
-                        beta=mean(beta),
+                        beta=0,
                Sigma_u=Sigma_u,Sigma_w=Sigma_w,
                sigma_e=sig)
 
-m_gg_fake<-brm(rt~so + (1+so|subj) + (1+so|item),gg_fake,family=lognormal(),
-    prior=priors,
-    control = list(adapt_delta = 0.99,max_treedepth=15))
-betapost<-posterior_samples(m_gg_fake)$b_so
-betaquants[i,]<-quantile(betapost,prob=c(0.025,0.975))
-betameans[i]<-mean(betapost)
+#m_gg_fake<-brm(rt~so + (1+so|subj) + (1+so|item),gg_fake,family=lognormal(),
+#    prior=priors,
+#    control = list(adapt_delta = 0.99,max_treedepth=15))
+m_gg_fake<-lmer(log(rt)~so + (1|subj) + (1|item),gg_fake)
+tval[i]<-summary(m_gg_fake)$coefficients[2,3]
+#betapost<-posterior_samples(m_gg_fake)$b_so
+#betaquants[i,]<-quantile(betapost,prob=c(0.025,0.975))
+#betameans[i]<-mean(betapost)
 }
+mean(abs(tval)>2)
 ```
 
 # Example 1: Reading time differences in subject vs object relatives in English
