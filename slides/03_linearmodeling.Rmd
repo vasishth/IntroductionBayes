@@ -283,14 +283,14 @@ str(y_sim)
 # Prior predictive checks
 
 ```{r echo=TRUE,fig.height=3}
-hist(y_sim$y_sim[1,],
+hist(y_sim$y_sim[100,],
      main="Prior predictive distribution",
      xlab="y_sim",freq=FALSE)
 ```
 
 # Prior predictive checks
 
-Having satisfied outselves that the priors mostly make sense, we now fit the model to fake data. The goal here is to ensure that the model recovers the true underlying parameters.
+Having satisfied ourselves that the priors mostly make sense, we now fit the model to fake data. The goal here is to ensure that the model recovers the true underlying parameters.
 
 #  Fake-data simulation and modeling
 
@@ -645,7 +645,7 @@ priors <- c(set_prior("normal(0, 2000)",
                       class = "Intercept"),
             set_prior("normal(0, 500)", 
                       class = "b",
-                      coef="presses"),
+                      coef="c_presses"),
             set_prior("normal(0, 500)", 
                       class = "sigma"))
 ```
@@ -654,13 +654,15 @@ priors <- c(set_prior("normal(0, 2000)",
 ## Probability model
 
 ```{r cache=TRUE,echo=TRUE}
-m2<-brm(y~1+presses,noreading_data,prior = priors,
+m2<-brm(y~1+c_presses,noreading_data,
+        prior = priors,
        iter = 2000, chains = 4,family = gaussian(), 
        control = list(adapt_delta = 0.99))
 ```
 
 # Example 2: Investigating adaptation effects \label{sec:moreinter}
 ## Posteriors
+
 
 ```{r fig.height=3,message=FALSE}
 library(bayesplot)
@@ -676,13 +678,16 @@ We'll need to examine what happens with $\beta$. The summary gives us the releva
 
 ```{r echo=TRUE}
 m2_post_samp_b <- posterior_samples(m2, "^b")
-beta_samples <- m2_post_samp_b$b_presses 
+str(m2_post_samp_b)
+beta_samples <- m2_post_samp_b$b_c_presses 
 beta_mean<-mean(beta_samples)
 quantiles_beta <- quantile(beta_samples,
                            prob=c(0.025,0.975))
 beta_low<-quantiles_beta[1]
 beta_high<-quantiles_beta[2]
 ```
+
+
 
 # Example 2: Investigating adaptation effects \label{sec:moreinter}
 ## Posterior predictive checks
@@ -763,7 +768,7 @@ priors_log <- c(set_prior("normal(0, 10)",
 ```
 
 ```{r cache=TRUE,echo=TRUE}
-m2_logn<-brm(y~1+presses,noreading_data,
+m2_logn<-brm(y~1+ presses,noreading_data,
              prior = priors_log,
        iter = 2000, chains = 4,family = lognormal(), 
        control = list(adapt_delta = 0.99,
@@ -784,9 +789,9 @@ beta_samples<-posterior_samples(m2_logn,"^b")$b_presses
 
 beta_ms<-exp(alpha_samples+beta_samples)-exp(alpha_samples)
 
-beta_msmean <- round(mean(beta_ms),3)
-beta_mslow <- round(quantile(beta_ms,prob=0.025),3)
-beta_mshigh <- round(quantile(beta_ms,prob=0.975),3)
+(beta_msmean <- round(mean(beta_ms),3))
+(beta_mslow <- round(quantile(beta_ms,prob=0.025),3))
+(beta_mshigh <- round(quantile(beta_ms,prob=0.975),3))
 
 beta_mean <- round(mean(beta_samples),2)
 beta_low <- round(quantile(beta_samples,prob=0.025),2)
