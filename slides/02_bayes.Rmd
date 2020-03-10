@@ -1,7 +1,7 @@
 ---
 title: "02 Introduction to Bayes"
 author: "Shravan Vasishth"
-date: "SMLP 2019"
+date: "SMLP"
 output:
   beamer_presentation:
     theme: "Boadilla"
