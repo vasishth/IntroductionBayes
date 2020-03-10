@@ -1,0 +1,538 @@
+---
+title: "02 Sampling algorithms"
+author: "Shravan Vasishth"
+date: "SMLP"
+output:
+  beamer_presentation:
+    theme: "Boadilla"
+    colortheme: "dove"
+    fonttheme: "structurebold"
+header-includes:
+   - \usepackage{esint}
+   - \usepackage{mathtools}
+   - \makeatletter
+   - \newcommand{\explain}[2]{\underset{\mathclap{\overset{\uparrow}{#2}}}{#1}}
+   - \newcommand{\explainup}[2]{\overset{\mathclap{\underset{\downarrow}{#2}}}{#1}}
+   - \makeatother
+citation_package: biblatex
+biblatexoptions: 
+  - "backend=biber, style=apa"
+bibliography:  bayes.bib
+link-citations: yes
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+ 
+# MCMC sampling
+ 
+## The inversion method for sampling
+ 
+ This method works when we know the closed form of the pdf we want to simulate from and can derive the inverse of that function.
+
+Steps:
+
+
+\begin{enumerate}
+\item Sample one number $u$ from $Unif(0,1)$. Let $u=F(z)=\int_L^z f(x)\, dx $ (here, $L$ is the lower bound of the pdf f).
+\item Then $z=F^{-1}(u)$ is a draw from $f(x)$.
+\end{enumerate}
+
+# Example 1: Samples from Standard Normal
+
+Take a sample from the Uniform(0,1):
+
+```{r}
+u<-runif(1,min=0,max=1)
+```
+
+Let f(x) be a Normal density---we want to sample from this density. The inverse of the CDF in R is qnorm. It takes as input a probability and returns a quantile. 
+
+```{r echo=TRUE}
+qnorm(u)
+```
+
+# Example 1: Samples from Standard Normal
+
+If we do this repeatedly, we will get samples from the Normal distribution (here, the standard normal).
+
+```{r echo=TRUE}
+nsim<-10000
+samples<-rep(NA,nsim)
+for(i in 1:nsim){
+  u <- runif(1,min=0,max=1)
+  samples[i]<-qnorm(u)
+}
+```
+
+# Example 1: Samples from Standard Normal
+
+```{r echo=TRUE,fig.height=4}
+hist(samples,freq=FALSE,
+     main="Standard Normal")
+```
+
+# Example 2: Samples from Exponential or Gamma
+
+Now try this with the exponential with rate 1:
+
+```{r echo=TRUE}
+nsim<-10000
+samples<-rep(NA,nsim)
+for(i in 1:nsim){
+  u <- runif(1,min=0,max=1)
+  samples[i]<-qexp(u)
+}
+```
+
+# Example 2: Samples from Exponential or Gamma
+
+```{r echo=TRUE,fig.height=4}
+hist(samples,freq=FALSE,main="Exponential")
+```
+
+# Example 2: Samples from Exponential or Gamma
+
+Or the Gamma with rate and shape 1:
+
+```{r echo=TRUE}
+nsim<-10000
+samples<-rep(NA,nsim)
+for(i in 1:nsim){
+  u <- runif(1,min=0,max=1)
+  samples[i]<-qgamma(u,rate=1,shape=1)
+}
+```
+
+# Example 2: Samples from Exponential or Gamma
+
+```{r echo=TRUE,fig.height=4}
+hist(samples,freq=FALSE,main="Gamma")
+```
+
+# Example 3
+
+Let $f(x) = \frac{1}{40} (2x + 3)$, with $0<x<5$. Now, we can't just use the family of q functions in R, because this density is not defined in R.
+
+We have to draw a number from the uniform distribution and then solve for z, which amounts to finding the inverse function:
+
+\begin{equation}
+u = \int_0^z \frac{1}{40} (2x + 3)
+\end{equation}
+
+```{r}
+u<-runif(1000,min=0,max=1) 
+
+z<-(1/2) * (-3 + sqrt(160*u +9))
+```
+
+This method can't be used if we can't find the inverse, and it can't be used with multivariate distributions.
+
+# Gibbs sampling
+
+Gibbs sampling is a very commonly used method in Bayesian statistics. Here is how it works.
+
+Let $\Theta$ be a vector of parameter values, let length of $\Theta$ be $k$. Let $j$ index the $j$-th iteration.
+
+\begin{enumerate}
+\item Assign some starting values to $\Theta$:
+
+$\Theta^{j=0} \leftarrow S$
+
+\item 
+Set $j \leftarrow j + 1$
+\item 
+\begin{enumerate}
+\item[1.] Sample $\theta_1^j \mid \theta_2^{j-1}\dots \theta_k^{j-1}$.
+\item[2.] Sample $\theta_2^j \mid \theta_1^{j}\theta_3^{j-1}\dots \theta_k^{j-1}$.
+
+\vdots
+
+\item[k.] Sample $\theta_k^{j} \mid \theta_1^{j}\dots \theta_{k-1}^{j}$.
+\end{enumerate}
+\item
+Return to step 1.
+\end{enumerate}
+
+# Example: A simple bivariate distribution
+
+Assume that our bivariate (joint) density is:
+
+\begin{equation}
+f(x,y)= \frac{1}{28}(2x + 3y + 2)
+\end{equation}
+
+Using the methods discussed in the Foundations chapter, it is possible to analytically work out the conditional distributions from the joint distribution:
+
+\begin{equation}
+f(x\mid y)=  \frac{f(x,y)}{f(y)}= \frac{(2x + 3y + 2)}{6y+8}
+\end{equation}
+
+\begin{equation}
+f(y\mid x)=  \frac{f(x,y)}{f(x)}= \frac{(2x + 3y + 2)}{4y+10}
+\end{equation}
+
+# Example: A simple bivariate distribution
+
+The Gibbs sampler algorithm is: 
+
+\begin{enumerate}
+\item
+Set starting values for the two parameters $x=-5, y=-5$. Set j=0.
+\item
+Sample $x^{j+1}$ from $f(x\mid y)$ using inversion sampling. You need to work out the inverse of $f(x\mid y)$ and $f(y\mid x)$ first.
+To do this, for $f(x\mid u)$, we have 
+find $z_1$:
+
+\begin{equation}
+u = \int_0^{z_1} \frac{(2x + 3y + 2)}{6y+8}\, dx
+\end{equation}
+
+And for $f(y\mid x)$, we have to find $z_2$:
+
+\begin{equation}
+u = \int_0^{z_2} \frac{(2x + 3y + 2)}{4y+10} \, dy
+\end{equation}
+
+\end{enumerate}
+
+# Example: A simple bivariate distribution
+
+```{r echo=TRUE}
+x<-rep(NA,2000)
+y<-rep(NA,2000) 
+x[1]<- -5 ## initial values
+y[1]<- -5
+for(i in 2:2000)
+{ #sample from x | y 
+  u<-runif(1,min=0, max=1) 
+  x[i]<-sqrt(u*(6*y[i-1]+8)+(1.5*y[i-1]+1)*(1.5*y[i-1]+1))-
+    (1.5*y[i-1]+1) 
+  #sample from y | x
+u<-runif(1,min=0,max=1) 
+y[i]<-sqrt((2*u*(4*x[i]+10))/3 +((2*x[i]+2)/3)*((2*x[i]+2)/3))- 
+    ((2*x[i]+2)/3)
+}
+```
+
+# Example: A simple bivariate distribution
+
+You can run this code to visualize the simulated posterior distribution. See Figure \ref{fig:posteriorbivariateexample}.
+
+```{r fig.height=3,fig.cap="\\label{fig:posteriorbivariateexample}Example of posterior distribution of a bivariate distribution."}
+library(MASS)
+bivar.kde<-kde2d(x,y)
+persp(bivar.kde,phi=10,theta=90,shade=0,border=NA,
+      main="Simulated bivariate density using Gibbs sampling")
+```
+
+# Example: A simple bivariate distribution
+
+
+A central insight here is that knowledge of the conditional distributions is enough to simulate from the joint distribution, provided such a joint distribution exists. 
+
+# Random walk Metropolis
+
+  - Start at random location $\theta_0 \in \Theta$
+  - For step $i=1,\dots,I$
+    - Propose new location using a "symmetric jumping distribution"
+    - Calculate 
+    
+    $\hbox{ratio} = \frac{lik(\theta_{i+1})\times prior (\theta{i+1})}{lik(\theta_{i})\times prior (\theta{i})}$
+
+    - Generate $u \sim Uniform(0,1)$
+    - r>u, move from $\theta_i$ to $\theta_{i+1}$, else stay at $\theta_i$
+    
+# Random Walk Metropolis 
+
+```{r echo=FALSE}
+set.seed(4321)
+
+x0<-rnorm(100,mean=-60,sd=20)
+x1<-rnorm(100,mean=0,sd=10)
+x2<-rnorm(100,mean=60,sd=1)
+plot(density(c(x0,x1,x2)),ylab="likelihood x prior",xlab=expression(theta),main="Posterior")
+```
+
+# Random Walk Metropolis 
+
+
+```{r echo=FALSE,fig.height=6}
+plot(density(c(x0,x1,x2)),ylab="likelihood x prior",xlab=expression(theta),main="Propose location to jump to")
+points(x=-58,y=0.006,pch=16)
+arrows(x0=-58,y0=0.006,x1=-35,y1=0.005,code=2,angle=45,length=0.1)
+```
+
+# Random Walk Metropolis 
+
+```{r echo=FALSE,fig.height=6}
+plot(density(c(x0,x1,x2)),ylab="likelihood x prior",xlab=expression(theta),main="Calculate ratio of \n proposed/current likxprior")
+points(x=-58,y=0.006,pch=16)
+arrows(x0=-58,y0=0.006,x1=-35,y1=0.005,code=2,angle=45,length=0.1)
+arrows(x0=-58,y0=0.006,x1=-160,y1=0.006,angle=0)
+arrows(x0=-35,y0=0.005,x1=-160,y1=0.005,angle=0)
+text(x=-120,y=0.0055,labels="ratio=0.83")
+```
+
+# Random Walk Metropolis 
+
+Take a sample $u \sim Uniform(0,1)$. Suppose u = 0.90. Since $ratio < u$, remain at current position (reject proposal).
+
+```{r echo=FALSE,fig.height=5}
+plot(density(c(x0,x1,x2)),ylab="likelihood x prior",xlab=expression(theta),main="Calculate ratio of \n proposed/current likxprior")
+points(x=-58,y=0.006,pch=16)
+arrows(x0=-58,y0=0.006,x1=-35,y1=0.005,code=2,angle=45,length=0.1)
+arrows(x0=-58,y0=0.006,x1=-160,y1=0.006,angle=0)
+arrows(x0=-35,y0=0.005,x1=-160,y1=0.005,angle=0)
+text(x=-120,y=0.0055,labels="ratio=0.83")
+```
+
+# Random Walk Metropolis 
+
+
+
+```{r echo=FALSE,fig.height=6}
+plot(density(c(x0,x1,x2)),ylab="likelihood x prior",xlab=expression(theta),main="Make new proposal, \n compute proposal/original ratio")
+points(x=-58,y=0.006,pch=16)
+arrows(x0=-58,y0=0.006,x1=0,y1=0.008,code=2,angle=45,length=0.1)
+arrows(x0=-58,y0=0.006,x1=-160,y1=0.006,angle=0)
+arrows(x0=0,y0=0.008,x1=-160,y1=0.008,angle=0)
+text(x=-120,y=0.007,labels="ratio=1.33")
+```
+
+# Random Walk Metropolis 
+
+
+
+```{r echo=FALSE,fig.height=6}
+plot(density(c(x0,x1,x2)),ylab="likelihood x prior",xlab=expression(theta),main="Move to new location because ratio > 1")
+#points(x=-58,y=0.006,pch=16)
+arrows(x0=-58,y0=0.006,x1=0,y1=0.008,code=2,angle=45,length=0.1)
+arrows(x0=-58,y0=0.006,x1=-160,y1=0.006,angle=0)
+arrows(x0=0,y0=0.008,x1=-160,y1=0.008,angle=0)
+points(x=0,y=0.008,pch=16)
+text(x=-120,y=0.007,labels="ratio=1.33")
+```
+
+
+
+# Hamiltonian Monte Carlo {#hmc}
+
+  - Instead of Gibbs sampling or Metropolis etc., Stan uses this more efficient sampling approach. 
+  - HMC works well for the high-dimensional models we will fit (hierarchical models).
+  - Gibbs sampling faces difficulties with some of the complex hierarchical models we will be fitting later. 
+  - HMC will always succeed for these complex models.
+
+# Hamiltonian Monte Carlo 
+
+  - One limitation of HMC (which Gibbs sampling does not have) is that HMC only works with continuous parameters (not discrete parameters).
+
+  - For our purposes, it is enough to know what sampling using MCMC is, and that HMC gives us posterior samples efficiently.
+
+  - A good reference explaining HMC is Neal 2011. However, this paper is technically very demanding. 
+
+  - More intuitively accessible introductions are available via Michael Betancourt's home page: https://betanalpha.github.io/. In particular, this video is helpful:
+https://youtu.be/jUSZboSq1zg.
+
+# Background: Hamiltonian dynamics
+
+Imagine an ice puck moving over a frictionless surface of varying heights.
+
+  - The puck moves at constant velocity (momentum) k on flat surface
+  - When the puck moves up an incline, it's kinetic energy goes down, and its potential energy goes up
+  - When the puck slows down and comes to a halt, kinetic energy becomes 0.
+  - When the puck slides back, kinetic energy goes up, potential energy goes down.
+
+See animation.
+
+# Background: Hamiltonian dynamics
+
+The ice puck has 
+
+  - location $\theta$
+  - momentum $k$
+
+We can describe the dynamics of puck movement in terms of this **total energy** equation
+
+$Energy(\theta,k) = \explain{~~~~~U(\theta)~~~~~}{\hbox{Potential energy}} + \explain{~~~~~KE(k)~~~~~}{\hbox{Kinetic energy}}$
+
+In classical mechanics, this total energy is called a Hamiltonian, so we can write:
+
+$H(\theta,k) = U(\theta) + KE(k)$
+
+# Background: Hamiltonian dynamics
+## Potential energy 
+
+Define the potential energy of the puck as
+
+$U(\theta) = -\log(p(X|\theta) p(\theta))$
+
+Thus:
+
+  - $U(\theta)$ is defined to be the negative log posterior density
+  - It is defined to be the inverse of the posterior space
+
+
+# Background: Hamiltonian dynamics
+## Kinetic energy 
+
+Kinetic energy is $\frac{1}{2} mv^2$
+
+m=mass, v=velocity
+
+Assuming q dimensions, and m=1
+
+$KE(k) = \sum_{i=1}^q \frac{k_i^2}{2}$
+
+# Background: Hamiltonian dynamics
+## The evolution of a puck: The equations of motion
+
+Let there be $i=1,\dots,d$ parameters.
+
+Given the equation:
+
+$H(\theta,k) = U(\theta) + KE(k)$
+
+Classical mechanics defines these equations of motion:
+
+  - position: $\frac{d\theta_i}{dt} = \frac{\delta H}{\delta k_i}$
+  - momentum: $\frac{dk_i}{dt} = -\frac{\delta H}{\delta \theta_i}$
+
+These equations define the mapping from state of the puck at time $t$ to time $t+s$.
+
+# Simplified algorithm
+
+  - Choose initial **momentum** $k \sim N(0,\Sigma)$.
+  - Record puck's current **position** (value of $\theta$)
+  - Record puck's **momentum**, the current value of $k$
+  - The puck's **position** and **momentum** lead to an accept/reject rule that yields samples from the posterior with a high probability of acceptance.
+  - The approximate solution to the equations of motion is done using a modification of Euler's method.
+  
+# HMC demonstration 
+
+The HMC algorithm takes as input the log density and the gradient of the log density. In Stan, these will be computed internally; the user doesn't need to do any computations.
+
+For example, suppose the log density is $f(\theta) = - \frac{\theta^2}{2}$.
+Its gradient is $f'(\theta) = -\theta$. Setting this gradient to 0, and solving for $\theta$, we know that the maximum is at 0. We know it's a maximum because the second derivative, $f''(\theta) = -1$, is negative. See Figure \ref{fig:logdensityexample}.  
+
+This is the machinery we learnt in the foundations chapter (recall how we found MLEs in particular).
+
+# HMC demonstration 
+
+```{r fig.height=4,fig.cap="\\label{fig:logdensityexample}Example log density."}
+theta<-seq(-4,4,by=0.001)
+plot(theta,-theta^2/2,type="l",main="Log density")
+```
+
+# HMC demonstration 
+
+The Radford Neal algorithm for HMC.
+
+Source: [Jarad Niemi](https://github.com/jarad/)'s github repository. 
+
+# HMC demonstration 
+
+See lecture notes.
+
+```{r}
+## Radford Neal algorithm:
+HMC_neal <- function(U, grad_U, e, L, current_theta) {
+theta = current_theta
+omega = rnorm(length(theta),0,1)
+current_omega = omega
+omega = omega - e * grad_U(theta) / 2
+for (i in 1:L) {
+theta = theta + e * omega
+if (i!=L) omega = omega - e * grad_U(theta)
+}
+omega = omega - e * grad_U(theta) / 2
+omega = -omega
+current_U = U(current_theta)
+current_K = sum(current_omega^2)/2
+proposed_U = U(theta)
+proposed_K = sum(omega^2)/2
+if (runif(1) < exp(current_U-proposed_U+current_K-proposed_K))
+{
+return(theta)
+}
+else {
+return(current_theta)
+}
+}
+
+HMC <- function(n_reps, log_density, grad_log_density, tuning, initial) {
+theta = rep(0, n_reps)
+theta[1] = initial$theta
+for (i in 2:n_reps) theta[i] = HMC_neal(U = function(x) -log_density(x),
+grad_U = function(x) -grad_log_density(x),
+e = tuning$e,
+L = tuning$L,
+theta[i-1])
+theta
+}
+```
+
+# HMC demonstration 
+
+Then, we use the HMC function above to take 2000 samples from the posterior. 
+
+We drop the first few (typically, the first half) samples, which are called warm-ups. The reason we drop them is that the initial samples may not yet be sampling from the posterior.
+
+
+# HMC demonstration 
+
+```{r echo=TRUE}
+theta <- HMC(n_reps=2000, 
+             log_density=function(x) -x^2/2, 
+             grad_log_density=function(x) -x, 
+             tuning=list(e=1,L=1),
+             initial=list(theta=0))
+```
+
+# HMC demonstration 
+
+Figure \ref{fig:hmcsamples0} shows a **trace plot**, the trajectory of the samples over 2000 iterations. 
+
+This is called a **chain**. When the sampler is correctly sampling from the posterior, we see a characteristic ``fat hairy caterpillar'' shape, and we say that the sampler has **converged**. 
+You will see later what a failed convergence looks like.
+
+# HMC demonstration 
+
+```{r fig.height=4,fig.cap="\\label{fig:hmcsamples0}An example of a trace plot."}
+plot(theta,type="l",main="Trace plot of posterior samples")
+```
+
+# HMC demonstration 
+
+When we fit Bayesian models, we will always run four parallel chains. 
+
+This is to make sure that even if we start with four different initial values chosen randomly, the chains all end up sampling from the same distribution. 
+
+When this happens, we see that the chains overlap visually, and we say that the chains are **mixing**.
+
+# HMC demonstration 
+
+Figure \ref{fig:hmcsamples} shows the posterior distribution of $\theta$. 
+
+We are not discarding samples here because the sampler converges quickly in this simple example.
+
+# HMC demonstration 
+
+
+```{r fig.height=3,fig.cap="\\label{fig:hmcsamples}Sampling from the posterior using HMC. The red curve shows the distribution Normal(0,1)."}
+hist(theta, freq=F, 100,
+     
+     main="Posterior distribution of the parameter.",
+     xlab=expression(theta))
+curve(dnorm, add=TRUE, col='red', lwd=2)
+```
+
+# HMC demonstration 
+
+
+In the modeling we do in the next part of the course, the Stan software will do the sampling for us. 
+
+
